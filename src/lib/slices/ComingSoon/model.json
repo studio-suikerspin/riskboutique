@@ -1,0 +1,88 @@
+{
+  "id": "coming_soon",
+  "type": "SharedSlice",
+  "name": "ComingSoon",
+  "description": "A coming soon landing page with tagline, main heading, and social links",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default coming soon variation",
+      "imageUrl": "",
+      "primary": {
+        "tags": {
+          "type": "Group",
+          "config": {
+            "label": "Tags",
+            "repeat": true,
+            "fields": {
+              "tag": {
+                "type": "Text",
+                "config": {
+                  "label": "Tag",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Main Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,strong"
+          }
+        },
+        "social_links": {
+          "type": "Link",
+          "config": {
+            "label": "Social Links",
+            "allowText": true,
+            "repeat": true,
+            "select": "web"
+          }
+        },
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
+        "bottom_texts": {
+          "type": "Group",
+          "config": {
+            "label": "Bottom texts",
+            "repeat": true,
+            "fields": {
+              "bottom_text": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Bottom text",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,hyperlink"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

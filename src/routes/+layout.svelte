@@ -1,4 +1,6 @@
 <script>
+	import '../app.css';
+
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/state';
 	import { repositoryName } from '$lib/prismicio';
@@ -18,6 +20,9 @@
 		<meta name="og:image" content={page.data.meta_image} />
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
+
+	<link rel="stylesheet" href="fonts/icons/iconly.css" />
+	<link rel="stylesheet" href="fonts/general-sans/general-sans.css" />
 </svelte:head>
 <main>
 	{@render children()}

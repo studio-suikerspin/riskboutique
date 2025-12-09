@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+:root {
+	--color-dark-mode: #0b0e13;
+	--color-aqua: #0e4f63;
+	--color-clay-green: #b2c1bd;
+	--color-snow-white: #f9f9f8;
+}
+
+body {
+	font-family: 'General Sans', sans-serif;
+	font-size: 16px;
+}

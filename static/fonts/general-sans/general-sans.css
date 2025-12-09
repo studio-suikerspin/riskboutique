@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'General Sans Variable';
+    src: url('GeneralSansVariable-Bold.woff2') format('woff2'),
+        url('GeneralSansVariable-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'General Sans Variable';
+    src: url('GeneralSansVariable-BoldItalic.woff2') format('woff2'),
+        url('GeneralSansVariable-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+

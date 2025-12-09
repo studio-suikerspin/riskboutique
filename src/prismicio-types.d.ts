@@ -4,7 +4,60 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+type PickContentRelationshipFieldData<
+	TRelationship extends
+		| prismic.CustomTypeModelFetchCustomTypeLevel1
+		| prismic.CustomTypeModelFetchCustomTypeLevel2
+		| prismic.CustomTypeModelFetchGroupLevel1
+		| prismic.CustomTypeModelFetchGroupLevel2,
+	TData extends Record<
+		string,
+		prismic.AnyRegularField | prismic.GroupField | prismic.NestedGroupField | prismic.SliceZone
+	>,
+	TLang extends string
+> =
+	// Content relationship fields
+	{
+		[TSubRelationship in Extract<
+			TRelationship['fields'][number],
+			prismic.CustomTypeModelFetchContentRelationshipLevel1
+		> as TSubRelationship['id']]: ContentRelationshipFieldWithData<
+			TSubRelationship['customtypes'],
+			TLang
+		>;
+	} & // Group
+	{
+		[TGroup in Extract<
+			TRelationship['fields'][number],
+			prismic.CustomTypeModelFetchGroupLevel1 | prismic.CustomTypeModelFetchGroupLevel2
+		> as TGroup['id']]: TData[TGroup['id']] extends prismic.GroupField<infer TGroupData>
+			? prismic.GroupField<PickContentRelationshipFieldData<TGroup, TGroupData, TLang>>
+			: never;
+	} & // Other fields
+	{
+		[TFieldKey in Extract<TRelationship['fields'][number], string>]: TFieldKey extends keyof TData
+			? TData[TFieldKey]
+			: never;
+	};
+
+type ContentRelationshipFieldWithData<
+	TCustomType extends
+		| readonly (prismic.CustomTypeModelFetchCustomTypeLevel1 | string)[]
+		| readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
+	TLang extends string = string
+> = {
+	[ID in Exclude<TCustomType[number], string>['id']]: prismic.ContentRelationshipField<
+		ID,
+		TLang,
+		PickContentRelationshipFieldData<
+			Extract<TCustomType[number], { id: ID }>,
+			Extract<prismic.Content.AllDocumentTypes, { type: ID }>['data'],
+			TLang
+		>
+	>;
+}[Exclude<TCustomType[number], string>['id']];
+
+type PageDocumentDataSlicesSlice = never;
 
 /**
  * Content for Page documents
@@ -13,13 +66,13 @@ interface PageDocumentData {
 	/**
 	 * Title field in *Page*
 	 *
-	 * - **Field Type**: Title
+	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: page.title
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
-	title: prismic.TitleField;
+	title: prismic.RichTextField;
 
 	/**
 	 * Slice Zone field in *Page*
@@ -28,17 +81,17 @@ interface PageDocumentData {
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: page.slices[]
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
-	slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
+	slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
 	 * Meta Title field in *Page*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A title of the page used for social media and search engines
 	 * - **API ID Path**: page.meta_title
 	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */;
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
 	meta_title: prismic.KeyTextField;
 
 	/**
@@ -48,7 +101,7 @@ interface PageDocumentData {
 	 * - **Placeholder**: A brief summary of the page
 	 * - **API ID Path**: page.meta_description
 	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	meta_description: prismic.KeyTextField;
 
@@ -59,7 +112,7 @@ interface PageDocumentData {
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: page.meta_image
 	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	meta_image: prismic.ImageField<never>;
 }
@@ -69,7 +122,7 @@ interface PageDocumentData {
  *
  * - **API ID**: `page`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -79,49 +132,201 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-export type AllDocumentTypes = PageDocument;
+type UnderConstructionPageDocumentDataSlicesSlice = ComingSoonSlice;
 
 /**
- * Primary content in *RichText → Default → Primary*
+ * Content for Under Construction Page documents
  */
-export interface RichTextSliceDefaultPrimary {
+interface UnderConstructionPageDocumentData {
 	/**
-	 * Content field in *RichText → Default → Primary*
+	 * Slice Zone field in *Under Construction Page*
 	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Lorem ipsum...
-	 * - **API ID Path**: rich_text.default.primary.content
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: under_construction_page.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
-	content: prismic.RichTextField;
+	slices: prismic.SliceZone<UnderConstructionPageDocumentDataSlicesSlice>; /**
+	 * Meta Title field in *Under Construction Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: under_construction_page.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Under Construction Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: under_construction_page.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Under Construction Page*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: under_construction_page.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
 }
 
 /**
- * Default variation for RichText Slice
+ * Under Construction Page document from Prismic
+ *
+ * - **API ID**: `under_construction_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type UnderConstructionPageDocument<Lang extends string = string> =
+	prismic.PrismicDocumentWithoutUID<
+		Simplify<UnderConstructionPageDocumentData>,
+		'under_construction_page',
+		Lang
+	>;
+
+export type AllDocumentTypes = PageDocument | UnderConstructionPageDocument;
+
+/**
+ * Item in *ComingSoon → Default → Primary → Tags*
+ */
+export interface ComingSoonSliceDefaultPrimaryTagsItem {
+	/**
+	 * Tag field in *ComingSoon → Default → Primary → Tags*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.tags[].tag
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	tag: prismic.KeyTextField;
+}
+
+/**
+ * Item in *ComingSoon → Default → Primary → Images*
+ */
+export interface ComingSoonSliceDefaultPrimaryImagesItem {
+	/**
+	 * Image field in *ComingSoon → Default → Primary → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.images[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *ComingSoon → Default → Primary → Bottom texts*
+ */
+export interface ComingSoonSliceDefaultPrimaryBottomTextsItem {
+	/**
+	 * Bottom text field in *ComingSoon → Default → Primary → Bottom texts*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.bottom_texts[].bottom_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	bottom_text: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *ComingSoon → Default → Primary*
+ */
+export interface ComingSoonSliceDefaultPrimary {
+	/**
+	 * Tags field in *ComingSoon → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.tags[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	tags: prismic.GroupField<Simplify<ComingSoonSliceDefaultPrimaryTagsItem>>;
+
+	/**
+	 * Main Heading field in *ComingSoon → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Social Links field in *ComingSoon → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.social_links
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	social_links: prismic.Repeatable<
+		prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+	>;
+
+	/**
+	 * Images field in *ComingSoon → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.images[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	images: prismic.GroupField<Simplify<ComingSoonSliceDefaultPrimaryImagesItem>>;
+
+	/**
+	 * Bottom texts field in *ComingSoon → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: coming_soon.default.primary.bottom_texts[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	bottom_texts: prismic.GroupField<Simplify<ComingSoonSliceDefaultPrimaryBottomTextsItem>>;
+}
+
+/**
+ * Default variation for ComingSoon Slice
  *
  * - **API ID**: `default`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Default coming soon variation
+ * - **Documentation**: https://prismic.io/docs/slices
  */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<
+export type ComingSoonSliceDefault = prismic.SharedSliceVariation<
 	'default',
-	Simplify<RichTextSliceDefaultPrimary>,
+	Simplify<ComingSoonSliceDefaultPrimary>,
 	never
 >;
 
 /**
- * Slice variation for *RichText*
+ * Slice variation for *ComingSoon*
  */
-type RichTextSliceVariation = RichTextSliceDefault;
+type ComingSoonSliceVariation = ComingSoonSliceDefault;
 
 /**
- * RichText Shared Slice
+ * ComingSoon Shared Slice
  *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **API ID**: `coming_soon`
+ * - **Description**: A coming soon landing page with tagline, main heading, and social links
+ * - **Documentation**: https://prismic.io/docs/slices
  */
-export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
+export type ComingSoonSlice = prismic.SharedSlice<'coming_soon', ComingSoonSliceVariation>;
 
 declare module '@prismicio/client' {
 	interface CreateClient {
@@ -131,16 +336,33 @@ declare module '@prismicio/client' {
 		): prismic.Client<AllDocumentTypes>;
 	}
 
+	interface CreateWriteClient {
+		(
+			repositoryNameOrEndpoint: string,
+			options: prismic.WriteClientConfig
+		): prismic.WriteClient<AllDocumentTypes>;
+	}
+
+	interface CreateMigration {
+		(): prismic.Migration<AllDocumentTypes>;
+	}
+
 	namespace Content {
 		export type {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			UnderConstructionPageDocument,
+			UnderConstructionPageDocumentData,
+			UnderConstructionPageDocumentDataSlicesSlice,
 			AllDocumentTypes,
-			RichTextSlice,
-			RichTextSliceDefaultPrimary,
-			RichTextSliceVariation,
-			RichTextSliceDefault
+			ComingSoonSlice,
+			ComingSoonSliceDefaultPrimaryTagsItem,
+			ComingSoonSliceDefaultPrimaryImagesItem,
+			ComingSoonSliceDefaultPrimaryBottomTextsItem,
+			ComingSoonSliceDefaultPrimary,
+			ComingSoonSliceVariation,
+			ComingSoonSliceDefault
 		};
 	}
 }
