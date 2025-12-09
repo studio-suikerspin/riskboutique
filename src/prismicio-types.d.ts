@@ -132,6 +132,37 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
+/**
+ * Content for Site settings documents
+ */
+interface SiteSettingsDocumentData {
+	/**
+	 * Site logo field in *Site settings*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.site_logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	site_logo: prismic.ImageField<never>;
+}
+
+/**
+ * Site settings document from Prismic
+ *
+ * - **API ID**: `site_settings`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SiteSettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<SiteSettingsDocumentData>,
+	'site_settings',
+	Lang
+>;
+
 type UnderConstructionPageDocumentDataSlicesSlice = ComingSoonSlice;
 
 /**
@@ -197,7 +228,7 @@ export type UnderConstructionPageDocument<Lang extends string = string> =
 		Lang
 	>;
 
-export type AllDocumentTypes = PageDocument | UnderConstructionPageDocument;
+export type AllDocumentTypes = PageDocument | SiteSettingsDocument | UnderConstructionPageDocument;
 
 /**
  * Item in *ComingSoon → Default → Primary → Tags*
@@ -352,6 +383,8 @@ declare module '@prismicio/client' {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			SiteSettingsDocument,
+			SiteSettingsDocumentData,
 			UnderConstructionPageDocument,
 			UnderConstructionPageDocumentData,
 			UnderConstructionPageDocumentDataSlicesSlice,

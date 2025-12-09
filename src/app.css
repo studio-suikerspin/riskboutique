@@ -5,6 +5,8 @@
 	--color-aqua: #0e4f63;
 	--color-clay-green: #b2c1bd;
 	--color-snow-white: #f9f9f8;
+
+	--z-header: 1000;
 }
 
 body {

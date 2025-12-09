@@ -4,18 +4,19 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/state';
 	import { repositoryName } from '$lib/prismicio';
+	import Header from '$lib/components/Header.svelte';
 
 	let { children } = $props();
+	console.log(page.data.page.data.meta_title);
 </script>
 
 <svelte:head>
-	<title>{page.data.title}</title>
 	{#if page.data.meta_description}
 		<meta name="description" content={page.data.meta_description} />
 	{/if}
-	{#if page.data.meta_title}
-		<meta name="og:title" content={page.data.meta_title} />
-		<title>{page.data.meta_title}</title>
+	{#if page.data.page.data.meta_title}
+		<meta name="og:title" content={page.data.page.data.meta_title} />
+		<title>{page.data.page.data.meta_title}</title>
 	{/if}
 	{#if page.data.meta_image}
 		<meta name="og:image" content={page.data.meta_image} />
@@ -26,6 +27,8 @@
 	<link rel="stylesheet" href="fonts/general-sans/general-sans.css" />
 </svelte:head>
 <main>
+	<Header />
+
 	{@render children()}
 </main>
 <PrismicPreview {repositoryName} />
