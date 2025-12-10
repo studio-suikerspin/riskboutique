@@ -59,8 +59,8 @@
 			</div>
 
 			<div class="bottom-images">
-				{#each slice.primary.images as item (item.image)}
-					<div class="bottom-images__image">
+				{#each slice.primary.images as item, index (index)}
+					<div class="bottom-images__image" data-index={index}>
 						<PrismicImage field={item.image} />
 					</div>
 				{/each}
@@ -211,7 +211,9 @@
 				align-items: center;
 				gap: 0.5rem;
 
-				display: none;
+				:not([data-index='2']) {
+					display: none;
+				}
 
 				@media screen and (min-width: 992px) {
 					display: flex;
