@@ -210,21 +210,22 @@
 			.bottom-images {
 				align-items: center;
 				gap: 0.5rem;
-				display: none;
-
-				[data-index='2'] {
-					display: flex;
-				}
-
-				@media screen and (min-width: 992px) {
-					display: flex;
-				}
+				display: flex;
 
 				&__image {
+					display: none;
 					border-radius: 0.25rem;
 					overflow: hidden;
 					height: 100%;
 					width: 100%;
+
+					&[data-index='2'] {
+						display: flex;
+					}
+
+					@media screen and (min-width: 992px) {
+						display: flex;
+					}
 
 					:global img {
 						width: 100%;
