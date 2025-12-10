@@ -1,0 +1,15 @@
+import { c as createClient } from "../../chunks/prismicio.js";
+const prerender = "auto";
+const load = async ({ fetch, cookies }) => {
+  const client = createClient({ fetch, cookies });
+  const site_settings = await client.getSingle("site_settings");
+  const page = await client.getSingle("under_construction_page");
+  return {
+    page,
+    site_settings
+  };
+};
+export {
+  load,
+  prerender
+};
