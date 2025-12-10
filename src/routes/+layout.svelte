@@ -7,19 +7,20 @@
 	import Header from '$lib/components/Header.svelte';
 
 	let { children } = $props();
-	console.log(page.data.page.data.meta_title);
+
+	const { data: metadata } = page.data.page;
 </script>
 
 <svelte:head>
-	{#if page.data.meta_description}
-		<meta name="description" content={page.data.meta_description} />
+	{#if metadata.meta_description}
+		<meta name="description" content={metadata.meta_description} />
 	{/if}
-	{#if page.data.page.data.meta_title}
-		<meta name="og:title" content={page.data.page.data.meta_title} />
-		<title>{page.data.page.data.meta_title}</title>
+	{#if metadata.meta_title}
+		<meta name="og:title" content={metadata.meta_title} />
+		<title>{metadata.meta_title}</title>
 	{/if}
-	{#if page.data.meta_image}
-		<meta name="og:image" content={page.data.meta_image} />
+	{#if metadata.meta_image}
+		<meta name="og:image" content={metadata.meta_image} />
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
 

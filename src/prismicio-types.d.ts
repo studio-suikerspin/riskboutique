@@ -146,6 +146,17 @@ interface SiteSettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	site_logo: prismic.ImageField<never>;
+
+	/**
+	 * Contact link field in *Site settings*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.contact_link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	contact_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**

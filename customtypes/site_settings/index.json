@@ -13,6 +13,17 @@
 					"constraint": {},
 					"thumbnails": []
 				}
+			},
+			"contact_link": {
+				"type": "Link",
+				"config": {
+					"label": "Contact link",
+					"placeholder": "",
+					"select": null,
+					"allowTargetBlank": true,
+					"allowText": true,
+					"repeat": false
+				}
 			}
 		}
 	}
