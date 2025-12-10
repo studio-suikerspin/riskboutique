@@ -41,9 +41,11 @@
           "type": "Link",
           "config": {
             "label": "Social Links",
+            "placeholder": "",
             "allowText": true,
             "repeat": true,
-            "select": "web"
+            "select": "web",
+            "allowTargetBlank": true
           }
         },
         "images": {

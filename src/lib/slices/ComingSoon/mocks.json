@@ -19,12 +19,12 @@
 				"type": "Link",
 				"value": [
 					{
-						"key": "83040c50-26fa-4aa4-b798-7755e51a59f0",
 						"__TYPE__": "LinkContent",
+						"key": "866f87cf-a586-4a22-9355-d70036e66baa",
 						"value": {
 							"__TYPE__": "ExternalLink",
-							"url": "https://prismic.io",
-							"text": "train"
+							"url": "http://twitter.com",
+							"text": "mental"
 						}
 					}
 				]
