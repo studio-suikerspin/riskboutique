@@ -210,9 +210,10 @@
 			.bottom-images {
 				align-items: center;
 				gap: 0.5rem;
+				display: none;
 
-				:not([data-index='2']) {
-					display: none;
+				[data-index='2'] {
+					display: flex;
 				}
 
 				@media screen and (min-width: 992px) {
