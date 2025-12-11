@@ -72,7 +72,7 @@
 <style lang="scss">
 	.coming-soon {
 		position: relative;
-		min-height: 100vh;
+		min-height: 100dvh;
 		display: flex;
 
 		&__gradient {
