@@ -5,6 +5,7 @@
 	import { page } from '$app/state';
 	import { repositoryName } from '$lib/prismicio';
 	import Header from '$lib/components/Header.svelte';
+	import PageLoader from '$lib/components/PageLoader.svelte';
 
 	let { children } = $props();
 </script>
@@ -26,6 +27,7 @@
 	<link rel="stylesheet" href="fonts/general-sans/general-sans.css" />
 </svelte:head>
 <main>
+	<PageLoader />
 	<Header />
 
 	{@render children()}
