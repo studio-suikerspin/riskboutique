@@ -11,6 +11,7 @@ import { e as escape_html } from "../../chunks/context.js";
 import { i as initial_base, b as base } from "../../chunks/server.js";
 import { r as resolve_route } from "../../chunks/routing.js";
 import { P as PrismicImage, a as PrismicLink } from "../../chunks/PrismicLink.js";
+import "clsx";
 function resolve(id, params) {
   const resolved = resolve_route(
     id,
@@ -59,6 +60,11 @@ function Header($$renderer, $$props) {
     $$renderer2.push(`<!----></nav></div></header>`);
   });
 }
+function PageLoader($$renderer, $$props) {
+  $$renderer.component(($$renderer2) => {
+    $$renderer2.push(`<div data-loading-container="" class="loading-container svelte-jx6mac"><div class="loading-screen svelte-jx6mac"><div data-loading-words="Hello, Bonjour, स्वागत हे, Ciao, Olá, おい, Hallå, Guten tag, Hallo" class="loading-words svelte-jx6mac"><div class="loading-words__dot svelte-jx6mac"></div> <p data-loading-words-target="" class="loading-words__word svelte-jx6mac">Hello</p></div></div></div>`);
+  });
+}
 function _layout($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { children } = $$props;
@@ -89,6 +95,8 @@ function _layout($$renderer, $$props) {
       $$renderer3.push(`<!--]--> <link rel="stylesheet" href="fonts/icons/iconly.css"/> <link rel="stylesheet" href="fonts/general-sans/general-sans.css"/>`);
     });
     $$renderer2.push(`<main>`);
+    PageLoader($$renderer2);
+    $$renderer2.push(`<!----> `);
     Header($$renderer2);
     $$renderer2.push(`<!----> `);
     children($$renderer2);
