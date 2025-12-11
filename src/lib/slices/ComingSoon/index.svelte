@@ -210,18 +210,17 @@
 			.bottom-images {
 				align-items: center;
 				gap: 0.5rem;
-				display: flex;
+				display: none;
+
+				@media screen and (min-width: 992px) {
+					display: flex;
+				}
 
 				&__image {
-					display: none;
 					border-radius: 0.25rem;
 					overflow: hidden;
 					height: 100%;
 					width: 100%;
-
-					@media screen and (min-width: 992px) {
-						display: flex;
-					}
 
 					:global img {
 						width: 100%;
