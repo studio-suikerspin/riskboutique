@@ -219,10 +219,6 @@
 					height: 100%;
 					width: 100%;
 
-					&[data-index='2'] {
-						display: flex;
-					}
-
 					@media screen and (min-width: 992px) {
 						display: flex;
 					}
