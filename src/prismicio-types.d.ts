@@ -58,6 +58,8 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type HomepageDocumentDataSlicesSlice =
+	| TrustedBySlice
+	| AssuranceWithImagesSlice
 	| IndependentDesignSlice
 	| PillarsSlice
 	| ValuePropositionSlice
@@ -126,6 +128,8 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
 >;
 
 type PageDocumentDataSlicesSlice =
+	| TrustedBySlice
+	| AssuranceWithImagesSlice
 	| IndependentDesignSlice
 	| PillarsSlice
 	| HeroStatementSlice
@@ -316,6 +320,96 @@ export type AllDocumentTypes =
 	| PageDocument
 	| SiteSettingsDocument
 	| UnderConstructionPageDocument;
+
+/**
+ * Item in *FloatingImages → Default → Primary → Images*
+ */
+export interface AssuranceWithImagesSliceDefaultPrimaryImagesItem {
+	/**
+	 * Image field in *FloatingImages → Default → Primary → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: assurance_with_images.default.primary.images[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *FloatingImages → Default → Primary*
+ */
+export interface AssuranceWithImagesSliceDefaultPrimary {
+	/**
+	 * Heading field in *FloatingImages → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Enter heading
+	 * - **API ID Path**: assurance_with_images.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Body field in *FloatingImages → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Enter body text
+	 * - **API ID Path**: assurance_with_images.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	body: prismic.RichTextField;
+
+	/**
+	 * CTA Link field in *FloatingImages → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: assurance_with_images.default.primary.ctaLink
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	ctaLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+	/**
+	 * Images field in *FloatingImages → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: assurance_with_images.default.primary.images[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	images: prismic.GroupField<Simplify<AssuranceWithImagesSliceDefaultPrimaryImagesItem>>;
+}
+
+/**
+ * Default variation for FloatingImages Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default variation
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AssuranceWithImagesSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<AssuranceWithImagesSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *FloatingImages*
+ */
+type AssuranceWithImagesSliceVariation = AssuranceWithImagesSliceDefault;
+
+/**
+ * FloatingImages Shared Slice
+ *
+ * - **API ID**: `assurance_with_images`
+ * - **Description**: Section with heading, body text, CTA link, and multiple accompanying images
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AssuranceWithImagesSlice = prismic.SharedSlice<
+	'assurance_with_images',
+	AssuranceWithImagesSliceVariation
+>;
 
 /**
  * Item in *ComingSoon → Default → Primary → Tags*
@@ -856,6 +950,73 @@ type PillarsSliceVariation = PillarsSliceDefault | PillarsSliceSlider;
 export type PillarsSlice = prismic.SharedSlice<'pillars', PillarsSliceVariation>;
 
 /**
+ * Item in *TrustedBy → Default → Primary → Logos*
+ */
+export interface TrustedBySliceDefaultPrimaryLogosItem {
+	/**
+	 * Logo Image field in *TrustedBy → Default → Primary → Logos*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trusted_by.default.primary.logos[].logo_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo_image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *TrustedBy → Default → Primary*
+ */
+export interface TrustedBySliceDefaultPrimary {
+	/**
+	 * Logos field in *TrustedBy → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trusted_by.default.primary.logos[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	logos: prismic.GroupField<Simplify<TrustedBySliceDefaultPrimaryLogosItem>>;
+
+	/**
+	 * Heading field in *TrustedBy → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Trusted by leading organisations
+	 * - **API ID Path**: trusted_by.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for TrustedBy Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default variation with heading and logo grid
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TrustedBySliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<TrustedBySliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *TrustedBy*
+ */
+type TrustedBySliceVariation = TrustedBySliceDefault;
+
+/**
+ * TrustedBy Shared Slice
+ *
+ * - **API ID**: `trusted_by`
+ * - **Description**: A slice showcasing logos of trusted organizations in a grid layout
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TrustedBySlice = prismic.SharedSlice<'trusted_by', TrustedBySliceVariation>;
+
+/**
  * Primary content in *RevealTypeWithCta → Default → Primary*
  */
 export interface ValuePropositionSliceDefaultPrimary {
@@ -953,6 +1114,11 @@ declare module '@prismicio/client' {
 			UnderConstructionPageDocumentData,
 			UnderConstructionPageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			AssuranceWithImagesSlice,
+			AssuranceWithImagesSliceDefaultPrimaryImagesItem,
+			AssuranceWithImagesSliceDefaultPrimary,
+			AssuranceWithImagesSliceVariation,
+			AssuranceWithImagesSliceDefault,
 			ComingSoonSlice,
 			ComingSoonSliceDefaultPrimaryTagsItem,
 			ComingSoonSliceDefaultPrimaryImagesItem,
@@ -980,6 +1146,11 @@ declare module '@prismicio/client' {
 			PillarsSliceVariation,
 			PillarsSliceDefault,
 			PillarsSliceSlider,
+			TrustedBySlice,
+			TrustedBySliceDefaultPrimaryLogosItem,
+			TrustedBySliceDefaultPrimary,
+			TrustedBySliceVariation,
+			TrustedBySliceDefault,
 			ValuePropositionSlice,
 			ValuePropositionSliceDefaultPrimary,
 			ValuePropositionSliceVariation,

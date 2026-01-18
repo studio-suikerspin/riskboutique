@@ -11,6 +11,12 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"trusted_by": {
+							"type": "SharedSlice"
+						},
+						"assurance_with_images": {
+							"type": "SharedSlice"
+						},
 						"independent_design": {
 							"type": "SharedSlice"
 						},
