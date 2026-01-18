@@ -6,6 +6,7 @@
 	import { repositoryName } from '$lib/prismicio';
 	import Header from '$lib/components/Header.svelte';
 	import PageLoader from '$lib/components/PageLoader.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -31,5 +32,7 @@
 	<Header />
 
 	{@render children()}
+
+	<Footer />
 </main>
 <PrismicPreview {repositoryName} />

@@ -57,6 +57,40 @@ type ContentRelationshipFieldWithData<
 	>;
 }[Exclude<TCustomType[number], string>['id']];
 
+interface FooterDocumentData {}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<FooterDocumentData>,
+	'footer',
+	Lang
+>;
+
+interface HeaderDocumentData {}
+
+/**
+ * Header document from Prismic
+ *
+ * - **API ID**: `header`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HeaderDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<HeaderDocumentData>,
+	'header',
+	Lang
+>;
+
 type HomepageDocumentDataSlicesSlice =
 	| TrustedBySlice
 	| AssuranceWithImagesSlice
@@ -316,6 +350,8 @@ export type UnderConstructionPageDocument<Lang extends string = string> =
 	>;
 
 export type AllDocumentTypes =
+	| FooterDocument
+	| HeaderDocument
 	| HomepageDocument
 	| PageDocument
 	| SiteSettingsDocument
@@ -1102,6 +1138,10 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
+			FooterDocument,
+			FooterDocumentData,
+			HeaderDocument,
+			HeaderDocumentData,
 			HomepageDocument,
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,
