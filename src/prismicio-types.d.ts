@@ -74,7 +74,100 @@ export type FooterDocument<Lang extends string = string> = prismic.PrismicDocume
 	Lang
 >;
 
-interface HeaderDocumentData {}
+/**
+ * Item in *Header → Main menu items*
+ */
+export interface HeaderDocumentDataMenuItemsItem {
+	/**
+	 * Label field in *Header → Main menu items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.menu_items[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+
+	/**
+	 * Link field in *Header → Main menu items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: It's either a link or a sub menu, not both!
+	 * - **API ID Path**: header.menu_items[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+	/**
+	 * Has submenu field in *Header → Main menu items*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: header.menu_items[].has_submenu
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	has_submenu: prismic.BooleanField;
+
+	/**
+	 * Submenu field in *Header → Main menu items*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.menu_items[].submenu
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	submenu: ContentRelationshipFieldWithData<[{ id: 'sub_menu'; fields: ['submenu_item'] }]>;
+}
+
+/**
+ * Content for Header documents
+ */
+interface HeaderDocumentData {
+	/**
+	 * Logo (Light) field in *Header*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.logo_light
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo_light: prismic.ImageField<never>;
+
+	/**
+	 * Logo (Dark) field in *Header*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.logo_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo_dark: prismic.ImageField<never>;
+
+	/**
+	 * Main menu items field in *Header*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.menu_items[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	menu_items: prismic.GroupField<Simplify<HeaderDocumentDataMenuItemsItem>>;
+
+	/**
+	 * CTA Link field in *Header*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.cta_link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
 
 /**
  * Header document from Prismic
@@ -284,6 +377,39 @@ export type SiteSettingsDocument<Lang extends string = string> = prismic.Prismic
 	Lang
 >;
 
+/**
+ * Content for Submenu documents
+ */
+interface SubMenuDocumentData {
+	/**
+	 * Submenu item field in *Submenu*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: sub_menu.submenu_item
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	submenu_item: prismic.Repeatable<
+		prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+	>;
+}
+
+/**
+ * Submenu document from Prismic
+ *
+ * - **API ID**: `sub_menu`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubMenuDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<SubMenuDocumentData>,
+	'sub_menu',
+	Lang
+>;
+
 type UnderConstructionPageDocumentDataSlicesSlice = ComingSoonSlice;
 
 /**
@@ -355,6 +481,7 @@ export type AllDocumentTypes =
 	| HomepageDocument
 	| PageDocument
 	| SiteSettingsDocument
+	| SubMenuDocument
 	| UnderConstructionPageDocument;
 
 /**
@@ -1142,6 +1269,7 @@ declare module '@prismicio/client' {
 			FooterDocumentData,
 			HeaderDocument,
 			HeaderDocumentData,
+			HeaderDocumentDataMenuItemsItem,
 			HomepageDocument,
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,
@@ -1150,6 +1278,8 @@ declare module '@prismicio/client' {
 			PageDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
+			SubMenuDocument,
+			SubMenuDocumentData,
 			UnderConstructionPageDocument,
 			UnderConstructionPageDocumentData,
 			UnderConstructionPageDocumentDataSlicesSlice,

@@ -2,18 +2,31 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
+	import SideNav from './SideNav/index.svelte';
 
-	let { site_settings } = page.data;
+	let { site_settings, header } = page.data;
 </script>
 
 <header class="main-header">
 	<div class="main-header__inner">
 		<a href={resolve('/')}>
-			<PrismicImage field={site_settings.data.site_logo} class={['main-header__logo']} />
+			<PrismicImage
+				field={header.data.logo_light}
+				class={['main-header__logo', 'main-header__logo--light']}
+			/>
+			<PrismicImage
+				field={header.data.logo_dark}
+				class={['main-header__logo', 'main-header__logo--dark']}
+			/>
 		</a>
-		<nav>
+		<nav class="main-header__nav">
+			<button class="btn btn--dark btn--menu" data-sidenav-toggle>
+				<i class="btn__icon icon-menu"></i>
+				Menu
+			</button>
+
 			<PrismicLink field={site_settings.data.contact_link} class={['btn', 'btn--link']}>
-				<i class="btn__icon icon-arrow-right"></i>
+				<i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
 				<div class="btn__text">
 					{site_settings.data.contact_link.text}
 				</div>
@@ -21,6 +34,8 @@
 		</nav>
 	</div>
 </header>
+
+<SideNav menuItems={header.data.menu_items} />
 
 <style lang="scss">
 	.main-header {
@@ -41,31 +56,19 @@
 		:global &__logo {
 			max-width: 200px;
 
+			&--dark {
+				display: none;
+			}
+
 			@media screen and (min-width: 992px) {
 				max-width: 300px;
 			}
 		}
 
-		:global .btn {
-			display: none;
-			width: fit-content;
-
-			@media screen and (min-width: 992px) {
-				display: flex;
-			}
-
-			&__icon {
-				font-weight: 600;
-				transform: rotate(-45deg);
-				transition: transform 0.1s ease-in-out;
-			}
-
-			&:hover {
-				.btn__icon {
-					transform: translate(0.125rem, -0.125rem) rotate(-45deg);
-					transition: transform 0.1s ease-in-out;
-				}
-			}
+		&__nav {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
 		}
 	}
 </style>

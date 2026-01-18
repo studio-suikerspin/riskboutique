@@ -29,17 +29,29 @@ body {
 
 	font-weight: 500;
 
+	/* Button variants */
+	&.btn--dark {
+		background: var(--color-dark-mode);
+		color: var(--color-snow-white);
+		border-color: var(--color-snow-white);
+	}
+
+	&.btn--white {
+		background: var(--color-snow-white);
+		color: var(--color-dark-mode);
+		border-color: var(--color-snow-white);
+	}
+
+	/* Children */
 	.btn__text {
 		text-wrap: nowrap;
 	}
 
-	&:hover {
-		.btn__icon {
-			translate: 0.25rem, 0.25rem;
-		}
-	}
-
-	&__icon {
+	.btn__icon {
 		font-size: 1rem;
+
+		&.btn__icon--rotate {
+			rotate: -45deg;
+		}
 	}
 }

@@ -1,0 +1,28 @@
+{
+	"format": "custom",
+	"id": "sub_menu",
+	"label": "Submenu",
+	"repeatable": true,
+	"status": true,
+	"json": {
+		"Main": {
+			"uid": {
+				"type": "UID",
+				"config": {
+					"label": "UID"
+				}
+			},
+			"submenu_item": {
+				"type": "Link",
+				"config": {
+					"label": "Submenu item",
+					"placeholder": "",
+					"select": null,
+					"allowTargetBlank": true,
+					"allowText": true,
+					"repeat": true
+				}
+			}
+		}
+	}
+}
