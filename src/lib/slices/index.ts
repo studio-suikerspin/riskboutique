@@ -2,8 +2,14 @@
 
 import ComingSoon from './ComingSoon/index.svelte';
 import HeroHomepage from './HeroHomepage/index.svelte';
+import StickyFeatures from './StickyFeatures/index.svelte';
+import FeatureCards from './FeatureCards/index.svelte';
+import RevealTypeWithCta from './RevealTypeWithCta/index.svelte';
 
 export const components = {
 	coming_soon: ComingSoon,
-	hero_statement: HeroHomepage
+	hero_statement: HeroHomepage,
+	independent_design: StickyFeatures,
+	pillars: FeatureCards,
+	value_proposition: RevealTypeWithCta
 };

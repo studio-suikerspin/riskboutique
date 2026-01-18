@@ -57,7 +57,11 @@ type ContentRelationshipFieldWithData<
 	>;
 }[Exclude<TCustomType[number], string>['id']];
 
-type HomepageDocumentDataSlicesSlice = HeroStatementSlice;
+type HomepageDocumentDataSlicesSlice =
+	| IndependentDesignSlice
+	| PillarsSlice
+	| ValuePropositionSlice
+	| HeroStatementSlice;
 
 /**
  * Content for Homepage documents
@@ -121,7 +125,11 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-type PageDocumentDataSlicesSlice = never;
+type PageDocumentDataSlicesSlice =
+	| IndependentDesignSlice
+	| PillarsSlice
+	| HeroStatementSlice
+	| ValuePropositionSlice;
 
 /**
  * Content for Page documents
@@ -575,6 +583,343 @@ type HeroStatementSliceVariation = HeroStatementSliceDefault;
  */
 export type HeroStatementSlice = prismic.SharedSlice<'hero_statement', HeroStatementSliceVariation>;
 
+/**
+ * Item in *StickyFeatures → Default → Primary → Features*
+ */
+export interface IndependentDesignSliceDefaultPrimaryFeaturesItem {
+	/**
+	 * Image field in *StickyFeatures → Default → Primary → Features*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.features[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Heading field in *StickyFeatures → Default → Primary → Features*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.features[].heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Description field in *StickyFeatures → Default → Primary → Features*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.features[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * CTA Link field in *StickyFeatures → Default → Primary → Features*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.features[].cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *StickyFeatures → Default → Primary*
+ */
+export interface IndependentDesignSliceDefaultPrimary {
+	/**
+	 * Features field in *StickyFeatures → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.features[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	features: prismic.GroupField<Simplify<IndependentDesignSliceDefaultPrimaryFeaturesItem>>;
+}
+
+/**
+ * Default variation for StickyFeatures Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default variation with image on left and content on right
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IndependentDesignSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<IndependentDesignSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *StickyFeatures*
+ */
+type IndependentDesignSliceVariation = IndependentDesignSliceDefault;
+
+/**
+ * StickyFeatures Shared Slice
+ *
+ * - **API ID**: `independent_design`
+ * - **Description**: Hero section with badge, heading, description, image, and CTA button
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IndependentDesignSlice = prismic.SharedSlice<
+	'independent_design',
+	IndependentDesignSliceVariation
+>;
+
+/**
+ * Item in *FeatureCards → Default → Primary → Pillars*
+ */
+export interface PillarsSliceDefaultPrimaryPillarsItem {
+	/**
+	 * Title field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Description field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Index field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[].index
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	index: prismic.KeyTextField;
+
+	/**
+	 * Background Color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[].background_color
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	background_color: prismic.ColorField;
+}
+
+/**
+ * Item in *FeatureCards → Slider → Primary → Cards*
+ */
+export interface PillarsSliceSliderPrimaryCardsItem {
+	/**
+	 * Title field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.slider.primary.cards[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Description field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.slider.primary.cards[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Background color field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: Dark
+	 * - **API ID Path**: pillars.slider.primary.cards[].background_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	background_color: prismic.SelectField<'Dark' | 'Aqua' | 'Clay', 'filled'>;
+
+	/**
+	 * Shape field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: Cylinder
+	 * - **API ID Path**: pillars.slider.primary.cards[].shape
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	shape: prismic.SelectField<'Cylinder' | 'Sphere' | 'Pyramid', 'filled'>;
+}
+
+/**
+ * Primary content in *FeatureCards → Default → Primary*
+ */
+export interface PillarsSliceDefaultPrimary {
+	/**
+	 * Heading field in *FeatureCards → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Pillars field in *FeatureCards → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	pillars: prismic.GroupField<Simplify<PillarsSliceDefaultPrimaryPillarsItem>>;
+}
+
+/**
+ * Default variation for FeatureCards Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default variation of Pillars slice
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PillarsSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<PillarsSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Primary content in *FeatureCards → Slider → Primary*
+ */
+export interface PillarsSliceSliderPrimary {
+	/**
+	 * Heading field in *FeatureCards → Slider → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.slider.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Cards field in *FeatureCards → Slider → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.slider.primary.cards[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	cards: prismic.GroupField<Simplify<PillarsSliceSliderPrimaryCardsItem>>;
+}
+
+/**
+ * Slider variation for FeatureCards Slice
+ *
+ * - **API ID**: `slider`
+ * - **Description**: Default variation of Pillars slice
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PillarsSliceSlider = prismic.SharedSliceVariation<
+	'slider',
+	Simplify<PillarsSliceSliderPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *FeatureCards*
+ */
+type PillarsSliceVariation = PillarsSliceDefault | PillarsSliceSlider;
+
+/**
+ * FeatureCards Shared Slice
+ *
+ * - **API ID**: `pillars`
+ * - **Description**: Three pillar cards displaying company values/principles with title, description, and background color
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PillarsSlice = prismic.SharedSlice<'pillars', PillarsSliceVariation>;
+
+/**
+ * Primary content in *RevealTypeWithCta → Default → Primary*
+ */
+export interface ValuePropositionSliceDefaultPrimary {
+	/**
+	 * Label field in *RevealTypeWithCta → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: e.g., Why Risk Boutique?
+	 * - **API ID Path**: value_proposition.default.primary.label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+
+	/**
+	 * Content field in *RevealTypeWithCta → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: We combine the agility of a boutique with...
+	 * - **API ID Path**: value_proposition.default.primary.content
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	content: prismic.KeyTextField;
+
+	/**
+	 * CTA Link field in *RevealTypeWithCta → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: Talk to us
+	 * - **API ID Path**: value_proposition.default.primary.cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for RevealTypeWithCta Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default value proposition variation
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ValuePropositionSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ValuePropositionSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *RevealTypeWithCta*
+ */
+type ValuePropositionSliceVariation = ValuePropositionSliceDefault;
+
+/**
+ * RevealTypeWithCta Shared Slice
+ *
+ * - **API ID**: `value_proposition`
+ * - **Description**: A value proposition section with label, heading, body text, and CTA link
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ValuePropositionSlice = prismic.SharedSlice<
+	'value_proposition',
+	ValuePropositionSliceVariation
+>;
+
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -621,7 +966,24 @@ declare module '@prismicio/client' {
 			HeroStatementSliceDefaultPrimaryGalleryItem,
 			HeroStatementSliceDefaultPrimary,
 			HeroStatementSliceVariation,
-			HeroStatementSliceDefault
+			HeroStatementSliceDefault,
+			IndependentDesignSlice,
+			IndependentDesignSliceDefaultPrimaryFeaturesItem,
+			IndependentDesignSliceDefaultPrimary,
+			IndependentDesignSliceVariation,
+			IndependentDesignSliceDefault,
+			PillarsSlice,
+			PillarsSliceDefaultPrimaryPillarsItem,
+			PillarsSliceDefaultPrimary,
+			PillarsSliceSliderPrimaryCardsItem,
+			PillarsSliceSliderPrimary,
+			PillarsSliceVariation,
+			PillarsSliceDefault,
+			PillarsSliceSlider,
+			ValuePropositionSlice,
+			ValuePropositionSliceDefaultPrimary,
+			ValuePropositionSliceVariation,
+			ValuePropositionSliceDefault
 		};
 	}
 }

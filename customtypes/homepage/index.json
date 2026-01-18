@@ -11,6 +11,15 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"independent_design": {
+							"type": "SharedSlice"
+						},
+						"pillars": {
+							"type": "SharedSlice"
+						},
+						"value_proposition": {
+							"type": "SharedSlice"
+						},
 						"hero_statement": {
 							"type": "SharedSlice"
 						}

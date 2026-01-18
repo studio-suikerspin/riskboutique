@@ -26,7 +26,20 @@
 				"type": "Slices",
 				"fieldset": "Slice Zone",
 				"config": {
-					"choices": {}
+					"choices": {
+						"independent_design": {
+							"type": "SharedSlice"
+						},
+						"pillars": {
+							"type": "SharedSlice"
+						},
+						"hero_statement": {
+							"type": "SharedSlice"
+						},
+						"value_proposition": {
+							"type": "SharedSlice"
+						}
+					}
 				}
 			}
 		},

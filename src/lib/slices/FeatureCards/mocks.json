@@ -1,0 +1,139 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Cross"
+						}
+					}
+				]
+			},
+			"pillars": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "purple",
+									"type": "Text"
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Esse sunt sit in ipsum in id commodo. Qui sint proident tempor culpa fugiat aliqua. Consequat ullamco adipisicing officia labore."
+											}
+										}
+									]
+								}
+							],
+							[
+								"index",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "independent",
+									"type": "Text"
+								}
+							],
+							[
+								"background_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "#09f846",
+									"type": "Color"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "slider",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Shape"
+						}
+					}
+				]
+			},
+			"cards": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "sat",
+									"type": "Text"
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Nulla qui deserunt do cillum esse nisi."
+											}
+										}
+									]
+								}
+							],
+							[
+								"background_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "Dark",
+									"type": "Select"
+								}
+							],
+							[
+								"shape",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "Cylinder",
+									"type": "Select"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]
