@@ -7,7 +7,11 @@
 	const { slice }: Props = $props();
 </script>
 
-<section class="section-reveal-type" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+<section
+	class="section-reveal-type"
+	data-slice-type={slice.slice_type}
+	data-slice-variation={slice.variation}
+>
 	RevealTypeWithCta
 	<PrismicLink class="btn btn--underline" field={slice.primary.cta_link} />
 </section>
@@ -17,7 +21,7 @@
 		padding: 32px;
 	}
 
-	.btn--underline {
+	:global .btn.btn--underline {
 		background: transparent;
 	}
 </style>
