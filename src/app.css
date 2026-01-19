@@ -55,3 +55,16 @@ body {
 		}
 	}
 }
+
+.link {
+	display: inline-flex;
+	gap: 0.75rem;
+	border-bottom: 1px solid var(--color-dark-mode);
+	font-size: 1.5rem;
+	align-items: center;
+
+	& .icon-arrow-right {
+		transform: rotate(-50deg);
+		font-weight: bold;
+	}
+}
