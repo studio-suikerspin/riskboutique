@@ -12,6 +12,7 @@
 body {
 	font-family: 'General Sans', sans-serif;
 	font-size: 16px;
+	background: var(--color-snow-white);
 }
 
 h1,
@@ -172,4 +173,30 @@ p{
 .border-radius{
 	border-radius: 0.5rem;
 }
+
+.block-padding{
+	padding: 150px 0;
+}
+
+.block-padding-top{
+	padding-top: 150px;
+}
+
+.block-padding-bottom{
+	padding-bottom: 150px;
+}
+
+@media(min-width: 768px){
+	.block-padding{
+		padding: 250px 0;
+	}	
+	.block-padding-top{
+		padding-top: 150px;
+	}
+	.block-padding-bottom{
+		padding-bottom: 150px;
+	}
+}
+
+
 
