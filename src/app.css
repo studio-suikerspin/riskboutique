@@ -137,7 +137,7 @@ p{
 	padding-block: 0.75rem;
 
 	color: var(--color-snow-white);
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	border: 0.03125rem solid var(--color-snow-white);
 
 	font-weight: 500;
@@ -167,5 +167,9 @@ p{
 			rotate: -45deg;
 		}
 	}
+}
+
+.border-radius{
+	border-radius: 0.5rem;
 }
 
