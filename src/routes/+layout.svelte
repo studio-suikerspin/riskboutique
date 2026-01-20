@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="fonts/general-sans/general-sans.css" />
 </svelte:head>
 <main>
-	<PageLoader />
+	<!-- <PageLoader /> -->
 	<Header />
 
 	{@render children()}
