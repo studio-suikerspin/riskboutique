@@ -176,10 +176,8 @@
 				<div class="sidenav__menu-details">
 					<p data-sidenav-fade="" class="sidenav__button-label">Socials</p>
 					<div class="sidenav__menu-socials">
-						<a data-sidenav-fade="" href="#" class="sidenav__button-label">Instagram</a>
+						// TODO: Make dynamic with prismic
 						<a data-sidenav-fade="" href="#" class="sidenav__button-label">LinkedIn</a>
-						<a data-sidenav-fade="" href="#" class="sidenav__button-label">X/Twitter</a>
-						<a data-sidenav-fade="" href="#" class="sidenav__button-label">Awwwards</a>
 					</div>
 				</div>
 			</div>
@@ -389,6 +387,12 @@
 		display: flex;
 		align-items: center;
 		padding-inline: 1.5rem;
+		transition: opacity 0.3s ease-in-out;
+
+		:hover {
+			opacity: 0.85;
+			transition: opacity 0.3s ease-in-out;
+		}
 	}
 
 	.sidenav__menu-details {
