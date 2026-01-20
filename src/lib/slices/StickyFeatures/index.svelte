@@ -9,6 +9,7 @@
 	import { onMount } from 'svelte';
 
 	import { gsap, ScrollTrigger } from '$lib/gsap';
+	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte';
 
 	type Props = SliceComponentProps<Content.IndependentDesignSlice>;
 
@@ -187,6 +188,8 @@
 												<i class="btn__icon icon-arrow-right -rotate-45"></i>
 												{feature.cta_link.text}
 											</PrismicLink>
+
+											<AvatarWithContactInfo />
 										</div>
 									{/if}
 								</div>
@@ -318,7 +321,7 @@
 			}
 		}
 
-		&__p {
+		:global &__p {
 			color: var(--color-dark-mode);
 			margin-bottom: 0;
 			font-size: 1.125rem;
@@ -359,7 +362,6 @@
 		clip-path: inset(0% round 0.75em);
 	}
 
-	/* Show only 1st items on live site */
 	[data-sticky-feature-item]:first-of-type {
 		visibility: visible;
 	}
