@@ -4,7 +4,7 @@
 
 <button class="link-item" onclick={() => openSubmenu(menuItem.label)}>
 	<div class="link-item__wrap" data-sidenav-link="">
-		<p class="link-item__heading">{menuItem.label}</p>
+		<p class="link-item__heading h4">{menuItem.label}</p>
 		<p class="link-item__eyebrow">
 			{index + 1 < 10 ? '0' + (index + 1) : index + 1}
 		</p>
