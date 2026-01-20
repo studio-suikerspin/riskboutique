@@ -1290,6 +1290,17 @@ export interface TrustedBySliceDefaultPrimaryLogosItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	logo_image: prismic.ImageField<never>;
+
+	/**
+	 * With background field in *TrustedBy → Default → Primary → Logos*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: trusted_by.default.primary.logos[].with_background
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	with_background: prismic.BooleanField;
 }
 
 /**

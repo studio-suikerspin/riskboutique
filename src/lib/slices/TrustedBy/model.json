@@ -22,6 +22,15 @@
                 "config": {
                   "label": "Logo Image"
                 }
+              },
+              "with_background": {
+                "type": "Boolean",
+                "config": {
+                  "label": "With background",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
               }
             }
           }
