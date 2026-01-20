@@ -33,6 +33,13 @@
 									"credits": null,
 									"__TYPE__": "ImageContent"
 								}
+							],
+							[
+								"with_background",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": true
+								}
 							]
 						]
 					}
