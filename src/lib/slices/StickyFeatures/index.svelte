@@ -178,10 +178,17 @@
 										<PrismicRichText field={feature.description} class="sticky-features__p" />
 									</div>
 
-									<PrismicLink field={feature.cta_link} class="btn btn--{feature.cta_link.variant}">
-										<i class="btn__icon icon-arrow-right -rotate-45"></i>
-										{feature.cta_link.text}
-									</PrismicLink>
+									{#if feature.cta_link.url}
+										<div class="sticky-features__cta" data-sticky-feature-text="">
+											<PrismicLink
+												field={feature.cta_link}
+												class=" btn btn--{feature.cta_link.variant}"
+											>
+												<i class="btn__icon icon-arrow-right -rotate-45"></i>
+												{feature.cta_link.text}
+											</PrismicLink>
+										</div>
+									{/if}
 								</div>
 							{/each}
 						</div>
@@ -209,7 +216,7 @@
 		}
 
 		&__container {
-			grid-column-gap: 1.25em;
+			grid-column-gap: 5rem;
 			grid-row-gap: 1.25em;
 			justify-content: center;
 			align-items: stretch;
@@ -287,8 +294,6 @@
 		}
 
 		&__text-item {
-			grid-column-gap: 1.5em;
-			grid-row-gap: 1.5em;
 			visibility: hidden;
 			flex-flow: column;
 			grid-template-rows: auto auto;
@@ -298,14 +303,19 @@
 			align-items: flex-start;
 			width: 100%;
 			max-width: 27.5em;
-			margin-left: auto;
+			/* margin-left: auto; */
 			display: flex;
 			position: absolute;
-			right: 0;
+			/* right: 0; */
 		}
 
 		&__heading {
 			color: var(--color-dark-mode);
+			margin-bottom: 1.5rem;
+
+			@media (min-width: 768px) {
+				margin-bottom: 2rem;
+			}
 		}
 
 		&__p {
@@ -326,10 +336,22 @@
 
 			background-color: var(--color-dark-mode);
 			border-radius: 0.25rem;
-			margin-bottom: 1.5em;
+			margin-bottom: 1.5rem;
 			padding: 0.5rem;
 			line-height: 0.95;
 			color: var(--color-snow-white);
+
+			@media (min-width: 768px) {
+				margin-bottom: 3.5rem;
+			}
+		}
+
+		&__cta {
+			margin-top: 1.5rem;
+
+			@media (min-width: 768px) {
+				margin-top: 3.5rem;
+			}
 		}
 	}
 
@@ -354,7 +376,7 @@
 
 		.sticky-features__container {
 			grid-column-gap: 2em;
-			grid-row-gap: 2em;
+			grid-row-gap: 4rem;
 			flex-flow: column;
 			justify-content: flex-start;
 			align-items: stretch;
@@ -371,18 +393,6 @@
 
 		.sticky-features__text-item {
 			max-width: none;
-		}
-
-		.sticky-features__heading {
-			font-size: 2.5em;
-		}
-
-		.sticky-features__p {
-			font-size: 1em;
-		}
-
-		.sticky-features__tag {
-			margin-bottom: 0;
 		}
 	}
 </style>
