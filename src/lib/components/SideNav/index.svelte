@@ -20,7 +20,6 @@
 		let menuButton = document.querySelector('[data-sidenav-button]');
 		let menuHeader = document.querySelector('[data-sidenav-header]');
 		let menuButtonIcon = menuButton?.querySelector('[data-sidenav-icon]');
-		let submenuTriggers = document.querySelectorAll('[data-submenu-trigger]');
 
 		let tl = gsap.timeline();
 
@@ -81,16 +80,22 @@
 				closeNav();
 			}
 		});
-
-		submenuTriggers.forEach((trigger) => {
-			trigger.addEventListener('click', () => {
-				const { submenuTrigger } = trigger.dataset;
-				const submenu = document.querySelector(`[data-sidenav-submenu="${submenuTrigger}"]`);
-				submenu.style.opacity = 1;
-				submenu.style.pointerEvents = 'auto';
-			});
-		});
 	}
+
+	const openSubmenu = (submenuLabel) => {
+		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`);
+
+		if (!submenu) return;
+
+		const tl = gsap.timeline();
+
+		tl.clear().fromTo(
+			submenu,
+			{ autoAlpha: 0, x: 100 },
+			{ autoAlpha: 1, x: 0, stagger: 0.04 },
+			'<+=0.2'
+		);
+	};
 
 	onMount(() => {
 		CustomEase.create('main', '0.65, 0.01, 0.05, 0.99');
@@ -165,7 +170,7 @@
 					{#each menuItems as menuItem, index (index)}
 						<li class="sidenav__menu-list-item">
 							{#if menuItem.has_submenu}
-								<MenuLinkWithSubs {menuItem} {index} />
+								<MenuLinkWithSubs {menuItem} {index} {openSubmenu} />
 							{:else}
 								<MenuLink {menuItem} {index} />
 							{/if}
@@ -187,32 +192,23 @@
 
 		{#each menuItems as menuItem, index (index)}
 			{#if menuItem.has_submenu}
-				<nav
-					data-sidenav-menu
-					data-sidenav-submenu={menuItem.label}
-					class="sidenav__menu sidenav__menu--sub"
-				>
-					<div class="sidenav__menu-bg">
-						<div data-sidenav-panel="" class="sidenav__menu-bg-panel is--first"></div>
-						<div data-sidenav-panel="" class="sidenav__menu-bg-panel is--second"></div>
-						<div data-sidenav-panel="" class="sidenav__menu-bg-panel"></div>
-					</div>
-					<div class="sidenav__menu-inner">
-						<header class="sidenav__header" data-sidenav-header="">
-							<button data-sidenav-button="" data-sidenav-toggle class="sidenav__button">
-								<div class="sidenav__button-text">
-									<p data-sidenav-label="" class="sidenav__button-label">Back</p>
+				<nav data-submenu={menuItem.label} class="submenu">
+					<div class="submenu__inner">
+						<header class="submenu__header">
+							<button class="submenu__button">
+								<div class="submenu__button-text">
+									<p class="submenu__button-label">Back</p>
 								</div>
 							</button>
 						</header>
 
-						<ul class="sidenav__menu-list">
+						<ul class="submenu__menu-list">
 							{#each menuItem.submenu.data.submenu_item as submenuItem, index (index)}
-								<li class="sidenav__menu-list-item">
-									<PrismicLink field={submenuItem} class={['link-item']} data-sidenav-link="">
-										<div class="link-item__wrap" data-sidenav-link="">
-											<p class="link-item__heading">{submenuItem.text}</p>
-											<p class="link-item__eyebrow">
+								<li class="submenu__menu-list-item">
+									<PrismicLink field={submenuItem} class={['submenu-item']}>
+										<div class="submenu-item__wrap">
+											<p class="submenu-item__text">{submenuItem.text}</p>
+											<p class="submenu-item__eyebrow">
 												{index + 1 < 10 ? '0' + (index + 1) : index + 1}
 											</p>
 										</div>
@@ -227,13 +223,39 @@
 	</div>
 </div>
 
-<style>
-	.sidenav__menu.sidenav__menu--sub {
+<style lang="scss">
+	.submenu {
 		position: absolute;
-		opacity: 0;
 		top: 0;
 		right: 0;
 		pointer-events: none;
+		transform: translateX(100%);
+		height: 100%;
+
+		&__inner {
+			width: 35em;
+			height: 100%;
+
+			background: var(--color-snow-white);
+
+			border-top-left-radius: 1.25em;
+			border-bottom-left-radius: 1.25em;
+			inset: 0%;
+		}
+
+		&__header {
+			z-index: 10;
+			justify-content: flex-end;
+			align-items: center;
+			display: flex;
+			position: fixed;
+			top: 1.5rem;
+			left: 1.5rem;
+			right: 1.5rem;
+		}
+
+		&__menu-list {
+		}
 	}
 
 	.sidenav {

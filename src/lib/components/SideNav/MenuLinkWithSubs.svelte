@@ -1,8 +1,8 @@
 <script>
-	let { menuItem, index } = $props();
+	let { menuItem, index, openSubmenu } = $props();
 </script>
 
-<div role="button" class="link-item" data-submenu-trigger={menuItem.label}>
+<button class="link-item" onclick={() => openSubmenu(menuItem.label)}>
 	<div class="link-item__wrap" data-sidenav-link="">
 		<p class="link-item__heading">{menuItem.label}</p>
 		<p class="link-item__eyebrow">
@@ -11,7 +11,7 @@
 	</div>
 
 	<i class="sidenav__menu-icon icon-chevron" data-sidenav-fade=""></i>
-</div>
+</button>
 
 <style>
 	.link-item {
