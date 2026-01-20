@@ -1,10 +1,80 @@
 {
 	"format": "custom",
 	"id": "footer",
-	"json": {
-		"Main": {}
-	},
 	"label": "Footer",
 	"repeatable": false,
-	"status": true
+	"status": true,
+	"json": {
+		"Main": {
+			"logo": {
+				"type": "Image",
+				"config": {
+					"label": "Logo",
+					"constraint": {},
+					"thumbnails": []
+				}
+			},
+			"social_icons": {
+				"type": "Group",
+				"config": {
+					"label": "Social icons",
+					"repeat": true,
+					"fields": {
+						"social_icon": {
+							"type": "Link",
+							"config": {
+								"label": "Social icon",
+								"placeholder": "",
+								"select": null,
+								"allowTargetBlank": true,
+								"allowText": false,
+								"repeat": false,
+								"variants": ["linkedin", "mail", "instagram", "tiktok"]
+							}
+						}
+					}
+				}
+			},
+			"cta_link": {
+				"type": "Link",
+				"config": {
+					"label": "CTA Link",
+					"placeholder": "Connect with us",
+					"select": null,
+					"allowTargetBlank": true,
+					"allowText": true,
+					"repeat": false
+				}
+			}
+		},
+		"Columns": {
+			"columns": {
+				"type": "Group",
+				"config": {
+					"label": "Columns",
+					"repeat": true,
+					"fields": {
+						"column_title": {
+							"type": "Text",
+							"config": {
+								"label": "Column title",
+								"placeholder": "Advisory"
+							}
+						},
+						"links": {
+							"type": "Link",
+							"config": {
+								"label": "Links",
+								"placeholder": "",
+								"select": null,
+								"allowTargetBlank": true,
+								"allowText": true,
+								"repeat": true
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

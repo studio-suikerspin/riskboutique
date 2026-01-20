@@ -57,7 +57,98 @@ type ContentRelationshipFieldWithData<
 	>;
 }[Exclude<TCustomType[number], string>['id']];
 
-interface FooterDocumentData {}
+/**
+ * Item in *Footer → Social icons*
+ */
+export interface FooterDocumentDataSocialIconsItem {
+	/**
+	 * Social icon field in *Footer → Social icons*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.social_icons[].social_icon
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	social_icon: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		'linkedin' | 'mail' | 'instagram' | 'tiktok'
+	>;
+}
+
+/**
+ * Item in *Footer → Columns*
+ */
+export interface FooterDocumentDataColumnsItem {
+	/**
+	 * Column title field in *Footer → Columns*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Advisory
+	 * - **API ID Path**: footer.columns[].column_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	column_title: prismic.KeyTextField;
+
+	/**
+	 * Links field in *Footer → Columns*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.columns[].links
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	links: prismic.Repeatable<prismic.LinkField<string, string, unknown, prismic.FieldState, never>>;
+}
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+	/**
+	 * Logo field in *Footer*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo: prismic.ImageField<never>;
+
+	/**
+	 * Social icons field in *Footer*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.social_icons[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	social_icons: prismic.GroupField<Simplify<FooterDocumentDataSocialIconsItem>>;
+
+	/**
+	 * CTA Link field in *Footer*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: Connect with us
+	 * - **API ID Path**: footer.cta_link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>; /**
+	 * Columns field in *Footer*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.columns[]
+	 * - **Tab**: Columns
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	columns: prismic.GroupField<Simplify<FooterDocumentDataColumnsItem>>;
+}
 
 /**
  * Footer document from Prismic
@@ -1352,6 +1443,8 @@ declare module '@prismicio/client' {
 		export type {
 			FooterDocument,
 			FooterDocumentData,
+			FooterDocumentDataSocialIconsItem,
+			FooterDocumentDataColumnsItem,
 			HeaderDocument,
 			HeaderDocumentData,
 			HeaderDocumentDataMenuItemsItem,
