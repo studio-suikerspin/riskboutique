@@ -20,7 +20,6 @@
 		let menuButton = document.querySelector('[data-sidenav-button]');
 		let menuHeader = document.querySelector('[data-sidenav-header]');
 		let menuButtonIcon = menuButton?.querySelector('[data-sidenav-icon]');
-		let submenuTriggers = document.querySelectorAll('[data-submenu-trigger]');
 
 		let tl = gsap.timeline();
 
@@ -31,7 +30,7 @@
 				.set(navWrap, { display: 'block' })
 				.set(menu, { xPercent: 0 }, '<')
 				// .fromTo(menuButtonTexts, { yPercent: 0 }, { yPercent: -100, stagger: 0.2 })
-				.fromTo(menuButtonIcon, { rotate: 0 }, { rotate: 315 }, '<')
+				.fromTo(menuButtonIcon, { rotate: 90 }, { rotate: 0 }, '<')
 				.fromTo(overlay, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
 				.fromTo(bgPanels, { xPercent: 101 }, { xPercent: 0, stagger: 0.12, duration: 0.575 }, '<')
 				.fromTo(menuHeader, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
@@ -81,16 +80,39 @@
 				closeNav();
 			}
 		});
-
-		submenuTriggers.forEach((trigger) => {
-			trigger.addEventListener('click', () => {
-				const { submenuTrigger } = trigger.dataset;
-				const submenu = document.querySelector(`[data-sidenav-submenu="${submenuTrigger}"]`);
-				submenu.style.opacity = 1;
-				submenu.style.pointerEvents = 'auto';
-			});
-		});
 	}
+
+	const openSubmenu = (submenuLabel) => {
+		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`);
+
+		if (!submenu) return;
+
+		const menuItems = submenu.querySelectorAll('[data-submenu-item]');
+
+		const tl = gsap.timeline();
+
+		submenu.style.pointerEvents = 'all';
+
+		tl.clear()
+			.fromTo(submenu, { x: '100%' }, { x: '0%', stagger: 0.04 }, '<+=0.2')
+			.fromTo(
+				menuItems,
+				{ yPercent: 140, rotate: 10 },
+				{ yPercent: 0, rotate: 0, stagger: 0.05 },
+				'<+=0.35'
+			);
+	};
+
+	const closeSubmenu = (submenuLabel) => {
+		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`);
+
+		if (!submenu) return;
+
+		const tl = gsap.timeline();
+		tl.clear().to(submenu, { x: '100%' }, '<+=0.2');
+
+		submenu.style.pointerEvents = 'none';
+	};
 
 	onMount(() => {
 		CustomEase.create('main', '0.65, 0.01, 0.05, 0.99');
@@ -122,41 +144,10 @@
 						class="sidenav__button"
 					>
 						<div class="sidenav__button-text">
-							<p data-sidenav-label="" class="sidenav__button-label">Close</p>
+							<p data-sidenav-label="" class="sidenav__button-label">close</p>
 						</div>
 						<div data-sidenav-icon="" class="sidenav__button-icon">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="100%"
-								viewbox="0 0 16 16"
-								fill="none"
-								class="sidenav__button-icon-svg"
-							>
-								<path
-									d="M7.33333 16L7.33333 -3.2055e-07L8.66667 -3.78832e-07L8.66667 16L7.33333 16Z"
-									fill="currentColor"
-								></path>
-								<path
-									d="M16 8.66667L-2.62269e-07 8.66667L-3.78832e-07 7.33333L16 7.33333L16 8.66667Z"
-									fill="currentColor"
-								></path>
-								<path
-									d="M6 7.33333L7.33333 7.33333L7.33333 6C7.33333 6.73637 6.73638 7.33333 6 7.33333Z"
-									fill="currentColor"
-								></path>
-								<path
-									d="M10 7.33333L8.66667 7.33333L8.66667 6C8.66667 6.73638 9.26362 7.33333 10 7.33333Z"
-									fill="currentColor"
-								></path>
-								<path
-									d="M6 8.66667L7.33333 8.66667L7.33333 10C7.33333 9.26362 6.73638 8.66667 6 8.66667Z"
-									fill="currentColor"
-								></path>
-								<path
-									d="M10 8.66667L8.66667 8.66667L8.66667 10C8.66667 9.26362 9.26362 8.66667 10 8.66667Z"
-									fill="currentColor"
-								></path>
-							</svg>
+							<i class="icon-close sidenav__button-icon-svg"></i>
 						</div>
 					</button>
 				</header>
@@ -165,7 +156,7 @@
 					{#each menuItems as menuItem, index (index)}
 						<li class="sidenav__menu-list-item">
 							{#if menuItem.has_submenu}
-								<MenuLinkWithSubs {menuItem} {index} />
+								<MenuLinkWithSubs {menuItem} {index} {openSubmenu} />
 							{:else}
 								<MenuLink {menuItem} {index} />
 							{/if}
@@ -185,32 +176,29 @@
 
 		{#each menuItems as menuItem, index (index)}
 			{#if menuItem.has_submenu}
-				<nav
-					data-sidenav-menu
-					data-sidenav-submenu={menuItem.label}
-					class="sidenav__menu sidenav__menu--sub"
-				>
-					<div class="sidenav__menu-bg">
-						<div data-sidenav-panel="" class="sidenav__menu-bg-panel is--first"></div>
-						<div data-sidenav-panel="" class="sidenav__menu-bg-panel is--second"></div>
-						<div data-sidenav-panel="" class="sidenav__menu-bg-panel"></div>
-					</div>
-					<div class="sidenav__menu-inner">
-						<header class="sidenav__header" data-sidenav-header="">
-							<button data-sidenav-button="" data-sidenav-toggle class="sidenav__button">
-								<div class="sidenav__button-text">
-									<p data-sidenav-label="" class="sidenav__button-label">Back</p>
-								</div>
+				<nav data-submenu={menuItem.label} class="submenu">
+					<div class="submenu__inner">
+						<header class="submenu__header">
+							<button class="submenu__button" onclick={() => closeSubmenu(menuItem.label)}>
+								<p class="label">back</p>
+								<i class="icon icon-arrow-right"></i>
 							</button>
 						</header>
 
-						<ul class="sidenav__menu-list">
+						<ul class="submenu__list">
+							<li class="submenu__list-item submenu__label">
+								<div class="submenu-item">
+									<div class="h4" data-submenu-item>
+										{menuItem.label}
+									</div>
+								</div>
+							</li>
 							{#each menuItem.submenu.data.submenu_item as submenuItem, index (index)}
-								<li class="sidenav__menu-list-item">
-									<PrismicLink field={submenuItem} class={['link-item']} data-sidenav-link="">
-										<div class="link-item__wrap" data-sidenav-link="">
-											<p class="link-item__heading">{submenuItem.text}</p>
-											<p class="link-item__eyebrow">
+								<li class="submenu__list-item">
+									<PrismicLink field={submenuItem} class={['submenu-item']}>
+										<div class="submenu-item__wrap" data-submenu-item>
+											<p class="submenu-item__text">{submenuItem.text}</p>
+											<p class="submenu-item__eyebrow">
 												{index + 1 < 10 ? '0' + (index + 1) : index + 1}
 											</p>
 										</div>
@@ -225,13 +213,103 @@
 	</div>
 </div>
 
-<style>
-	.sidenav__menu.sidenav__menu--sub {
+<style lang="scss">
+	.submenu {
 		position: absolute;
-		opacity: 0;
 		top: 0;
 		right: 0;
 		pointer-events: none;
+		transform: translateX(100%);
+		height: 100%;
+
+		&__inner {
+			width: 100vw;
+			height: 100%;
+
+			background: var(--color-snow-white);
+
+			inset: 0%;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			@media (min-width: 768px) {
+				width: 35em;
+				border-top-left-radius: 1.25em;
+				border-bottom-left-radius: 1.25em;
+			}
+		}
+
+		&__header {
+			z-index: 10;
+			justify-content: flex-end;
+			align-items: center;
+			display: flex;
+			position: fixed;
+			top: 1.5rem;
+			left: 1.5rem;
+			right: 1.5rem;
+		}
+
+		&__button {
+			display: flex;
+			align-items: center;
+			gap: 0.625rem;
+			cursor: pointer;
+			margin: -1em;
+			padding: 1em;
+
+			color: var(--color-dark-mode);
+
+			& .label {
+				font-size: 1.125rem;
+			}
+
+			& .icon {
+				font-size: 1.5rem;
+			}
+		}
+
+		&__list {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&__label {
+			padding-block: 0.5rem;
+			color: var(--color-dark-mode);
+
+			line-height: 1.4;
+		}
+
+		:global .submenu-item {
+			display: flex;
+			padding-inline: 1.5rem;
+			color: var(--color-dark-mode);
+			overflow: hidden;
+			height: fit-content;
+
+			&__wrap {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.5rem;
+				padding-block: 0.5rem;
+			}
+
+			&__text {
+				font-size: 1.125rem;
+
+				@media (min-width: 768px) {
+					font-size: 1.5rem;
+				}
+			}
+
+			&__eyebrow {
+				font-size: 1rem;
+				color: var(--color-aqua);
+			}
+		}
 	}
 
 	.sidenav {
@@ -255,20 +333,22 @@
 		z-index: 10;
 		grid-column-gap: 0.625em;
 		grid-row-gap: 0.625em;
-		background-color: #0000;
+		background-color: transparent;
 		justify-content: flex-end;
 		align-items: center;
 		margin: -1em;
 		padding: 1em;
 		display: flex;
 		border: none;
+		cursor: pointer;
 	}
 
 	.sidenav__button-text {
 		flex-flow: column;
 		justify-content: flex-start;
 		align-items: flex-end;
-		height: 1.5em;
+		height: fit-content;
+		font-size: 1.125rem;
 		display: flex;
 		overflow: hidden;
 	}
@@ -276,8 +356,7 @@
 	.sidenav__button-icon {
 		justify-content: center;
 		align-items: center;
-		width: 1em;
-		height: 1em;
+		font-size: 1.5rem;
 		transition: transform 0.4s cubic-bezier(0.65, 0.05, 0, 1);
 		display: flex;
 	}
@@ -287,11 +366,15 @@
 	}
 
 	.sidenav__button-label {
-		color: #131313;
+		color: var(--color-dark-mode);
 		margin-top: 0;
 		margin-bottom: 0;
-		font-size: 1.125em;
+		font-size: 1.125rem;
 		line-height: 1.4;
+
+		@media (min-width: 768px) {
+			font-size: 1.125rem;
+		}
 	}
 
 	.sidenav__nav {
@@ -373,26 +456,39 @@
 		padding-left: 0;
 		list-style: none;
 		display: flex;
+		gap: 0.5rem;
+
+		@media (min-width: 768px) {
+			gap: unset;
+		}
 	}
 
 	.sidenav__menu-list-item {
-		height: 4rem;
+		height: 2rem;
 		margin-top: 0;
 		margin-bottom: 0;
 		position: relative;
 		overflow: hidden;
+
+		@media (min-width: 768px) {
+			height: 4rem;
+		}
 	}
 
 	.sidenav :global .link-item {
 		display: flex;
 		align-items: center;
 		padding-inline: 1.5rem;
+<<<<<<< HEAD
 		transition: opacity 0.3s ease-in-out;
 
 		:hover {
 			opacity: 0.85;
 			transition: opacity 0.3s ease-in-out;
 		}
+=======
+		width: 100%;
+>>>>>>> a78fdcdc50e2cf883cb2f28200b121c690822ba4
 	}
 
 	.sidenav__menu-details {
@@ -403,6 +499,14 @@
 		align-items: flex-start;
 		padding-inline: 1.5rem;
 		display: flex;
+
+		.sidenav__button-label {
+			font-size: 1rem;
+
+			@media (min-width: 768px) {
+				font-size: 1.125rem;
+			}
+		}
 	}
 
 	.sidenav__menu-socials {
@@ -435,10 +539,6 @@
 
 		.sidenav__menu {
 			width: 100%;
-		}
-
-		.sidenav__menu-list-item {
-			height: 4.5em;
 		}
 
 		.sidenav__menu-link-heading {
