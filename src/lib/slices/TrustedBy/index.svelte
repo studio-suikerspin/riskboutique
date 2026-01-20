@@ -5,6 +5,7 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { gsap, ScrollTrigger } from '$lib/gsap';
+	import { initContentRevealScroll } from '$lib/revealContent.js';
 
 	type Props = SliceComponentProps<Content.TrustedBySlice>;
 
@@ -154,30 +155,53 @@
 // Initialize Logo Wall Cycle
 onMount(() => {
 	initLogoWallCycle();
+	initContentRevealScroll();
 });
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="block-padding">
-	<div data-logo-wall-shuffle="false" data-logo-wall-cycle-init="" class="logo-wall">
-  <div class="logo-wall__collection">
-    <div data-logo-wall-list="" class="logo-wall__list">
-			{#each slice.primary.logos as item}
-				 <div data-logo-wall-item="" class="logo-wall__item {item.with_background ? 'logo-wall__item--with-background' : ''}">
-					<div data-logo-wall-target-parent="" class="logo-wall__logo">
-						<div class="logo-wall__logo-before"></div>
-						<div data-logo-wall-target="" class="logo-wall__logo-target">
-							<PrismicImage field={item.logo_image} />
+<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="block-padding" data-reveal-group>
+	<div class="logo__wrapper">
+		<div class="logo__heading">
+			<div class="logo__title h1">{slice.primary.heading}</div>
+		</div>
+		<div>
+			<div data-logo-wall-shuffle="false" data-logo-wall-cycle-init="" class="logo-wall">
+			<div class="logo-wall__collection">
+				<div data-logo-wall-list="" class="logo-wall__list">
+					{#each slice.primary.logos as item, index}
+						<div data-logo-wall-item="" class="logo-wall__item {item.with_background ? 'logo-wall__item--with-background' : ''} {index % 4 === 2 ? 'third-item' : ''}">
+							<div data-logo-wall-target-parent="" class="logo-wall__logo">
+								<div class="logo-wall__logo-before"></div>
+								<div data-logo-wall-target="" class="logo-wall__logo-target">
+									<PrismicImage field={item.logo_image} />
+								</div>
+							</div>
 						</div>
-					</div>
+					{/each}
 				</div>
-			{/each}
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 </div>
 </section>
 
 <style>
-	.logo-wall {
+.logo__wrapper{
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+}
+@media(min-width: 768px) {
+	.logo__wrapper{
+		gap: 5rem;
+	}
+}
+
+.logo__heading{
+	text-align: center;
+}
+
+.logo-wall {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -206,6 +230,14 @@ onMount(() => {
 	border-radius: 4px;
 	border: 1px solid var(--color-clay-green, #B2C1BD);
 }
+
+@media(max-width: 768px) {
+	.logo-wall__item.third-item {
+		order: 2;
+	}
+}
+
+
 
 .logo-wall__item--with-background {
 	background: url('/bg-gradient-licht.svg');
