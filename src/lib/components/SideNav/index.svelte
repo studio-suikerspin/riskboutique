@@ -479,16 +479,14 @@
 		display: flex;
 		align-items: center;
 		padding-inline: 1.5rem;
-<<<<<<< HEAD
 		transition: opacity 0.3s ease-in-out;
 
 		:hover {
 			opacity: 0.85;
 			transition: opacity 0.3s ease-in-out;
 		}
-=======
+
 		width: 100%;
->>>>>>> a78fdcdc50e2cf883cb2f28200b121c690822ba4
 	}
 
 	.sidenav__menu-details {
