@@ -48,6 +48,26 @@
                 "config": {
                   "label": "Background Color"
                 }
+              },
+              "text_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Text color",
+                  "placeholder": ""
+                }
+              },
+              "shape": {
+                "type": "Select",
+                "config": {
+                  "label": "Shape",
+                  "placeholder": "",
+                  "options": [
+                    "roundVerticalLines",
+                    "roundWorldShape",
+                    "TriangleShape"
+                  ],
+                  "default_value": "roundVerticalLines"
+                }
               }
             }
           }

@@ -973,6 +973,27 @@ export interface PillarsSliceDefaultPrimaryPillarsItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/color
 	 */
 	background_color: prismic.ColorField;
+
+	/**
+	 * Text color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[].text_color
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	text_color: prismic.ColorField;
+
+	/**
+	 * Shape field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: roundVerticalLines
+	 * - **API ID Path**: pillars.default.primary.pillars[].shape
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	shape: prismic.SelectField<'roundVerticalLines' | 'roundWorldShape' | 'TriangleShape', 'filled'>;
 }
 
 /**
