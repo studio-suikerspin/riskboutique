@@ -6,7 +6,7 @@
 	import MenuLinkWithSubs from './MenuLinkWithSubs.svelte';
 	import { PrismicLink } from '@prismicio/svelte';
 
-	let { menuItems } = $props();
+	let { menuItems, socials } = $props();
 
 	function initSideNavWipeEffect() {
 		let navWrap = document.querySelector('[data-sidenav-wrap]');
@@ -165,11 +165,18 @@
 				</ul>
 
 				<div class="sidenav__menu-details">
-					<p data-sidenav-fade="" class="sidenav__button-label">Socials</p>
-					<div class="sidenav__menu-socials">
-						// TODO: Make dynamic with prismic
-						<a data-sidenav-fade="" href="#" class="sidenav__button-label">LinkedIn</a>
-					</div>
+					{#if socials.data.socials.length}
+						<p data-sidenav-fade="" class="sidenav__button-label">Socials</p>
+						<div class="sidenav__menu-socials">
+							{#each socials.data.socials as { social_link }, index (index)}
+								<PrismicLink
+									data-sidenav-fade=""
+									field={social_link}
+									class="sidenav__button-label"
+								/>
+							{/each}
+						</div>
+					{/if}
 				</div>
 			</div>
 		</nav>

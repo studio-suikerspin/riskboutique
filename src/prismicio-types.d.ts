@@ -378,6 +378,58 @@ export type SiteSettingsDocument<Lang extends string = string> = prismic.Prismic
 >;
 
 /**
+ * Item in *Social links → Socials*
+ */
+export interface SocialLinksDocumentDataSocialsItem {
+	/**
+	 * Social link field in *Social links → Socials*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: LinkedIn
+	 * - **API ID Path**: social_links.socials[].social_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	social_link: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		'linkedin' | 'instagram' | 'tiktok' | 'facebook' | 'email'
+	>;
+}
+
+/**
+ * Content for Social links documents
+ */
+interface SocialLinksDocumentData {
+	/**
+	 * Socials field in *Social links*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: social_links.socials[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	socials: prismic.GroupField<Simplify<SocialLinksDocumentDataSocialsItem>>;
+}
+
+/**
+ * Social links document from Prismic
+ *
+ * - **API ID**: `social_links`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialLinksDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<SocialLinksDocumentData>,
+	'social_links',
+	Lang
+>;
+
+/**
  * Content for Submenu documents
  */
 interface SubMenuDocumentData {
@@ -481,6 +533,7 @@ export type AllDocumentTypes =
 	| HomepageDocument
 	| PageDocument
 	| SiteSettingsDocument
+	| SocialLinksDocument
 	| SubMenuDocument
 	| UnderConstructionPageDocument;
 
@@ -1299,6 +1352,9 @@ declare module '@prismicio/client' {
 			PageDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
+			SocialLinksDocument,
+			SocialLinksDocumentData,
+			SocialLinksDocumentDataSocialsItem,
 			SubMenuDocument,
 			SubMenuDocumentData,
 			UnderConstructionPageDocument,

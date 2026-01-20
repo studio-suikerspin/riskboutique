@@ -4,7 +4,7 @@
 	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
 	import SideNav from './SideNav/index.svelte';
 
-	let { site_settings, header } = page.data;
+	let { site_settings, header, socials } = page.data;
 </script>
 
 <header class="main-header">
@@ -38,7 +38,7 @@
 	</div>
 </header>
 
-<SideNav menuItems={header.data.menu_items} />
+<SideNav menuItems={header.data.menu_items} {socials} />
 
 <style lang="scss">
 	.main-header {
