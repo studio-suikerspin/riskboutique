@@ -225,18 +225,22 @@
 		height: 100%;
 
 		&__inner {
-			width: 35em;
+			width: 100vw;
 			height: 100%;
 
 			background: var(--color-snow-white);
 
-			border-top-left-radius: 1.25em;
-			border-bottom-left-radius: 1.25em;
 			inset: 0%;
 
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+
+			@media (min-width: 768px) {
+				width: 35em;
+				border-top-left-radius: 1.25em;
+				border-bottom-left-radius: 1.25em;
+			}
 		}
 
 		&__header {
@@ -296,7 +300,11 @@
 			}
 
 			&__text {
-				font-size: 1.5rem;
+				font-size: 1.125rem;
+
+				@media (min-width: 768px) {
+					font-size: 1.5rem;
+				}
 			}
 
 			&__eyebrow {
@@ -363,8 +371,12 @@
 		color: var(--color-dark-mode);
 		margin-top: 0;
 		margin-bottom: 0;
-		font-size: 1.125em;
+		font-size: 1.125rem;
 		line-height: 1.4;
+
+		@media (min-width: 768px) {
+			font-size: 1.125rem;
+		}
 	}
 
 	.sidenav__nav {
@@ -446,14 +458,23 @@
 		padding-left: 0;
 		list-style: none;
 		display: flex;
+		gap: 0.5rem;
+
+		@media (min-width: 768px) {
+			gap: unset;
+		}
 	}
 
 	.sidenav__menu-list-item {
-		height: 4rem;
+		height: 2rem;
 		margin-top: 0;
 		margin-bottom: 0;
 		position: relative;
 		overflow: hidden;
+
+		@media (min-width: 768px) {
+			height: 4rem;
+		}
 	}
 
 	.sidenav :global .link-item {
@@ -471,6 +492,14 @@
 		align-items: flex-start;
 		padding-inline: 1.5rem;
 		display: flex;
+
+		.sidenav__button-label {
+			font-size: 1rem;
+
+			@media (min-width: 768px) {
+				font-size: 1.125rem;
+			}
+		}
 	}
 
 	.sidenav__menu-socials {
@@ -503,10 +532,6 @@
 
 		.sidenav__menu {
 			width: 100%;
-		}
-
-		.sidenav__menu-list-item {
-			height: 4.5em;
 		}
 
 		.sidenav__menu-link-heading {
