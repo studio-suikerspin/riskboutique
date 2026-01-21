@@ -57,7 +57,98 @@ type ContentRelationshipFieldWithData<
 	>;
 }[Exclude<TCustomType[number], string>['id']];
 
-interface FooterDocumentData {}
+/**
+ * Item in *Footer → Social icons*
+ */
+export interface FooterDocumentDataSocialIconsItem {
+	/**
+	 * Social icon field in *Footer → Social icons*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.social_icons[].social_icon
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	social_icon: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		'linkedin' | 'mail' | 'instagram' | 'tiktok'
+	>;
+}
+
+/**
+ * Item in *Footer → Columns*
+ */
+export interface FooterDocumentDataColumnsItem {
+	/**
+	 * Column title field in *Footer → Columns*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Advisory
+	 * - **API ID Path**: footer.columns[].column_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	column_title: prismic.KeyTextField;
+
+	/**
+	 * Links field in *Footer → Columns*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.columns[].links
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	links: prismic.Repeatable<prismic.LinkField<string, string, unknown, prismic.FieldState, never>>;
+}
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+	/**
+	 * Logo field in *Footer*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo: prismic.ImageField<never>;
+
+	/**
+	 * Social icons field in *Footer*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.social_icons[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	social_icons: prismic.GroupField<Simplify<FooterDocumentDataSocialIconsItem>>;
+
+	/**
+	 * CTA Link field in *Footer*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: Connect with us
+	 * - **API ID Path**: footer.cta_link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>; /**
+	 * Columns field in *Footer*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: footer.columns[]
+	 * - **Tab**: Columns
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	columns: prismic.GroupField<Simplify<FooterDocumentDataColumnsItem>>;
+}
 
 /**
  * Footer document from Prismic
@@ -378,6 +469,58 @@ export type SiteSettingsDocument<Lang extends string = string> = prismic.Prismic
 >;
 
 /**
+ * Item in *Social links → Socials*
+ */
+export interface SocialLinksDocumentDataSocialsItem {
+	/**
+	 * Social link field in *Social links → Socials*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: LinkedIn
+	 * - **API ID Path**: social_links.socials[].social_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	social_link: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		'linkedin' | 'instagram' | 'tiktok' | 'facebook' | 'email'
+	>;
+}
+
+/**
+ * Content for Social links documents
+ */
+interface SocialLinksDocumentData {
+	/**
+	 * Socials field in *Social links*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: social_links.socials[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	socials: prismic.GroupField<Simplify<SocialLinksDocumentDataSocialsItem>>;
+}
+
+/**
+ * Social links document from Prismic
+ *
+ * - **API ID**: `social_links`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialLinksDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<SocialLinksDocumentData>,
+	'social_links',
+	Lang
+>;
+
+/**
  * Content for Submenu documents
  */
 interface SubMenuDocumentData {
@@ -481,6 +624,7 @@ export type AllDocumentTypes =
 	| HomepageDocument
 	| PageDocument
 	| SiteSettingsDocument
+	| SocialLinksDocument
 	| SubMenuDocument
 	| UnderConstructionPageDocument;
 
@@ -973,6 +1117,27 @@ export interface PillarsSliceDefaultPrimaryPillarsItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/color
 	 */
 	background_color: prismic.ColorField;
+
+	/**
+	 * Text color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.pillars[].text_color
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	text_color: prismic.ColorField;
+
+	/**
+	 * Shape field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: roundVerticalLines
+	 * - **API ID Path**: pillars.default.primary.pillars[].shape
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	shape: prismic.SelectField<'roundVerticalLines' | 'roundWorldShape' | 'TriangleShape', 'filled'>;
 }
 
 /**
@@ -1125,6 +1290,17 @@ export interface TrustedBySliceDefaultPrimaryLogosItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	logo_image: prismic.ImageField<never>;
+
+	/**
+	 * With background field in *TrustedBy → Default → Primary → Logos*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: trusted_by.default.primary.logos[].with_background
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	with_background: prismic.BooleanField;
 }
 
 /**
@@ -1267,6 +1443,8 @@ declare module '@prismicio/client' {
 		export type {
 			FooterDocument,
 			FooterDocumentData,
+			FooterDocumentDataSocialIconsItem,
+			FooterDocumentDataColumnsItem,
 			HeaderDocument,
 			HeaderDocumentData,
 			HeaderDocumentDataMenuItemsItem,
@@ -1278,6 +1456,9 @@ declare module '@prismicio/client' {
 			PageDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
+			SocialLinksDocument,
+			SocialLinksDocumentData,
+			SocialLinksDocumentDataSocialsItem,
 			SubMenuDocument,
 			SubMenuDocumentData,
 			UnderConstructionPageDocument,

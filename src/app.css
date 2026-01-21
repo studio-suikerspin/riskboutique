@@ -12,6 +12,120 @@
 body {
 	font-family: 'General Sans', sans-serif;
 	font-size: 16px;
+	background: var(--color-snow-white);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
+	font-weight: 600;
+	font-family: 'General Sans', sans-serif;
+}
+
+h1,
+.h1 {
+	font-size: 3rem;
+	line-height: 90%;
+	letter-spacing: -0.96px;
+}
+
+@media (min-width: 768px) {
+	h1,
+	.h1 {
+		font-size: 7.5rem;
+		letter-spacing: -4.8px;
+	}
+}
+
+h2,
+.h2 {
+	font-size: 2.5rem;
+	line-height: 90%;
+	letter-spacing: -0.96px;
+}
+
+@media (min-width: 768px) {
+	h2,
+	.h2 {
+		font-size: 5rem;
+		letter-spacing: -3.2px;
+	}
+}
+
+h3,
+.h3 {
+	font-size: 2rem;
+	line-height: 120%;
+	letter-spacing: -0.64px;
+	font-weight: 500;
+}
+
+@media (min-width: 768px) {
+	h3,
+	.h3 {
+		font-size: 3.5rem;
+		letter-spacing: -1.12px;
+	}
+}
+
+.h3.low {
+	font-weight: 600;
+	line-height: 85%;
+}
+
+h4,
+.h4 {
+	font-size: 1.5rem;
+	line-height: 100%;
+	letter-spacing: -0.48px;
+}
+
+@media (min-width: 768px) {
+	h4,
+	.h4 {
+		font-size: 2.5rem;
+		letter-spacing: -0.8px;
+	}
+}
+
+h5,
+.h5 {
+	font-size: 1.125rem;
+	line-height: 100%;
+	font-weight: 500;
+}
+
+@media (min-width: 768px) {
+	h5,
+	.h5 {
+		font-size: 1.5rem;
+	}
+}
+
+.subtitle {
+	font-size: 1.125rem;
+	line-height: 150%;
+	font-weight: 500;
+}
+
+.general-content,
+p {
+	font-size: 1rem;
+	line-height: 150%;
+	font-weight: 500;
+}
+
+.general-content.small {
+	font-size: 1rem;
+	line-height: 100%;
+	font-weight: 400;
 }
 
 .btn {
@@ -19,12 +133,13 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 0.65rem;
+	width: fit-content;
 
 	padding-inline: 0.75rem 1rem;
 	padding-block: 0.75rem;
 
 	color: var(--color-snow-white);
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	border: 0.03125rem solid var(--color-snow-white);
 
 	font-weight: 500;
@@ -56,6 +171,7 @@ body {
 	}
 }
 
+
 .link {
 	display: inline-flex;
 	gap: 0.75rem;
@@ -66,5 +182,31 @@ body {
 	& .icon-arrow-right {
 		transform: rotate(-50deg);
 		font-weight: bold;
+
+.border-radius {
+	border-radius: 0.5rem;
+}
+
+.block-padding {
+	padding: 150px 0;
+}
+
+.block-padding-top {
+	padding-top: 150px;
+}
+
+.block-padding-bottom {
+	padding-bottom: 150px;
+}
+
+@media (min-width: 768px) {
+	.block-padding {
+		padding: 250px 0;
+	}
+	.block-padding-top {
+		padding-top: 150px;
+	}
+	.block-padding-bottom {
+		padding-bottom: 150px;
 	}
 }

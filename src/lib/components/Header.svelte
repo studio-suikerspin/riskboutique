@@ -4,7 +4,7 @@
 	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
 	import SideNav from './SideNav/index.svelte';
 
-	let { site_settings, header } = page.data;
+	let { site_settings, header, socials } = page.data;
 </script>
 
 <header class="main-header">
@@ -25,7 +25,10 @@
 				Menu
 			</button>
 
-			<PrismicLink field={site_settings.data.contact_link} class={['btn', 'btn--link']}>
+			<PrismicLink
+				field={site_settings.data.contact_link}
+				class={['btn', 'btn--link', 'main-header__cta']}
+			>
 				<i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
 				<div class="btn__text">
 					{site_settings.data.contact_link.text}
@@ -35,7 +38,7 @@
 	</div>
 </header>
 
-<SideNav menuItems={header.data.menu_items} />
+<SideNav menuItems={header.data.menu_items} {socials} />
 
 <style lang="scss">
 	.main-header {
@@ -54,7 +57,7 @@
 		}
 
 		:global &__logo {
-			max-width: 200px;
+			max-width: 170px;
 
 			&--dark {
 				display: none;
@@ -69,6 +72,24 @@
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
+		}
+
+		:global &__cta {
+			display: none;
+
+			@media (min-width: 768px) {
+				display: flex;
+			}
+		}
+
+		:global .btn--menu {
+			padding-block: 0.5rem;
+			padding-inline: 0.825rem;
+
+			@media (min-width: 768px) {
+				padding-inline: 0.75rem 1rem;
+				padding-block: 0.75rem;
+			}
 		}
 	}
 </style>
