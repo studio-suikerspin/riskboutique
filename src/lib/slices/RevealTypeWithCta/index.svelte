@@ -1,4 +1,5 @@
 <script lang="ts">
+	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte';
 	import type { Content } from '@prismicio/client';
 	import { PrismicLink, type SliceComponentProps } from '@prismicio/svelte';
 
@@ -8,7 +9,7 @@
 </script>
 
 <section
-	class="section-reveal-type"
+	class="section-reveal-type block-padding"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
@@ -17,11 +18,16 @@
 
 	<!-- Text wrapper -->
 	<div class="reveal-type__text">
-		<!-- Label -->
-		<div>{slice.primary.label}</div>
+		<div class="reveal-type__text-wrapper">
+			<!-- Label -->
+			<div class="reveal-type__text-label">
+				<i class="icon-waves"></i>
+				{slice.primary.label}
+			</div>
 
-		<!-- Content -->
-		<div>{slice.primary.content}</div>
+			<!-- Content -->
+			<RevealTypeContent text={slice.primary.content} />
+		</div>
 
 		<!-- Link -->
 		<PrismicLink class="link" field={slice.primary.cta_link}>
@@ -33,6 +39,50 @@
 
 <style lang="scss">
 	.section-reveal-type {
-		padding: 32px;
+		& > .icon-arrow-right {
+			display: none;
+
+			@media (min-width: 768px) {
+				display: block;
+				font-size: 3rem;
+				margin-top: 2rem;
+			}
+		}
+
+		& .reveal-type__text {
+			display: inline-flex;
+			flex-direction: column;
+			gap: 2.5rem;
+
+			@media (min-width: 768px) {
+				gap: 2rem;
+			}
+
+			& .reveal-type__text-wrapper {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+
+				& .reveal-type__text-label {
+					display: flex;
+					gap: 0.5rem;
+					align-items: center;
+					font-weight: 100;
+					font-size: 1.125rem;
+				}
+
+				@media (min-width: 768px) {
+					gap: 2.5rem;
+				}
+			}
+		}
+
+		@media (min-width: 768px) {
+			max-width: 1200px;
+			margin: auto;
+
+			display: flex;
+			gap: clamp(6.25rem, -0.1786rem + 13.3929vw, 11.875rem);
+		}
 	}
 </style>
