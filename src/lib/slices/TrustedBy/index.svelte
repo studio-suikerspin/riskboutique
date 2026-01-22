@@ -199,6 +199,13 @@ onMount(() => {
 
 .logo__heading{
 	text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo__title{
+  max-width: 1200px;
 }
 
 .logo-wall {
