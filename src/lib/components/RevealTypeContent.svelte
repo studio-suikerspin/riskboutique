@@ -14,18 +14,17 @@
 	const { text }: Props = $props();
 
 	function revealType() {
-		const container = document.querySelector('.section-reveal-type');
 		const textToSplit = document.querySelector('.reveal-type-content');
 
 		let split = SplitText.create(textToSplit, { type: 'words' });
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
-				trigger: container,
-				start: `top top+=${300}`, // Start when the top of the elment hits the top of the container + 100px
+				trigger: textToSplit,
+				start: `top top+=${800}`, // Start when the top of the elment hits the top of the container + 100px
 				end: `center top`, // End when the center of the element hits the top of the container
-				scrub: true,
-				markers: true
+				scrub: true
+				// markers: true
 			}
 		});
 

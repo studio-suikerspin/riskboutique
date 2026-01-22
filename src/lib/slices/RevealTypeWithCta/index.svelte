@@ -9,7 +9,7 @@
 </script>
 
 <section
-	class="section-reveal-type block-padding"
+	class="section-reveal-type block-padding-top"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
@@ -39,6 +39,8 @@
 
 <style lang="scss">
 	.section-reveal-type {
+		padding-inline: 1.25rem;
+
 		& > .icon-arrow-right {
 			display: none;
 
@@ -67,8 +69,12 @@
 					display: flex;
 					gap: 0.5rem;
 					align-items: center;
-					font-weight: 100;
-					font-size: 1.125rem;
+					font-weight: 400;
+
+					@media (min-width: 768px) {
+						font-size: 1.125rem;
+						font-weight: 100;
+					}
 				}
 
 				@media (min-width: 768px) {
@@ -78,7 +84,7 @@
 		}
 
 		@media (min-width: 768px) {
-			max-width: 1200px;
+			max-width: 75rem;
 			margin: auto;
 
 			display: flex;
