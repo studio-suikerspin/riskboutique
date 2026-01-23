@@ -1,9 +1,21 @@
 <script>
-	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
-	import { page } from '$app/state';
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
+	import { page } from '$app/state'
+	import { onMount } from 'svelte'
+	import { gsap } from '$lib/gsap'
 
-	const footer = page.data.footer.data;
-	const socials = page.data.socials.data.socials;
+	const footer = page.data.footer.data
+	const socials = page.data.socials.data.socials
+
+	const toggleAccordion = (e) => {
+		const accordions = document.querySelectorAll('[data-accordion-status]')
+		accordions.forEach((accordion) => {
+			accordion.setAttribute('data-accordion-status', 'not-active')
+		})
+
+		const currentAccordion = e.target.closest('[data-accordion-status]')
+		currentAccordion.setAttribute('data-accordion-status', 'active')
+	}
 </script>
 
 <footer class="footer">
@@ -17,7 +29,11 @@
 				<ul class="socials">
 					{#each socials as { social_link }, index (index)}
 						<li class="socials__item">
-							<PrismicLink data-sidenav-fade="" field={social_link} class="socials__item-link">
+							<PrismicLink
+								field={social_link}
+								class="socials__item-link"
+								data-sidenav-fade=""
+							>
 								<i class="icon-linkedin"></i>
 							</PrismicLink>
 						</li>
@@ -26,14 +42,67 @@
 			</div>
 
 			<div class="footer__columns">
-				{#each footer.columns as footerColumn, index (index)}
-					<div class="footer-column">
-						<div class="footer-column__title">
-							{footerColumn.column_title}
-						</div>
+				<div
+					data-accordion-close-siblings="true"
+					data-accordion-css-init=""
+					class="accordion-css"
+				>
+					<ul class="accordion-css__list">
+						{#each footer.columns as footerColumn, index (index)}
+							<li
+								data-accordion-status="not-active"
+								class="accordion-css__item"
+							>
+								<button
+									data-hover=""
+									data-accordion-toggle=""
+									class="accordion-css__item-top"
+									onclick={toggleAccordion}
+								>
+									<h3 class="accordion-css__item-h3">
+										{footerColumn.column_title}
+									</h3>
+									<div class="accordion-css__item-icon">
+										<svg
+											class="accordion-css__item-icon-svg"
+											xmlns="http://www.w3.org/2000/svg"
+											width="100%"
+											viewbox="0 0 36 36"
+											fill="none"
+											><path
+												d="M28.5 22.5L18 12L7.5 22.5"
+												stroke="currentColor"
+												stroke-width="3"
+												stroke-miterlimit="10"
+											></path></svg
+										>
+									</div>
+								</button>
+								<div class="accordion-css__item-bottom">
+									<div class="accordion-css__item-bottom-wrap">
+										<div class="accordion-css__item-bottom-content">
+											<ul class="footer-column__list">
+												{#each footerColumn.links as link, index (index)}
+													<li>
+														<PrismicLink field={link} />
+													</li>
+												{/each}
+											</ul>
+										</div>
+									</div>
+								</div>
+							</li>
+						{/each}
+					</ul>
+				</div>
 
-						<div class="footer-column__links">
-							<ul>
+				<div class="footer__grid">
+					{#each footer.columns as footerColumn, index (index)}
+						<div class="footer__grid-item">
+							<div class="footer__grid-item-title">
+								{footerColumn.column_title}
+							</div>
+							<ul class="footer__grid-item-list">
 								{#each footerColumn.links as link, index (index)}
 									<li>
 										<PrismicLink field={link} />
@@ -41,11 +110,19 @@
 								{/each}
 							</ul>
 						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
 			</div>
 
-			<div class="footer__cta"></div>
+			<div class="footer__cta">
+				<PrismicLink
+					field={footer.cta_link}
+					class="footer__cta-link"
+				>
+					<span class="footer__cta-text">{footer.cta_link.text}</span>
+					<i class="footer__cta-icon icon-arrow-right"></i>
+				</PrismicLink>
+			</div>
 		</div>
 	</div>
 </footer>
@@ -54,7 +131,11 @@
 	.footer {
 		padding-block: 3.125rem 1.25rem;
 
-		background: linear-gradient(to bottom right, var(--color-snow-white), var(--color-clay-green));
+		background: linear-gradient(
+			to bottom right,
+			var(--color-snow-white),
+			var(--color-clay-green)
+		);
 
 		@media (min-width: 768px) {
 			padding-block: 6.25rem 1.25rem;
@@ -67,7 +148,7 @@
 
 		&__inner {
 			display: flex;
-			flex-direction: column;
+			flex-flow: column;
 			gap: 5rem;
 
 			@media (min-width: 768px) {
@@ -114,20 +195,130 @@
 		}
 
 		&__columns {
-			display: flex;
-			flex-direction: column;
-			gap: 1.5rem;
+			.accordion-css {
+				@media (min-width: 1024px) {
+					display: none;
+				}
 
-			.footer-column {
-				display: flex;
-				flex-direction: column;
-				gap: 1.5rem;
+				.accordion-css__list {
+					grid-column-gap: 1.5rem;
+					grid-row-gap: 1.5rem;
+					flex-flow: column;
+					margin-top: 0;
+					margin-bottom: 0;
+					padding-left: 0;
+					display: flex;
+					position: static;
+				}
 
-				&__title {
-					font-size: 1.125rem;
-					font-weight: 700;
+				.accordion-css__item-top {
+					display: flex;
+					flex-flow: row;
+					justify-content: space-between;
+					align-items: center;
+					width: 100%;
+				}
+
+				.accordion-css__item-bottom {
+					transition: grid-template-rows 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+					grid-template-rows: 0fr;
+					display: grid;
+					position: relative;
+					overflow: hidden;
+				}
+
+				.accordion-css__item-bottom-wrap {
+					flex-flow: column;
+					height: 100000%;
+					display: flex;
+					position: relative;
+					overflow: hidden;
+				}
+
+				.accordion-css__item-bottom-content {
+					padding-block-start: 1.5rem;
+				}
+
+				.accordion-css__item-h3 {
+					margin-top: 0;
+					margin-bottom: 0;
+					font-size: 1.125em;
+					font-weight: 600;
+				}
+
+				.accordion-css__item-icon {
+					transition: transform 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+					flex-shrink: 0;
+					justify-content: center;
+					align-items: center;
+					display: flex;
+					transform: rotate(180deg);
+				}
+
+				.accordion-css__item-icon-svg {
+					width: 1.5rem;
+				}
+
+				:global [data-accordion-status='active'] {
+					.accordion-css__item-bottom {
+						grid-template-rows: 1fr;
+					}
+
+					.accordion-css__item-icon {
+						transform: rotate(0.001deg);
+					}
 				}
 			}
+
+			.footer-column__list {
+				display: flex;
+				flex-flow: column;
+				gap: 1rem;
+			}
+		}
+
+		&__grid {
+			display: none;
+
+			@media (min-width: 1024px) {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 2.5rem;
+			}
+
+			@media (min-width: 1200px) {
+				grid-template-columns: repeat(5, 1fr);
+			}
+		}
+
+		&__grid-item {
+			display: flex;
+			flex-flow: column;
+			gap: 1.5rem;
+		}
+
+		&__grid-item-title {
+			font-size: 1.125em;
+			font-weight: 600;
+		}
+
+		&__grid-item-list {
+			display: flex;
+			flex-flow: column;
+			gap: 1rem;
+		}
+
+		&__cta-text {
+			font-size: clamp(1rem, 10vw, 10rem);
+			font-weight: 600;
+			color: var(--color-aqua);
+		}
+
+		&__cta-icon {
+			transform: rotate(-45deg);
+			font-size: clamp(1rem, 10vw, 10rem);
+			color: var(--color-aqua);
+			font-weight: 600;
 		}
 	}
 </style>
