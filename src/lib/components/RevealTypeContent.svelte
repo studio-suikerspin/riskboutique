@@ -6,9 +6,10 @@
 	import { browser } from '$app/environment';
 	import { gsap } from '$lib/gsap';
 	import { SplitText } from 'gsap/SplitText';
+	import type { KeyTextField } from '@prismicio/client';
 
 	type Props = {
-		text: string;
+		text: KeyTextField;
 	};
 
 	const { text }: Props = $props();
