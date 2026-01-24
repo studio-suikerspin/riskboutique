@@ -20,7 +20,7 @@
 			slidesPerView: 1,
 			spaceBetween: 0,
 			breakpoints: {
-				768: {
+				992: {
 					slidesPerView: 3,
 					spaceBetween: 20
 				}
@@ -165,7 +165,7 @@
 	}
 
 	// Custom navigation button styles
-	@media (min-width: 768px) {
+	@media (min-width: 992px) {
 		.navigation-button {
 			display: none !important;
 		}

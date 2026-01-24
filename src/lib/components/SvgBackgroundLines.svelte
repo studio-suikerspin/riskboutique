@@ -80,7 +80,7 @@
 			position: relative;
 			width: 1px;
 			height: 100%;
-			background: rgba(178, 193, 189, 0.6);
+			background: rgba(178, 193, 189, 0.3);
 
 			&:nth-child(1) {
 				display: none;

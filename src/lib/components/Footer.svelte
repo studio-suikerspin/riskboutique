@@ -8,13 +8,19 @@
 	const socials = page.data.socials.data.socials
 
 	const toggleAccordion = (e) => {
+		const currentAccordion = e.target.closest('[data-accordion-status]')
+		const isCurrentlyActive = currentAccordion.getAttribute('data-accordion-status') === 'active'
+		
+		// Sluit alle accordions
 		const accordions = document.querySelectorAll('[data-accordion-status]')
 		accordions.forEach((accordion) => {
 			accordion.setAttribute('data-accordion-status', 'not-active')
 		})
 
-		const currentAccordion = e.target.closest('[data-accordion-status]')
-		currentAccordion.setAttribute('data-accordion-status', 'active')
+		// Als de huidige accordion niet actief was, open hem dan
+		if (!isCurrentlyActive) {
+			currentAccordion.setAttribute('data-accordion-status', 'active')
+		}
 	}
 </script>
 
@@ -38,6 +44,11 @@
 							</PrismicLink>
 						</li>
 					{/each}
+					<li class="socials__item">
+							<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="">
+								<i class="icon-mail"></i>
+							</a>
+						</li>
 				</ul>
 			</div>
 
@@ -307,6 +318,14 @@
 			flex-flow: column;
 			gap: 1rem;
 		}
+
+		&__cta{
+			display: flex;
+			justify-content: center;
+			border-bottom: 1px solid var(--color-aqua);
+		}
+
+		
 
 		&__cta:hover {
 			.footer__cta-text {

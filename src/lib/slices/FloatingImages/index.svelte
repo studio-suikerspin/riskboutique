@@ -16,11 +16,12 @@
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="block-padding-top">
 	<div class="floating-images">
 
-		<div class="floating-images__shape">
-			<SvgShapes shape="squareShape"/>
-		</div>
-
 		<div class="floating-images__inner">
+
+			<div class="floating-images__shape">
+				<SvgShapes shape="squareShape"/>
+			</div>
+
 		<div class="floating-images__text">
 			<div class="floating-images__heading" data-reveal-group>
 				<div class="h1">
@@ -96,7 +97,7 @@
 
 		&__shape{
 			position: absolute;
-			bottom: 0;
+			bottom:-9.375rem;
 			left: 100px;
 			z-index: 1;
 			display: none;
@@ -112,7 +113,7 @@
 		}
 
 		&__inner{
-			// position: relative;
+			position: relative;
 			display: flex;
 			justify-content: center;
 			width: 100%;
