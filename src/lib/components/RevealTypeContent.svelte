@@ -10,18 +10,20 @@
 
 	type Props = {
 		text: KeyTextField;
+		darkBackground?: boolean;
 	};
 
-	const { text }: Props = $props();
+	const { text, darkBackground = false }: Props = $props();
+	let textElement: HTMLElement;
 
 	function revealType() {
-		const textToSplit = document.querySelector('.reveal-type-content');
+		if (!textElement) return;
 
-		let split = SplitText.create(textToSplit, { type: 'words' });
+		let split = SplitText.create(textElement, { type: 'words' });
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
-				trigger: textToSplit,
+				trigger: textElement,
 				start: `top top+=${800}`, // Start when the top of the elment hits the top of the container + 100px
 				end: `center top`, // End when the center of the element hits the top of the container
 				scrub: true
@@ -30,7 +32,7 @@
 		});
 
 		tl.from(split.words, {
-			color: 'rgba(0, 0, 0, 0.08)',
+			color: darkBackground ? 'rgba(249, 249, 248, 0.10)' : 'rgba(0, 0, 0, 0.08)',
 			stagger: 0.1
 		});
 	}
@@ -42,4 +44,4 @@
 	});
 </script>
 
-<h3 class="reveal-type-content">{text}</h3>
+<h3 class="reveal-type-content" bind:this={textElement}>{text}</h3>

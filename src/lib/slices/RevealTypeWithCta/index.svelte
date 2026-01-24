@@ -26,7 +26,7 @@
 			</div>
 
 			<!-- Content -->
-			<RevealTypeContent text={slice.primary.content} />
+			<RevealTypeContent text={slice.primary.content} darkBackground={false} />
 		</div>
 
 		<!-- Link -->
