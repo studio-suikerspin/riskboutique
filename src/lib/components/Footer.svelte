@@ -344,7 +344,7 @@
 			font-size: clamp(1rem, 10vw, 10rem);
 			font-weight: 600;
 			color: var(--color-aqua);
-			background: url('bg-gradient-donker-.svg') lightgray 50% / cover no-repeat;
+			background: url('/bg-gradient-donker.svg') lightgray 50% / cover no-repeat;
 			background-clip: text;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
@@ -358,7 +358,7 @@
 			font-size: clamp(1rem, 10vw, 10rem);
 			color: var(--color-aqua);
 			font-weight: 600;
-			background: url('bg-gradient-donker-.svg') lightgray 50% / cover no-repeat;
+			background: url('/bg-gradient-donker.svg') lightgray 50% / cover no-repeat;
 			background-clip: text;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;

@@ -31,7 +31,7 @@
 		width: 100%;
 		position: relative;
 		overflow: hidden;
-		background: url('/bg-gradient-donker-.svg') no-repeat center center;
+		background: url('/bg-gradient-donker.svg') no-repeat center center;
 		background-size: cover;
 
 		// Zwarte gradient mask aan de onderkant
