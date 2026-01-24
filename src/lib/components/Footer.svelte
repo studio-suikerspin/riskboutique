@@ -308,17 +308,43 @@
 			gap: 1rem;
 		}
 
+		&__cta:hover {
+			.footer__cta-text {
+				background-position-y: 40%;
+				transition: background-position-y 0.3s ease;
+			}
+
+			.footer__cta-icon {
+				transform: translate(2rem, -2rem) rotate(-45deg);
+				background-position-y: 40%;
+				transition: all 0.3s ease;
+			}
+		}
+
 		&__cta-text {
 			font-size: clamp(1rem, 10vw, 10rem);
 			font-weight: 600;
 			color: var(--color-aqua);
+			background: url('bg-gradient-donker-.svg') lightgray 50% / cover no-repeat;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+
+			transition: background-position-y 0.3s ease;
 		}
 
 		&__cta-icon {
+			transform-origin: center;
 			transform: rotate(-45deg);
 			font-size: clamp(1rem, 10vw, 10rem);
 			color: var(--color-aqua);
 			font-weight: 600;
+			background: url('bg-gradient-donker-.svg') lightgray 50% / cover no-repeat;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+
+			transition: all 0.3s ease;
 		}
 	}
 </style>
