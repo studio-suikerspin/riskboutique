@@ -1,47 +1,56 @@
 <script>
-	import { gsap } from '$lib/gsap';
-	import { onMount } from 'svelte';
+	import { gsap } from '$lib/gsap'
+	import { onMount } from 'svelte'
 
 	function initWelcomingWordsLoader() {
-		const loadingContainer = document.querySelector('[data-loading-container]');
-		if (!loadingContainer) return; // Stop animation when no [data-loading-words] is found
+		const exists = sessionStorage.getItem('exists') || false
+		if (exists) {
+			return
+		}
 
-		const loadingWords = loadingContainer.querySelector('[data-loading-words]');
-		const wordsTarget = loadingWords.querySelector('[data-loading-words-target]');
+		sessionStorage.setItem('exists', 'true')
+
+		const loadingContainer = document.querySelector('[data-loading-container]')
+		if (!loadingContainer) return // Stop animation when no [data-loading-words] is found
+
+		const loadingWords = loadingContainer.querySelector('[data-loading-words]')
+		const wordsTarget = loadingWords.querySelector(
+			'[data-loading-words-target]'
+		)
 		const words = loadingWords
 			.getAttribute('data-loading-words')
 			.split(',')
-			.map((w) => w.trim());
+			.map((w) => w.trim())
 
-		const tl = gsap.timeline();
+		const tl = gsap.timeline()
 
 		tl.set(loadingWords, {
 			yPercent: 50
-		});
+		})
 
 		tl.to(loadingWords, {
 			opacity: 1,
 			yPercent: 0,
 			duration: 1,
 			ease: 'Expo.easeInOut'
-		});
+		})
 
 		words.forEach((word) => {
 			tl.call(
 				() => {
-					wordsTarget.textContent = word;
+					wordsTarget.textContent = word
 				},
 				null,
 				'+=0.15'
-			);
-		});
+			)
+		})
 
 		tl.to(loadingWords, {
 			opacity: 0,
 			yPercent: -75,
 			duration: 0.8,
 			ease: 'Expo.easeIn'
-		});
+		})
 
 		tl.to(
 			loadingContainer,
@@ -51,20 +60,28 @@
 				ease: 'Power1.easeInOut'
 			},
 			'+ -0.2'
-		);
+		)
 	}
 
-	onMount(() => initWelcomingWordsLoader());
+	onMount(() => initWelcomingWordsLoader())
 </script>
 
-<div data-loading-container="" class="loading-container">
+<div
+	data-loading-container=""
+	class="loading-container"
+>
 	<div class="loading-screen">
 		<div
 			data-loading-words="Hello, Bonjour, स्वागत हे, Ciao, Olá, おい, Hallå, Guten tag, Hallo"
 			class="loading-words"
 		>
 			<div class="loading-words__dot"></div>
-			<p data-loading-words-target="" class="loading-words__word">Hello</p>
+			<p
+				data-loading-words-target=""
+				class="loading-words__word"
+			>
+				Hello
+			</p>
 		</div>
 	</div>
 </div>

@@ -49,6 +49,7 @@
 </svelte:head>
 <main class="relative">
 	<PageLoader />
+
 	<Header />
 
 	{@render children()}
