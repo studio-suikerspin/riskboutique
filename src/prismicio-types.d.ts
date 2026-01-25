@@ -519,6 +519,49 @@ export type HomepageDocument<Lang extends string = string> =
 		Lang
 	>
 
+/**
+ * Content for Open role documents
+ */
+interface OpenRoleDocumentData {
+	/**
+	 * Title field in *Open role*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: open_role.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Content field in *Open role*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: open_role.content
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	content: prismic.RichTextField
+}
+
+/**
+ * Open role document from Prismic
+ *
+ * - **API ID**: `open_role`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type OpenRoleDocument<Lang extends string = string> =
+	prismic.PrismicDocumentWithUID<
+		Simplify<OpenRoleDocumentData>,
+		'open_role',
+		Lang
+	>
+
 type PageDocumentDataSlicesSlice =
 	| TrustedBySlice
 	| AssuranceWithImagesSlice
@@ -804,6 +847,7 @@ export type AllDocumentTypes =
 	| FooterDocument
 	| HeaderDocument
 	| HomepageDocument
+	| OpenRoleDocument
 	| PageDocument
 	| SiteSettingsDocument
 	| SocialLinksDocument
@@ -2351,6 +2395,8 @@ declare module '@prismicio/client' {
 			HomepageDocument,
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,
+			OpenRoleDocument,
+			OpenRoleDocumentData,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
