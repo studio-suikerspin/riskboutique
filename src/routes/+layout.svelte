@@ -40,11 +40,11 @@
 
 	<link
 		rel="stylesheet"
-		href="fonts/icons/iconly.css"
+		href="/fonts/icons/iconly.css"
 	/>
 	<link
 		rel="stylesheet"
-		href="fonts/general-sans/general-sans.css"
+		href="/fonts/general-sans/general-sans.css"
 	/>
 </svelte:head>
 <main class="relative">
