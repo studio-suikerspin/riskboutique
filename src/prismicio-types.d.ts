@@ -563,6 +563,19 @@ export type OpenRoleDocument<Lang extends string = string> =
 	>
 
 type PageDocumentDataSlicesSlice =
+	| ServiceOverviewSlice
+	| HeroWithSplitVisualSlice
+	| ImageTextColumnsSlice
+	| MarqueeTextSlice
+	| HeroWithBackgroundSlice
+	| FeatureIntroDoubleColumnSlice
+	| FeatureGrid2Slice
+	| FeatureGridSlice
+	| CtaProfileContactSlice
+	| CenteredMessageSlice
+	| ImageTextColumns2Slice
+	| HighlightedTextBlockSlice
+	| ContentHeroSlice
 	| TrustedBySlice
 	| AssuranceWithImagesSlice
 	| IndependentDesignSlice
@@ -947,6 +960,69 @@ export type AssuranceWithImagesSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *StickyTitleSection → Simple Centered Text → Primary → Items*
+ */
+export interface CenteredMessageSliceSimpleCenteredTextPrimaryItemsItem {
+	/**
+	 * Headline field in *StickyTitleSection → Simple Centered Text → Primary → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: centered_message.simple_centered_text.primary.items[].headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *StickyTitleSection → Simple Centered Text → Primary*
+ */
+export interface CenteredMessageSliceSimpleCenteredTextPrimary {
+	/**
+	 * Items field in *StickyTitleSection → Simple Centered Text → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: centered_message.simple_centered_text.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<
+		Simplify<CenteredMessageSliceSimpleCenteredTextPrimaryItemsItem>
+	>
+}
+
+/**
+ * Simple Centered Text variation for StickyTitleSection Slice
+ *
+ * - **API ID**: `simple_centered_text`
+ * - **Description**: A single, visually centered message in the section, typically used for slogans, value statements, or important notes without media or decoration.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CenteredMessageSliceSimpleCenteredText =
+	prismic.SharedSliceVariation<
+		'simple_centered_text',
+		Simplify<CenteredMessageSliceSimpleCenteredTextPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *StickyTitleSection*
+ */
+type CenteredMessageSliceVariation = CenteredMessageSliceSimpleCenteredText
+
+/**
+ * StickyTitleSection Shared Slice
+ *
+ * - **API ID**: `centered_message`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CenteredMessageSlice = prismic.SharedSlice<
+	'centered_message',
+	CenteredMessageSliceVariation
+>
+
+/**
  * Item in *ComingSoon → Default → Primary → Tags*
  */
 export interface ComingSoonSliceDefaultPrimaryTagsItem {
@@ -1078,6 +1154,180 @@ type ComingSoonSliceVariation = ComingSoonSliceDefault
 export type ComingSoonSlice = prismic.SharedSlice<
 	'coming_soon',
 	ComingSoonSliceVariation
+>
+
+/**
+ * Primary content in *CareersHero → Visual Right → Primary*
+ */
+export interface ContentHeroSliceVisualRightPrimary {
+	/**
+	 * Headline field in *CareersHero → Visual Right → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_hero.visual_right.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Description field in *CareersHero → Visual Right → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_hero.visual_right.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Call to Action Buttons field in *CareersHero → Visual Right → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_hero.visual_right.primary.actions
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	actions: prismic.Repeatable<
+		prismic.LinkField<
+			string,
+			string,
+			unknown,
+			prismic.FieldState,
+			'primary' | 'secondary'
+		>
+	>
+
+	/**
+	 * Main Visual field in *CareersHero → Visual Right → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_hero.visual_right.primary.main_visual
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	main_visual: prismic.ImageField<never>
+}
+
+/**
+ * Visual Right variation for CareersHero Slice
+ *
+ * - **API ID**: `visual_right`
+ * - **Description**: Main visual/image displayed on the right, with text and buttons on the left.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentHeroSliceVisualRight = prismic.SharedSliceVariation<
+	'visual_right',
+	Simplify<ContentHeroSliceVisualRightPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *CareersHero*
+ */
+type ContentHeroSliceVariation = ContentHeroSliceVisualRight
+
+/**
+ * CareersHero Shared Slice
+ *
+ * - **API ID**: `content_hero`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentHeroSlice = prismic.SharedSlice<
+	'content_hero',
+	ContentHeroSliceVariation
+>
+
+/**
+ * Primary content in *CtaProfileContact → Default → Primary*
+ */
+export interface CtaProfileContactSliceDefaultPrimary {
+	/**
+	 * Headline field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Side Image field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Main text field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.main_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	main_text: prismic.KeyTextField
+
+	/**
+	 * Sub Text field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.sub_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	sub_text: prismic.RichTextField
+
+	/**
+	 * Primary CTA field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.primary_cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	primary_cta: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
+}
+
+/**
+ * Default variation for CtaProfileContact Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard layout with headline, image on left, info and CTA on right, and a compact contact profile card below call to action.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CtaProfileContactSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<CtaProfileContactSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *CtaProfileContact*
+ */
+type CtaProfileContactSliceVariation = CtaProfileContactSliceDefault
+
+/**
+ * CtaProfileContact Shared Slice
+ *
+ * - **API ID**: `cta_profile_contact`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CtaProfileContactSlice = prismic.SharedSlice<
+	'cta_profile_contact',
+	CtaProfileContactSliceVariation
 >
 
 /**
@@ -1631,6 +1881,53 @@ export type HeroWithSplitVisualSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *RevealTypeBlock → default → Primary*
+ */
+export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
+	/**
+	 * Content field in *RevealTypeBlock → default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.content
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	content: prismic.KeyTextField
+}
+
+/**
+ * default variation for RevealTypeBlock Slice
+ *
+ * - **API ID**: `with_secondary_statement`
+ * - **Description**: Variation for displaying a main highlighted message, a supporting paragraph, and a secondary statement/quote below.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HighlightedTextBlockSliceWithSecondaryStatement =
+	prismic.SharedSliceVariation<
+		'with_secondary_statement',
+		Simplify<HighlightedTextBlockSliceWithSecondaryStatementPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *RevealTypeBlock*
+ */
+type HighlightedTextBlockSliceVariation =
+	HighlightedTextBlockSliceWithSecondaryStatement
+
+/**
+ * RevealTypeBlock Shared Slice
+ *
+ * - **API ID**: `highlighted_text_block`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HighlightedTextBlockSlice = prismic.SharedSlice<
+	'highlighted_text_block',
+	HighlightedTextBlockSliceVariation
+>
+
+/**
  * Item in *ImageTextColumns → Alternating Image & Text Blocks → Primary → Blocks*
  */
 export interface ImageTextColumnsSliceAlternatingBlocksPrimaryBlocksItem {
@@ -1721,6 +2018,72 @@ type ImageTextColumnsSliceVariation = ImageTextColumnsSliceAlternatingBlocks
 export type ImageTextColumnsSlice = prismic.SharedSlice<
 	'image_text_columns',
 	ImageTextColumnsSliceVariation
+>
+
+/**
+ * Primary content in *ImageTextBlock → ImageTextBlock → Primary*
+ */
+export interface ImageTextColumns2SliceImageLeftTextRightPrimary {
+	/**
+	 * Image field in *ImageTextBlock → ImageTextBlock → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.media
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	media: prismic.ImageField<never>
+
+	/**
+	 * Headline field in *ImageTextBlock → ImageTextBlock → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Description field in *ImageTextBlock → ImageTextBlock → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField
+}
+
+/**
+ * ImageTextBlock variation for ImageTextBlock Slice
+ *
+ * - **API ID**: `image_left_text_right`
+ * - **Description**: Displays an image on the left side and title/description rich text content on the right. Ideal for informative or narrative sections paired with a visual.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageTextColumns2SliceImageLeftTextRight =
+	prismic.SharedSliceVariation<
+		'image_left_text_right',
+		Simplify<ImageTextColumns2SliceImageLeftTextRightPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *ImageTextBlock*
+ */
+type ImageTextColumns2SliceVariation = ImageTextColumns2SliceImageLeftTextRight
+
+/**
+ * ImageTextBlock Shared Slice
+ *
+ * - **API ID**: `image_text_columns_2`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageTextColumns2Slice = prismic.SharedSlice<
+	'image_text_columns_2',
+	ImageTextColumns2SliceVariation
 >
 
 /**
@@ -2416,6 +2779,11 @@ declare module '@prismicio/client' {
 			AssuranceWithImagesSliceDefaultPrimary,
 			AssuranceWithImagesSliceVariation,
 			AssuranceWithImagesSliceDefault,
+			CenteredMessageSlice,
+			CenteredMessageSliceSimpleCenteredTextPrimaryItemsItem,
+			CenteredMessageSliceSimpleCenteredTextPrimary,
+			CenteredMessageSliceVariation,
+			CenteredMessageSliceSimpleCenteredText,
 			ComingSoonSlice,
 			ComingSoonSliceDefaultPrimaryTagsItem,
 			ComingSoonSliceDefaultPrimaryImagesItem,
@@ -2423,6 +2791,14 @@ declare module '@prismicio/client' {
 			ComingSoonSliceDefaultPrimary,
 			ComingSoonSliceVariation,
 			ComingSoonSliceDefault,
+			ContentHeroSlice,
+			ContentHeroSliceVisualRightPrimary,
+			ContentHeroSliceVariation,
+			ContentHeroSliceVisualRight,
+			CtaProfileContactSlice,
+			CtaProfileContactSliceDefaultPrimary,
+			CtaProfileContactSliceVariation,
+			CtaProfileContactSliceDefault,
 			FeatureGridSlice,
 			FeatureGridSliceDefaultPrimaryFeaturesItem,
 			FeatureGridSliceDefaultPrimary,
@@ -2452,11 +2828,19 @@ declare module '@prismicio/client' {
 			HeroWithSplitVisualSliceDefaultPrimary,
 			HeroWithSplitVisualSliceVariation,
 			HeroWithSplitVisualSliceDefault,
+			HighlightedTextBlockSlice,
+			HighlightedTextBlockSliceWithSecondaryStatementPrimary,
+			HighlightedTextBlockSliceVariation,
+			HighlightedTextBlockSliceWithSecondaryStatement,
 			ImageTextColumnsSlice,
 			ImageTextColumnsSliceAlternatingBlocksPrimaryBlocksItem,
 			ImageTextColumnsSliceAlternatingBlocksPrimary,
 			ImageTextColumnsSliceVariation,
 			ImageTextColumnsSliceAlternatingBlocks,
+			ImageTextColumns2Slice,
+			ImageTextColumns2SliceImageLeftTextRightPrimary,
+			ImageTextColumns2SliceVariation,
+			ImageTextColumns2SliceImageLeftTextRight,
 			IndependentDesignSlice,
 			IndependentDesignSliceDefaultPrimaryFeaturesItem,
 			IndependentDesignSliceDefaultPrimary,

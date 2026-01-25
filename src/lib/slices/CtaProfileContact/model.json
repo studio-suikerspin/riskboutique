@@ -1,0 +1,54 @@
+{
+  "type": "SharedSlice",
+  "id": "cta_profile_contact",
+  "name": "CtaProfileContact",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard layout with headline, image on left, info and CTA on right, and a compact contact profile card below call to action.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Side Image"
+          }
+        },
+        "main_text": {
+          "type": "Text",
+          "config": {
+            "label": "Main text",
+            "placeholder": ""
+          }
+        },
+        "sub_text": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Sub Text"
+          }
+        },
+        "primary_cta": {
+          "type": "Link",
+          "config": {
+            "label": "Primary CTA",
+            "allowText": true,
+            "repeat": false,
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

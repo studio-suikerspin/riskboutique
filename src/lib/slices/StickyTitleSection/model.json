@@ -1,0 +1,34 @@
+{
+  "type": "SharedSlice",
+  "id": "centered_message",
+  "name": "StickyTitleSection",
+  "variations": [
+    {
+      "id": "simple_centered_text",
+      "name": "Simple Centered Text",
+      "description": "A single, visually centered message in the section, typically used for slogans, value statements, or important notes without media or decoration.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "Items",
+            "repeat": true,
+            "fields": {
+              "headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Headline",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -27,6 +27,45 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"service_overview": {
+							"type": "SharedSlice"
+						},
+						"hero_with_split_visual": {
+							"type": "SharedSlice"
+						},
+						"image_text_columns": {
+							"type": "SharedSlice"
+						},
+						"marquee_text": {
+							"type": "SharedSlice"
+						},
+						"hero_with_background": {
+							"type": "SharedSlice"
+						},
+						"feature_intro_double_column": {
+							"type": "SharedSlice"
+						},
+						"feature_grid_2": {
+							"type": "SharedSlice"
+						},
+						"feature_grid": {
+							"type": "SharedSlice"
+						},
+						"cta_profile_contact": {
+							"type": "SharedSlice"
+						},
+						"centered_message": {
+							"type": "SharedSlice"
+						},
+						"image_text_columns_2": {
+							"type": "SharedSlice"
+						},
+						"highlighted_text_block": {
+							"type": "SharedSlice"
+						},
+						"content_hero": {
+							"type": "SharedSlice"
+						},
 						"trusted_by": {
 							"type": "SharedSlice"
 						},
