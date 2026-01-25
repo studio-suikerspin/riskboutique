@@ -600,6 +600,7 @@ export type OpenRoleDocument<Lang extends string = string> =
 	>
 
 type PageDocumentDataSlicesSlice =
+	| ContactBlockSlice
 	| ServiceOverviewSlice
 	| HeroWithSplitVisualSlice
 	| ImageTextColumnsSlice
@@ -1191,6 +1192,148 @@ type ComingSoonSliceVariation = ComingSoonSliceDefault
 export type ComingSoonSlice = prismic.SharedSlice<
 	'coming_soon',
 	ComingSoonSliceVariation
+>
+
+/**
+ * Item in *ContactBlock → Default → Primary → Contact Methods*
+ */
+export interface ContactBlockSliceDefaultPrimaryContactMethodsItem {
+	/**
+	 * Label field in *ContactBlock → Default → Primary → Contact Methods*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.contact_methods[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField
+
+	/**
+	 * Content field in *ContactBlock → Default → Primary → Contact Methods*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.contact_methods[].content
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	content: prismic.RichTextField
+}
+
+/**
+ * Primary content in *ContactBlock → Default → Primary*
+ */
+export interface ContactBlockSliceDefaultPrimary {
+	/**
+	 * Label text field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Contact
+	 * - **API ID Path**: contact_block.default.primary.label_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label_text: prismic.KeyTextField
+
+	/**
+	 * Heading field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField
+
+	/**
+	 * Subtitle field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subtitle: prismic.RichTextField
+
+	/**
+	 * Contact Methods field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.contact_methods[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	contact_methods: prismic.GroupField<
+		Simplify<ContactBlockSliceDefaultPrimaryContactMethodsItem>
+	>
+
+	/**
+	 * Form heading field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.form_heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	form_heading: prismic.KeyTextField
+
+	/**
+	 * Form Description field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.form_description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	form_description: prismic.RichTextField
+
+	/**
+	 * Form Button Text field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.form_button_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	form_button_text: prismic.KeyTextField
+
+	/**
+	 * Form Footer Note field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.form_footer_note
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	form_footer_note: prismic.RichTextField
+}
+
+/**
+ * Default variation for ContactBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard two-column layout: left side features heading, subtitle, and contact info; right side features a contact form.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContactBlockSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ContactBlockSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *ContactBlock*
+ */
+type ContactBlockSliceVariation = ContactBlockSliceDefault
+
+/**
+ * ContactBlock Shared Slice
+ *
+ * - **API ID**: `contact_block`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContactBlockSlice = prismic.SharedSlice<
+	'contact_block',
+	ContactBlockSliceVariation
 >
 
 /**
@@ -2829,6 +2972,11 @@ declare module '@prismicio/client' {
 			ComingSoonSliceDefaultPrimary,
 			ComingSoonSliceVariation,
 			ComingSoonSliceDefault,
+			ContactBlockSlice,
+			ContactBlockSliceDefaultPrimaryContactMethodsItem,
+			ContactBlockSliceDefaultPrimary,
+			ContactBlockSliceVariation,
+			ContactBlockSliceDefault,
 			ContentHeroSlice,
 			ContentHeroSliceVisualRightPrimary,
 			ContentHeroSliceVariation,

@@ -3,6 +3,7 @@
 import FloatingImages from './FloatingImages/index.svelte'
 import StickyTitleSection from './StickyTitleSection/index.svelte'
 import ComingSoon from './ComingSoon/index.svelte'
+import ContactBlock from './ContactBlock/index.svelte'
 import CareersHero from './CareersHero/index.svelte'
 import CtaProfileContact from './CtaProfileContact/index.svelte'
 import FeatureGrid from './FeatureGrid/index.svelte'
@@ -25,6 +26,7 @@ export const components = {
 	assurance_with_images: FloatingImages,
 	centered_message: StickyTitleSection,
 	coming_soon: ComingSoon,
+	contact_block: ContactBlock,
 	content_hero: CareersHero,
 	cta_profile_contact: CtaProfileContact,
 	feature_grid: FeatureGrid,
