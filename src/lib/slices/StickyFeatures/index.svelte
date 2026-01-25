@@ -10,6 +10,7 @@
 
 	import { gsap, ScrollTrigger } from '$lib/gsap';
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte';
+	import Button from '$lib/components/Button.svelte'
 
 	type Props = SliceComponentProps<Content.IndependentDesignSlice>;
 
@@ -181,13 +182,12 @@
 
 									{#if feature.cta_link.url}
 										<div class="sticky-features__cta" data-sticky-feature-text="">
-											<PrismicLink
+											<Button
 												field={feature.cta_link}
-												class=" btn btn--{feature.cta_link.variant}"
-											>
-												<i class="btn__icon icon-arrow-right -rotate-45"></i>
-												{feature.cta_link.text}
-											</PrismicLink>
+												text={feature.cta_link.text}
+												variant="blue"
+												icon="icon-arrow-right "
+											/>
 
 											<AvatarWithContactInfo />
 										</div>
@@ -355,6 +355,11 @@
 			@media (min-width: 768px) {
 				margin-top: 3.5rem;
 			}
+
+			:global .btn {
+				width: 100%;
+			}
+
 		}
 	}
 

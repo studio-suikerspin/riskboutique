@@ -40,13 +40,6 @@
 				<PrismicRichText field={slice.primary.heading} />
 			</div>
 
-			<!-- <div class="hero-section__button">
-				<a href="/contact" class="btn">
-					<i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
-					Connect with us
-				</a>
-			</div> -->
-
 		</div>
 
 		<div class="hero-section__bottom">

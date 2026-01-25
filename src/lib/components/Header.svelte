@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
 	import SideNav from './SideNav/index.svelte';
+	import Button from './Button.svelte'
 
 	let { site_settings, header, socials } = page.data;
 </script>
@@ -24,16 +25,13 @@
 				<i class="btn__icon icon-menu"></i>
 				Menu
 			</button>
-
-			<PrismicLink
+			<Button 
 				field={site_settings.data.contact_link}
-				class={['btn', 'btn--link', 'main-header__cta']}
-			>
-				<i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
-				<div class="btn__text">
-					{site_settings.data.contact_link.text}
-				</div>
-			</PrismicLink>
+				text={site_settings.data.contact_link.text}
+				variant="blue"
+				className="'btn', 'btn--link', 'main-header__cta"
+				icon="icon-arrow-right"
+			/>
 		</nav>
 	</div>
 </header>
