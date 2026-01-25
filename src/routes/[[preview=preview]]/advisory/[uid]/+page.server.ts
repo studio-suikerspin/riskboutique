@@ -19,7 +19,7 @@ export async function load({ params, fetch, cookies }) {
 export async function entries() {
 	const client = createClient()
 
-	const pages = await client.getAllByType('page')
+	const pages = await client.getAllByType('advisory_subpage')
 
 	return pages.map((page) => {
 		return { uid: page.uid }
