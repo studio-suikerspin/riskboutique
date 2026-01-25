@@ -4,12 +4,6 @@
 
 	function initWelcomingWordsLoader() {
 		const exists = sessionStorage.getItem('exists') || false
-		if (exists) {
-			return
-		}
-
-		sessionStorage.setItem('exists', 'true')
-
 		const loadingContainer = document.querySelector('[data-loading-container]')
 		if (!loadingContainer) return // Stop animation when no [data-loading-words] is found
 
@@ -23,6 +17,13 @@
 			.map((w) => w.trim())
 
 		const tl = gsap.timeline()
+
+		if (exists) {
+			loadingContainer.style.display = 'none'
+			return
+		}
+
+		sessionStorage.setItem('exists', 'true')
 
 		tl.set(loadingWords, {
 			yPercent: 50
