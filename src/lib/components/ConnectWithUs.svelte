@@ -2,9 +2,10 @@
 	import { PrismicLink } from "@prismicio/svelte";
 	
 	export let field;
+  export let border;
 </script>
 
-<div class="connect_with_us_cta">
+<div class="connect_with_us_cta {border === 'dark' ? 'dark-border' : 'light-border'}">
   <h5>
     <PrismicLink field={field} />
   </h5>
@@ -18,6 +19,14 @@
     gap: 0.75rem;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--color-snow-white);
+  }
+
+  .connect_with_us_cta.dark-border {
+    border-color: var(--color-dark-mode);
+  }
+
+  .connect_with_us_cta.light-border {
+    border-color: var(--color-snow-white);
   }
 
   .connect_with_us_cta h5{
