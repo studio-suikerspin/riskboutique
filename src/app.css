@@ -219,3 +219,47 @@ p {
 		padding-bottom: 150px;
 	}
 }
+
+/* Rich text content styling */
+.rich-text-content {
+	ul {
+		list-style-type: disc;
+		margin-left: 1.25rem;
+		margin-top: 0.75rem;
+		margin-bottom: 0.75rem;
+
+		li {
+			margin-bottom: 0.5rem;
+			line-height: 1.6;
+		}
+	}
+
+	ol {
+		list-style-type: decimal;
+		margin-left: 1.25rem;
+		margin-top: 0.75rem;
+		margin-bottom: 0.75rem;
+
+		li {
+			margin-bottom: 0.5rem;
+			line-height: 1.6;
+		}
+	}
+
+	p {
+		margin-bottom: 1rem;
+		line-height: 1.6;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	strong {
+		font-weight: 600;
+	}
+
+	em {
+		font-style: italic;
+	}
+}

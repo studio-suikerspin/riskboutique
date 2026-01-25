@@ -48,7 +48,11 @@ import Button from "$lib/components/Button.svelte"
     &__title-wrap {
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 1.5rem;
+
+      @media(min-width: 768px){
+        gap: 2.5rem;
+      }
     }
 
     &__description {
@@ -66,7 +70,7 @@ import Button from "$lib/components/Button.svelte"
         width: 100%;
       }
 
-      @media(min-width: 768px){
+      @media(min-width: 992px){
         display: flex;
       }
     }
