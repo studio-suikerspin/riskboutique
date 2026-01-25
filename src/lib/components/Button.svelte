@@ -5,8 +5,7 @@
   export let field = null // Prismic link field
   export let text = 'Button' // Button text
   export let icon = null // Icon class name
-  export let variant = 'primary' // Button variant: primary, secondary, outline, text
-  export let size = 'medium' // Button size: small, medium, large
+  export let variant = 'dark' // donker of lichte variant
   export let disabled = false // Disabled state
   export let href = null // Direct href link (alternative to Prismic field)
   export let type = 'button' // Button type for form buttons
@@ -19,7 +18,6 @@
   $: buttonClasses = [
     'btn',
     `btn--${variant}`,
-    `btn--${size}`,
     disabled && 'btn--disabled',
     className
   ].filter(Boolean).join(' ')
@@ -117,15 +115,26 @@
 
 	.btn__icon {
 		font-size: 1rem;
+		transition: transform 0.3s ease-in-out;
 
-		&.btn__icon--rotate {
+		&.icon-arrow-right {
 			rotate: -45deg;
-			transition: rotate 0.2s ease-in-out;
 		}
 	}
 
-	&:hover:not(.btn--disabled) .btn__icon--rotate {
-		rotate: 0deg;
+	/* Hover effects - gebruik :global() voor PrismicLink compatibility */
+	&:hover:not(.btn--disabled) .btn__icon--rotate,
+	:global(&:hover:not(.btn--disabled)) .btn__icon--rotate {
+		transform: translateX(5px);
 	}
+}
+
+/* Extra fallback voor PrismicLink */
+:global(.btn:hover:not(.btn--disabled) .btn__icon--rotate) {
+	transform: translateX(5px);
+}
+
+:global .btn__icon {
+  transition: transform 0.3s ease-in-out;
 }
 </style>

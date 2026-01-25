@@ -29,15 +29,9 @@ import Button from "$lib/components/Button.svelte"
   </div>
   <div class="section-heading__cta">
     <AvatarWithContactInfo />
-    <a class="btn btn--dark" href="/contact">
-      <i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
-      <div class="btn__text">
-        {buttonText}
-      </div>
-    </a>
     <Button 
-      href="/contact" 
-      text="Contact opnemen" 
+      href="#" 
+      text="Request proposal" 
       variant="dark"
       icon="icon-arrow-right"
     />
@@ -68,7 +62,7 @@ import Button from "$lib/components/Button.svelte"
       gap: 1.25rem;
       display: none;
 
-      .btn {
+      :global .btn {
         width: 100%;
       }
 
