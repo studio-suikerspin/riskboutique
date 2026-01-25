@@ -42,7 +42,7 @@
 					<PrismicRichText field={slice.primary.body} />
 				</div>
 				<div class="floating-images__cta">
-						<ConnectWithUs field={slice.primary.ctaLink} />
+						<ConnectWithUs field={slice.primary.ctaLink} border="light" />
 				</div>
 			</div>
 
@@ -118,6 +118,10 @@
 			justify-content: center;
 			width: 100%;
 			max-width: 1800px;
+			z-index: 9;
+		}
+
+		&__cta{
 			z-index: 9;
 		}
 

@@ -1,7 +1,9 @@
 <script lang="ts">
+	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
 	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte';
 	import type { Content } from '@prismicio/client';
 	import { PrismicLink, type SliceComponentProps } from '@prismicio/svelte';
+
 
 	type Props = SliceComponentProps<Content.ValuePropositionSlice>;
 
@@ -30,10 +32,11 @@
 		</div>
 
 		<!-- Link -->
-		<PrismicLink class="link" field={slice.primary.cta_link}>
+		<!-- <PrismicLink class="link" field={slice.primary.cta_link}>
 			{slice.primary.cta_link.text}
 			<i class="icon-arrow-right"></i>
-		</PrismicLink>
+		</PrismicLink> -->
+		<ConnectWithUs field={slice.primary.cta_link} border="dark" />
 	</div>
 </section>
 
