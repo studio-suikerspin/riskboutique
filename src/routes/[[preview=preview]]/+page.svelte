@@ -1,10 +1,17 @@
 <script lang="ts">
-	import { SliceZone } from '@prismicio/svelte';
-	import type { PageProps } from './$types';
+	import { SliceZone } from '@prismicio/svelte'
+	import type { PageProps } from './$types'
 
-	import { components } from '$lib/slices';
+	import SvgBackgroundLines from '$lib/components/SvgBackgroundLines.svelte'
 
-	const { data }: PageProps = $props();
+	import { components } from '$lib/slices'
+
+	const { data }: PageProps = $props()
 </script>
 
-<SliceZone slices={data.page.data.slices} {components} />
+<SliceZone
+	slices={data.page.data.slices}
+	{components}
+/>
+
+<SvgBackgroundLines />

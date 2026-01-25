@@ -520,6 +520,21 @@ export type HomepageDocument<Lang extends string = string> =
 	>
 
 /**
+ * Item in *Open role → Tags*
+ */
+export interface OpenRoleDocumentDataTagsItem {
+	/**
+	 * Tag field in *Open role → Tags*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: open_role.tags[].tag
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	tag: prismic.KeyTextField
+}
+
+/**
  * Content for Open role documents
  */
 interface OpenRoleDocumentData {
@@ -535,6 +550,17 @@ interface OpenRoleDocumentData {
 	title: prismic.KeyTextField
 
 	/**
+	 * Summary field in *Open role*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: open_role.summary
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	summary: prismic.KeyTextField
+
+	/**
 	 * Content field in *Open role*
 	 *
 	 * - **Field Type**: Rich Text
@@ -544,6 +570,17 @@ interface OpenRoleDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	content: prismic.RichTextField
+
+	/**
+	 * Tags field in *Open role*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: open_role.tags[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	tags: prismic.GroupField<Simplify<OpenRoleDocumentDataTagsItem>>
 }
 
 /**
@@ -2760,6 +2797,7 @@ declare module '@prismicio/client' {
 			HomepageDocumentDataSlicesSlice,
 			OpenRoleDocument,
 			OpenRoleDocumentData,
+			OpenRoleDocumentDataTagsItem,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,

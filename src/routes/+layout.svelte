@@ -53,8 +53,6 @@
 
 	{@render children()}
 
-	<SvgBackgroundLines />
-
 	<Footer />
 </main>
 <PrismicPreview {repositoryName} />
