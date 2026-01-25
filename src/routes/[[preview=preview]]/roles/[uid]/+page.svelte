@@ -8,6 +8,14 @@
 	const role = data.role || []
 </script>
 
+<svelte:head>
+	<title>Risk Boutique - {role.data.title}</title>
+	<meta
+		name="description"
+		content={role.data.summary}
+	/>
+</svelte:head>
+
 <section class="hero">
 	<div class="hero__inner">
 		<h1 class="hero__title h2">{role.data.title}</h1>
