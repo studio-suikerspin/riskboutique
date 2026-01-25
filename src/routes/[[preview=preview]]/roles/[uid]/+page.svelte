@@ -59,6 +59,8 @@
 			display: flex;
 			flex-flow: column;
 			gap: 1rem;
+
+			padding-inline: 1.5rem;
 		}
 
 		&__content {
