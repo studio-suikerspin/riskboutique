@@ -8,7 +8,6 @@
 
 <svelte:head>
 	<title>Risk Boutique - Open Roles</title>
-	meta
 	<meta
 		name="description"
 		content="Discover our open roles at Risk Boutique."
@@ -58,7 +57,7 @@
 
 <style lang="scss">
 	.hero {
-		background: url('bg-gradient-donker.svg');
+		background: url('/bg-gradient-donker.svg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
