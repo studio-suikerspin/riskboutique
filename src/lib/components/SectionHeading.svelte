@@ -4,6 +4,7 @@ import AvatarWithContactInfo from "./AvatarWithContactInfo.svelte"
 import type { RichTextField } from "@prismicio/client"
 import { initContentRevealScroll } from '$lib/revealContent.js'
 import { onMount } from "svelte"
+import Button from "$lib/components/Button.svelte"
 
 
 
@@ -34,6 +35,12 @@ import { onMount } from "svelte"
         {buttonText}
       </div>
     </a>
+    <Button 
+      href="/contact" 
+      text="Contact opnemen" 
+      variant="dark"
+      icon="icon-arrow-right"
+    />
   </div>
 </div>
 
