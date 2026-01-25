@@ -20,8 +20,8 @@ export const repositoryName =
 const routes: Route[] = [
 	// { type: 'under_construction_page', path: '/' },
 	{ type: 'homepage', path: '/' },
-	{ type: 'advisory_subpage', path: '/advisory/:uid' },
-	{ type: 'page', path: '/:uid' }
+	{ type: 'page', path: '/:uid' },
+	{ type: 'advisory_subpage', path: '/advisory/:uid' }
 ]
 
 /**
