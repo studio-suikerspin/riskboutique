@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 
 :root {
+    --container-width: 2000px;
+    --container-padding: 0.75rem;
+
 	--color-dark-mode: #0b0e13;
 	--color-aqua: #0e4f63;
 	--color-clay-green: #b2c1bd;
