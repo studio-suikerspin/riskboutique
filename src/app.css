@@ -230,7 +230,9 @@ p {
 
 		li {
 			margin-bottom: 0.5rem;
-			line-height: 1.6;
+			line-height: 170%;
+			font-weight: 400;
+			font-size: 1rem;
 		}
 	}
 
@@ -242,24 +244,38 @@ p {
 
 		li {
 			margin-bottom: 0.5rem;
-			line-height: 1.6;
+			line-height: 170%;
+			font-weight: 400;
+			font-size: 1rem;
 		}
 	}
 
 	p {
 		margin-bottom: 1rem;
-		line-height: 1.6;
+		line-height: 170%;
+		font-size: 1rem;
+		font-weight: 400;
 
 		&:last-child {
 			margin-bottom: 0;
 		}
 	}
 
-	strong {
+	/* strong {
 		font-weight: 600;
-	}
+	} */
 
 	em {
 		font-style: italic;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6{
+		margin-bottom: 1.5rem;
+		margin-top: 1.5rem;
 	}
 }

@@ -25,13 +25,22 @@
 				<i class="btn__icon icon-menu"></i>
 				Menu
 			</button>
-			<Button 
+			<a class="btn btn--link main-header__cta" href={site_settings.data.contact_link}>
+				<i class="icon-arrow-right"></i>
+				{site_settings.data.contact_link.text}
+			</a>
+			<!-- <PrismicLink class="btn btn--link main-header__cta" field={site_settings.data.cta_link}>
+				<i class="icon-arrow-right"></i>
+				{site_settings.data.cta_link.text}
+			</PrismicLink> -->
+			
+			<!-- <Button 
 				field={site_settings.data.contact_link}
 				text={site_settings.data.contact_link.text}
 				variant="blue"
 				className="'btn', 'btn--link', 'main-header__cta"
 				icon="icon-arrow-right"
-			/>
+			/> -->
 		</nav>
 	</div>
 </header>
