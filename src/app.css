@@ -1,5 +1,67 @@
 @import 'tailwindcss';
 
+/* Jesse testing scaling system */
+/* Desktop */
+:root {
+  --size-unit: 16; /* body font-size in design - no px */
+  --size-container-ideal: 1500; /* screen-size in design - no px */
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
+  --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+}
+
+/* Tablet */
+@media screen and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 834; /* screen-size in design - no px */
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+  }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 550; /* screen-size in design - no px */
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+  }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 393; /* screen-size in design - no px */
+    --size-container-min: 320px;
+    --size-container-max: 479px;
+  }
+}
+
+.container {
+  max-width: var(--size-container);
+	padding-inline: 0.75rem;
+}
+
+.container.medium {
+  max-width: calc(var(--size-container) * 0.85);
+	padding-inline: 0.75rem;
+}
+
+.container.small {
+  max-width: calc(var(--size-container) * 0.7);
+	padding-inline: 0.75rem;
+}
+
+@media(min-width: 768px){
+	.container ,
+	.container.medium ,
+	.container.small {
+		padding-inline: 1.25rem;
+	}
+}
+/* End jesse testing scaling system */
+
 :root {
 	--color-dark-mode: #0b0e13;
 	--color-aqua: #0e4f63;
@@ -11,8 +73,11 @@
 
 body {
 	font-family: 'General Sans', sans-serif;
-	font-size: 16px;
+	/* font-size: 16px; */
 	background: var(--color-snow-white);
+
+	/* Testing scaling system */  
+	font-size: var(--size-font);
 }
 
 h1,

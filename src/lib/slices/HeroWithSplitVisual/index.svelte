@@ -13,13 +13,15 @@
 	data-slice-variation={slice.variation}
 >
 	<div class="hero-advisory">
-		<div class="hero-advisory__content">
-			<div class="hero-advisory__title-wrap">
-				<h1 class="hero-advisory__title">Advisory</h1>
-				<div class="hero-advisory__subtitle h4">{slice.primary.page_title}</div>
-			</div>
-			<div class="hero-advisory__visual">
-				<PrismicImage field={slice.primary.visual} />
+		<div class="container">
+			<div class="hero-advisory__content">
+				<div class="hero-advisory__title-wrap">
+					<h1 class="hero-advisory__title">Advisory</h1>
+					<div class="hero-advisory__subtitle h4">{slice.primary.page_title}</div>
+				</div>
+				<div class="hero-advisory__visual">
+					<PrismicImage field={slice.primary.visual} />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -27,8 +29,8 @@
 
 <style lang="scss">
 	.hero-advisory{
-		height: 100vh;
-		width: 100%;
+		// height: 100vh;
+		// width: 100%;
 		position: relative;
 		overflow: hidden;
 		background: url('/bg-gradient-donker.svg') no-repeat center center;
@@ -56,19 +58,21 @@
 		}
 
 		&__content{
+			height: 100vh;
+			width: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: start;
 			justify-content: end;
-			height: 100%;
+			// height: 100%;
 			// gap: 2rem;
-			padding-inline: 12px;
+			// padding-inline: 12px;
 			gap: 5rem;
 			position: relative;
 			z-index: 2;
 
 			@media(min-width: 768px){
-				padding-inline: 20px;
+				// padding-inline: 20px;
 				flex-direction: row;
 				gap: 2.5rem;
 				align-items: center;
