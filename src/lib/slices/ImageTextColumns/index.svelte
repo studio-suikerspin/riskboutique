@@ -12,9 +12,10 @@ import type { Content } from '@prismicio/client'
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class=""
+	class="image-text-columns"
 >
-	<div class="image-text-columns">
+<div class="container">
+	
 		<div class="image-text-columns__content">
 		{#each slice.primary.blocks as item, index}
 			<div class="image-text-columns__column {index === 0 ? 'first' : index === 1 ? 'second' : index === 2 ? 'third' : ''}">
@@ -33,19 +34,17 @@ import type { Content } from '@prismicio/client'
 			</div>
 		{/each}
 		</div>
-	</div>
+</div>
 </section>
 
 <style lang="scss">
 	.image-text-columns{
 		background: var(--color-dark-mode);
 		color: var(--color-snow-white);
-		padding-inline: 12px;
 		padding-top: 6.25rem;
 		padding-bottom: 6.25rem;
 
 		@media(min-width: 768px){
-			padding-inline: 20px;
 			padding-bottom: 12.5rem;
 			padding-top: 6.25rem;
 		}
@@ -54,10 +53,6 @@ import type { Content } from '@prismicio/client'
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
-
-			// @media(min-width: 768px){
-			// 	flex-direction: row;
-			// }
 		}
 
 		&__column{
@@ -68,15 +63,15 @@ import type { Content } from '@prismicio/client'
 
 		@media(min-width: 992px){
 			.image-text-columns__column.first{
-				max-width: 1140px;
+				max-width: 71.25rem;
 			}
 			.image-text-columns__column.second{
-				max-width: 840px;
+				max-width: 52.5rem;
 				align-self: center;
-				margin-left: 400px;
+				margin-left: 25rem;
 			}
 			.image-text-columns__column.third{
-				max-width: 1300px;
+				max-width: 81.25rem;
 				margin-top: -6.25rem;
 			}
 		}
@@ -87,11 +82,11 @@ import type { Content } from '@prismicio/client'
 			width: 100%;
 			height: auto;
 			width: 100%;
-			height: 370px;
+			height: 23.125rem;
 
 			@media(min-width: 768px){
-				width: 370px;
-				height: 370px;
+				width: 23.125rem;
+				// height: 370px;
 			}
 
 			:global img{
@@ -102,9 +97,8 @@ import type { Content } from '@prismicio/client'
 		}
 
 		&__text{
-			max-width: 655px;
+			max-width: 41.25rem;
 		}
 
-	
 	}
 </style>
