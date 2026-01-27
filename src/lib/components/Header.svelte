@@ -1,11 +1,11 @@
 <script>
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
-	import SideNav from './SideNav/index.svelte';
+	import { resolve } from '$app/paths'
+	import { page } from '$app/state'
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
+	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
 
-	let { site_settings, header, socials } = page.data;
+	let { site_settings, header, socials } = page.data
 </script>
 
 <header class="main-header">
@@ -21,31 +21,29 @@
 			/>
 		</a>
 		<nav class="main-header__nav">
-			<button class="btn btn--dark btn--menu" data-sidenav-toggle>
+			<button
+				class="btn btn--dark btn--menu"
+				data-sidenav-toggle
+			>
 				<i class="btn__icon icon-menu"></i>
 				Menu
 			</button>
-			<a class="btn btn--link main-header__cta" href={site_settings.data.contact_link}>
-				<i class="icon-arrow-right"></i>
-				{site_settings.data.contact_link.text}
-			</a>
-			<!-- <PrismicLink class="btn btn--link main-header__cta" field={site_settings.data.cta_link}>
-				<i class="icon-arrow-right"></i>
-				{site_settings.data.cta_link.text}
-			</PrismicLink> -->
-			
-			<!-- <Button 
-				field={site_settings.data.contact_link}
-				text={site_settings.data.contact_link.text}
-				variant="blue"
-				className="'btn', 'btn--link', 'main-header__cta"
+
+			<Button
+				variant="link"
 				icon="icon-arrow-right"
-			/> -->
+				className="main-header__cta"
+				text={site_settings.data.contact_link.text}
+				field={site_settings.data.contact_link}
+			></Button>
 		</nav>
 	</div>
 </header>
 
-<SideNav menuItems={header.data.menu_items} {socials} />
+<SideNav
+	menuItems={header.data.menu_items}
+	{socials}
+/>
 
 <style lang="scss">
 	.main-header {
