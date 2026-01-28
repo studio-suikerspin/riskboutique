@@ -9,6 +9,13 @@
   --size-container-max: 1920px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
+
+	--color-dark-mode: #0b0e13;
+	--color-aqua: #0e4f63;
+	--color-clay-green: #b2c1bd;
+	--color-snow-white: #f9f9f8;
+
+	--z-header: 1000;
 }
 
 /* Tablet */
@@ -41,6 +48,8 @@
 .container {
   max-width: var(--size-container);
 	padding-inline: 0.75rem;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .container.medium {
@@ -61,15 +70,6 @@
 	}
 }
 /* End jesse testing scaling system */
-
-:root {
-	--color-dark-mode: #0b0e13;
-	--color-aqua: #0e4f63;
-	--color-clay-green: #b2c1bd;
-	--color-snow-white: #f9f9f8;
-
-	--z-header: 1000;
-}
 
 body {
 	font-family: 'General Sans', sans-serif;

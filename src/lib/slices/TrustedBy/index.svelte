@@ -168,6 +168,7 @@
 	class="block-padding"
 	data-reveal-group
 >
+<div class="container">
 	<div class="logo__wrapper">
 		<div class="logo__heading">
 			<div class="logo__title h1">{slice.primary.heading}</div>
@@ -209,6 +210,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </section>
 
 <style>
