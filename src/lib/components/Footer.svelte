@@ -25,7 +25,7 @@
 </script>
 
 <footer class="footer">
-	<div class="footer__container">
+	<div class="footer__container container">
 		<div class="footer__inner">
 			<div class="footer__top">
 				<div class="logo-wrap">
@@ -152,10 +152,10 @@
 			padding-block: 6.25rem 1.25rem;
 		}
 
-		&__container {
-			max-width: 2000px;
-			padding-inline: 1.25rem;
-		}
+		// &__container {
+		// 	max-width: 2000px;
+		// 	padding-inline: 1.25rem;
+		// }
 
 		&__inner {
 			display: flex;

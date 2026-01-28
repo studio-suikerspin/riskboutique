@@ -189,7 +189,7 @@
 												icon="icon-arrow-right "
 											/>
 
-											<AvatarWithContactInfo />
+											<!-- <AvatarWithContactInfo /> -->
 										</div>
 									{/if}
 								</div>
