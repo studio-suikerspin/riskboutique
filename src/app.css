@@ -6,7 +6,7 @@
   --size-unit: 16; /* body font-size in design - no px */
   --size-container-ideal: 1500; /* screen-size in design - no px */
   --size-container-min: 992px;
-  --size-container-max: 1920px;
+  --size-container-max: 1720px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
 
@@ -67,6 +67,12 @@
 	.container.medium ,
 	.container.small {
 		padding-inline: 1.25rem;
+	}
+}
+
+@media(max-width: 767px){
+	.container.small {
+		max-width: var(--size-container);
 	}
 }
 /* End jesse testing scaling system */

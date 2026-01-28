@@ -14,66 +14,70 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="block-padding-top">
-	<div class="floating-images">
 
-		<div class="floating-images__inner">
+		<div class="floating-images">
+			<div class="container">
 
-			<div class="floating-images__shape">
-				<SvgShapes shape="squareShape"/>
+				<div class="floating-images__inner">
+
+					<div class="floating-images__shape">
+						<SvgShapes shape="squareShape"/>
+					</div>
+
+				<div class="floating-images__text">
+					<div class="floating-images__heading" data-reveal-group>
+						<div class="h1">
+							<PrismicRichText field={slice.primary.heading} />
+						</div>
+
+						<div class="floating-images__heading_video">
+							<video autoplay muted loop playsinline>
+								<source src="/floating-video-1.mp4" type="video/mp4" />
+							</video>
+							<video autoplay muted loop playsinline>
+								<source src="/floating-video-2.mp4" type="video/mp4" />
+							</video>
+						</div>
+					</div>
+					<div class="floating-images__subheading">
+						<div class="floating-images__text subtitle">
+							<PrismicRichText field={slice.primary.body} />
+						</div>
+						<div class="floating-images__cta">
+								<ConnectWithUs field={slice.primary.ctaLink} border="light" />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="floating-images__videos-wrapper">
+					<div class="floating-images__videos">
+							<div class="floating-images__video first">
+								<video autoplay muted loop playsinline>
+									<source src="/floating-video-1.mp4" type="video/mp4" />
+								</video>
+							</div>
+							<div class="floating-images__video second">
+								<video autoplay muted loop playsinline>
+									<source src="/floating-video-2.mp4" type="video/mp4" />
+								</video>
+							</div>
+							<div class="floating-images__video third">
+								<video autoplay muted loop playsinline>
+									<source src="/floating-video-3.mp4" type="video/mp4" />
+								</video>
+							</div>
+							<div class="floating-images__video fourth">
+								<video autoplay muted loop playsinline>
+									<source src="/floating-video-4.mp4" type="video/mp4" />
+								</video>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-
-		<div class="floating-images__text">
-			<div class="floating-images__heading" data-reveal-group>
-				<div class="h1">
-					<PrismicRichText field={slice.primary.heading} />
-				</div>
-
-				<div class="floating-images__heading_video">
-					<video autoplay muted loop playsinline>
-						<source src="/floating-video-1.mp4" type="video/mp4" />
-					</video>
-					<video autoplay muted loop playsinline>
-						<source src="/floating-video-2.mp4" type="video/mp4" />
-					</video>
-				</div>
-			</div>
-			<div class="floating-images__subheading">
-				<div class="floating-images__text subtitle">
-					<PrismicRichText field={slice.primary.body} />
-				</div>
-				<div class="floating-images__cta">
-						<ConnectWithUs field={slice.primary.ctaLink} border="light" />
-				</div>
-			</div>
-
 		</div>
-
-		<div class="floating-images__videos-wrapper">
-			<div class="floating-images__videos">
-					<div class="floating-images__video first">
-						<video autoplay muted loop playsinline>
-							<source src="/floating-video-1.mp4" type="video/mp4" />
-						</video>
-					</div>
-					<div class="floating-images__video second">
-						<video autoplay muted loop playsinline>
-							<source src="/floating-video-2.mp4" type="video/mp4" />
-						</video>
-					</div>
-					<div class="floating-images__video third">
-						<video autoplay muted loop playsinline>
-							<source src="/floating-video-3.mp4" type="video/mp4" />
-						</video>
-					</div>
-					<div class="floating-images__video fourth">
-						<video autoplay muted loop playsinline>
-							<source src="/floating-video-4.mp4" type="video/mp4" />
-						</video>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 </section>
 
 <style lang="scss">
@@ -81,7 +85,6 @@
 		padding: 4rem 0;
 		background-color: var(--color-dark-mode);
 		color: var(--color-snow-white);
-		padding-inline: 12px;
 
 		position: relative;
 		overflow: hidden;
@@ -92,7 +95,6 @@
 
 		@media(min-width: 992px) {
 			padding: 9.375rem 0;
-			padding-inline: 2.5rem;
 		}
 
 		&__shape{

@@ -18,12 +18,12 @@
 
 <section class="hero">
 	<div class="hero__inner">
-		<h1 class="hero__title h2">{role.data.title}</h1>
+		<h2 class="hero__title h2">{role.data.title}</h2>
 	</div>
 </section>
 
 <section class="role block-padding-bottom">
-	<div class="container mx-auto">
+	<div class="container small">
 		<div class="role__inner">
 			<div class="role__content rich-text-content">
 				<PrismicRichText field={role.data.content} />
@@ -32,7 +32,7 @@
 			<div class="role__cta">
 				<AvatarWithContactInfo />
 				<a
-					href="mailto:info@riskboutique.nl"
+					href="mailto:careers@riskboutique.nl"
 					title="Apply now"
 					class="btn btn--dark"
 				>
@@ -58,9 +58,10 @@
 
 			color: var(--color-snow-white);
 
-			h1{
+			h2{
 				max-width: 875px;
 				text-align: center;
+				line-height: 100%;
 			}
 		}
 
@@ -76,7 +77,7 @@
 			gap: 1rem;
 			padding-top: 2.5rem;
 
-			padding-inline: 1.5rem;
+			// padding-inline: 1.5rem;
 
 			@media(min-width: 768px){
 				padding-top: 6.25rem;

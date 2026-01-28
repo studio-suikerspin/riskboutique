@@ -240,13 +240,6 @@
 		display: flex;
 		justify-content: center;
 		width: 100%;
-		padding-inline: 12px;
-	}
-
-	@media (min-width: 768px) {
-		.logo-wall {
-			padding-inline: 20px;
-		}
 	}
 
 	.logo-wall__collection {
