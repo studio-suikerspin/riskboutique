@@ -44,35 +44,49 @@
 		background-size: cover;
 		padding-inline: 1.25rem;
 
-		& .section-careers-hero__wrapper {
-			display: flex;
-			flex-direction: column;
+		&__wrapper {
 			gap: 5rem;
+			display: grid;
 			padding-block-end: 2.5rem;
 			padding-block-start: 8.75rem;
 
 			@media (min-width: 992px) {
 				margin: auto;
-				flex-direction: row;
-				justify-content: space-between;
-				gap: 2.5rem;
 
 				padding-block: 12.125rem;
-				max-width: 1000px;
+				max-width: 1300px;
 				padding-inline: unset;
+				grid-template-columns: 1fr 408px;
+				align-items: center;
+				justify-content: center;
 			}
 		}
 
-		& .section-careers-hero__text {
+		&__text {
 			display: flex;
 			gap: 2.5rem;
 			flex-direction: column;
 			color: white;
 		}
 
-		& .section-careers-hero__image {
-			max-height: 600px;
+		&__image {
 			object-fit: cover;
+			border-radius: 0.5rem;
+			width: 100%;
+
+			@media (max-width: 992px) {
+				max-height: 500px;
+				object-position: left -175px;
+			}
+
+			@media (max-width: 768px) {
+				max-height: 400px;
+				object-position: left -125px;
+			}
+
+			@media (max-width: 576px) {
+				object-position: left -73px;
+			}
 		}
 	}
 </style>
