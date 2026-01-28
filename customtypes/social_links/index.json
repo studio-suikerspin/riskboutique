@@ -1,0 +1,38 @@
+{
+	"format": "custom",
+	"id": "social_links",
+	"label": "Social links",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"socials": {
+				"type": "Group",
+				"config": {
+					"label": "Socials",
+					"repeat": true,
+					"fields": {
+						"social_link": {
+							"type": "Link",
+							"config": {
+								"label": "Social link",
+								"placeholder": "LinkedIn",
+								"select": null,
+								"allowTargetBlank": true,
+								"allowText": true,
+								"repeat": false,
+								"variants": [
+									"linkedin",
+									"instagram",
+									"tiktok",
+									"facebook",
+									"email"
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

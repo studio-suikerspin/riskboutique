@@ -1,0 +1,58 @@
+{
+  "id": "assurance_with_images",
+  "type": "SharedSlice",
+  "name": "FloatingImages",
+  "description": "Section with heading, body text, CTA link, and multiple accompanying images",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default variation",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Enter heading",
+            "allowTargetBlank": true,
+            "single": "heading1,strong"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "multi": "paragraph,strong,em,hyperlink",
+            "placeholder": "Enter body text"
+          }
+        },
+        "ctaLink": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "allowText": true,
+            "select": null
+          }
+        },
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

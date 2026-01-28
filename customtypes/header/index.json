@@ -1,0 +1,88 @@
+{
+	"format": "custom",
+	"id": "header",
+	"label": "Header",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"logo_light": {
+				"type": "Image",
+				"config": {
+					"label": "Logo (Light)",
+					"constraint": {},
+					"thumbnails": []
+				}
+			},
+			"logo_dark": {
+				"type": "Image",
+				"config": {
+					"label": "Logo (Dark)",
+					"constraint": {},
+					"thumbnails": []
+				}
+			},
+			"menu_items": {
+				"type": "Group",
+				"config": {
+					"label": "Main menu items",
+					"repeat": true,
+					"fields": {
+						"label": {
+							"type": "Text",
+							"config": {
+								"label": "Label",
+								"placeholder": ""
+							}
+						},
+						"link": {
+							"type": "Link",
+							"config": {
+								"label": "Link",
+								"placeholder": "It's either a link or a sub menu, not both!",
+								"select": null,
+								"allowTargetBlank": true,
+								"allowText": false,
+								"repeat": false
+							}
+						},
+						"has_submenu": {
+							"type": "Boolean",
+							"config": {
+								"label": "Has submenu",
+								"placeholder_false": "false",
+								"placeholder_true": "true",
+								"default_value": false
+							}
+						},
+						"submenu": {
+							"type": "Link",
+							"config": {
+								"label": "Submenu",
+								"select": "document",
+								"repeat": false,
+								"customtypes": [
+									{
+										"id": "sub_menu",
+										"fields": ["submenu_item"]
+									}
+								]
+							}
+						}
+					}
+				}
+			},
+			"cta_link": {
+				"type": "Link",
+				"config": {
+					"label": "CTA Link",
+					"placeholder": "",
+					"select": null,
+					"allowTargetBlank": true,
+					"allowText": true,
+					"repeat": false
+				}
+			}
+		}
+	}
+}

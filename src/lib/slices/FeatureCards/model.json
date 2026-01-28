@@ -1,0 +1,147 @@
+{
+  "id": "pillars",
+  "type": "SharedSlice",
+  "name": "FeatureCards",
+  "description": "Three pillar cards displaying company values/principles with title, description, and background color",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Default variation of Pillars slice",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "single": "heading1"
+          }
+        },
+        "pillars": {
+          "type": "Group",
+          "config": {
+            "label": "Pillars",
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,strong,em"
+                }
+              },
+              "index": {
+                "type": "Text",
+                "config": {
+                  "label": "Index"
+                }
+              },
+              "background_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Background Color"
+                }
+              },
+              "text_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Text color",
+                  "placeholder": ""
+                }
+              },
+              "shape": {
+                "type": "Select",
+                "config": {
+                  "label": "Shape",
+                  "placeholder": "",
+                  "options": [
+                    "roundVerticalLines",
+                    "roundWorldShape",
+                    "TriangleShape"
+                  ],
+                  "default_value": "roundVerticalLines"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "slider",
+      "name": "Slider",
+      "docURL": "",
+      "version": "initial",
+      "description": "Default variation of Pillars slice",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "single": "heading1"
+          }
+        },
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,strong,em"
+                }
+              },
+              "background_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Background color",
+                  "placeholder": "",
+                  "options": [
+                    "Dark",
+                    "Aqua",
+                    "Clay"
+                  ],
+                  "default_value": "Dark"
+                }
+              },
+              "shape": {
+                "type": "Select",
+                "config": {
+                  "label": "Shape",
+                  "placeholder": "",
+                  "options": [
+                    "Cylinder",
+                    "Sphere",
+                    "Pyramid"
+                  ],
+                  "default_value": "Cylinder"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

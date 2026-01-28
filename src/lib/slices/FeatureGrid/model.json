@@ -1,0 +1,46 @@
+{
+  "type": "SharedSlice",
+  "id": "feature_grid",
+  "name": "FeatureGrid",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Renders a heading and a grid of feature items, where each item includes an image/icon and supporting description.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "features": {
+          "type": "Group",
+          "config": {
+            "label": "Features",
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,hyperlink",
+                  "label": "Description"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

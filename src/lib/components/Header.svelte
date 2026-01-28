@@ -1,26 +1,51 @@
 <script>
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
+	import { resolve } from '$app/paths'
+	import { page } from '$app/state'
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
+	import SideNav from './SideNav/index.svelte'
+	import Button from './Button.svelte'
 
-	let { site_settings } = page.data;
+	let { site_settings, header, socials } = page.data
 </script>
 
 <header class="main-header">
-	<div class="main-header__inner">
-		<a href={resolve('/')}>
-			<PrismicImage field={site_settings.data.site_logo} class={['main-header__logo']} />
-		</a>
-		<nav>
-			<PrismicLink field={site_settings.data.contact_link} class={['btn', 'btn--link']}>
-				<i class="btn__icon icon-arrow-right"></i>
-				<div class="btn__text">
-					{site_settings.data.contact_link.text}
-				</div>
-			</PrismicLink>
-		</nav>
+	<div class="container">
+		<div class="main-header__inner">
+			<a href={resolve('/')}>
+				<PrismicImage
+					field={header.data.logo_light}
+					class={['main-header__logo', 'main-header__logo--light']}
+				/>
+				<PrismicImage
+					field={header.data.logo_dark}
+					class={['main-header__logo', 'main-header__logo--dark']}
+				/>
+			</a>
+			<nav class="main-header__nav">
+				<button
+					class="btn btn--dark btn--menu"
+					data-sidenav-toggle
+				>
+					<i class="btn__icon icon-menu"></i>
+					Menu
+				</button>
+
+				<Button
+					variant="link"
+					icon="icon-arrow-right"
+					className="main-header__cta"
+					text={site_settings.data.contact_link.text}
+					field={site_settings.data.contact_link}
+				></Button>
+			</nav>
+		</div>
 	</div>
 </header>
+
+<SideNav
+	menuItems={header.data.menu_items}
+	{socials}
+/>
 
 <style lang="scss">
 	.main-header {
@@ -35,36 +60,42 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding-inline: 1.25rem;
+			// padding-inline: 1.25rem;
 		}
 
 		:global &__logo {
-			max-width: 200px;
+			max-width: 170px;
+
+			&--dark {
+				display: none;
+			}
 
 			@media screen and (min-width: 992px) {
 				max-width: 300px;
 			}
 		}
 
-		:global .btn {
-			display: none;
-			width: fit-content;
+		&__nav {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
 
-			@media screen and (min-width: 992px) {
+		:global &__cta {
+			display: none;
+
+			@media (min-width: 768px) {
 				display: flex;
 			}
+		}
 
-			&__icon {
-				font-weight: 600;
-				transform: rotate(-45deg);
-				transition: transform 0.1s ease-in-out;
-			}
+		:global .btn--menu {
+			padding-block: 0.5rem;
+			padding-inline: 0.825rem;
 
-			&:hover {
-				.btn__icon {
-					transform: translate(0.125rem, -0.125rem) rotate(-45deg);
-					transition: transform 0.1s ease-in-out;
-				}
+			@media (min-width: 768px) {
+				padding-inline: 0.75rem 1rem;
+				padding-block: 0.75rem;
 			}
 		}
 	}

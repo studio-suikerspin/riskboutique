@@ -1,0 +1,90 @@
+{
+  "id": "hero_statement",
+  "type": "SharedSlice",
+  "name": "HeroHomepage",
+  "description": "Hero section with tagline, main heading, address, scroll hint, and image gallery",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default hero statement variation",
+      "version": "initial",
+      "docURL": "",
+      "imageUrl": "",
+      "primary": {
+        "tags": {
+          "type": "Group",
+          "config": {
+            "label": "Tags",
+            "repeat": true,
+            "fields": {
+              "tag": {
+                "type": "Text",
+                "config": {
+                  "label": "Tag",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "e.g., We create trust in a digital world.",
+            "allowTargetBlank": true,
+            "single": "heading1,strong"
+          }
+        },
+        "address_lines": {
+          "type": "Group",
+          "config": {
+            "label": "Address lines",
+            "repeat": true,
+            "fields": {
+              "line": {
+                "type": "Text",
+                "config": {
+                  "label": "Line",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "scrollHint": {
+          "type": "Text",
+          "config": {
+            "label": "Scroll Hint",
+            "placeholder": "e.g., (Scroll for more)"
+          }
+        },
+        "gallery": {
+          "type": "Group",
+          "config": {
+            "label": "Gallery",
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image"
+                }
+              },
+              "video": {
+                "type": "Link",
+                "config": {
+                  "label": "Video",
+                  "placeholder": "",
+                  "select": "media",
+                  "allowText": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

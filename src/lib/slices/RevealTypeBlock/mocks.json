@@ -1,0 +1,14 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "with_secondary_statement",
+		"primary": {
+			"content": {
+				"__TYPE__": "FieldContent",
+				"value": "card",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

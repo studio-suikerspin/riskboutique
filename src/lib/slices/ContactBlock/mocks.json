@@ -1,0 +1,94 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"subtitle": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Tempor proident exercitation Lorem excepteur laboris. Tempor voluptate magna et elit."
+						}
+					}
+				]
+			},
+			"contact_methods": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "week",
+									"type": "Text"
+								}
+							],
+							[
+								"content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Ea ad est nostrud ut quis consequat ex esse cupidatat elit amet minim fugiat qui."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"form_description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ea culpa officia elit dolore ut deserunt nisi consectetur exercitation velit nulla enim aliqua. Laborum commodo minim laborum pariatur. Minim deserunt eu sint velit sint labore aliqua et."
+						}
+					}
+				]
+			},
+			"form_button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "love",
+				"type": "Text"
+			},
+			"form_footer_note": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Lorem nisi aliquip labore."
+						}
+					}
+				]
+			},
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "worker",
+				"type": "Text"
+			},
+			"form_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "shorter",
+				"type": "Text"
+			},
+			"label_text": {
+				"__TYPE__": "FieldContent",
+				"value": "cent",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

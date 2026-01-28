@@ -1,0 +1,31 @@
+{
+  "type": "SharedSlice",
+  "id": "hero_with_split_visual",
+  "name": "HeroWithSplitVisual",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard hero layout with content on the left and an image on the right.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "page_title": {
+          "type": "Text",
+          "config": {
+            "label": "Page title",
+            "placeholder": ""
+          }
+        },
+        "visual": {
+          "type": "Image",
+          "config": {
+            "label": "Visual"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

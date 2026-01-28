@@ -1,0 +1,56 @@
+{
+  "type": "SharedSlice",
+  "id": "image_text_columns",
+  "name": "ImageTextColumns",
+  "variations": [
+    {
+      "id": "alternating_blocks",
+      "name": "Alternating Image & Text Blocks",
+      "description": "Alternates between text and image per block with flexible order and emphasis. Each block can independently define heading, subheading, description, and image.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "blocks": {
+          "type": "Group",
+          "config": {
+            "label": "Blocks",
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image"
+                }
+              },
+              "image_position": {
+                "type": "Select",
+                "config": {
+                  "label": "Image Position",
+                  "options": [
+                    "left",
+                    "right"
+                  ]
+                }
+              },
+              "heading": {
+                "type": "Text",
+                "config": {
+                  "label": "Heading",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,hyperlink",
+                  "label": "Description"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

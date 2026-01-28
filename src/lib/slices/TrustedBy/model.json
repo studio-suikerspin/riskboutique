@@ -1,0 +1,49 @@
+{
+  "id": "trusted_by",
+  "type": "SharedSlice",
+  "name": "TrustedBy",
+  "description": "A slice showcasing logos of trusted organizations in a grid layout",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default variation with heading and logo grid",
+      "imageUrl": "",
+      "primary": {
+        "logos": {
+          "type": "Group",
+          "config": {
+            "label": "Logos",
+            "fields": {
+              "logo_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Logo Image"
+                }
+              },
+              "with_background": {
+                "type": "Boolean",
+                "config": {
+                  "label": "With background",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              }
+            }
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Trusted by leading organisations"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

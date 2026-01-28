@@ -1,0 +1,25 @@
+{
+	"type": "SharedSlice",
+	"id": "highlighted_text_block",
+	"name": "RevealTypeBlock",
+	"variations": [
+		{
+			"id": "with_secondary_statement",
+			"name": "default",
+			"description": "Variation for displaying a main highlighted message, a supporting paragraph, and a secondary statement/quote below.",
+			"version": "initial",
+			"imageUrl": "",
+			"docURL": "...",
+			"primary": {
+				"content": {
+					"type": "Text",
+					"config": {
+						"label": "Content",
+						"placeholder": ""
+					}
+				}
+			},
+			"items": {}
+		}
+	]
+}
