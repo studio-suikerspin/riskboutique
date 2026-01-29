@@ -3,7 +3,7 @@ import { createClient } from '$lib/prismicio';
 export async function load({ fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
 
-	const page = await client.getSingle('homepage');
+	const page = await client.getSingle('under_construction_page');
 
 	return {
 		page,

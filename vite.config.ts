@@ -7,7 +7,6 @@ export default defineConfig({
 	server: {
 		fs: {
 			allow: ['./slicemachine.config.json']
-		},
-		allowedHosts: ['devserver-develop--riskboutique.netlify.app']
+		}
 	}
 });
