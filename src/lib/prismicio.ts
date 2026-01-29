@@ -1,15 +1,11 @@
-import { createClient as baseCreateClient, type Route } from '@prismicio/client'
-import {
-	type CreateClientConfig,
-	enableAutoPreviews
-} from '@prismicio/svelte/kit'
-import sm from '../../slicemachine.config.json'
+import { createClient as baseCreateClient, type Route } from '@prismicio/client';
+import { type CreateClientConfig, enableAutoPreviews } from '@prismicio/svelte/kit';
+import sm from '../../slicemachine.config.json';
 
 /**
  * The project's Prismic repository name.
  */
-export const repositoryName =
-	import.meta.env.VITE_PRISMIC_ENVIRONMENT || sm.repositoryName
+export const repositoryName = import.meta.env.VITE_PRISMIC_ENVIRONMENT || sm.repositoryName;
 
 /**
  * A list of Route Resolver objects that define how a document's `url` field is resolved.
@@ -18,11 +14,9 @@ export const repositoryName =
  */
 // TODO: Update the routes array to match your project's route structure.
 const routes: Route[] = [
-	// { type: 'under_construction_page', path: '/' },
-	{ type: 'homepage', path: '/' },
-	{ type: 'advisory_subpage', path: '/advisory/:uid' },
+	{ type: 'under_construction_page', path: '/' },
 	{ type: 'page', path: '/:uid' }
-]
+];
 
 /**
  * Creates a Prismic client for the project's repository. The client is used to
@@ -30,16 +24,13 @@ const routes: Route[] = [
  *
  * @param config - Configuration for the Prismic client.
  */
-export const createClient = ({
-	cookies,
-	...config
-}: CreateClientConfig = {}) => {
+export const createClient = ({ cookies, ...config }: CreateClientConfig = {}) => {
 	const client = baseCreateClient(repositoryName, {
 		routes,
 		...config
-	})
+	});
 
-	enableAutoPreviews({ client, cookies })
+	enableAutoPreviews({ client, cookies });
 
-	return client
-}
+	return client;
+};
