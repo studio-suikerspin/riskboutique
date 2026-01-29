@@ -1723,7 +1723,11 @@ export interface FeatureIntroDoubleColumnSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	shape: prismic.SelectField<
-		'roundVerticalLines' | 'roundWorldShape' | 'TriangleShape' | 'squareShape'
+		| 'roundVerticalLines'
+		| 'roundWorldShape'
+		| 'TriangleShape'
+		| 'squareShape'
+		| 'WorldShapeBlue'
 	>
 
 	/**

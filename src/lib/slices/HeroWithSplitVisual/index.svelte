@@ -2,6 +2,7 @@
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
+	import { onMount } from 'svelte'
 
 	type Props = SliceComponentProps<Content.HeroWithSplitVisualSlice>
 
