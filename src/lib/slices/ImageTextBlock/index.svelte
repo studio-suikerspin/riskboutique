@@ -20,7 +20,9 @@
 
 	<div class="section-careers-image-block__content">
 		<h4>{slice.primary.headline}</h4>
-		<PrismicRichText field={slice.primary.description} />
+		<div>
+			<PrismicRichText field={slice.primary.description} />
+		</div>
 	</div>
 </section>
 
@@ -30,6 +32,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2.5rem;
+		max-width: 1500px;
+		margin: auto;
 
 		&[data-id='image_text_columns_2$c10ad0eb-ce83-405f-9fa8-6587935358b2'] {
 			padding-top: 5rem;
