@@ -146,7 +146,8 @@ h3,
 	}
 }
 
-.h3.low {
+.h3.low ,
+h3.low{
 	font-weight: 600;
 	line-height: 85%;
 }
@@ -215,6 +216,7 @@ p {
 	border: 0.03125rem solid var(--color-snow-white);
 
 	font-weight: 500;
+	font-size: 1rem;
 
 	/* Button variants */
 	&.btn--dark {

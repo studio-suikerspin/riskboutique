@@ -1515,16 +1515,6 @@ export type CtaProfileContactSlice = prismic.SharedSlice<
  */
 export interface FeatureGridSliceDefaultPrimaryFeaturesItem {
 	/**
-	 * Icon field in *FeatureGrid → Default → Primary → Features*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: feature_grid.default.primary.features[].icon
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	icon: prismic.ImageField<never>
-
-	/**
 	 * Description field in *FeatureGrid → Default → Primary → Features*
 	 *
 	 * - **Field Type**: Rich Text
@@ -1533,6 +1523,18 @@ export interface FeatureGridSliceDefaultPrimaryFeaturesItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	description: prismic.RichTextField
+
+	/**
+	 * Icon field in *FeatureGrid → Default → Primary → Features*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.features[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	icon: prismic.SelectField<
+		'StackingSquares' | 'UnionShape' | 'StackingCircles' | 'StackingOpenSquares'
+	>
 }
 
 /**

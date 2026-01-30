@@ -6,20 +6,14 @@
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { initContentRevealScroll } from '$lib/revealContent.js'
 	import { onMount } from "svelte"
-	  import { initSkeletonTextReveal } from '$lib/skeletonText.js'
 
 
 	type Props = SliceComponentProps<Content.FeatureIntroDoubleColumnSlice>
 
-	// onMount(() => {
-	// 	initContentRevealScroll()
-	// })
-
 	onMount(() => {
-    initSkeletonTextReveal()
-    // return destroy
-  })
-
+		initContentRevealScroll()
+	})
+	
 	const { slice }: Props = $props()
 </script>
 
@@ -106,6 +100,17 @@
 			display: flex;
 			align-items: center;
 			justify-content: start;
+
+			:global svg{
+				width: 250px;
+			}
+
+			@media(min-width: 768px){
+				:global svg{
+					width: 100%;
+					height: auto;
+				}
+			}
 		}
 
 	}
