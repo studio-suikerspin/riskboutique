@@ -188,8 +188,6 @@
 												variant="blue"
 												icon="icon-arrow-right "
 											/>
-
-											<AvatarWithContactInfo />
 										</div>
 									{/if}
 								</div>

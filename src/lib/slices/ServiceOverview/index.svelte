@@ -35,70 +35,70 @@
 	data-slice-variation={slice.variation}
 	class="block-padding"
 >
-<div class="service-overview">
-	<div class="service-overview__title">
-		<SectionHeading
-			title={slice.primary.heading}
-			description={slice.primary.description}
-		/>
-	</div>
-	<div class="service-overview__content swiper ">
-		<div class="swiper-wrapper">
-		{#each slice.primary.service_items as item, index}
-			<div class="service-overview__item swiper-slide">
-				<div class="service-overview__item-text">
-					<div class="service-overview__title-wrap">
-						<div class="service-overview__counter">
-							<div class="service-overview__serial subtitle">
-								{String(index + 1).padStart(2, '0')} / {String(slice.primary.service_items.length).padStart(2, '0')}
+<div class="container">
+	<div class="service-overview">
+		<div class="service-overview__title">
+			<SectionHeading
+				title={slice.primary.heading}
+				description={slice.primary.description}
+			/>
+		</div>
+		<div class="service-overview__content swiper ">
+			<div class="swiper-wrapper">
+			{#each slice.primary.service_items as item, index}
+				<div class="service-overview__item swiper-slide">
+					<div class="service-overview__item-text">
+						<div class="service-overview__title-wrap">
+							<div class="service-overview__counter">
+								<div class="service-overview__serial subtitle">
+									{String(index + 1).padStart(2, '0')} / {String(slice.primary.service_items.length).padStart(2, '0')}
+								</div>
 							</div>
+							<h4 class="service-overview__item-title">{item.service_title}</h4>
 						</div>
-						<h4 class="service-overview__item-title">{item.service_title}</h4>
+						<div class="service-overview__item-description rich-text-content">
+							<PrismicRichText field={item.service_description} />
+						</div>
 					</div>
-					<div class="service-overview__item-description rich-text-content">
-						<PrismicRichText field={item.service_description} />
+					<div class="service-overview__item-image">
+						<PrismicImage field={item.service_image} />
 					</div>
 				</div>
-				<div class="service-overview__item-image">
-					<PrismicImage field={item.service_image} />
-				</div>
+			{/each}
 			</div>
-		{/each}
+
+			<div class="service-overview__navigation">
+				<!-- Custom navigation buttons -->
+				<button class="custom-prev navigation-button" aria-label="Previous">
+					Prev
+				</button>
+				<button class="custom-next navigation-button" aria-label="Next">
+					Next
+				</button>
+			</div>
+
 		</div>
 
-		<div class="service-overview__navigation">
-			<!-- Custom navigation buttons -->
-			<button class="custom-prev navigation-button" aria-label="Previous">
-				Prev
-			</button>
-			<button class="custom-next navigation-button" aria-label="Next">
-				Next
-			</button>
+		<div class="service-overview__cta">
+			<Button 
+				href="#" 
+				text="Request proposal" 
+				variant="dark"
+				icon="icon-arrow-right"
+			/>
+			<AvatarWithContactInfo />
 		</div>
-
-	</div>
-
-	<div class="service-overview__cta">
-		<Button 
-			href="#" 
-			text="Request proposal" 
-			variant="dark"
-			icon="icon-arrow-right"
-		/>
-		<AvatarWithContactInfo />
 	</div>
 </div>
 </section>
 
 <style lang="scss">
 	.service-overview {
-		padding-inline: 12px;
 		display: flex;
 		flex-direction: column;
 		gap: 2.5rem;
 
 		@media(min-width: 992px) {
-			padding-inline: 20px;
 			gap: 5rem;
 		}
 
@@ -106,8 +106,7 @@
 			background: url('/bg-gradient-donker.svg') no-repeat center center;
 			background-size: cover;
 			width: 100%;
-			// padding: 6.25rem;
-			border-radius: 8px;
+			border-radius: 0.5rem;
 
 			@media(min-width: 992px) {
 				border-radius: 1.5rem 0;
@@ -143,7 +142,7 @@
 		}
 
 		&__item-description{
-			max-width: 480px;
+			max-width: 30rem;
 		}
 
 
@@ -159,9 +158,10 @@
 			}
 
 			:global img{
-				border-radius: 8px;
-				max-width: 512px;
-				max-height: 512px;
+				border-radius: 0.5rem;
+				width: 32rem;
+				height: auto;
+				// max-height: 512px;
 			}
 		}
 
@@ -185,7 +185,7 @@
 				align-items: center;
 				justify-content: center;
 				font-size: 16px;
-				padding: 16px 24px;
+				padding: 1em 1.5rem;
 				border-radius: 0.5rem;
 				cursor: pointer;
 				transition: background-color 0.3s, color 0.3s;
@@ -243,7 +243,5 @@
 			
 		}
 	}
-
-
 
 </style>

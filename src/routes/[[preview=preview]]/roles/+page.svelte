@@ -20,12 +20,12 @@
 
 <section class="hero">
 	<div class="hero__inner">
-		<h1 class="h1">Open roles</h1>
+		<h1 class="h2">Open roles</h1>
 	</div>
 </section>
 
-<section class="roles block-padding">
-	<div class="container mx-auto">
+<section class="roles block-padding-bottom">
+	<div class="container small">
 		<ul class="roles__list">
 			{#each openRoles as openRole, index (index)}
 				<li class="role">
@@ -34,13 +34,13 @@
 
 						<a
 							href={resolve(`/roles/${openRole.uid}`)}
-							class="role__cta"
+							class="role__cta desktop-btn"
 						>
 							Apply <i class="icon-arrow-right"></i>
 						</a>
 					</div>
 
-					<div class="role__summary subtitle">
+					<div class="role__summary">
 						{openRole.data.summary}
 					</div>
 
@@ -49,6 +49,13 @@
 							<li class="tag">{item.tag}</li>
 						{/each}
 					</ul>
+
+					<a
+							href={resolve(`/roles/${openRole.uid}`)}
+							class="role__cta mobile"
+						>
+							Apply <i class="icon-arrow-right"></i>
+					</a>
 				</li>
 			{/each}
 		</ul>
@@ -73,6 +80,13 @@
 	}
 
 	.roles {
+
+		padding-top: 2.5rem;
+
+		@media(min-width: 768px){
+			padding-top: 6.25rem;
+		}
+
 		&__list {
 			display: flex;
 			flex-flow: column;
@@ -106,7 +120,7 @@
 			align-items: center;
 			gap: 0.75rem;
 			color: var(--color-aqua);
-			font-size: 1.125rem;
+			font-size: 1.5rem;
 
 			@media (min-width: 1024px) {
 				font-size: 2rem;
@@ -126,8 +140,23 @@
 			}
 		}
 
+		&__cta.mobile{
+			display: flex;
+
+			@media(min-width: 992px){
+				display: none;
+			}
+		}
+
+		&__cta.desktop-btn{
+			display: none;
+			@media(min-width: 992px){
+				display: flex;
+			}
+		}
+
 		&__summary {
-			max-width: 500px;
+			max-width: 650px;
 			margin-block-end: 1.5rem;
 		}
 

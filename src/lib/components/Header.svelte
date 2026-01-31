@@ -1,42 +1,51 @@
 <script>
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { PrismicImage, PrismicLink } from '@prismicio/svelte';
-	import SideNav from './SideNav/index.svelte';
+	import { resolve } from '$app/paths'
+	import { page } from '$app/state'
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
+	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
 
-	let { site_settings, header, socials } = page.data;
+	let { site_settings, header, socials } = page.data
 </script>
 
 <header class="main-header">
-	<div class="main-header__inner">
-		<a href={resolve('/')}>
-			<PrismicImage
-				field={header.data.logo_light}
-				class={['main-header__logo', 'main-header__logo--light']}
-			/>
-			<PrismicImage
-				field={header.data.logo_dark}
-				class={['main-header__logo', 'main-header__logo--dark']}
-			/>
-		</a>
-		<nav class="main-header__nav">
-			<button class="btn btn--dark btn--menu" data-sidenav-toggle>
-				<i class="btn__icon icon-menu"></i>
-				Menu
-			</button>
-			<Button 
-				field={site_settings.data.contact_link}
-				text={site_settings.data.contact_link.text}
-				variant="blue"
-				className="'btn', 'btn--link', 'main-header__cta"
-				icon="icon-arrow-right"
-			/>
-		</nav>
+	<div class="container">
+		<div class="main-header__inner">
+			<a href={resolve('/')}>
+				<PrismicImage
+					field={header.data.logo_light}
+					class={['main-header__logo', 'main-header__logo--light']}
+				/>
+				<PrismicImage
+					field={header.data.logo_dark}
+					class={['main-header__logo', 'main-header__logo--dark']}
+				/>
+			</a>
+			<nav class="main-header__nav">
+				<button
+					class="btn btn--dark btn--menu"
+					data-sidenav-toggle
+				>
+					<i class="btn__icon icon-menu"></i>
+					Menu
+				</button>
+
+				<Button
+					variant="link"
+					icon="icon-arrow-right"
+					className="main-header__cta"
+					text={site_settings.data.contact_link.text}
+					field={site_settings.data.contact_link}
+				></Button>
+			</nav>
+		</div>
 	</div>
 </header>
 
-<SideNav menuItems={header.data.menu_items} {socials} />
+<SideNav
+	menuItems={header.data.menu_items}
+	{socials}
+/>
 
 <style lang="scss">
 	.main-header {
@@ -51,7 +60,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding-inline: 1.25rem;
+			// padding-inline: 1.25rem;
 		}
 
 		:global &__logo {
