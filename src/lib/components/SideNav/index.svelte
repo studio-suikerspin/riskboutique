@@ -1,30 +1,31 @@
 <script>
-	import { onMount } from 'svelte';
-	import { gsap, CustomEase } from '$lib/gsap';
+	import { onMount } from 'svelte'
+	import { gsap, CustomEase } from '$lib/gsap'
 
-	import MenuLink from './MenuLink.svelte';
-	import MenuLinkWithSubs from './MenuLinkWithSubs.svelte';
-	import { PrismicLink } from '@prismicio/svelte';
+	import MenuLink from './MenuLink.svelte'
+	import MenuLinkWithSubs from './MenuLinkWithSubs.svelte'
+	import { PrismicLink } from '@prismicio/svelte'
+	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
 
-	let { menuItems, socials } = $props();
+	let { menuItems, socials } = $props()
 
 	function initSideNavWipeEffect() {
-		let navWrap = document.querySelector('[data-sidenav-wrap]');
-		let state = navWrap?.getAttribute('data-nav-state');
-		let overlay = navWrap?.querySelector('[data-sidenav-overlay]');
-		let menu = navWrap?.querySelector('[data-sidenav-menu]');
-		let bgPanels = navWrap?.querySelectorAll('[data-sidenav-panel]');
-		let menuToggles = document.querySelectorAll('[data-sidenav-toggle]');
-		let menuLinks = navWrap?.querySelectorAll('[data-sidenav-link]');
-		let fadeTargets = navWrap?.querySelectorAll('[data-sidenav-fade]');
-		let menuButton = document.querySelector('[data-sidenav-button]');
-		let menuHeader = document.querySelector('[data-sidenav-header]');
-		let menuButtonIcon = menuButton?.querySelector('[data-sidenav-icon]');
+		let navWrap = document.querySelector('[data-sidenav-wrap]')
+		let state = navWrap?.getAttribute('data-nav-state')
+		let overlay = navWrap?.querySelector('[data-sidenav-overlay]')
+		let menu = navWrap?.querySelector('[data-sidenav-menu]')
+		let bgPanels = navWrap?.querySelectorAll('[data-sidenav-panel]')
+		let menuToggles = document.querySelectorAll('[data-sidenav-toggle]')
+		let menuLinks = navWrap?.querySelectorAll('[data-sidenav-link]')
+		let fadeTargets = navWrap?.querySelectorAll('[data-sidenav-fade]')
+		let menuButton = document.querySelector('[data-sidenav-button]')
+		let menuHeader = document.querySelector('[data-sidenav-header]')
+		let menuButtonIcon = menuButton?.querySelector('[data-sidenav-icon]')
 
-		let tl = gsap.timeline();
+		let tl = gsap.timeline()
 
 		const openNav = () => {
-			navWrap.setAttribute('data-nav-state', 'open');
+			navWrap.setAttribute('data-nav-state', 'open')
 
 			tl.clear()
 				.set(navWrap, { display: 'block' })
@@ -32,7 +33,12 @@
 				// .fromTo(menuButtonTexts, { yPercent: 0 }, { yPercent: -100, stagger: 0.2 })
 				.fromTo(menuButtonIcon, { rotate: 90 }, { rotate: 0 }, '<')
 				.fromTo(overlay, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
-				.fromTo(bgPanels, { xPercent: 101 }, { xPercent: 0, stagger: 0.12, duration: 0.575 }, '<')
+				.fromTo(
+					bgPanels,
+					{ xPercent: 101 },
+					{ xPercent: 0, stagger: 0.12, duration: 0.575 },
+					'<'
+				)
 				.fromTo(menuHeader, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
 				.fromTo(
 					menuLinks,
@@ -45,13 +51,13 @@
 					{ autoAlpha: 0, yPercent: 50 },
 					{ autoAlpha: 1, yPercent: 0, stagger: 0.04 },
 					'<+=0.2'
-				);
+				)
 
-			navWrap.style.pointerEvents = 'all';
-		};
+			navWrap.style.pointerEvents = 'all'
+		}
 
 		const closeNav = () => {
-			navWrap.setAttribute('data-nav-state', 'closed');
+			navWrap.setAttribute('data-nav-state', 'closed')
 
 			tl.clear()
 				.to(overlay, { autoAlpha: 0 })
@@ -59,39 +65,42 @@
 				// .to(menuButtonTexts, { yPercent: 0 }, '<')
 				.to(menuButtonIcon, { rotate: 0 }, '<')
 				.to(menuHeader, { autoAlpha: 0 }, '<')
-				.set(navWrap, { display: 'none' });
-		};
+				.set(navWrap, { display: 'none' })
+		}
 
 		// Toggle menu open / close depending on its current state
 		menuToggles.forEach((toggle) => {
 			toggle.addEventListener('click', () => {
-				state = navWrap.getAttribute('data-nav-state');
+				state = navWrap.getAttribute('data-nav-state')
 				if (state === 'open') {
-					closeNav();
+					closeNav()
 				} else {
-					openNav();
+					openNav()
 				}
-			});
-		});
+			})
+		})
 
 		// If menu is open, you can close it using the "escape" key
 		document.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && navWrap.getAttribute('data-nav-state') === 'open') {
-				closeNav();
+			if (
+				e.key === 'Escape' &&
+				navWrap.getAttribute('data-nav-state') === 'open'
+			) {
+				closeNav()
 			}
-		});
+		})
 	}
 
 	const openSubmenu = (submenuLabel) => {
-		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`);
+		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`)
 
-		if (!submenu) return;
+		if (!submenu) return
 
-		const menuItems = submenu.querySelectorAll('[data-submenu-item]');
+		const menuItems = submenu.querySelectorAll('[data-submenu-item]')
 
-		const tl = gsap.timeline();
+		const tl = gsap.timeline()
 
-		submenu.style.pointerEvents = 'all';
+		submenu.style.pointerEvents = 'all'
 
 		tl.clear()
 			.fromTo(submenu, { x: '100%' }, { x: '0%', stagger: 0.04 }, '<+=0.2')
@@ -100,43 +109,81 @@
 				{ yPercent: 140, rotate: 10 },
 				{ yPercent: 0, rotate: 0, stagger: 0.05 },
 				'<+=0.35'
-			);
-	};
+			)
+
+		submenu.setAttribute('data-submenu-state', 'open')
+	}
 
 	const closeSubmenu = (submenuLabel) => {
-		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`);
+		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`)
 
-		if (!submenu) return;
+		if (!submenu) return
 
-		const tl = gsap.timeline();
-		tl.clear().to(submenu, { x: '100%' }, '<+=0.2');
+		const tl = gsap.timeline()
+		tl.clear().to(submenu, { x: '100%' }, '<+=0.2')
 
-		submenu.style.pointerEvents = 'none';
-	};
+		submenu.style.pointerEvents = 'none'
+
+		submenu.setAttribute('data-submenu-state', 'closed')
+	}
 
 	onMount(() => {
-		CustomEase.create('main', '0.65, 0.01, 0.05, 0.99');
+		CustomEase.create('main', '0.65, 0.01, 0.05, 0.99')
 
 		gsap.defaults({
 			ease: 'main',
 			duration: 0.7
-		});
+		})
 
-		initSideNavWipeEffect();
-	});
+		initSideNavWipeEffect()
+	})
+
+	onNavigate(() => {
+		const openSubmenus = document.querySelectorAll('[data-submenu-state="open"]')
+		openSubmenus.forEach(submenu => {
+		    const label = submenu.getAttribute('data-submenu')
+			setTimeout(() => closeSubmenu(label), 150)
+		})
+
+		const toggle = document.querySelector('[data-sidenav-button]')
+		toggle?.dispatchEvent(new Event('click'))
+	})
 </script>
 
 <div class="sidenav">
-	<div data-sidenav-wrap="" data-nav-state="closed" class="sidenav__nav">
-		<div data-sidenav-overlay="" data-sidenav-toggle="" class="sidenav__overlay"></div>
-		<nav data-sidenav-menu="" class="sidenav__menu">
+	<div
+		data-sidenav-wrap=""
+		data-nav-state="closed"
+		class="sidenav__nav"
+	>
+		<div
+			data-sidenav-overlay=""
+			data-sidenav-toggle=""
+			class="sidenav__overlay"
+		></div>
+		<nav
+			data-sidenav-menu=""
+			class="sidenav__menu"
+		>
 			<div class="sidenav__menu-bg">
-				<div data-sidenav-panel="" class="sidenav__menu-bg-panel is--first"></div>
-				<div data-sidenav-panel="" class="sidenav__menu-bg-panel is--second"></div>
-				<div data-sidenav-panel="" class="sidenav__menu-bg-panel"></div>
+				<div
+					data-sidenav-panel=""
+					class="sidenav__menu-bg-panel is--first"
+				></div>
+				<div
+					data-sidenav-panel=""
+					class="sidenav__menu-bg-panel is--second"
+				></div>
+				<div
+					data-sidenav-panel=""
+					class="sidenav__menu-bg-panel"
+				></div>
 			</div>
 			<div class="sidenav__menu-inner">
-				<header class="sidenav__header" data-sidenav-header="">
+				<header
+					class="sidenav__header"
+					data-sidenav-header=""
+				>
 					<button
 						role="button"
 						data-sidenav-toggle=""
@@ -144,9 +191,17 @@
 						class="sidenav__button"
 					>
 						<div class="sidenav__button-text">
-							<p data-sidenav-label="" class="sidenav__button-label">close</p>
+							<p
+								data-sidenav-label=""
+								class="sidenav__button-label"
+							>
+								close
+							</p>
 						</div>
-						<div data-sidenav-icon="" class="sidenav__button-icon">
+						<div
+							data-sidenav-icon=""
+							class="sidenav__button-icon"
+						>
 							<i class="icon-close sidenav__button-icon-svg"></i>
 						</div>
 					</button>
@@ -156,9 +211,16 @@
 					{#each menuItems as menuItem, index (index)}
 						<li class="sidenav__menu-list-item">
 							{#if menuItem.has_submenu}
-								<MenuLinkWithSubs {menuItem} {index} {openSubmenu} />
+								<MenuLinkWithSubs
+									{menuItem}
+									{index}
+									{openSubmenu}
+								/>
 							{:else}
-								<MenuLink {menuItem} {index} />
+								<MenuLink
+									{menuItem}
+									{index}
+								/>
 							{/if}
 						</li>
 					{/each}
@@ -166,7 +228,12 @@
 
 				<div class="sidenav__menu-details">
 					{#if socials.data.socials.length}
-						<p data-sidenav-fade="" class="sidenav__button-label">Socials</p>
+						<p
+							data-sidenav-fade=""
+							class="sidenav__button-label"
+						>
+							Socials
+						</p>
 						<div class="sidenav__menu-socials">
 							{#each socials.data.socials as { social_link }, index (index)}
 								<PrismicLink
@@ -183,10 +250,18 @@
 
 		{#each menuItems as menuItem, index (index)}
 			{#if menuItem.has_submenu}
-				<nav data-submenu={menuItem.label} class="submenu">
+				<nav
+					data-submenu={menuItem.label}
+					data-submenu-state="closed"
+					class="submenu"
+				>
 					<div class="submenu__inner">
 						<header class="submenu__header">
-							<button class="submenu__button" onclick={() => closeSubmenu(menuItem.label)}>
+							<button
+							    data-submenu-toggle=""
+								class="submenu__button"
+								onclick={() => closeSubmenu(menuItem.label)}
+							>
 								<p class="label">back</p>
 								<i class="icon icon-arrow-right"></i>
 							</button>
@@ -195,15 +270,24 @@
 						<ul class="submenu__list">
 							<li class="submenu__list-item submenu__label">
 								<div class="submenu-item">
-									<div class="h4" data-submenu-item>
+									<div
+										class="h4"
+										data-submenu-item
+									>
 										{menuItem.label}
 									</div>
 								</div>
 							</li>
 							{#each menuItem.submenu.data.submenu_item as submenuItem, index (index)}
 								<li class="submenu__list-item">
-									<PrismicLink field={submenuItem} class={['submenu-item']}>
-										<div class="submenu-item__wrap" data-submenu-item>
+									<PrismicLink
+										field={submenuItem}
+										class={['submenu-item']}
+									>
+										<div
+											class="submenu-item__wrap"
+											data-submenu-item
+										>
 											<p class="submenu-item__text">{submenuItem.text}</p>
 											<p class="submenu-item__eyebrow">
 												{index + 1 < 10 ? '0' + (index + 1) : index + 1}
