@@ -1,12 +1,25 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
 	import Label from '$lib/components/UI/Label.svelte'
-import type { Content } from '@prismicio/client'
+	import type { Content } from '@prismicio/client'
 	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte'
+	import { Toaster, toast } from 'svelte-sonner'
 
 	type Props = SliceComponentProps<Content.ContactBlockSlice>
 
 	const { slice }: Props = $props()
+
+	let loading = $state(false);
+
+	const handleSubmit = (e) => {
+	    e.preventDefault()
+		loading = true;
+
+		setTimeout(() => {
+		    toast.success('My first toast')
+			loading = false;
+		}, 1000)
+	}
 </script>
 
 <section
@@ -14,7 +27,8 @@ import type { Content } from '@prismicio/client'
 	data-slice-variation={slice.variation}
 	class="contact-block block-padding"
 >
-    <div class="contact-block__container">
+    <Toaster />
+    <div class="contact-block__container container">
         <div class="contact-block__inner">
             <div class="content-wrap">
                 <div class="content-wrap__group">
@@ -48,13 +62,13 @@ import type { Content } from '@prismicio/client'
                         <PrismicRichText field={slice.primary.form_description} />
                     </div>
                 </div>
-                <form action="" class="contact-form">
+                <form on:submit={handleSubmit} class="contact-form">
                     <div class="contact-form__group">
                         <label for="name" class="contact-form__label">Name</label>
                         <input type="text" id="name" class="contact-form__input" placeholder="Your name" required />
                     </div>
                     <div class="contact-form__group">
-                        <label for="email" class="contact-form__label">Email</label>
+                        <label for="email" class="contact-form__label">Email address</label>
                         <input type="email" id="email" class="contact-form__input" placeholder="Your email" required />
                     </div>
                     <div class="contact-form__group">
@@ -63,11 +77,18 @@ import type { Content } from '@prismicio/client'
                     </div>
                     <div class="contact-form__group">
                         <label for="message" class="contact-form__label">Message</label>
-                        <textarea id="message" class="contact-form__textarea" placeholder="Your message" required></textarea>
+                        <textarea id="message" class="contact-form__textarea" placeholder="Your message"  required></textarea>
                     </div>
 
                     <div class="contact-form__button-wrap">
-                        <Button className="contact-form__button" variant="white" text={slice.primary.form_button_text || 'Submit'} icon="icon-arrow-right" type="submit" />
+                        <Button
+                            className="contact-form__button"
+                            variant="white"
+                            text={slice.primary.form_button_text || 'Submit'}
+                            icon="icon-arrow-right"
+                            type="submit"
+                            loading={loading}
+                        />
 
                         <div class="contact-form__footer-note">
                             <PrismicRichText field={slice.primary.form_footer_note} />
@@ -81,19 +102,13 @@ import type { Content } from '@prismicio/client'
 
 <style lang="scss">
     .contact-block {
-        &__container {
-            max-width: var(--container-width);
-            margin-inline: auto;
-
-            padding-inline: var(--container-padding);
-        }
-
         &__inner {
             display: flex;
             flex-flow: column;
             gap: 2.5rem;
 
             @media (min-width: 1024px) {
+                gap: 5rem;
                 flex-flow: row;
             }
         }
@@ -103,6 +118,10 @@ import type { Content } from '@prismicio/client'
             display: flex;
             flex-flow: column;
             gap: 2.5rem;
+
+            @media (min-width: 1024px) {
+                justify-content: space-between;
+            }
 
             &__group {
                 display: flex;
@@ -126,6 +145,7 @@ import type { Content } from '@prismicio/client'
             &__item {
                 display: flex;
                 gap: 0.5rem;
+                font-size: 1rem;
             }
         }
 
@@ -142,6 +162,10 @@ import type { Content } from '@prismicio/client'
             display: flex;
             flex-flow: column;
             gap: 2.5rem;
+
+            @media (min-width: 1024px) {
+                padding-inline: 2.5rem;
+            }
 
             .form-header {
                 display: flex;
@@ -170,12 +194,12 @@ import type { Content } from '@prismicio/client'
                     border-radius: 0.25rem;
 
                     width: 100%;
-                    height: 2.5rem;
+                    height: 3rem;
 
                     background: rgba(249, 249, 248, 0.20);
 
                     &::placeholder {
-                        color: var(--color-snow-white);
+                        color: rgba(249, 249, 248, 0.70);
                         opacity: 0.7;
                         font-weight: 400;
                         font-size: 1rem;
@@ -186,6 +210,15 @@ import type { Content } from '@prismicio/client'
                     padding: 1rem;
                     border-radius: 0.25rem;
                     background: rgba(249, 249, 248, 0.20);
+                    resize: none;
+                    font-size: 1rem;
+
+                    &::placeholder {
+                        color: rgba(249, 249, 248, 0.70);
+                        opacity: 0.7;
+                        font-weight: 400;
+                        font-size: 1rem;
+                    }
                 }
 
                 &__button-wrap {

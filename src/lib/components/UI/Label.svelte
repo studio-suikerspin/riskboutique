@@ -22,7 +22,7 @@
         font-weight: 600;
         color: var(--color-snow-white);
 
-        background: url('bg-gradient-donker.svg') lightgray 50% / cover no-repeat;
+        background: url('bg-gradient-donker.svg') lightgray 50% / cover top-left no-repeat;
         background-color: var(--color-aqua);
     }
 </style>
