@@ -600,6 +600,9 @@ export type OpenRoleDocument<Lang extends string = string> =
 	>
 
 type PageDocumentDataSlicesSlice =
+	| HeadlineWithCornerImagesSlice
+	| ContentImageGridSlice
+	| IntroWithMediaRowSlice
 	| ContactBlockSlice
 	| ServiceOverviewSlice
 	| HeroWithSplitVisualSlice
@@ -1220,6 +1223,31 @@ export interface ContactBlockSliceDefaultPrimaryContactMethodsItem {
 }
 
 /**
+ * Item in *ContactBlock → Default → Primary → Phone / Whatsapp*
+ */
+export interface ContactBlockSliceDefaultPrimaryPhoneWhatsappItem {
+	/**
+	 * Label field in *ContactBlock → Default → Primary → Phone / Whatsapp*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Phone/WhatsApp
+	 * - **API ID Path**: contact_block.default.primary.phone_whatsapp[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField
+
+	/**
+	 * Phone field in *ContactBlock → Default → Primary → Phone / Whatsapp*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: +31 (0)6 144 65 885
+	 * - **API ID Path**: contact_block.default.primary.phone_whatsapp[].phone
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	phone: prismic.KeyTextField
+}
+
+/**
  * Primary content in *ContactBlock → Default → Primary*
  */
 export interface ContactBlockSliceDefaultPrimary {
@@ -1263,6 +1291,18 @@ export interface ContactBlockSliceDefaultPrimary {
 	 */
 	contact_methods: prismic.GroupField<
 		Simplify<ContactBlockSliceDefaultPrimaryContactMethodsItem>
+	>
+
+	/**
+	 * Phone / Whatsapp field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.phone_whatsapp[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	phone_whatsapp: prismic.GroupField<
+		Simplify<ContactBlockSliceDefaultPrimaryPhoneWhatsappItem>
 	>
 
 	/**
@@ -1417,6 +1457,89 @@ type ContentHeroSliceVariation = ContentHeroSliceVisualRight
 export type ContentHeroSlice = prismic.SharedSlice<
 	'content_hero',
 	ContentHeroSliceVariation
+>
+
+/**
+ * Item in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+ */
+export interface ContentImageGridSliceTextImageMasonryPrimaryItemsItem {
+	/**
+	 * Item Type field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].type
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	type: prismic.SelectField<'text' | 'image'>
+
+	/**
+	 * Text Content field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	text: prismic.RichTextField
+
+	/**
+	 * Image field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *ContentImageGrid → Text + Image Masonry Grid → Primary*
+ */
+export interface ContentImageGridSliceTextImageMasonryPrimary {
+	/**
+	 * Grid Items field in *ContentImageGrid → Text + Image Masonry Grid → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<
+		Simplify<ContentImageGridSliceTextImageMasonryPrimaryItemsItem>
+	>
+}
+
+/**
+ * Text + Image Masonry Grid variation for ContentImageGrid Slice
+ *
+ * - **API ID**: `text_image_masonry`
+ * - **Description**: Displays multiple text and image items in a dense, pseudo-masonry grid. Each item can be an image or a text block, allowing flexible content arrangements.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentImageGridSliceTextImageMasonry =
+	prismic.SharedSliceVariation<
+		'text_image_masonry',
+		Simplify<ContentImageGridSliceTextImageMasonryPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *ContentImageGrid*
+ */
+type ContentImageGridSliceVariation = ContentImageGridSliceTextImageMasonry
+
+/**
+ * ContentImageGrid Shared Slice
+ *
+ * - **API ID**: `content_image_grid`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentImageGridSlice = prismic.SharedSlice<
+	'content_image_grid',
+	ContentImageGridSliceVariation
 >
 
 /**
@@ -1782,6 +1905,89 @@ type FeatureIntroDoubleColumnSliceVariation =
 export type FeatureIntroDoubleColumnSlice = prismic.SharedSlice<
 	'feature_intro_double_column',
 	FeatureIntroDoubleColumnSliceVariation
+>
+
+/**
+ * Item in *HeadlineWithImageTrail → Default → Primary → Images*
+ */
+export interface HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem {
+	/**
+	 * Image field in *HeadlineWithImageTrail → Default → Primary → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.images[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *HeadlineWithImageTrail → Default → Primary*
+ */
+export interface HeadlineWithCornerImagesSliceDefaultPrimary {
+	/**
+	 * Headline field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Subheadline field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.subheadline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subheadline: prismic.KeyTextField
+
+	/**
+	 * Images field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.images[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	images: prismic.GroupField<
+		Simplify<HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem>
+	>
+}
+
+/**
+ * Default variation for HeadlineWithImageTrail Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Headline and subheadline centered with groups of decorative images in multiple corners.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeadlineWithCornerImagesSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeadlineWithCornerImagesSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *HeadlineWithImageTrail*
+ */
+type HeadlineWithCornerImagesSliceVariation =
+	HeadlineWithCornerImagesSliceDefault
+
+/**
+ * HeadlineWithImageTrail Shared Slice
+ *
+ * - **API ID**: `headline_with_corner_images`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeadlineWithCornerImagesSlice = prismic.SharedSlice<
+	'headline_with_corner_images',
+	HeadlineWithCornerImagesSliceVariation
 >
 
 /**
@@ -2368,6 +2574,99 @@ type IndependentDesignSliceVariation = IndependentDesignSliceDefault
 export type IndependentDesignSlice = prismic.SharedSlice<
 	'independent_design',
 	IndependentDesignSliceVariation
+>
+
+/**
+ * Item in *HeroWithOverflowingMedia → default → Primary → Media*
+ */
+export interface IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem {
+	/**
+	 * Image field in *HeroWithOverflowingMedia → default → Primary → Media*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.media[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Video field in *HeroWithOverflowingMedia → default → Primary → Media*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.media[].video
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video: prismic.LinkToMediaField<prismic.FieldState, never>
+}
+
+/**
+ * Primary content in *HeroWithOverflowingMedia → default → Primary*
+ */
+export interface IntroWithMediaRowSliceTextWithImageRowPrimary {
+	/**
+	 * Label field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField
+
+	/**
+	 * Headline field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	headline: prismic.RichTextField
+
+	/**
+	 * Media field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.media[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	media: prismic.GroupField<
+		Simplify<IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem>
+	>
+}
+
+/**
+ * default variation for HeroWithOverflowingMedia Slice
+ *
+ * - **API ID**: `text_with_image_row`
+ * - **Description**: Displays an introductory text block with optional label and a horizontal row of images below.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IntroWithMediaRowSliceTextWithImageRow =
+	prismic.SharedSliceVariation<
+		'text_with_image_row',
+		Simplify<IntroWithMediaRowSliceTextWithImageRowPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *HeroWithOverflowingMedia*
+ */
+type IntroWithMediaRowSliceVariation = IntroWithMediaRowSliceTextWithImageRow
+
+/**
+ * HeroWithOverflowingMedia Shared Slice
+ *
+ * - **API ID**: `intro_with_media_row`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IntroWithMediaRowSlice = prismic.SharedSlice<
+	'intro_with_media_row',
+	IntroWithMediaRowSliceVariation
 >
 
 /**
@@ -2980,6 +3279,7 @@ declare module '@prismicio/client' {
 			ComingSoonSliceDefault,
 			ContactBlockSlice,
 			ContactBlockSliceDefaultPrimaryContactMethodsItem,
+			ContactBlockSliceDefaultPrimaryPhoneWhatsappItem,
 			ContactBlockSliceDefaultPrimary,
 			ContactBlockSliceVariation,
 			ContactBlockSliceDefault,
@@ -2987,6 +3287,11 @@ declare module '@prismicio/client' {
 			ContentHeroSliceVisualRightPrimary,
 			ContentHeroSliceVariation,
 			ContentHeroSliceVisualRight,
+			ContentImageGridSlice,
+			ContentImageGridSliceTextImageMasonryPrimaryItemsItem,
+			ContentImageGridSliceTextImageMasonryPrimary,
+			ContentImageGridSliceVariation,
+			ContentImageGridSliceTextImageMasonry,
 			CtaProfileContactSlice,
 			CtaProfileContactSliceDefaultPrimary,
 			CtaProfileContactSliceVariation,
@@ -3005,6 +3310,11 @@ declare module '@prismicio/client' {
 			FeatureIntroDoubleColumnSliceDefaultPrimary,
 			FeatureIntroDoubleColumnSliceVariation,
 			FeatureIntroDoubleColumnSliceDefault,
+			HeadlineWithCornerImagesSlice,
+			HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem,
+			HeadlineWithCornerImagesSliceDefaultPrimary,
+			HeadlineWithCornerImagesSliceVariation,
+			HeadlineWithCornerImagesSliceDefault,
 			HeroStatementSlice,
 			HeroStatementSliceDefaultPrimaryTagsItem,
 			HeroStatementSliceDefaultPrimaryAddressLinesItem,
@@ -3038,6 +3348,11 @@ declare module '@prismicio/client' {
 			IndependentDesignSliceDefaultPrimary,
 			IndependentDesignSliceVariation,
 			IndependentDesignSliceDefault,
+			IntroWithMediaRowSlice,
+			IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem,
+			IntroWithMediaRowSliceTextWithImageRowPrimary,
+			IntroWithMediaRowSliceVariation,
+			IntroWithMediaRowSliceTextWithImageRow,
 			MarqueeTextSlice,
 			MarqueeTextSliceDefaultPrimaryItemsItem,
 			MarqueeTextSliceDefaultPrimary,

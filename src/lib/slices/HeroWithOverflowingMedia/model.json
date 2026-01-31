@@ -1,0 +1,55 @@
+{
+  "type": "SharedSlice",
+  "id": "intro_with_media_row",
+  "name": "HeroWithOverflowingMedia",
+  "variations": [
+    {
+      "id": "text_with_image_row",
+      "name": "default",
+      "description": "Displays an introductory text block with optional label and a horizontal row of images below.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label"
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "heading2",
+            "label": "Headline"
+          }
+        },
+        "media": {
+          "type": "Group",
+          "config": {
+            "label": "Media",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image"
+                }
+              },
+              "video": {
+                "type": "Link",
+                "config": {
+                  "label": "Video",
+                  "placeholder": "",
+                  "select": "media",
+                  "allowText": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

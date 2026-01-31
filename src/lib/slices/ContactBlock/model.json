@@ -53,6 +53,29 @@
             }
           }
         },
+        "phone_whatsapp": {
+          "type": "Group",
+          "config": {
+            "label": "Phone / Whatsapp",
+            "repeat": false,
+            "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": "Phone/WhatsApp"
+                }
+              },
+              "phone": {
+                "type": "Text",
+                "config": {
+                  "label": "Phone",
+                  "placeholder": "+31 (0)6 144 65 885 "
+                }
+              }
+            }
+          }
+        },
         "form_heading": {
           "type": "Text",
           "config": {

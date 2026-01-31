@@ -1,0 +1,45 @@
+{
+	"type": "SharedSlice",
+	"id": "content_image_grid",
+	"name": "ContentImageGrid",
+	"variations": [
+		{
+			"id": "text_image_masonry",
+			"name": "Text + Image Masonry Grid",
+			"description": "Displays multiple text and image items in a dense, pseudo-masonry grid. Each item can be an image or a text block, allowing flexible content arrangements.",
+			"version": "initial",
+			"imageUrl": "",
+			"docURL": "...",
+			"primary": {
+				"items": {
+					"type": "Group",
+					"config": {
+						"label": "Grid Items",
+						"fields": {
+							"type": {
+								"type": "Select",
+								"config": {
+									"label": "Item Type",
+									"options": ["text", "image"]
+								}
+							},
+							"text": {
+								"type": "StructuredText",
+								"config": {
+									"multi": "paragraph,strong,em,hyperlink",
+									"label": "Text Content"
+								}
+							},
+							"image": {
+								"type": "Image",
+								"config": {
+									"label": "Image"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	]
+}
