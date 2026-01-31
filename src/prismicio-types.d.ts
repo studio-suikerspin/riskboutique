@@ -2583,16 +2583,6 @@ export interface IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	image: prismic.ImageField<never>
-
-	/**
-	 * Video field in *HeroWithOverflowingMedia → default → Primary → Media*
-	 *
-	 * - **Field Type**: Link to Media
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.media[].video
-	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
-	 */
-	video: prismic.LinkToMediaField<prismic.FieldState, never>
 }
 
 /**

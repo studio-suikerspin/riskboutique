@@ -1,8 +1,8 @@
 <script>
-    let { children } = $props();
+    let { children, variant = 'primary' } = $props();
 </script>
 
-<div class="label">
+<div class="label label--{variant}">
     {@render children()}
 </div>
 
@@ -20,9 +20,19 @@
 
         font-size: 1.125rem;
         font-weight: 600;
-        color: var(--color-snow-white);
 
-        background: url('bg-gradient-donker.svg') lightgray 50% / cover top-left no-repeat;
-        background-color: var(--color-aqua);
+        &--primary {
+            color: var(--color-snow-white);
+
+            background: url('bg-gradient-donker.svg') lightgray 50% / cover top-left no-repeat;
+            background-color: var(--color-aqua);
+
+        }
+
+        &--white {
+            background: unset;
+            background-color: var(--color-snow-white);
+            color :var(--color-aqua);
+        }
     }
 </style>
