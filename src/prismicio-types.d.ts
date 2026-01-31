@@ -284,7 +284,9 @@ interface FooterDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	social_icons: prismic.GroupField<Simplify<FooterDocumentDataSocialIconsItem>>
+	social_icons: prismic.GroupField<
+		Simplify<FooterDocumentDataSocialIconsItem>
+	>
 
 	/**
 	 * CTA Link field in *Footer*
@@ -955,7 +957,13 @@ export interface AssuranceWithImagesSliceDefaultPrimary {
 	 * - **API ID Path**: assurance_with_images.default.primary.ctaLink
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
-	ctaLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+	ctaLink: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
 
 	/**
 	 * Images field in *FloatingImages → Default → Primary*
@@ -1152,7 +1160,9 @@ export interface ComingSoonSliceDefaultPrimary {
 	 * - **API ID Path**: coming_soon.default.primary.images[]
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	images: prismic.GroupField<Simplify<ComingSoonSliceDefaultPrimaryImagesItem>>
+	images: prismic.GroupField<
+		Simplify<ComingSoonSliceDefaultPrimaryImagesItem>
+	>
 
 	/**
 	 * Bottom texts field in *ComingSoon → Default → Primary*
@@ -1648,7 +1658,7 @@ export interface FeatureGridSliceDefaultPrimaryFeaturesItem {
 	description: prismic.RichTextField
 
 	/**
-	 * Icon field in *FeatureGrid → Default → Primary → Features*
+	 * icon field in *FeatureGrid → Default → Primary → Features*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -1656,7 +1666,10 @@ export interface FeatureGridSliceDefaultPrimaryFeaturesItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	icon: prismic.SelectField<
-		'StackingSquares' | 'UnionShape' | 'StackingCircles' | 'StackingOpenSquares'
+		| 'StackingSquares'
+		| 'UnionShape'
+		| 'StackingCircles'
+		| 'StackingOpenSquares'
 	>
 }
 

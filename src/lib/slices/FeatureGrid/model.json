@@ -33,7 +33,7 @@
               "icon": {
                 "type": "Select",
                 "config": {
-                  "label": "Icon",
+                  "label": "icon",
                   "placeholder": "",
                   "options": [
                     "StackingSquares",
