@@ -11,12 +11,14 @@
 			/>
 		</div>
 		<div class="contact-info">
-			<div class="contact-info__name">Robert</div>
-			<div class="contact-info__role">Partner</div>
+			<div class="contact-info__name">Robert Dreyer</div>
+			<div class="contact-info__role"> MSc RO</div>
+			<a href="https://www.linkedin.com" target="_blank"><i class="icon-linkedin"></i></a>
 		</div>
 	</div>
 
 	<div class="contact-details">
+		<div class="title">Vragen?</div>
 		<a href="mailto:info@riskboutique.nl">info@riskboutique.nl</a>
 		<a href="tel:+31612345678">+31 6 123 456 78</a>
 	</div>
@@ -33,14 +35,14 @@
 
 		&__person {
 			display: flex;
-			align-items: center;
+			align-items: start;
 			gap: 0.5rem;
 			line-height: 1;
 
 			.avatar-wrap {
-				width: 2rem;
-				height: 2rem;
-				border-radius: 50%;
+				width: 3rem;
+				height: 3rem;
+				border-radius: 0.5rem;
 				overflow: hidden;
 			}
 
@@ -63,6 +65,10 @@
 
 			a {
 				text-decoration: underline;
+			}
+
+			.title{
+				font-weight: 600;
 			}
 		}
 	}

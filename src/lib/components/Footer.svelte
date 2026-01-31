@@ -25,11 +25,25 @@
 </script>
 
 <footer class="footer">
-	<div class="footer__container">
+	<div class="footer__container container">
 		<div class="footer__inner">
 			<div class="footer__top">
 				<div class="logo-wrap">
 					<PrismicImage field={footer.logo} />
+					<div class=company__wrap>
+						<div class="kvk">
+							<span class="first">Risk Boutique B.V.</span>
+							<span>KvK: 98321307</span>
+						</div>
+						<div class="kvk">
+							<span class="first">Risk Boutique Interim Solutions B.V.</span>
+							<span>KvK: 98322265</span>
+						</div>
+						<div class="adress">
+							<span>Keizersgracht 241</span>
+							<span>1016 EA, Amsterdam</span>
+						</div>
+					</div>
 				</div>
 
 				<ul class="socials">
@@ -45,7 +59,7 @@
 						</li>
 					{/each}
 					<li class="socials__item">
-							<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="">
+							<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="" aria-label="mail">
 								<i class="icon-mail"></i>
 							</a>
 						</li>
@@ -125,7 +139,7 @@
 				</div>
 			</div>
 
-			<div class="footer__cta">
+			<!-- <div class="footer__cta">
 				<PrismicLink
 					field={footer.cta_link}
 					class="footer__cta-link"
@@ -133,7 +147,7 @@
 					<span class="footer__cta-text">{footer.cta_link.text}</span>
 					<i class="footer__cta-icon icon-arrow-right"></i>
 				</PrismicLink>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </footer>
@@ -149,13 +163,13 @@
 		);
 
 		@media (min-width: 768px) {
-			padding-block: 6.25rem 1.25rem;
+			padding-block: 6.25rem;
 		}
 
-		&__container {
-			max-width: 2000px;
-			padding-inline: 1.25rem;
-		}
+		// &__container {
+		// 	max-width: 2000px;
+		// 	padding-inline: 1.25rem;
+		// }
 
 		&__inner {
 			display: flex;
@@ -170,17 +184,42 @@
 		&__top {
 			display: flex;
 			flex-direction: column;
-			align-items: center;
+			align-items: start;
 			gap: 1.5rem;
 
 			@media (min-width: 768px) {
 				flex-direction: row;
 				justify-content: space-between;
+				align-items: end;
 			}
 		}
 
 		.logo-wrap {
 			max-width: 280px;
+		}
+
+		.company__wrap{
+			margin-top: 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			.kvk{
+				display: flex;
+				flex-direction: column;
+				font-size: 0.875rem;
+				color: var(--color-dark-mode);
+
+				.first{
+					font-weight: 600;
+				}
+			}
+			.adress{
+				display: flex;
+				flex-direction: column;
+				font-size: 0.875rem;
+				color: var(--color-dark-mode);
+			}
 		}
 
 		.socials {
@@ -220,6 +259,7 @@
 					padding-left: 0;
 					display: flex;
 					position: static;
+
 				}
 
 				.accordion-css__item-top {
@@ -292,14 +332,17 @@
 			display: none;
 
 			@media (min-width: 1024px) {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				grid-gap: 2.5rem;
+				// display: grid;
+				// grid-template-columns: repeat(3, 1fr);
+				// grid-gap: 2.5rem;
+				display: flex;
+				gap: 2.5rem;
+				justify-content: space-between;
 			}
 
-			@media (min-width: 1200px) {
-				grid-template-columns: repeat(5, 1fr);
-			}
+			// @media (min-width: 1200px) {
+			// 	grid-template-columns: repeat(5, 1fr);
+			// }
 		}
 
 		&__grid-item {
@@ -309,7 +352,7 @@
 		}
 
 		&__grid-item-title {
-			font-size: 1.125em;
+			font-size: 1.125rem;
 			font-weight: 600;
 		}
 
@@ -317,6 +360,10 @@
 			display: flex;
 			flex-flow: column;
 			gap: 1rem;
+
+			:global li a{
+				font-size: 1rem;
+			}
 		}
 
 		&__cta{

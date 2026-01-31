@@ -20,12 +20,12 @@
 
 <section class="hero">
 	<div class="hero__inner">
-		<h1 class="h1">Open roles</h1>
+		<h1 class="h2">Open roles</h1>
 	</div>
 </section>
 
 <section class="roles block-padding-bottom">
-	<div class="container mx-auto">
+	<div class="container small">
 		<ul class="roles__list">
 			{#each openRoles as openRole, index (index)}
 				<li class="role">
@@ -40,7 +40,7 @@
 						</a>
 					</div>
 
-					<div class="role__summary subtitle">
+					<div class="role__summary">
 						{openRole.data.summary}
 					</div>
 

@@ -19,7 +19,9 @@
 		"@prismicio/svelte": "^2.0.0",
 		"@tailwindcss/vite": "^4.1.17",
 		"gsap": "^3.14.1",
+		"resend": "^6.9.1",
 		"sass-embedded": "^1.93.3",
+		"svelte-sonner": "^1.0.7",
 		"swiper": "^12.0.3",
 		"tailwindcss": "^4.1.17"
 	},

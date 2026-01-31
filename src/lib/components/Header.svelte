@@ -9,34 +9,36 @@
 </script>
 
 <header class="main-header">
-	<div class="main-header__inner">
-		<a href={resolve('/')}>
-			<PrismicImage
-				field={header.data.logo_light}
-				class={['main-header__logo', 'main-header__logo--light']}
-			/>
-			<PrismicImage
-				field={header.data.logo_dark}
-				class={['main-header__logo', 'main-header__logo--dark']}
-			/>
-		</a>
-		<nav class="main-header__nav">
-			<button
-				class="btn btn--dark btn--menu"
-				data-sidenav-toggle
-			>
-				<i class="btn__icon icon-menu"></i>
-				Menu
-			</button>
+	<div class="container">
+		<div class="main-header__inner">
+			<a href={resolve('/')}>
+				<PrismicImage
+					field={header.data.logo_light}
+					class={['main-header__logo', 'main-header__logo--light']}
+				/>
+				<PrismicImage
+					field={header.data.logo_dark}
+					class={['main-header__logo', 'main-header__logo--dark']}
+				/>
+			</a>
+			<nav class="main-header__nav">
+				<button
+					class="btn btn--dark btn--menu"
+					data-sidenav-toggle
+				>
+					<i class="btn__icon icon-menu"></i>
+					Menu
+				</button>
 
-			<Button
-				variant="link"
-				icon="icon-arrow-right"
-				className="main-header__cta"
-				text={site_settings.data.contact_link.text}
-				field={site_settings.data.contact_link}
-			></Button>
-		</nav>
+				<Button
+					variant="link"
+					icon="icon-arrow-right"
+					className="main-header__cta"
+					text={site_settings.data.contact_link.text}
+					field={site_settings.data.contact_link}
+				></Button>
+			</nav>
+		</div>
 	</div>
 </header>
 
@@ -58,7 +60,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding-inline: 1.25rem;
+			// padding-inline: 1.25rem;
 		}
 
 		:global &__logo {
