@@ -1,13 +1,11 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
-	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
 	import type { Content } from '@prismicio/client'
 	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.ContentHeroSlice>
 
 	const { slice }: Props = $props()
-	console.log(slice.primary)
 </script>
 
 <section
