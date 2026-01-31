@@ -1220,6 +1220,31 @@ export interface ContactBlockSliceDefaultPrimaryContactMethodsItem {
 }
 
 /**
+ * Item in *ContactBlock → Default → Primary → Phone / Whatsapp*
+ */
+export interface ContactBlockSliceDefaultPrimaryPhoneWhatsappItem {
+	/**
+	 * Label field in *ContactBlock → Default → Primary → Phone / Whatsapp*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Phone/WhatsApp
+	 * - **API ID Path**: contact_block.default.primary.phone_whatsapp[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField
+
+	/**
+	 * Phone field in *ContactBlock → Default → Primary → Phone / Whatsapp*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: +31 (0)6 144 65 885
+	 * - **API ID Path**: contact_block.default.primary.phone_whatsapp[].phone
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	phone: prismic.KeyTextField
+}
+
+/**
  * Primary content in *ContactBlock → Default → Primary*
  */
 export interface ContactBlockSliceDefaultPrimary {
@@ -1263,6 +1288,18 @@ export interface ContactBlockSliceDefaultPrimary {
 	 */
 	contact_methods: prismic.GroupField<
 		Simplify<ContactBlockSliceDefaultPrimaryContactMethodsItem>
+	>
+
+	/**
+	 * Phone / Whatsapp field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.phone_whatsapp[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	phone_whatsapp: prismic.GroupField<
+		Simplify<ContactBlockSliceDefaultPrimaryPhoneWhatsappItem>
 	>
 
 	/**
@@ -2974,6 +3011,7 @@ declare module '@prismicio/client' {
 			ComingSoonSliceDefault,
 			ContactBlockSlice,
 			ContactBlockSliceDefaultPrimaryContactMethodsItem,
+			ContactBlockSliceDefaultPrimaryPhoneWhatsappItem,
 			ContactBlockSliceDefaultPrimary,
 			ContactBlockSliceVariation,
 			ContactBlockSliceDefault,
