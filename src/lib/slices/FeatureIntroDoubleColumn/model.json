@@ -34,7 +34,8 @@
               "roundVerticalLines",
               "roundWorldShape",
               "TriangleShape",
-              "squareShape"
+              "squareShape",
+              "WorldShapeBlue"
             ]
           }
         },

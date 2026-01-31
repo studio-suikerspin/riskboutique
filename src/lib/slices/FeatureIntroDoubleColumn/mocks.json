@@ -37,7 +37,7 @@
 			},
 			"shape": {
 				"__TYPE__": "FieldContent",
-				"value": "TriangleShape",
+				"value": "WorldShapeBlue",
 				"type": "Select"
 			}
 		},
