@@ -5,7 +5,6 @@
 	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
 	import { onMount } from 'svelte'
-	import { gsap, ScrollTrigger } from '$lib/gsap'
 
 	let { site_settings, header, socials } = page.data
 
@@ -15,9 +14,9 @@
 		const toggle = document.querySelector('.floating-menu-toggle');
 
 		if (scrollY > 400) {
-			toggle.classList.add('floating-menu-toggle--scrolled');
+			toggle?.classList.add('floating-menu-toggle--scrolled');
 		} else {
-			toggle.classList.remove('floating-menu-toggle--scrolled');
+			toggle?.classList.remove('floating-menu-toggle--scrolled');
 		}
 	});
 	})
