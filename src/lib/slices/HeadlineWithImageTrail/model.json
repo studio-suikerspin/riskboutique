@@ -1,0 +1,49 @@
+{
+  "type": "SharedSlice",
+  "id": "headline_with_corner_images",
+  "name": "HeadlineWithImageTrail",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Headline and subheadline centered with groups of decorative images in multiple corners.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "subheadline": {
+          "type": "Text",
+          "config": {
+            "label": "Subheadline",
+            "placeholder": ""
+          }
+        },
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

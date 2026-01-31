@@ -5,10 +5,12 @@ import StickyTitleSection from './StickyTitleSection/index.svelte'
 import ComingSoon from './ComingSoon/index.svelte'
 import ContactBlock from './ContactBlock/index.svelte'
 import CareersHero from './CareersHero/index.svelte'
+import ContentImageGrid from './ContentImageGrid/index.svelte'
 import CtaProfileContact from './CtaProfileContact/index.svelte'
 import FeatureGrid from './FeatureGrid/index.svelte'
 import FeatureGrid2 from './FeatureGrid2/index.svelte'
 import FeatureIntroDoubleColumn from './FeatureIntroDoubleColumn/index.svelte'
+import HeadlineWithImageTrail from './HeadlineWithImageTrail/index.svelte'
 import HeroHomepage from './HeroHomepage/index.svelte'
 import HeroWithBackground from './HeroWithBackground/index.svelte'
 import HeroWithSplitVisual from './HeroWithSplitVisual/index.svelte'
@@ -16,6 +18,7 @@ import RevealTypeBlock from './RevealTypeBlock/index.svelte'
 import ImageTextColumns from './ImageTextColumns/index.svelte'
 import ImageTextBlock from './ImageTextBlock/index.svelte'
 import StickyFeatures from './StickyFeatures/index.svelte'
+import HeroWithOverflowingMedia from './HeroWithOverflowingMedia/index.svelte'
 import MarqueeText from './MarqueeText/index.svelte'
 import FeatureCards from './FeatureCards/index.svelte'
 import ServiceOverview from './ServiceOverview/index.svelte'
@@ -28,10 +31,12 @@ export const components = {
 	coming_soon: ComingSoon,
 	contact_block: ContactBlock,
 	content_hero: CareersHero,
+	content_image_grid: ContentImageGrid,
 	cta_profile_contact: CtaProfileContact,
 	feature_grid: FeatureGrid,
 	feature_grid_2: FeatureGrid2,
 	feature_intro_double_column: FeatureIntroDoubleColumn,
+	headline_with_corner_images: HeadlineWithImageTrail,
 	hero_statement: HeroHomepage,
 	hero_with_background: HeroWithBackground,
 	hero_with_split_visual: HeroWithSplitVisual,
@@ -39,6 +44,7 @@ export const components = {
 	image_text_columns: ImageTextColumns,
 	image_text_columns_2: ImageTextBlock,
 	independent_design: StickyFeatures,
+	intro_with_media_row: HeroWithOverflowingMedia,
 	marquee_text: MarqueeText,
 	pillars: FeatureCards,
 	service_overview: ServiceOverview,
