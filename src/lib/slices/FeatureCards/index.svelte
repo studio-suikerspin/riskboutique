@@ -80,38 +80,40 @@
 	data-slice-variation={slice.variation}
 	class="feature-cards block-padding"
 >
-	<div class="feature-cards__inner">
-		<div class="feature-cards__headline h1">
-			<PrismicRichText field={slice.primary.heading} />
-		</div>
+	<div class="container">
+		<div class="feature-cards__inner">
+			<div class="feature-cards__headline h1">
+				<PrismicRichText field={slice.primary.heading} />
+			</div>
 
-		<div class="swiper-container">
-			<div class="swiper feature-cards__swiper">
-				<!-- Additional required wrapper -->
-				<div class="swiper-wrapper">
-					{#each slice.primary.pillars as item, index}
-						<div class="swiper-slide">
-							<div class="slide-content">
-								<FeatureCard
-									title={item.title}
-									description={item.description}
-									background={item.background_color}
-									text_color={item.text_color}
-									number={item.index}
-									shape={item.shape}
-								/>
+			<div class="swiper-container">
+				<div class="swiper feature-cards__swiper">
+					<!-- Additional required wrapper -->
+					<div class="swiper-wrapper">
+						{#each slice.primary.pillars as item, index}
+							<div class="swiper-slide">
+								<div class="slide-content">
+									<FeatureCard
+										title={item.title}
+										description={item.description}
+										background={item.background_color}
+										text_color={item.text_color}
+										number={item.index}
+										shape={item.shape}
+									/>
+								</div>
 							</div>
-						</div>
-					{/each}
-				</div>
+						{/each}
+					</div>
 
-				<!-- Custom navigation buttons -->
-				<button class="custom-prev navigation-button" aria-label="Previous">
-					<i class="icon-chevron prev-icon"></i>
-				</button>
-				<button class="custom-next navigation-button" aria-label="Next">
-					<i class="icon-chevron next-icon"></i>
-				</button>
+					<!-- Custom navigation buttons -->
+					<button class="custom-prev navigation-button" aria-label="Previous">
+						<i class="icon-chevron prev-icon"></i>
+					</button>
+					<button class="custom-next navigation-button" aria-label="Next">
+						<i class="icon-chevron next-icon"></i>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -119,11 +121,6 @@
 
 <style lang="scss">
 	.feature-cards {
-		padding-inline: 12px;
-
-		@media (min-width: 768px) {
-			padding-inline: 20px;
-		}
 
 		&__inner {
 			display: flex;
@@ -145,12 +142,12 @@
 	}
 
 	.swiper-slide {
-		height: 700px;
+		height: 43.75rem;
 	}
 
 	@media (min-width: 768px) {
 		.swiper-slide {
-			height: 800px;
+			height: 50rem;
 		}
 	}
 
@@ -175,8 +172,8 @@
 		top: 50%;
 		transform: translateY(-50%);
 		z-index: 10;
-		width: 44px;
-		height: 44px;
+		width: 2.75em;
+		height: 2.75em;
 		background-color: var(--color-snow-white);
 		border: none;
 		border-radius: 50%;
@@ -189,7 +186,7 @@
 		display: flex;
 
 		i {
-			font-size: 20px;
+			font-size: 1.25em;
 			color: var(--color-dark-mode);
 			transition: color 0.3s ease;
 		}
@@ -208,11 +205,11 @@
 		}
 
 		&.custom-prev {
-			left: 10px;
+			left: 0.625rem;
 		}
 
 		&.custom-next {
-			right: 10px;
+			right: 0.625rem;
 		}
 	}
 </style>

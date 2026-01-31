@@ -1,26 +1,27 @@
 <script>
   import { PrismicLink } from '@prismicio/svelte'
 
+
   // Props for dynamic button behavior
-  export let field = null // Prismic link field
-  export let text = 'Button' // Button text
-  export let icon = null // Icon class name
-  export let variant = 'dark' // donker of lichte variant
-  export let disabled = false // Disabled state
-  export let href = null // Direct href link (alternative to Prismic field)
-  export let type = 'button' // Button type for form buttons
-  export let onClick = null // Click handler function
-  export let className = '' // Additional CSS classes
-
-
+  let {
+    field = null, // Prismic link field
+    text = 'Button', // Button text
+    icon = null, // Icon class name
+    variant = 'dark', // donker of lichte variant
+    disabled = false, // Disabled state
+    href = null, // Direct href link (alternative to Prismic field)
+    type = 'button', // Button type for form buttons
+    onClick = null, // Click handler function
+    className = '' // Additional CSS classes
+  } = $props()
 
   // Compute button classes
-  $: buttonClasses = [
+  const buttonClasses = $derived([
     'btn',
     `btn--${variant}`,
     disabled && 'btn--disabled',
     className
-  ].filter(Boolean).join(' ')
+  ].filter(Boolean).join(' '))
 
   // Handle click events
   function handleClick(event) {
@@ -93,6 +94,8 @@
 	border-radius: 0.5rem;
 	border: 0.03125rem solid var(--color-snow-white);
 
+  font-size: 1rem;
+
 	font-weight: 500;
 
 	/* Button variants */
@@ -108,25 +111,28 @@
 		border-color: var(--color-snow-white);
 	}
 
-	/* Children */
-	.btn__text {
-		text-wrap: nowrap;
-	}
-
-	.btn__icon {
-		font-size: 1rem;
-		transition: transform 0.3s ease-in-out;
-
-		&.icon-arrow-right {
-			rotate: -45deg;
-		}
-	}
+	
 
 	/* Hover effects - gebruik :global() voor PrismicLink compatibility */
 	&:hover:not(.btn--disabled) .btn__icon--rotate,
 	:global(&:hover:not(.btn--disabled)) .btn__icon--rotate {
 		transform: translateX(5px);
 	}
+}
+
+/* Children */
+.btn__text {
+  text-wrap: nowrap;
+  font-size: 1rem;
+}
+
+.btn__icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease-in-out;
+
+  &.icon-arrow-right {
+    rotate: -45deg;
+  }
 }
 
 /* Extra fallback voor PrismicLink */

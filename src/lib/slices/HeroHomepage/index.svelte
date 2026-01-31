@@ -43,7 +43,7 @@
 		</div>
 
 		<div class="hero-section__bottom">
-			<div class="bottom-texts">				
+			<!-- <div class="bottom-texts">				
 				<div class="bottom-texts__text">
 					{#each slice.primary.address_lines as item}
 						<div class="bottom-texts__text">{item.line}</div>
@@ -52,7 +52,7 @@
 				<div class="scroll_for_more general-content small">
 					{slice.primary.scrollHint}
 				</div>
-			</div>
+			</div> -->
 
 			<div class="bottom-images">
 				<ScrollDirectionSlider images={slice.primary.gallery} />

@@ -18,25 +18,27 @@
 
 <section class="hero">
 	<div class="hero__inner">
-		<h1 class="hero__title h2">{role.data.title}</h1>
+		<h2 class="hero__title h2">{role.data.title}</h2>
 	</div>
 </section>
 
-<section class="role block-padding">
-	<div class="container mx-auto">
+<section class="role block-padding-bottom">
+	<div class="container small">
 		<div class="role__inner">
-			<div class="role__content">
+			<div class="role__content rich-text-content">
 				<PrismicRichText field={role.data.content} />
 			</div>
 
-			<AvatarWithContactInfo />
-			<a
-				href="mailto:info@riskboutique.nl"
-				title="Apply now"
-				class="btn btn--dark"
-			>
-				<i class="icon-mail"></i> Apply now
-			</a>
+			<div class="role__cta">
+				<AvatarWithContactInfo />
+				<a
+					href="mailto:careers@riskboutique.nl"
+					title="Apply now"
+					class="btn btn--dark"
+				>
+					<i class="icon-mail"></i> Apply now
+				</a>
+			</div>
 		</div>
 	</div>
 </section>
@@ -55,6 +57,12 @@
 			justify-content: center;
 
 			color: var(--color-snow-white);
+
+			h2{
+				max-width: 875px;
+				text-align: center;
+				line-height: 100%;
+			}
 		}
 
 		&__title {
@@ -67,9 +75,26 @@
 			display: flex;
 			flex-flow: column;
 			gap: 1rem;
+			padding-top: 2.5rem;
 
-			padding-inline: 1.5rem;
+			// padding-inline: 1.5rem;
+
+			@media(min-width: 768px){
+				padding-top: 6.25rem;
+
+			}
 		}
+
+		&__cta{
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				width: fit-content;
+
+				:global .btn{
+					width: 100%;
+				}
+			}
 
 		&__content {
 			@media (min-width: 1024px) {
