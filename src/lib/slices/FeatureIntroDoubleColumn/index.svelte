@@ -101,14 +101,19 @@
 			align-items: center;
 			justify-content: start;
 
-			:global svg{
-				width: 250px;
+			:global svg,
+			:global .world-shape{
+				width: 15.625rem;
+				height: 15.625rem;
 			}
 
 			@media(min-width: 768px){
-				:global svg{
+				:global svg,
+				:global .world-shape{
 					width: 100%;
 					height: auto;
+					max-height: 25rem;
+					max-width: 25rem;
 				}
 			}
 		}
