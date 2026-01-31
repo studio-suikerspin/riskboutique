@@ -139,6 +139,11 @@
 	})
 
 	onNavigate(() => {
+	    const nav = document.querySelector('[data-nav-state]');
+		const { navState } = nav.dataset;
+
+	    if (navState === 'closed') return;
+
 		const openSubmenus = document.querySelectorAll('[data-submenu-state="open"]')
 		openSubmenus.forEach(submenu => {
 		    const label = submenu.getAttribute('data-submenu')
