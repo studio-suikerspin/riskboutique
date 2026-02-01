@@ -2846,11 +2846,14 @@ export interface PillarsSliceSliderPrimaryCardsItem {
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
-	 * - **Default Value**: Cylinder
+	 * - **Default Value**: TriangleShape
 	 * - **API ID Path**: pillars.slider.primary.cards[].shape
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	shape: prismic.SelectField<'Cylinder' | 'Sphere' | 'Pyramid', 'filled'>
+	shape: prismic.SelectField<
+		'TriangleShape' | 'roundWorldShape' | 'roundVerticalLines',
+		'filled'
+	>
 
 	/**
 	 * Background color field in *FeatureCards → Slider → Primary → Cards*

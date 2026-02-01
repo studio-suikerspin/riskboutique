@@ -128,7 +128,7 @@
 								"shape",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "Cylinder",
+									"value": "TriangleShape",
 									"type": "Select"
 								}
 							],

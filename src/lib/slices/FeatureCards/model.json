@@ -130,11 +130,11 @@
                   "label": "Shape",
                   "placeholder": "",
                   "options": [
-                    "Cylinder",
-                    "Sphere",
-                    "Pyramid"
+                    "TriangleShape",
+                    "roundWorldShape",
+                    "roundVerticalLines"
                   ],
-                  "default_value": "Cylinder"
+                  "default_value": "TriangleShape"
                 }
               },
               "bg_color": {
