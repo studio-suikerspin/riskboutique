@@ -1,38 +1,73 @@
 {
-	"type": "SharedSlice",
-	"id": "image_text_columns_2",
-	"name": "ImageTextBlock",
-	"variations": [
-		{
-			"id": "image_left_text_right",
-			"name": "ImageTextBlock",
-			"description": "Displays an image on the left side and title/description rich text content on the right. Ideal for informative or narrative sections paired with a visual.",
-			"version": "initial",
-			"imageUrl": "",
-			"docURL": "...",
-			"primary": {
-				"media": {
-					"type": "Image",
-					"config": {
-						"label": "Image"
-					}
-				},
-				"headline": {
-					"type": "Text",
-					"config": {
-						"label": "Headline",
-						"placeholder": ""
-					}
-				},
-				"description": {
-					"type": "StructuredText",
-					"config": {
-						"multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
-						"label": "Description"
-					}
-				}
-			},
-			"items": {}
-		}
-	]
+  "type": "SharedSlice",
+  "id": "image_text_columns_2",
+  "name": "ImageTextBlock",
+  "variations": [
+    {
+      "id": "image_left_text_right",
+      "name": "ImageTextBlock",
+      "description": "Displays an image on the left side and title/description rich text content on the right. Ideal for informative or narrative sections paired with a visual.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
+          }
+        },
+        "image_text_block": {
+          "type": "Group",
+          "config": {
+            "label": "image text block",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Headline",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "image_left": {
+                "type": "Boolean",
+                "config": {
+                  "label": "image left",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
 }

@@ -6,6 +6,16 @@ import type { Content } from '@prismicio/client'
 
 	type Props = SliceComponentProps<Content.ImageTextColumnsSlice>
 
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
+
 	const { slice }: Props = $props()
 </script>
 
@@ -16,7 +26,7 @@ import type { Content } from '@prismicio/client'
 >
 <div class="container">
 	
-		<div class="image-text-columns__content">
+		<div class="image-text-columns__content {paddingClass()}">
 		{#each slice.primary.blocks as item, index}
 			<div class="image-text-columns__column {index === 0 ? 'first' : index === 1 ? 'second' : index === 2 ? 'third' : ''}">
 				{#if index === 1 || index === 2}
@@ -41,13 +51,13 @@ import type { Content } from '@prismicio/client'
 	.image-text-columns{
 		background: var(--color-dark-mode);
 		color: var(--color-snow-white);
-		padding-top: 6.25rem;
-		padding-bottom: 6.25rem;
+		// padding-top: 6.25rem;
+		// padding-bottom: 6.25rem;
 
-		@media(min-width: 768px){
-			padding-bottom: 12.5rem;
-			padding-top: 6.25rem;
-		}
+		// @media(min-width: 768px){
+		// 	padding-bottom: 12.5rem;
+		// 	padding-top: 6.25rem;
+		// }
 		
 		&__content{
 			display: flex;

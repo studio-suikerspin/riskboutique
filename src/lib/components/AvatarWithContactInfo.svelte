@@ -13,7 +13,7 @@
 		<div class="contact-info">
 			<div class="contact-info__name">Robert Dreyer</div>
 			<div class="contact-info__role"> MSc RO</div>
-			<a href="www.linkedin.com" target="_blank"><i class="icon-linkedin"></i></a>
+			<a href="https://www.linkedin.com" target="_blank"><i class="icon-linkedin"></i></a>
 		</div>
 	</div>
 

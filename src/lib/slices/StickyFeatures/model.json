@@ -55,6 +55,19 @@
               }
             }
           }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
+          }
         }
       },
       "items": {}

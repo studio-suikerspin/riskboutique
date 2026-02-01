@@ -23,20 +23,40 @@
           "config": {
             "label": "Features",
             "fields": {
-              "icon": {
-                "type": "Image",
-                "config": {
-                  "label": "Icon"
-                }
-              },
               "description": {
                 "type": "StructuredText",
                 "config": {
                   "multi": "paragraph,strong,em,hyperlink",
                   "label": "Description"
                 }
+              },
+              "icon": {
+                "type": "Select",
+                "config": {
+                  "label": "icon",
+                  "placeholder": "",
+                  "options": [
+                    "StackingSquares",
+                    "UnionShape",
+                    "StackingCircles",
+                    "StackingOpenSquares"
+                  ]
+                }
               }
             }
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
           }
         }
       },

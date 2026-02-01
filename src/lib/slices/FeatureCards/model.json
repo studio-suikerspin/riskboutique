@@ -43,19 +43,6 @@
                   "label": "Index"
                 }
               },
-              "background_color": {
-                "type": "Color",
-                "config": {
-                  "label": "Background Color"
-                }
-              },
-              "text_color": {
-                "type": "Color",
-                "config": {
-                  "label": "Text color",
-                  "placeholder": ""
-                }
-              },
               "shape": {
                 "type": "Select",
                 "config": {
@@ -68,8 +55,47 @@
                   ],
                   "default_value": "roundVerticalLines"
                 }
+              },
+              "bg_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Background color",
+                  "placeholder": "",
+                  "options": [
+                    "aqua",
+                    "clay-green",
+                    "dark-mode",
+                    "snow-white"
+                  ],
+                  "default_value": "aqua"
+                }
+              },
+              "text_shape_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Text & shape color",
+                  "placeholder": "",
+                  "options": [
+                    "snow-white",
+                    "dark-mode"
+                  ],
+                  "default_value": "snow-white"
+                }
               }
             }
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
           }
         }
       },
@@ -111,33 +137,59 @@
                   "single": "paragraph,strong,em"
                 }
               },
-              "background_color": {
-                "type": "Select",
-                "config": {
-                  "label": "Background color",
-                  "placeholder": "",
-                  "options": [
-                    "Dark",
-                    "Aqua",
-                    "Clay"
-                  ],
-                  "default_value": "Dark"
-                }
-              },
               "shape": {
                 "type": "Select",
                 "config": {
                   "label": "Shape",
                   "placeholder": "",
                   "options": [
-                    "Cylinder",
-                    "Sphere",
-                    "Pyramid"
+                    "TriangleShape",
+                    "roundWorldShape",
+                    "roundVerticalLines"
                   ],
-                  "default_value": "Cylinder"
+                  "default_value": "TriangleShape"
+                }
+              },
+              "bg_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Background color",
+                  "placeholder": "",
+                  "options": [
+                    "aqua",
+                    "clay-green",
+                    "dark-mode",
+                    "snow-white"
+                  ],
+                  "default_value": "aqua"
+                }
+              },
+              "text_shape_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Text & shape color",
+                  "placeholder": "",
+                  "options": [
+                    "snow-white",
+                    "dark-mode"
+                  ],
+                  "default_value": "snow-white"
                 }
               }
             }
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
           }
         }
       },

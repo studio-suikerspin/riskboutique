@@ -78,12 +78,9 @@
 /* End jesse testing scaling system */
 
 body {
-	font-family: 'General Sans', sans-serif;
-	/* font-size: 16px; */
+	font-family: 'General Sans Variable', sans-serif;
 	background: var(--color-snow-white);
-
-	/* Testing scaling system */  
-	font-size: var(--size-font);
+	font-size: 16px;
 }
 
 h1,
@@ -97,7 +94,7 @@ h4,
 h5,
 .h5 {
 	font-weight: 600;
-	font-family: 'General Sans', sans-serif;
+	font-family: 'General Sans Variable', sans-serif;
 }
 
 h1,
@@ -146,7 +143,8 @@ h3,
 	}
 }
 
-.h3.low {
+.h3.low ,
+h3.low{
 	font-weight: 600;
 	line-height: 85%;
 }
@@ -176,7 +174,7 @@ h5,
 @media (min-width: 768px) {
 	h5,
 	.h5 {
-		font-size: 1.5rem;		
+		font-size: 1.5rem;
 	}
 }
 
@@ -215,6 +213,13 @@ p {
 	border: 0.03125rem solid var(--color-snow-white);
 
 	font-weight: 500;
+	font-size: 1rem;
+
+	cursor: pointer;
+
+	&:disabled {
+	    opacity: 0.8;
+	}
 
 	/* Button variants */
 	&.btn--dark {
@@ -302,7 +307,7 @@ p {
 		li {
 			margin-bottom: 0.5rem;
 			line-height: 170%;
-			font-weight: 400;
+			font-weight: 500;
 			font-size: 1rem;
 		}
 	}
@@ -316,7 +321,7 @@ p {
 		li {
 			margin-bottom: 0.5rem;
 			line-height: 170%;
-			font-weight: 400;
+			font-weight: 500;
 			font-size: 1rem;
 		}
 	}
@@ -325,7 +330,7 @@ p {
 		margin-bottom: 1rem;
 		line-height: 170%;
 		font-size: 1rem;
-		font-weight: 400;
+		font-weight: 500;
 
 		&:last-child {
 			margin-bottom: 0;

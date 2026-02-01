@@ -51,32 +51,37 @@
 								}
 							],
 							[
-								"background_color",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "#09f846",
-									"type": "Color"
-								}
-							],
-							[
-								"text_color",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "#b6c739",
-									"type": "Color"
-								}
-							],
-							[
 								"shape",
 								{
 									"__TYPE__": "FieldContent",
 									"value": "roundVerticalLines",
 									"type": "Select"
 								}
+							],
+							[
+								"bg_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "aqua",
+									"type": "Select"
+								}
+							],
+							[
+								"text_shape_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "snow-white",
+									"type": "Select"
+								}
 							]
 						]
 					}
 				]
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "none",
+				"type": "Select"
 			}
 		},
 		"items": []
@@ -125,24 +130,37 @@
 								}
 							],
 							[
-								"background_color",
+								"shape",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "Dark",
+									"value": "TriangleShape",
 									"type": "Select"
 								}
 							],
 							[
-								"shape",
+								"bg_color",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "Cylinder",
+									"value": "aqua",
+									"type": "Select"
+								}
+							],
+							[
+								"text_shape_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "snow-white",
 									"type": "Select"
 								}
 							]
 						]
 					}
 				]
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "none",
+				"type": "Select"
 			}
 		},
 		"items": [
