@@ -163,6 +163,8 @@
 
 <style lang="scss">
 	.feature-cards {
+	     overflow: hidden;
+
 		&__inner {
 			display: flex;
 			flex-direction: column;
