@@ -1,18 +1,18 @@
 <script lang="ts">
-	import FeatureCard from '$lib/components/FeatureCard.svelte';
-	import type { Content } from '@prismicio/client';
-	import type { SliceComponentProps } from '@prismicio/svelte';
-	import { PrismicRichText } from '@prismicio/svelte';
-	import { onMount } from 'svelte';
-	import Swiper from 'swiper/bundle';
-	import 'swiper/css/bundle';
-	import { gsap, ScrollTrigger } from '$lib/gsap';
+	import FeatureCard from '$lib/components/FeatureCard.svelte'
+	import type { Content } from '@prismicio/client'
+	import type { SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicRichText } from '@prismicio/svelte'
+	import { onMount } from 'svelte'
+	import Swiper from 'swiper/bundle'
+	import 'swiper/css/bundle'
+	import { gsap, ScrollTrigger } from '$lib/gsap'
 
-	type Props = SliceComponentProps<Content.PillarsSlice>;
+	type Props = SliceComponentProps<Content.PillarsSlice>
 
-	const { slice }: Props = $props();
+	const { slice }: Props = $props()
 
-	let swiper: Swiper;
+	let swiper: Swiper
 
 	onMount(() => {
 		swiper = new Swiper('.swiper', {
@@ -36,14 +36,16 @@
 				nextEl: '.custom-next',
 				prevEl: '.custom-prev'
 			}
-		});
+		})
 
 		// Custom reveal animation for slides
 		setTimeout(() => {
-			const slides = document.querySelectorAll('.feature-cards .slide-content');
+			const slides = document.querySelectorAll(
+				'.feature-cards .slide-content'
+			)
 
 			// Set initial state
-			gsap.set(slides, { y: 40, autoAlpha: 0 });
+			gsap.set(slides, { y: 40, autoAlpha: 0 })
 
 			// Create staggered animation
 			ScrollTrigger.create({
@@ -59,20 +61,22 @@
 						stagger: 0.2,
 						onComplete: () => {
 							// Clear transforms after animation
-							gsap.set(slides, { clearProps: 'transform,opacity' });
+							gsap.set(slides, {
+								clearProps: 'transform,opacity'
+							})
 						}
-					});
+					})
 				}
-			});
-		}, 200);
+			})
+		}, 200)
 
 		// Cleanup function
 		return () => {
 			if (swiper) {
-				swiper.destroy();
+				swiper.destroy()
 			}
-		};
-	});
+		}
+	})
 </script>
 
 <section
@@ -90,27 +94,50 @@
 				<div class="swiper feature-cards__swiper">
 					<!-- Additional required wrapper -->
 					<div class="swiper-wrapper">
-						{#each slice.primary.pillars as item, index}
-							<div class="swiper-slide">
-								<div class="slide-content">
-									<FeatureCard
-										title={item.title}
-										description={item.description}
-										background={item.background_color}
-										text_color={item.text_color}
-										number={item.index}
-										shape={item.shape}
-									/>
+						{#if slice.variation === 'default'}
+							{#each slice.primary.pillars as item, index (index)}
+								<div class="swiper-slide">
+									<div class="slide-content">
+										<FeatureCard
+											title={item.title}
+											description={item.description}
+											background={item.background_color}
+											text_color={item.text_color}
+											number={item.index}
+											shape={item.shape}
+										/>
+									</div>
 								</div>
-							</div>
-						{/each}
+							{/each}
+						{:else}
+							{#each slice.primary.cards as item, index (index)}
+								<div class="swiper-slide">
+									<div class="slide-content">
+										<FeatureCard
+											title={item.title}
+											description={item.description}
+											background={item.background_color}
+											text_color={item.text_color}
+											number={item.index}
+											shape={item.shape}
+										/>
+									</div>
+								</div>
+							{/each}
+						{/if}
 					</div>
 
 					<!-- Custom navigation buttons -->
-					<button class="custom-prev navigation-button" aria-label="Previous">
+					<button
+						class="custom-prev navigation-button"
+						aria-label="Previous"
+					>
 						<i class="icon-chevron prev-icon"></i>
 					</button>
-					<button class="custom-next navigation-button" aria-label="Next">
+					<button
+						class="custom-next navigation-button"
+						aria-label="Next"
+					>
 						<i class="icon-chevron next-icon"></i>
 					</button>
 				</div>
@@ -121,7 +148,6 @@
 
 <style lang="scss">
 	.feature-cards {
-
 		&__inner {
 			display: flex;
 			flex-direction: column;
