@@ -25,7 +25,7 @@
 <header class="main-header">
 	<div class="container">
 		<div class="main-header__inner">
-			<a href={resolve('/')}>
+			<a href={resolve('/')} data-default-logo={page.params.uid === 'contact' ? 'dark' : 'light'}>
 				<PrismicImage
 					field={header.data.logo_light}
 					class={['main-header__logo', 'main-header__logo--light']}
@@ -83,25 +83,6 @@
 		z-index: var(--z-header);
 		transition: all 150ms cubic-bezier(0.86, 0, 0.14, 1);
 
-		/* :global &.main-header--scrolled {
-		     position: fixed;
-			background: var(--color-snow-white);
-			transition: all 150ms cubic-bezier(0.86, 0, 0.14, 1);
-
-			:global .main-header__logo {
-				max-width: 200px;
-				transition: width 150ms ease;
-
-				&--light {
-					display: none;
-				}
-
-				&--dark {
-					display: initial;
-				}
-			}
-		} */
-
 		&__inner {
 			display: flex;
 			align-items: center;
@@ -112,7 +93,11 @@
 		:global &__logo {
 			max-width: 170px;
 
-			&--dark {
+			&:not([data-default-logo="dark"]) &--dark {
+				display: none;
+			}
+
+			[data-default-logo="dark"] &--light {
 				display: none;
 			}
 
