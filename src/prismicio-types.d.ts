@@ -2778,26 +2778,6 @@ export interface PillarsSliceDefaultPrimaryPillarsItem {
 	index: prismic.KeyTextField
 
 	/**
-	 * Background Color field in *FeatureCards → Default → Primary → Pillars*
-	 *
-	 * - **Field Type**: Color
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillars.default.primary.pillars[].background_color
-	 * - **Documentation**: https://prismic.io/docs/fields/color
-	 */
-	background_color: prismic.ColorField
-
-	/**
-	 * Text color field in *FeatureCards → Default → Primary → Pillars*
-	 *
-	 * - **Field Type**: Color
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillars.default.primary.pillars[].text_color
-	 * - **Documentation**: https://prismic.io/docs/fields/color
-	 */
-	text_color: prismic.ColorField
-
-	/**
 	 * Shape field in *FeatureCards → Default → Primary → Pillars*
 	 *
 	 * - **Field Type**: Select
@@ -2810,6 +2790,31 @@ export interface PillarsSliceDefaultPrimaryPillarsItem {
 		'roundVerticalLines' | 'roundWorldShape' | 'TriangleShape',
 		'filled'
 	>
+
+	/**
+	 * Background color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: aqua
+	 * - **API ID Path**: pillars.default.primary.pillars[].bg_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	bg_color: prismic.SelectField<
+		'aqua' | 'clay-green' | 'dark-mode' | 'snow-white',
+		'filled'
+	>
+
+	/**
+	 * Text & shape color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: snow-white
+	 * - **API ID Path**: pillars.default.primary.pillars[].text_shape_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	text_shape_color: prismic.SelectField<'snow-white' | 'dark-mode', 'filled'>
 }
 
 /**
@@ -2837,17 +2842,6 @@ export interface PillarsSliceSliderPrimaryCardsItem {
 	description: prismic.RichTextField
 
 	/**
-	 * Background color field in *FeatureCards → Slider → Primary → Cards*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **Default Value**: Dark
-	 * - **API ID Path**: pillars.slider.primary.cards[].background_color
-	 * - **Documentation**: https://prismic.io/docs/fields/select
-	 */
-	background_color: prismic.SelectField<'Dark' | 'Aqua' | 'Clay', 'filled'>
-
-	/**
 	 * Shape field in *FeatureCards → Slider → Primary → Cards*
 	 *
 	 * - **Field Type**: Select
@@ -2857,6 +2851,31 @@ export interface PillarsSliceSliderPrimaryCardsItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	shape: prismic.SelectField<'Cylinder' | 'Sphere' | 'Pyramid', 'filled'>
+
+	/**
+	 * Background color field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: aqua
+	 * - **API ID Path**: pillars.slider.primary.cards[].bg_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	bg_color: prismic.SelectField<
+		'aqua' | 'clay-green' | 'dark-mode' | 'snow-white',
+		'filled'
+	>
+
+	/**
+	 * Text & shape color field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: snow-white
+	 * - **API ID Path**: pillars.slider.primary.cards[].text_shape_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	text_shape_color: prismic.SelectField<'snow-white' | 'dark-mode', 'filled'>
 }
 
 /**
