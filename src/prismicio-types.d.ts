@@ -697,6 +697,21 @@ export type PageDocument<Lang extends string = string> =
 	prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, 'page', Lang>
 
 /**
+ * Item in *Site settings → Contact form email addresses*
+ */
+export interface SiteSettingsDocumentDataContactFormMailsItem {
+	/**
+	 * Email address field in *Site settings → Contact form email addresses*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: info@riskboutique.nl
+	 * - **API ID Path**: site_settings.contact_form_mails[].email
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	email: prismic.KeyTextField
+}
+
+/**
  * Content for Site settings documents
  */
 interface SiteSettingsDocumentData {
@@ -726,6 +741,19 @@ interface SiteSettingsDocumentData {
 		unknown,
 		prismic.FieldState,
 		never
+	>
+
+	/**
+	 * Contact form email addresses field in *Site settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.contact_form_mails[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	contact_form_mails: prismic.GroupField<
+		Simplify<SiteSettingsDocumentDataContactFormMailsItem>
 	>
 }
 
@@ -3287,6 +3315,7 @@ declare module '@prismicio/client' {
 			PageDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
+			SiteSettingsDocumentDataContactFormMailsItem,
 			SocialLinksDocument,
 			SocialLinksDocumentData,
 			SocialLinksDocumentDataSocialsItem,

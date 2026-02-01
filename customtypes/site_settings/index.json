@@ -24,6 +24,22 @@
 					"allowText": true,
 					"repeat": false
 				}
+			},
+			"contact_form_mails": {
+				"type": "Group",
+				"config": {
+					"label": "Contact form email addresses",
+					"repeat": true,
+					"fields": {
+						"email": {
+							"type": "Text",
+							"config": {
+								"label": "Email address",
+								"placeholder": "info@riskboutique.nl"
+							}
+						}
+					}
+				}
 			}
 		}
 	}
