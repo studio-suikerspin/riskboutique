@@ -113,6 +113,11 @@
 						]
 					}
 				]
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "top",
+				"type": "Select"
 			}
 		},
 		"items": []

@@ -37,12 +37,22 @@
 			});
 		}, 200);
 	});
+
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="feature-grid block-padding-bottom"
+	class="feature-grid {paddingClass()}"
 >
 <div class="container">
 	<div class="feature-grid__inner">

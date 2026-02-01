@@ -40,6 +40,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "husband",
 				"type": "Text"
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "top",
+				"type": "Select"
 			}
 		},
 		"items": []

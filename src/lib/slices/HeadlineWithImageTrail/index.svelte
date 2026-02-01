@@ -96,13 +96,24 @@
 
 		initRotatingImageTrail()
 	})
+
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
 </script>
 
 <section
-	class="image-trail-slice block-padding"
+	class="{paddingClass()}"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
+<div class="image-trail-slice">
 	<div class="container">
 		<div class="image-trail-slice__inner">
 			<h2
@@ -142,6 +153,7 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </section>
 
 <style lang="scss">
@@ -149,6 +161,11 @@
 		background: var(--color-dark-mode);
 		color: var(--color-snow-white);
 		position: relative;
+		padding: 10rem 0;
+
+		@media(min-width: 768px){
+			padding: 18.75rem 0;
+		}
 
 		&__inner {
 			display: flex;

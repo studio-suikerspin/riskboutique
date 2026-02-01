@@ -12,13 +12,23 @@
 		initContentRevealScroll()
 	})
 
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
+
 	const { slice }: Props = $props()
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="banner block-padding-bottom"
+	class="banner {paddingClass()}"
 >
 	<div class="container">
 		<div class="banner__inner">

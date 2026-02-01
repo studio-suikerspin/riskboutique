@@ -11,6 +11,16 @@
 
 	const { slice }: Props = $props()
 
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
+
 	function initLogoWallCycle() {
 		if (!browser) return
 		const loopDelay = 1.5 // Loop Duration
@@ -165,7 +175,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="block-padding"
+	class="{paddingClass()}"
 	data-reveal-group
 >
 <div class="container">

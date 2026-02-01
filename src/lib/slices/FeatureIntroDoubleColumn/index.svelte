@@ -13,6 +13,16 @@
 	onMount(() => {
 		initContentRevealScroll()
 	})
+
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
 	
 	const { slice }: Props = $props()
 </script>
@@ -20,7 +30,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="double-column block-padding-bottom"
+	class="double-column {paddingClass()}"
 >
 	<div class="container">
 		<div class="double-column__inner">

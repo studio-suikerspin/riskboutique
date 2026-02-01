@@ -5,12 +5,22 @@
 	type Props = SliceComponentProps<Content.MarqueeTextSlice>
 
 	const { slice }: Props = $props()
+
+  const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="block-padding-bottom"
+	class="{paddingClass()}"
 >
 	<div data-css-marquee="" class="marquee-css">
   <div data-css-marquee-list="" class="marquee-css__list">

@@ -1005,6 +1005,16 @@ export interface AssuranceWithImagesSliceDefaultPrimary {
 	images: prismic.GroupField<
 		Simplify<AssuranceWithImagesSliceDefaultPrimaryImagesItem>
 	>
+
+	/**
+	 * Section padding field in *FloatingImages → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: assurance_with_images.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1383,6 +1393,16 @@ export interface ContactBlockSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	form_footer_note: prismic.RichTextField
+
+	/**
+	 * Section padding field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'bottom' | 'both' | 'none' | 'top'>
 }
 
 /**
@@ -1559,6 +1579,16 @@ export interface ContentImageGridSliceTextImageMasonryPrimary {
 	items: prismic.GroupField<
 		Simplify<ContentImageGridSliceTextImageMasonryPrimaryItemsItem>
 	>
+
+	/**
+	 * Section padding field in *ContentImageGrid → Text + Image Masonry Grid → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1651,6 +1681,16 @@ export interface CtaProfileContactSliceDefaultPrimary {
 		prismic.FieldState,
 		never
 	>
+
+	/**
+	 * Section padding field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1738,6 +1778,16 @@ export interface FeatureGridSliceDefaultPrimary {
 	features: prismic.GroupField<
 		Simplify<FeatureGridSliceDefaultPrimaryFeaturesItem>
 	>
+
+	/**
+	 * Section padding field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1836,6 +1886,16 @@ export interface FeatureGrid2SliceDefaultPrimary {
 	features: prismic.GroupField<
 		Simplify<FeatureGrid2SliceDefaultPrimaryFeaturesItem>
 	>
+
+	/**
+	 * Section padding field in *FeatureGrid2 → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid_2.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1927,6 +1987,16 @@ export interface FeatureIntroDoubleColumnSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	supporting_text: prismic.RichTextField
+
+	/**
+	 * Section padding field in *FeatureIntroDoubleColumn → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_intro_double_column.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2010,6 +2080,16 @@ export interface HeadlineWithCornerImagesSliceDefaultPrimary {
 	images: prismic.GroupField<
 		Simplify<HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem>
 	>
+
+	/**
+	 * Section padding field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2238,6 +2318,16 @@ export interface HeroWithBackgroundSliceDefaultPrimary {
 			'primary' | 'secondary'
 		>
 	>
+
+	/**
+	 * Section padding field in *HeroWithBackground → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_background.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2338,6 +2428,16 @@ export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	content: prismic.KeyTextField
+
+	/**
+	 * Section padding field in *RevealTypeBlock → default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2432,6 +2532,16 @@ export interface ImageTextColumnsSliceAlternatingBlocksPrimary {
 	blocks: prismic.GroupField<
 		Simplify<ImageTextColumnsSliceAlternatingBlocksPrimaryBlocksItem>
 	>
+
+	/**
+	 * Section padding field in *ImageTextColumns → Alternating Image & Text Blocks → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns.alternating_blocks.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2498,6 +2608,16 @@ export interface ImageTextColumns2SliceImageLeftTextRightPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	description: prismic.RichTextField
+
+	/**
+	 * Section padding field in *ImageTextBlock → ImageTextBlock → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2597,6 +2717,16 @@ export interface IndependentDesignSliceDefaultPrimary {
 	features: prismic.GroupField<
 		Simplify<IndependentDesignSliceDefaultPrimaryFeaturesItem>
 	>
+
+	/**
+	 * Section padding field in *StickyFeatures → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2740,6 +2870,16 @@ export interface MarqueeTextSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	items: prismic.GroupField<Simplify<MarqueeTextSliceDefaultPrimaryItemsItem>>
+
+	/**
+	 * Section padding field in *MarqueeText → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: marquee_text.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2933,6 +3073,16 @@ export interface PillarsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	pillars: prismic.GroupField<Simplify<PillarsSliceDefaultPrimaryPillarsItem>>
+
+	/**
+	 * Section padding field in *FeatureCards → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2971,6 +3121,16 @@ export interface PillarsSliceSliderPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	cards: prismic.GroupField<Simplify<PillarsSliceSliderPrimaryCardsItem>>
+
+	/**
+	 * Section padding field in *FeatureCards → Slider → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.slider.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -3086,6 +3246,16 @@ export interface ServiceOverviewSliceWithSliderAndContactPrimary {
 		prismic.FieldState,
 		never
 	>
+
+	/**
+	 * Section padding field in *ServiceOverview → With Slider and Contact → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: service_overview.with_slider_and_contact.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -3168,6 +3338,16 @@ export interface TrustedBySliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	heading: prismic.KeyTextField
+
+	/**
+	 * Section padding field in *TrustedBy → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trusted_by.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -3239,6 +3419,16 @@ export interface ValuePropositionSliceDefaultPrimary {
 		prismic.FieldState,
 		never
 	>
+
+	/**
+	 * Section padding field in *RevealTypeWithCta → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: value_proposition.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
