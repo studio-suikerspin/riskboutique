@@ -2576,39 +2576,55 @@ export type ImageTextColumnsSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *ImageTextBlock → ImageTextBlock → Primary*
+ * Item in *ImageTextBlock → ImageTextBlock → Primary → image text block*
  */
-export interface ImageTextColumns2SliceImageLeftTextRightPrimary {
+export interface ImageTextColumns2SliceImageLeftTextRightPrimaryImageTextBlockItem {
 	/**
-	 * Image field in *ImageTextBlock → ImageTextBlock → Primary*
+	 * Image field in *ImageTextBlock → ImageTextBlock → Primary → image text block*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.media
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.image_text_block[].image
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
-	media: prismic.ImageField<never>
+	image: prismic.ImageField<never>
 
 	/**
-	 * Headline field in *ImageTextBlock → ImageTextBlock → Primary*
+	 * Headline field in *ImageTextBlock → ImageTextBlock → Primary → image text block*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.headline
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.image_text_block[].headline
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	headline: prismic.KeyTextField
 
 	/**
-	 * Description field in *ImageTextBlock → ImageTextBlock → Primary*
+	 * Description field in *ImageTextBlock → ImageTextBlock → Primary → image text block*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.description
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.image_text_block[].description
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	description: prismic.RichTextField
 
+	/**
+	 * image left field in *ImageTextBlock → ImageTextBlock → Primary → image text block*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.image_text_block[].image_left
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	image_left: prismic.BooleanField
+}
+
+/**
+ * Primary content in *ImageTextBlock → ImageTextBlock → Primary*
+ */
+export interface ImageTextColumns2SliceImageLeftTextRightPrimary {
 	/**
 	 * Section padding field in *ImageTextBlock → ImageTextBlock → Primary*
 	 *
@@ -2618,6 +2634,18 @@ export interface ImageTextColumns2SliceImageLeftTextRightPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * image text block field in *ImageTextBlock → ImageTextBlock → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.image_text_block[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	image_text_block: prismic.GroupField<
+		Simplify<ImageTextColumns2SliceImageLeftTextRightPrimaryImageTextBlockItem>
+	>
 }
 
 /**
@@ -3596,6 +3624,7 @@ declare module '@prismicio/client' {
 			ImageTextColumnsSliceVariation,
 			ImageTextColumnsSliceAlternatingBlocks,
 			ImageTextColumns2Slice,
+			ImageTextColumns2SliceImageLeftTextRightPrimaryImageTextBlockItem,
 			ImageTextColumns2SliceImageLeftTextRightPrimary,
 			ImageTextColumns2SliceVariation,
 			ImageTextColumns2SliceImageLeftTextRight,
