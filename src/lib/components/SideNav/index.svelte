@@ -71,12 +71,16 @@
 		// Toggle menu open / close depending on its current state
 		menuToggles.forEach((toggle) => {
 			toggle.addEventListener('click', () => {
+			     toggle.style.pointerEvents = 'none';
+
 				state = navWrap.getAttribute('data-nav-state')
 				if (state === 'open') {
 					closeNav()
 				} else {
 					openNav()
 				}
+
+                    toggle.style.pointerEvents = 'auto';
 			})
 		})
 
