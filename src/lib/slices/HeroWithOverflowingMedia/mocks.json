@@ -12,9 +12,9 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "heading2",
+						"type": "heading3",
 						"content": {
-							"text": "Industrial"
+							"text": "Zipper"
 						}
 					}
 				]
@@ -48,22 +48,6 @@
 									"alt": "ride",
 									"credits": null,
 									"__TYPE__": "ImageContent"
-								}
-							],
-							[
-								"video",
-								{
-									"__TYPE__": "LinkContent",
-									"key": "92dcbb76-07ac-4e67-9aca-a0eccd5ff66b",
-									"value": {
-										"__TYPE__": "FileLink",
-										"id": "mock_Media_link",
-										"kind": "file",
-										"name": "mock_name",
-										"url": "https://source.unsplash.com/daily",
-										"size": "0",
-										"text": "any"
-									}
 								}
 							]
 						]

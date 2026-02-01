@@ -20,8 +20,10 @@
         "headline": {
           "type": "StructuredText",
           "config": {
-            "multi": "heading2",
-            "label": "Headline"
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading3"
           }
         },
         "media": {
@@ -34,15 +36,6 @@
                 "type": "Image",
                 "config": {
                   "label": "Image"
-                }
-              },
-              "video": {
-                "type": "Link",
-                "config": {
-                  "label": "Video",
-                  "placeholder": "",
-                  "select": "media",
-                  "allowText": true
                 }
               }
             }
