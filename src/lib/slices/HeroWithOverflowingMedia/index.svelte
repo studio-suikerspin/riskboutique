@@ -1,14 +1,18 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
-	import { type SliceComponentProps, PrismicRichText, PrismicImage } from '@prismicio/svelte'
-
-	type Props = SliceComponentProps<Content.IntroWithMediaRowSlice>
-
-	const { slice }: Props = $props()
+	import {
+		type SliceComponentProps,
+		PrismicRichText,
+	} from '@prismicio/svelte'
 
 	import { Gradient } from '$lib/gradients'
 	import { onMount } from 'svelte'
 	import Label from '$lib/components/UI/Label.svelte'
+	import ScrollDirectionSlider from '$lib/components/ScrollDirectionSlider.svelte'
+
+	type Props = SliceComponentProps<Content.IntroWithMediaRowSlice>
+
+	const { slice }: Props = $props()
 
 	onMount(() => {
 		const gradient = new Gradient()
@@ -28,8 +32,8 @@
 		data-transition-in
 	></canvas>
 
-	<div class="container">
-		<div class="hero-section__inner">
+	<div class="hero-section__inner">
+		<div class="container hero-section__container">
 			<Label variant="white">
 				{slice.primary.label}
 			</Label>
@@ -37,14 +41,10 @@
 				<PrismicRichText field={slice.primary.headline} />
 			</div>
 		</div>
-	</div>
 
-	<div class="hero-section__bottom">
-	    {#each slice.primary.media as item, index (index)}
-			<div class="media-item">
-			    <PrismicImage field={item.image} />
-			</div>
-		{/each}
+		<div class="hero-section__bottom">
+			<ScrollDirectionSlider images={slice.primary.media} classNames="media-item" />
+		</div>
 	</div>
 </section>
 
@@ -53,11 +53,13 @@
 		position: relative;
 		min-height: 90vh;
 		display: flex;
+		flex-flow: column;
+		gap: 2.5rem;
 
 		&__gradient {
 			position: absolute;
 			width: 100%;
-			height: 100%;
+			height: 90%;
 			z-index: 0;
 			object-fit: cover;
 			inset: 0%;
@@ -68,6 +70,14 @@
 			--gradient-color-4: #0e4f63;
 		}
 
+		&__container {
+		     min-height: 60vh;
+			display: flex;
+			flex-flow: column;
+			justify-content: end;
+			gap: 1.5rem;
+		}
+
 		&__inner {
 			position: relative;
 			height: 100%;
@@ -76,7 +86,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			gap: 1.5rem;
+			gap: 2.5rem;
 		}
 
 		&__headline {
@@ -85,18 +95,17 @@
 		}
 
 		&__bottom {
-			display: grid;
-			grid-auto-flow: column;
-			gap: 0.75rem;
+			position: relative;
+			z-index: 1;
 
-			position: absolute;
-			bottom: -50%;
-			transform: translateY(-50%);
+			:global .media-item {
+			     height: 185px;
+				width: 220px;
+				overflow: clip;
 
-			.media-item {
-				:global img {
-				    height: 485px;
-					width: 100%;
+				@media (min-width: 1024px) {
+				     height: 485px;
+					width: 300px;
 				}
 			}
 		}
