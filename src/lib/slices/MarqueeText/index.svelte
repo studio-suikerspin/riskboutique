@@ -35,9 +35,10 @@
 .marquee-css {
   width: 100%;
 	height: 100%;
+  max-width: 100%;
   display: flex;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .marquee-css__list {
