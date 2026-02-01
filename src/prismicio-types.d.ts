@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']]
 
 type AdvisorySubpageDocumentDataSlicesSlice =
+	| ImageTextColumns2Slice
 	| HeroWithBackgroundSlice
 	| MarqueeTextSlice
 	| FeatureGrid2Slice
