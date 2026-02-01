@@ -8,10 +8,20 @@
 	type Props = SliceComponentProps<Content.ValuePropositionSlice>;
 
 	const { slice }: Props = $props();
+
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
 </script>
 
 <section
-	class="section-reveal-type block-padding-top"
+	class="section-reveal-type {paddingClass()}"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >

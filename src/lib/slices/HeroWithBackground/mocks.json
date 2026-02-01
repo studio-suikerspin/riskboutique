@@ -48,8 +48,8 @@
 				"type": "Link",
 				"value": [
 					{
-						"__TYPE__": "LinkContent",
 						"key": "7b340cc2-8436-407f-b4e3-1a00e6c37eaf",
+						"__TYPE__": "LinkContent",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "https://prismic.io",
@@ -58,6 +58,11 @@
 						}
 					}
 				]
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "bottom",
+				"type": "Select"
 			}
 		},
 		"items": []

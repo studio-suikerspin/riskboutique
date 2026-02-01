@@ -102,6 +102,19 @@
             "single": "paragraph",
             "label": "Form Footer Note"
           }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "bottom",
+              "both",
+              "none",
+              "top"
+            ]
+          }
         }
       },
       "items": {}

@@ -4,13 +4,24 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit'
 	import { page } from '$app/state'
 	import { repositoryName } from '$lib/prismicio'
+	import { onNavigate } from '$app/navigation'
 
 	import Header from '$lib/components/Header.svelte'
 	import PageLoader from '$lib/components/PageLoader.svelte'
 	import Footer from '$lib/components/Footer.svelte'
-	import SvgBackgroundLines from '$lib/components/SvgBackgroundLines.svelte'
 
 	let { children } = $props()
+
+	onNavigate((navigation) => {
+	    if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+		    document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+		    })
+		})
+	})
 </script>
 
 <svelte:head>

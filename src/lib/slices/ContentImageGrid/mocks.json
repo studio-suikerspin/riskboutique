@@ -1,16 +1,38 @@
 [
 	{
 		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
+		"variation": "text_image_masonry",
 		"primary": {
-			"logos": {
+			"items": {
 				"__TYPE__": "GroupContentType",
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
-								"logo_image",
+								"type",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "image",
+									"type": "Select"
+								}
+							],
+							[
+								"text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Minim cillum minim nisi et exercitation minim velit. Consectetur ipsum velit excepteur anim in fugiat nostrud. Mollit cupidatat labore tempor voluptate elit enim id ea anim."
+											}
+										}
+									]
+								}
+							],
+							[
+								"image",
 								{
 									"origin": {
 										"id": "main",
@@ -29,26 +51,22 @@
 										},
 										"background": "transparent"
 									},
-									"alt": "cook",
+									"alt": "event",
 									"credits": null,
 									"__TYPE__": "ImageContent"
 								}
 							],
 							[
-								"with_background",
+								"item_position",
 								{
-									"__TYPE__": "BooleanContent",
-									"value": true
+									"__TYPE__": "FieldContent",
+									"value": "start",
+									"type": "Select"
 								}
 							]
 						]
 					}
 				]
-			},
-			"heading": {
-				"__TYPE__": "FieldContent",
-				"value": "trunk",
-				"type": "Text"
 			},
 			"section_padding": {
 				"__TYPE__": "FieldContent",

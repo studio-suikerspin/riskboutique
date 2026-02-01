@@ -10,10 +10,20 @@
 
 	type Props = SliceComponentProps<Content.AssuranceWithImagesSlice>;
 
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
+
 	const { slice }: Props = $props();
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="block-padding-top">
+<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="{paddingClass()}">
 
 		<div class="floating-images">
 			<div class="container">

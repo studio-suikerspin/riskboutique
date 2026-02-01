@@ -68,6 +68,11 @@
 						]
 					}
 				]
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "bottom",
+				"type": "Select"
 			}
 		},
 		"items": []

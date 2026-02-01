@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']]
 
 type AdvisorySubpageDocumentDataSlicesSlice =
+	| ImageTextColumns2Slice
 	| HeroWithBackgroundSlice
 	| MarqueeTextSlice
 	| FeatureGrid2Slice
@@ -284,7 +285,9 @@ interface FooterDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	social_icons: prismic.GroupField<Simplify<FooterDocumentDataSocialIconsItem>>
+	social_icons: prismic.GroupField<
+		Simplify<FooterDocumentDataSocialIconsItem>
+	>
 
 	/**
 	 * CTA Link field in *Footer*
@@ -600,6 +603,9 @@ export type OpenRoleDocument<Lang extends string = string> =
 	>
 
 type PageDocumentDataSlicesSlice =
+	| HeadlineWithCornerImagesSlice
+	| ContentImageGridSlice
+	| IntroWithMediaRowSlice
 	| ContactBlockSlice
 	| ServiceOverviewSlice
 	| HeroWithSplitVisualSlice
@@ -692,6 +698,21 @@ export type PageDocument<Lang extends string = string> =
 	prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, 'page', Lang>
 
 /**
+ * Item in *Site settings → Contact form email addresses*
+ */
+export interface SiteSettingsDocumentDataContactFormMailsItem {
+	/**
+	 * Email address field in *Site settings → Contact form email addresses*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: info@riskboutique.nl
+	 * - **API ID Path**: site_settings.contact_form_mails[].email
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	email: prismic.KeyTextField
+}
+
+/**
  * Content for Site settings documents
  */
 interface SiteSettingsDocumentData {
@@ -721,6 +742,19 @@ interface SiteSettingsDocumentData {
 		unknown,
 		prismic.FieldState,
 		never
+	>
+
+	/**
+	 * Contact form email addresses field in *Site settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: site_settings.contact_form_mails[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	contact_form_mails: prismic.GroupField<
+		Simplify<SiteSettingsDocumentDataContactFormMailsItem>
 	>
 }
 
@@ -952,7 +986,13 @@ export interface AssuranceWithImagesSliceDefaultPrimary {
 	 * - **API ID Path**: assurance_with_images.default.primary.ctaLink
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
-	ctaLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+	ctaLink: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
 
 	/**
 	 * Images field in *FloatingImages → Default → Primary*
@@ -965,6 +1005,16 @@ export interface AssuranceWithImagesSliceDefaultPrimary {
 	images: prismic.GroupField<
 		Simplify<AssuranceWithImagesSliceDefaultPrimaryImagesItem>
 	>
+
+	/**
+	 * Section padding field in *FloatingImages → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: assurance_with_images.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1149,7 +1199,9 @@ export interface ComingSoonSliceDefaultPrimary {
 	 * - **API ID Path**: coming_soon.default.primary.images[]
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	images: prismic.GroupField<Simplify<ComingSoonSliceDefaultPrimaryImagesItem>>
+	images: prismic.GroupField<
+		Simplify<ComingSoonSliceDefaultPrimaryImagesItem>
+	>
 
 	/**
 	 * Bottom texts field in *ComingSoon → Default → Primary*
@@ -1341,6 +1393,16 @@ export interface ContactBlockSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	form_footer_note: prismic.RichTextField
+
+	/**
+	 * Section padding field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'bottom' | 'both' | 'none' | 'top'>
 }
 
 /**
@@ -1457,6 +1519,110 @@ export type ContentHeroSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+ */
+export interface ContentImageGridSliceTextImageMasonryPrimaryItemsItem {
+	/**
+	 * Item Type field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].type
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	type: prismic.SelectField<'text' | 'image'>
+
+	/**
+	 * Text Content field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	text: prismic.RichTextField
+
+	/**
+	 * Image field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Item position field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: start
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].item_position
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	item_position: prismic.SelectField<'start' | 'center' | 'end', 'filled'>
+}
+
+/**
+ * Primary content in *ContentImageGrid → Text + Image Masonry Grid → Primary*
+ */
+export interface ContentImageGridSliceTextImageMasonryPrimary {
+	/**
+	 * Grid Items field in *ContentImageGrid → Text + Image Masonry Grid → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<
+		Simplify<ContentImageGridSliceTextImageMasonryPrimaryItemsItem>
+	>
+
+	/**
+	 * Section padding field in *ContentImageGrid → Text + Image Masonry Grid → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+}
+
+/**
+ * Text + Image Masonry Grid variation for ContentImageGrid Slice
+ *
+ * - **API ID**: `text_image_masonry`
+ * - **Description**: Displays multiple text and image items in a dense, pseudo-masonry grid. Each item can be an image or a text block, allowing flexible content arrangements.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentImageGridSliceTextImageMasonry =
+	prismic.SharedSliceVariation<
+		'text_image_masonry',
+		Simplify<ContentImageGridSliceTextImageMasonryPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *ContentImageGrid*
+ */
+type ContentImageGridSliceVariation = ContentImageGridSliceTextImageMasonry
+
+/**
+ * ContentImageGrid Shared Slice
+ *
+ * - **API ID**: `content_image_grid`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentImageGridSlice = prismic.SharedSlice<
+	'content_image_grid',
+	ContentImageGridSliceVariation
+>
+
+/**
  * Primary content in *CtaProfileContact → Default → Primary*
  */
 export interface CtaProfileContactSliceDefaultPrimary {
@@ -1515,6 +1681,16 @@ export interface CtaProfileContactSliceDefaultPrimary {
 		prismic.FieldState,
 		never
 	>
+
+	/**
+	 * Section padding field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1552,16 +1728,6 @@ export type CtaProfileContactSlice = prismic.SharedSlice<
  */
 export interface FeatureGridSliceDefaultPrimaryFeaturesItem {
 	/**
-	 * Icon field in *FeatureGrid → Default → Primary → Features*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: feature_grid.default.primary.features[].icon
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	icon: prismic.ImageField<never>
-
-	/**
 	 * Description field in *FeatureGrid → Default → Primary → Features*
 	 *
 	 * - **Field Type**: Rich Text
@@ -1570,6 +1736,21 @@ export interface FeatureGridSliceDefaultPrimaryFeaturesItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	description: prismic.RichTextField
+
+	/**
+	 * icon field in *FeatureGrid → Default → Primary → Features*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.features[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	icon: prismic.SelectField<
+		| 'StackingSquares'
+		| 'UnionShape'
+		| 'StackingCircles'
+		| 'StackingOpenSquares'
+	>
 }
 
 /**
@@ -1597,6 +1778,16 @@ export interface FeatureGridSliceDefaultPrimary {
 	features: prismic.GroupField<
 		Simplify<FeatureGridSliceDefaultPrimaryFeaturesItem>
 	>
+
+	/**
+	 * Section padding field in *FeatureGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1695,6 +1886,16 @@ export interface FeatureGrid2SliceDefaultPrimary {
 	features: prismic.GroupField<
 		Simplify<FeatureGrid2SliceDefaultPrimaryFeaturesItem>
 	>
+
+	/**
+	 * Section padding field in *FeatureGrid2 → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_grid_2.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1760,7 +1961,11 @@ export interface FeatureIntroDoubleColumnSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	shape: prismic.SelectField<
-		'roundVerticalLines' | 'roundWorldShape' | 'TriangleShape' | 'squareShape'
+		| 'roundVerticalLines'
+		| 'roundWorldShape'
+		| 'TriangleShape'
+		| 'squareShape'
+		| 'WorldShapeBlue'
 	>
 
 	/**
@@ -1782,6 +1987,16 @@ export interface FeatureIntroDoubleColumnSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	supporting_text: prismic.RichTextField
+
+	/**
+	 * Section padding field in *FeatureIntroDoubleColumn → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: feature_intro_double_column.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -1813,6 +2028,99 @@ type FeatureIntroDoubleColumnSliceVariation =
 export type FeatureIntroDoubleColumnSlice = prismic.SharedSlice<
 	'feature_intro_double_column',
 	FeatureIntroDoubleColumnSliceVariation
+>
+
+/**
+ * Item in *HeadlineWithImageTrail → Default → Primary → Images*
+ */
+export interface HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem {
+	/**
+	 * Image field in *HeadlineWithImageTrail → Default → Primary → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.images[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *HeadlineWithImageTrail → Default → Primary*
+ */
+export interface HeadlineWithCornerImagesSliceDefaultPrimary {
+	/**
+	 * Headline field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Subheadline field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.subheadline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subheadline: prismic.KeyTextField
+
+	/**
+	 * Images field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.images[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	images: prismic.GroupField<
+		Simplify<HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem>
+	>
+
+	/**
+	 * Section padding field in *HeadlineWithImageTrail → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: headline_with_corner_images.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+}
+
+/**
+ * Default variation for HeadlineWithImageTrail Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Headline and subheadline centered with groups of decorative images in multiple corners.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeadlineWithCornerImagesSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeadlineWithCornerImagesSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *HeadlineWithImageTrail*
+ */
+type HeadlineWithCornerImagesSliceVariation =
+	HeadlineWithCornerImagesSliceDefault
+
+/**
+ * HeadlineWithImageTrail Shared Slice
+ *
+ * - **API ID**: `headline_with_corner_images`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeadlineWithCornerImagesSlice = prismic.SharedSlice<
+	'headline_with_corner_images',
+	HeadlineWithCornerImagesSliceVariation
 >
 
 /**
@@ -2010,6 +2318,16 @@ export interface HeroWithBackgroundSliceDefaultPrimary {
 			'primary' | 'secondary'
 		>
 	>
+
+	/**
+	 * Section padding field in *HeroWithBackground → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_background.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2110,6 +2428,16 @@ export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	content: prismic.KeyTextField
+
+	/**
+	 * Section padding field in *RevealTypeBlock → default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2204,6 +2532,16 @@ export interface ImageTextColumnsSliceAlternatingBlocksPrimary {
 	blocks: prismic.GroupField<
 		Simplify<ImageTextColumnsSliceAlternatingBlocksPrimaryBlocksItem>
 	>
+
+	/**
+	 * Section padding field in *ImageTextColumns → Alternating Image & Text Blocks → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns.alternating_blocks.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2270,6 +2608,16 @@ export interface ImageTextColumns2SliceImageLeftTextRightPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	description: prismic.RichTextField
+
+	/**
+	 * Section padding field in *ImageTextBlock → ImageTextBlock → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_columns_2.image_left_text_right.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2369,6 +2717,16 @@ export interface IndependentDesignSliceDefaultPrimary {
 	features: prismic.GroupField<
 		Simplify<IndependentDesignSliceDefaultPrimaryFeaturesItem>
 	>
+
+	/**
+	 * Section padding field in *StickyFeatures → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: independent_design.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2402,6 +2760,89 @@ export type IndependentDesignSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *HeroWithOverflowingMedia → default → Primary → Media*
+ */
+export interface IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem {
+	/**
+	 * Image field in *HeroWithOverflowingMedia → default → Primary → Media*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.media[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *HeroWithOverflowingMedia → default → Primary*
+ */
+export interface IntroWithMediaRowSliceTextWithImageRowPrimary {
+	/**
+	 * Label field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField
+
+	/**
+	 * Headline field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	headline: prismic.RichTextField
+
+	/**
+	 * Media field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.media[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	media: prismic.GroupField<
+		Simplify<IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem>
+	>
+}
+
+/**
+ * default variation for HeroWithOverflowingMedia Slice
+ *
+ * - **API ID**: `text_with_image_row`
+ * - **Description**: Displays an introductory text block with optional label and a horizontal row of images below.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IntroWithMediaRowSliceTextWithImageRow =
+	prismic.SharedSliceVariation<
+		'text_with_image_row',
+		Simplify<IntroWithMediaRowSliceTextWithImageRowPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *HeroWithOverflowingMedia*
+ */
+type IntroWithMediaRowSliceVariation = IntroWithMediaRowSliceTextWithImageRow
+
+/**
+ * HeroWithOverflowingMedia Shared Slice
+ *
+ * - **API ID**: `intro_with_media_row`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IntroWithMediaRowSlice = prismic.SharedSlice<
+	'intro_with_media_row',
+	IntroWithMediaRowSliceVariation
+>
+
+/**
  * Item in *MarqueeText → Default → Primary → Items*
  */
 export interface MarqueeTextSliceDefaultPrimaryItemsItem {
@@ -2429,6 +2870,16 @@ export interface MarqueeTextSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	items: prismic.GroupField<Simplify<MarqueeTextSliceDefaultPrimaryItemsItem>>
+
+	/**
+	 * Section padding field in *MarqueeText → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: marquee_text.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2496,26 +2947,6 @@ export interface PillarsSliceDefaultPrimaryPillarsItem {
 	index: prismic.KeyTextField
 
 	/**
-	 * Background Color field in *FeatureCards → Default → Primary → Pillars*
-	 *
-	 * - **Field Type**: Color
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillars.default.primary.pillars[].background_color
-	 * - **Documentation**: https://prismic.io/docs/fields/color
-	 */
-	background_color: prismic.ColorField
-
-	/**
-	 * Text color field in *FeatureCards → Default → Primary → Pillars*
-	 *
-	 * - **Field Type**: Color
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillars.default.primary.pillars[].text_color
-	 * - **Documentation**: https://prismic.io/docs/fields/color
-	 */
-	text_color: prismic.ColorField
-
-	/**
 	 * Shape field in *FeatureCards → Default → Primary → Pillars*
 	 *
 	 * - **Field Type**: Select
@@ -2528,6 +2959,31 @@ export interface PillarsSliceDefaultPrimaryPillarsItem {
 		'roundVerticalLines' | 'roundWorldShape' | 'TriangleShape',
 		'filled'
 	>
+
+	/**
+	 * Background color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: aqua
+	 * - **API ID Path**: pillars.default.primary.pillars[].bg_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	bg_color: prismic.SelectField<
+		'aqua' | 'clay-green' | 'dark-mode' | 'snow-white',
+		'filled'
+	>
+
+	/**
+	 * Text & shape color field in *FeatureCards → Default → Primary → Pillars*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: snow-white
+	 * - **API ID Path**: pillars.default.primary.pillars[].text_shape_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	text_shape_color: prismic.SelectField<'snow-white' | 'dark-mode', 'filled'>
 }
 
 /**
@@ -2555,26 +3011,43 @@ export interface PillarsSliceSliderPrimaryCardsItem {
 	description: prismic.RichTextField
 
 	/**
-	 * Background color field in *FeatureCards → Slider → Primary → Cards*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **Default Value**: Dark
-	 * - **API ID Path**: pillars.slider.primary.cards[].background_color
-	 * - **Documentation**: https://prismic.io/docs/fields/select
-	 */
-	background_color: prismic.SelectField<'Dark' | 'Aqua' | 'Clay', 'filled'>
-
-	/**
 	 * Shape field in *FeatureCards → Slider → Primary → Cards*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
-	 * - **Default Value**: Cylinder
+	 * - **Default Value**: TriangleShape
 	 * - **API ID Path**: pillars.slider.primary.cards[].shape
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	shape: prismic.SelectField<'Cylinder' | 'Sphere' | 'Pyramid', 'filled'>
+	shape: prismic.SelectField<
+		'TriangleShape' | 'roundWorldShape' | 'roundVerticalLines',
+		'filled'
+	>
+
+	/**
+	 * Background color field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: aqua
+	 * - **API ID Path**: pillars.slider.primary.cards[].bg_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	bg_color: prismic.SelectField<
+		'aqua' | 'clay-green' | 'dark-mode' | 'snow-white',
+		'filled'
+	>
+
+	/**
+	 * Text & shape color field in *FeatureCards → Slider → Primary → Cards*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: snow-white
+	 * - **API ID Path**: pillars.slider.primary.cards[].text_shape_color
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	text_shape_color: prismic.SelectField<'snow-white' | 'dark-mode', 'filled'>
 }
 
 /**
@@ -2600,6 +3073,16 @@ export interface PillarsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	pillars: prismic.GroupField<Simplify<PillarsSliceDefaultPrimaryPillarsItem>>
+
+	/**
+	 * Section padding field in *FeatureCards → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2638,6 +3121,16 @@ export interface PillarsSliceSliderPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	cards: prismic.GroupField<Simplify<PillarsSliceSliderPrimaryCardsItem>>
+
+	/**
+	 * Section padding field in *FeatureCards → Slider → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pillars.slider.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2753,6 +3246,16 @@ export interface ServiceOverviewSliceWithSliderAndContactPrimary {
 		prismic.FieldState,
 		never
 	>
+
+	/**
+	 * Section padding field in *ServiceOverview → With Slider and Contact → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: service_overview.with_slider_and_contact.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2835,6 +3338,16 @@ export interface TrustedBySliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	heading: prismic.KeyTextField
+
+	/**
+	 * Section padding field in *TrustedBy → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: trusted_by.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2906,6 +3419,16 @@ export interface ValuePropositionSliceDefaultPrimary {
 		prismic.FieldState,
 		never
 	>
+
+	/**
+	 * Section padding field in *RevealTypeWithCta → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: value_proposition.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -2983,6 +3506,7 @@ declare module '@prismicio/client' {
 			PageDocumentDataSlicesSlice,
 			SiteSettingsDocument,
 			SiteSettingsDocumentData,
+			SiteSettingsDocumentDataContactFormMailsItem,
 			SocialLinksDocument,
 			SocialLinksDocumentData,
 			SocialLinksDocumentDataSocialsItem,
@@ -3019,6 +3543,11 @@ declare module '@prismicio/client' {
 			ContentHeroSliceVisualRightPrimary,
 			ContentHeroSliceVariation,
 			ContentHeroSliceVisualRight,
+			ContentImageGridSlice,
+			ContentImageGridSliceTextImageMasonryPrimaryItemsItem,
+			ContentImageGridSliceTextImageMasonryPrimary,
+			ContentImageGridSliceVariation,
+			ContentImageGridSliceTextImageMasonry,
 			CtaProfileContactSlice,
 			CtaProfileContactSliceDefaultPrimary,
 			CtaProfileContactSliceVariation,
@@ -3037,6 +3566,11 @@ declare module '@prismicio/client' {
 			FeatureIntroDoubleColumnSliceDefaultPrimary,
 			FeatureIntroDoubleColumnSliceVariation,
 			FeatureIntroDoubleColumnSliceDefault,
+			HeadlineWithCornerImagesSlice,
+			HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem,
+			HeadlineWithCornerImagesSliceDefaultPrimary,
+			HeadlineWithCornerImagesSliceVariation,
+			HeadlineWithCornerImagesSliceDefault,
 			HeroStatementSlice,
 			HeroStatementSliceDefaultPrimaryTagsItem,
 			HeroStatementSliceDefaultPrimaryAddressLinesItem,
@@ -3070,6 +3604,11 @@ declare module '@prismicio/client' {
 			IndependentDesignSliceDefaultPrimary,
 			IndependentDesignSliceVariation,
 			IndependentDesignSliceDefault,
+			IntroWithMediaRowSlice,
+			IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem,
+			IntroWithMediaRowSliceTextWithImageRowPrimary,
+			IntroWithMediaRowSliceVariation,
+			IntroWithMediaRowSliceTextWithImageRow,
 			MarqueeTextSlice,
 			MarqueeTextSliceDefaultPrimaryItemsItem,
 			MarqueeTextSliceDefaultPrimary,

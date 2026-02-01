@@ -34,7 +34,8 @@
               "roundVerticalLines",
               "roundWorldShape",
               "TriangleShape",
-              "squareShape"
+              "squareShape",
+              "WorldShapeBlue"
             ]
           }
         },
@@ -50,6 +51,19 @@
           "config": {
             "multi": "paragraph,strong,em,hyperlink",
             "label": "Supporting Text"
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
           }
         }
       },

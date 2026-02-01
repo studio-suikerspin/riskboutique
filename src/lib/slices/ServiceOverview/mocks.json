@@ -77,13 +77,18 @@
 				]
 			},
 			"cta_link": {
-				"__TYPE__": "LinkContent",
 				"key": "e6300db4-afd2-4b20-8504-e095be8403c2",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "http://google.com",
 					"text": "hello"
 				}
+			},
+			"section_padding": {
+				"__TYPE__": "FieldContent",
+				"value": "bottom",
+				"type": "Select"
 			}
 		},
 		"items": []

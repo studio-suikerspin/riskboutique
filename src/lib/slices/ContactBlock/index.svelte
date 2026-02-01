@@ -45,12 +45,22 @@
 			loading = false
 		}
 	}
+
+	const paddingClass = $derived(() => {
+		switch (slice.primary.section_padding) {
+			case 'top': return 'block-padding-top';
+			case 'bottom': return 'block-padding-bottom';
+			case 'both': return 'block-padding';
+			case 'none': return '';
+			default: return '';
+		}
+	});
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="contact-block block-padding"
+	class="contact-block {paddingClass()}"
 >
 	<Toaster />
 	<div class="contact-block__container container">
@@ -181,6 +191,8 @@
 
 <style lang="scss">
 	.contact-block {
+		padding-top: 8rem;
+
 		&__inner {
 			display: flex;
 			flex-flow: column;
