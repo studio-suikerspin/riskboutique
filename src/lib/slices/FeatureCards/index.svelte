@@ -14,14 +14,24 @@
 
 	let swiper: Swiper
 
+	const isSlider = slice.variation === 'slider'
+
 	onMount(() => {
 		swiper = new Swiper('.swiper', {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 0,
 			breakpoints: {
+				768: {
+					slidesPerView: isSlider ? 1.5 : 2,
+					spaceBetween: 20
+				},
 				992: {
-					slidesPerView: 3,
+					slidesPerView: isSlider ? 2.5 : 3,
+					spaceBetween: 20
+				},
+				1024: {
+					slidesPerView: isSlider ? 3.25 : 3,
 					spaceBetween: 20
 				}
 			},
@@ -91,7 +101,12 @@
 			</div>
 
 			<div class="swiper-container">
-				<div class="swiper feature-cards__swiper">
+				<div
+					class="swiper feature-cards__swiper {slice.variation ===
+					'slider'
+						? 'swiper--overflow'
+						: ''}"
+				>
 					<!-- Additional required wrapper -->
 					<div class="swiper-wrapper">
 						{#if slice.variation === 'default'}
@@ -116,8 +131,8 @@
 										<FeatureCard
 											title={item.title}
 											description={item.description}
-											background={item.background_color}
-											text_color={item.text_color}
+											background={item.bg_color}
+											text_color={item.text_shape_color}
 											number={item.index}
 											shape={item.shape}
 										/>
@@ -165,6 +180,12 @@
 
 	.swiper {
 		width: 100%;
+
+		&--overflow {
+			@media (min-width: 768px) {
+				overflow: visible;
+			}
+		}
 	}
 
 	.swiper-slide {
