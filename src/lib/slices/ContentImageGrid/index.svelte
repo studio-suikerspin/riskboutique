@@ -49,7 +49,7 @@
 					{:else if item.type === 'image'}
 						<PrismicImage
 							field={item.image}
-							class="grid-item__image"
+							class="grid-item__image border-radius"
 						/>
 					{/if}
 				</div>
