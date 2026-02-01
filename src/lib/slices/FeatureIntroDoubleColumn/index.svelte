@@ -57,11 +57,14 @@
 	&__inner{
 		display: flex;
 		flex-direction: column;
-		// gap: 2.5rem;
+		
 
-		// @media(min-width: 768px){
-		// 	gap: 5rem;
-		// }
+		@media(min-width: 768px){
+			gap: 5rem;
+		}
+		@media(min-width: 992px){
+			gap: unset;
+		}
 	}
 
 	&__first{
