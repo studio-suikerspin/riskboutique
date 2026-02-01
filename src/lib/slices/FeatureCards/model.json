@@ -43,19 +43,6 @@
                   "label": "Index"
                 }
               },
-              "background_color": {
-                "type": "Color",
-                "config": {
-                  "label": "Background Color"
-                }
-              },
-              "text_color": {
-                "type": "Color",
-                "config": {
-                  "label": "Text color",
-                  "placeholder": ""
-                }
-              },
               "shape": {
                 "type": "Select",
                 "config": {
@@ -67,6 +54,32 @@
                     "TriangleShape"
                   ],
                   "default_value": "roundVerticalLines"
+                }
+              },
+              "bg_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Background color",
+                  "placeholder": "",
+                  "options": [
+                    "aqua",
+                    "clay-green",
+                    "dark-mode",
+                    "snow-white"
+                  ],
+                  "default_value": "aqua"
+                }
+              },
+              "text_shape_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Text & shape color",
+                  "placeholder": "",
+                  "options": [
+                    "snow-white",
+                    "dark-mode"
+                  ],
+                  "default_value": "snow-white"
                 }
               }
             }
@@ -111,19 +124,6 @@
                   "single": "paragraph,strong,em"
                 }
               },
-              "background_color": {
-                "type": "Select",
-                "config": {
-                  "label": "Background color",
-                  "placeholder": "",
-                  "options": [
-                    "Dark",
-                    "Aqua",
-                    "Clay"
-                  ],
-                  "default_value": "Dark"
-                }
-              },
               "shape": {
                 "type": "Select",
                 "config": {
@@ -135,6 +135,32 @@
                     "Pyramid"
                   ],
                   "default_value": "Cylinder"
+                }
+              },
+              "bg_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Background color",
+                  "placeholder": "",
+                  "options": [
+                    "aqua",
+                    "clay-green",
+                    "dark-mode",
+                    "snow-white"
+                  ],
+                  "default_value": "aqua"
+                }
+              },
+              "text_shape_color": {
+                "type": "Select",
+                "config": {
+                  "label": "Text & shape color",
+                  "placeholder": "",
+                  "options": [
+                    "snow-white",
+                    "dark-mode"
+                  ],
+                  "default_value": "snow-white"
                 }
               }
             }

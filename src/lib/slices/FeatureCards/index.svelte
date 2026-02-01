@@ -96,8 +96,8 @@
 									<FeatureCard
 										title={item.title}
 										description={item.description}
-										background={item.background_color}
-										text_color={item.text_color}
+										background={item.bg_color}
+										text_color={item.text_shape_color}
 										number={item.index}
 										shape={item.shape}
 									/>
