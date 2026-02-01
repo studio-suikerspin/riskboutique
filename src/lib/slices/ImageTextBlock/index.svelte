@@ -8,7 +8,7 @@
 </script>
 
 <section
-	class="section-careers-image-block"
+	class="image-text-block"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 	data-id={slice.id}
@@ -18,7 +18,7 @@
 		alt={slice.primary.media.alt}
 	/>
 
-	<div class="section-careers-image-block__content">
+	<div class="image-text-block__content">
 		<h4>{slice.primary.headline}</h4>
 		<div>
 			<PrismicRichText field={slice.primary.description} />
@@ -27,7 +27,7 @@
 </section>
 
 <style lang="scss">
-	.section-careers-image-block {
+	.image-text-block {
 		padding-inline: 0.75rem;
 		display: flex;
 		flex-direction: column;
