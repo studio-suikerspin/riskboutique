@@ -1502,6 +1502,17 @@ export interface ContentImageGridSliceTextImageMasonryPrimaryItemsItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	image: prismic.ImageField<never>
+
+	/**
+	 * Item position field in *ContentImageGrid → Text + Image Masonry Grid → Primary → Grid Items*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: start
+	 * - **API ID Path**: content_image_grid.text_image_masonry.primary.items[].item_position
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	item_position: prismic.SelectField<'start' | 'center' | 'end', 'filled'>
 }
 
 /**
