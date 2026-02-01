@@ -3,17 +3,25 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
+	import { Gradient } from '$lib/gradients';
 
 	type Props = SliceComponentProps<Content.HeroWithSplitVisualSlice>
 
 	const { slice }: Props = $props()
+
+	onMount(() => {
+		const gradient = new Gradient();
+
+		gradient.initGradient('#gradient-canvas');
+	});
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
+	class="hero-advisory"
 >
-	<div class="hero-advisory">
+<canvas id="gradient-canvas" class="hero-advisory__gradient" data-transition-in></canvas>
 		<div class="container">
 			<div class="hero-advisory__content">
 				<div class="hero-advisory__title-wrap">
@@ -25,15 +33,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </section>
 
 <style lang="scss">
 	.hero-advisory{
 		position: relative;
 		overflow: hidden;
-		background: url('/bg-gradient-donker.svg') no-repeat center center;
-		background-size: cover;
+		// background: url('/bg-gradient-donker.svg') no-repeat center center;
+		// background-size: cover;
 
 		// Zwarte gradient mask aan de onderkant
 		&::after {
@@ -53,6 +60,20 @@
 			&::after {
 				height: 9.375rem;
 			}
+		}
+
+		&__gradient {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			object-fit: cover;
+			inset: 0%;
+
+			--gradient-color-1: #b2c1bd;
+			--gradient-color-2: #0e4f63;
+			--gradient-color-3: #0e4f63;
+			--gradient-color-4: #0e4f63;
 		}
 
 		&__content{
