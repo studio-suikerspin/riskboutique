@@ -93,12 +93,16 @@
 		:global &__logo {
 			max-width: 170px;
 
-			&:not([data-default-logo="dark"]) &--dark {
+			&--dark {
 				display: none;
 			}
 
 			[data-default-logo="dark"] &--light {
 				display: none;
+			}
+
+			[data-default-logo="dark"] &--dark {
+			     display: block;
 			}
 
 			@media screen and (min-width: 992px) {
