@@ -1,0 +1,73 @@
+{
+  "id": "featured_cta_blocks",
+  "type": "SharedSlice",
+  "name": "FeaturedCtaBlocks",
+  "description": "FeaturedCtaBlocks",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "subheadline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subheadline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "shape": {
+          "type": "Select",
+          "config": {
+            "label": "Shape",
+            "placeholder": "",
+            "options": [
+              "roundWorldShape",
+              "roundVerticalLines",
+              "TriangleShape"
+            ],
+            "default_value": "roundWorldShape"
+          }
+        },
+        "featured_blocks": {
+          "type": "Group",
+          "config": {
+            "label": "Featured blocks",
+            "repeat": true,
+            "fields": {
+              "headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Headline",
+                  "placeholder": ""
+                }
+              },
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Content",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -827,6 +827,75 @@ export type SocialLinksDocument<Lang extends string = string> =
 		Lang
 	>
 
+type StaffingSearchSubpageDocumentDataSlicesSlice =
+	| AbstractHighlightsSlice
+	| FeaturedCtaBlocksSlice
+	| ImageTextRevealTypeAvatarSlice
+	| HeroWithOverflowingImageSlice
+
+/**
+ * Content for Staffing & Search subpage documents
+ */
+interface StaffingSearchSubpageDocumentData {
+	/**
+	 * Slice Zone field in *Staffing & Search subpage*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: staffing_search_subpage.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<StaffingSearchSubpageDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Staffing & Search subpage*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: staffing_search_subpage.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField
+
+	/**
+	 * Meta Description field in *Staffing & Search subpage*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: staffing_search_subpage.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField
+
+	/**
+	 * Meta Image field in *Staffing & Search subpage*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: staffing_search_subpage.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>
+}
+
+/**
+ * Staffing & Search subpage document from Prismic
+ *
+ * - **API ID**: `staffing_search_subpage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StaffingSearchSubpageDocument<Lang extends string = string> =
+	prismic.PrismicDocumentWithUID<
+		Simplify<StaffingSearchSubpageDocumentData>,
+		'staffing_search_subpage',
+		Lang
+	>
+
 /**
  * Content for Submenu documents
  */
@@ -936,8 +1005,81 @@ export type AllDocumentTypes =
 	| PageDocument
 	| SiteSettingsDocument
 	| SocialLinksDocument
+	| StaffingSearchSubpageDocument
 	| SubMenuDocument
 	| UnderConstructionPageDocument
+
+/**
+ * Item in *AbstractHighlights → Default → Primary → Highlights*
+ */
+export interface AbstractHighlightsSliceDefaultPrimaryHighlightsItem {
+	/**
+	 * Text field in *AbstractHighlights → Default → Primary → Highlights*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: abstract_highlights.default.primary.highlights[].text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	text: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *AbstractHighlights → Default → Primary*
+ */
+export interface AbstractHighlightsSliceDefaultPrimary {
+	/**
+	 * Headline field in *AbstractHighlights → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: abstract_highlights.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Highlights field in *AbstractHighlights → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: abstract_highlights.default.primary.highlights[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	highlights: prismic.GroupField<
+		Simplify<AbstractHighlightsSliceDefaultPrimaryHighlightsItem>
+	>
+}
+
+/**
+ * Default variation for AbstractHighlights Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AbstractHighlightsSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<AbstractHighlightsSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *AbstractHighlights*
+ */
+type AbstractHighlightsSliceVariation = AbstractHighlightsSliceDefault
+
+/**
+ * AbstractHighlights Shared Slice
+ *
+ * - **API ID**: `abstract_highlights`
+ * - **Description**: AbstractHighlights
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AbstractHighlightsSlice = prismic.SharedSlice<
+	'abstract_highlights',
+	AbstractHighlightsSliceVariation
+>
 
 /**
  * Item in *FloatingImages → Default → Primary → Images*
@@ -2031,6 +2173,112 @@ export type FeatureIntroDoubleColumnSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *FeaturedCtaBlocks → Default → Primary → Featured blocks*
+ */
+export interface FeaturedCtaBlocksSliceDefaultPrimaryFeaturedBlocksItem {
+	/**
+	 * Headline field in *FeaturedCtaBlocks → Default → Primary → Featured blocks*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.featured_blocks[].headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Content field in *FeaturedCtaBlocks → Default → Primary → Featured blocks*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.featured_blocks[].content
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	content: prismic.RichTextField
+}
+
+/**
+ * Primary content in *FeaturedCtaBlocks → Default → Primary*
+ */
+export interface FeaturedCtaBlocksSliceDefaultPrimary {
+	/**
+	 * Headline field in *FeaturedCtaBlocks → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Subheadline field in *FeaturedCtaBlocks → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.subheadline
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subheadline: prismic.RichTextField
+
+	/**
+	 * Shape field in *FeaturedCtaBlocks → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: roundWorldShape
+	 * - **API ID Path**: featured_cta_blocks.default.primary.shape
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	shape: prismic.SelectField<
+		'roundWorldShape' | 'roundVerticalLines' | 'TriangleShape',
+		'filled'
+	>
+
+	/**
+	 * Featured blocks field in *FeaturedCtaBlocks → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.featured_blocks[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	featured_blocks: prismic.GroupField<
+		Simplify<FeaturedCtaBlocksSliceDefaultPrimaryFeaturedBlocksItem>
+	>
+}
+
+/**
+ * Default variation for FeaturedCtaBlocks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FeaturedCtaBlocksSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<FeaturedCtaBlocksSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *FeaturedCtaBlocks*
+ */
+type FeaturedCtaBlocksSliceVariation = FeaturedCtaBlocksSliceDefault
+
+/**
+ * FeaturedCtaBlocks Shared Slice
+ *
+ * - **API ID**: `featured_cta_blocks`
+ * - **Description**: FeaturedCtaBlocks
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FeaturedCtaBlocksSlice = prismic.SharedSlice<
+	'featured_cta_blocks',
+	FeaturedCtaBlocksSliceVariation
+>
+
+/**
  * Item in *HeadlineWithImageTrail → Default → Primary → Images*
  */
 export interface HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem {
@@ -2361,6 +2609,82 @@ export type HeroWithBackgroundSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *HeroWithOverflowingImage → Default → Primary*
+ */
+export interface HeroWithOverflowingImageSliceDefaultPrimary {
+	/**
+	 * Headline field in *HeroWithOverflowingImage → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_overflowing_image.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	headline: prismic.RichTextField
+
+	/**
+	 * Content field in *HeroWithOverflowingImage → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_overflowing_image.default.primary.content
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	content: prismic.RichTextField
+
+	/**
+	 * Scroller label field in *HeroWithOverflowingImage → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: (Scroll to explore)
+	 * - **API ID Path**: hero_with_overflowing_image.default.primary.scroller_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	scroller_label: prismic.KeyTextField
+
+	/**
+	 * Overflowing image field in *HeroWithOverflowingImage → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_overflowing_image.default.primary.overflowing_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	overflowing_image: prismic.ImageField<never>
+}
+
+/**
+ * Default variation for HeroWithOverflowingImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroWithOverflowingImageSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeroWithOverflowingImageSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *HeroWithOverflowingImage*
+ */
+type HeroWithOverflowingImageSliceVariation =
+	HeroWithOverflowingImageSliceDefault
+
+/**
+ * HeroWithOverflowingImage Shared Slice
+ *
+ * - **API ID**: `hero_with_overflowing_image`
+ * - **Description**: HeroWithOverflowingImage
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroWithOverflowingImageSlice = prismic.SharedSlice<
+	'hero_with_overflowing_image',
+	HeroWithOverflowingImageSliceVariation
+>
+
+/**
  * Primary content in *HeroWithSplitVisual → Default → Primary*
  */
 export interface HeroWithSplitVisualSliceDefaultPrimary {
@@ -2677,6 +3001,73 @@ type ImageTextColumns2SliceVariation = ImageTextColumns2SliceImageLeftTextRight
 export type ImageTextColumns2Slice = prismic.SharedSlice<
 	'image_text_columns_2',
 	ImageTextColumns2SliceVariation
+>
+
+/**
+ * Primary content in *ImageTextRevealTypeAvatar → Default → Primary*
+ */
+export interface ImageTextRevealTypeAvatarSliceDefaultPrimary {
+	/**
+	 * Image field in *ImageTextRevealTypeAvatar → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_reveal_type_avatar.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Reveal type heading field in *ImageTextRevealTypeAvatar → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_reveal_type_avatar.default.primary.reveal_type
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	reveal_type: prismic.KeyTextField
+
+	/**
+	 * Subtext field in *ImageTextRevealTypeAvatar → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_reveal_type_avatar.default.primary.subtext
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subtext: prismic.RichTextField
+}
+
+/**
+ * Default variation for ImageTextRevealTypeAvatar Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageTextRevealTypeAvatarSliceDefault =
+	prismic.SharedSliceVariation<
+		'default',
+		Simplify<ImageTextRevealTypeAvatarSliceDefaultPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *ImageTextRevealTypeAvatar*
+ */
+type ImageTextRevealTypeAvatarSliceVariation =
+	ImageTextRevealTypeAvatarSliceDefault
+
+/**
+ * ImageTextRevealTypeAvatar Shared Slice
+ *
+ * - **API ID**: `image_text_reveal_type_avatar`
+ * - **Description**: ImageTextRevealTypeAvatar
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageTextRevealTypeAvatarSlice = prismic.SharedSlice<
+	'image_text_reveal_type_avatar',
+	ImageTextRevealTypeAvatarSliceVariation
 >
 
 /**
@@ -3538,12 +3929,20 @@ declare module '@prismicio/client' {
 			SocialLinksDocument,
 			SocialLinksDocumentData,
 			SocialLinksDocumentDataSocialsItem,
+			StaffingSearchSubpageDocument,
+			StaffingSearchSubpageDocumentData,
+			StaffingSearchSubpageDocumentDataSlicesSlice,
 			SubMenuDocument,
 			SubMenuDocumentData,
 			UnderConstructionPageDocument,
 			UnderConstructionPageDocumentData,
 			UnderConstructionPageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			AbstractHighlightsSlice,
+			AbstractHighlightsSliceDefaultPrimaryHighlightsItem,
+			AbstractHighlightsSliceDefaultPrimary,
+			AbstractHighlightsSliceVariation,
+			AbstractHighlightsSliceDefault,
 			AssuranceWithImagesSlice,
 			AssuranceWithImagesSliceDefaultPrimaryImagesItem,
 			AssuranceWithImagesSliceDefaultPrimary,
@@ -3594,6 +3993,11 @@ declare module '@prismicio/client' {
 			FeatureIntroDoubleColumnSliceDefaultPrimary,
 			FeatureIntroDoubleColumnSliceVariation,
 			FeatureIntroDoubleColumnSliceDefault,
+			FeaturedCtaBlocksSlice,
+			FeaturedCtaBlocksSliceDefaultPrimaryFeaturedBlocksItem,
+			FeaturedCtaBlocksSliceDefaultPrimary,
+			FeaturedCtaBlocksSliceVariation,
+			FeaturedCtaBlocksSliceDefault,
 			HeadlineWithCornerImagesSlice,
 			HeadlineWithCornerImagesSliceDefaultPrimaryImagesItem,
 			HeadlineWithCornerImagesSliceDefaultPrimary,
@@ -3610,6 +4014,10 @@ declare module '@prismicio/client' {
 			HeroWithBackgroundSliceDefaultPrimary,
 			HeroWithBackgroundSliceVariation,
 			HeroWithBackgroundSliceDefault,
+			HeroWithOverflowingImageSlice,
+			HeroWithOverflowingImageSliceDefaultPrimary,
+			HeroWithOverflowingImageSliceVariation,
+			HeroWithOverflowingImageSliceDefault,
 			HeroWithSplitVisualSlice,
 			HeroWithSplitVisualSliceDefaultPrimary,
 			HeroWithSplitVisualSliceVariation,
@@ -3628,6 +4036,10 @@ declare module '@prismicio/client' {
 			ImageTextColumns2SliceImageLeftTextRightPrimary,
 			ImageTextColumns2SliceVariation,
 			ImageTextColumns2SliceImageLeftTextRight,
+			ImageTextRevealTypeAvatarSlice,
+			ImageTextRevealTypeAvatarSliceDefaultPrimary,
+			ImageTextRevealTypeAvatarSliceVariation,
+			ImageTextRevealTypeAvatarSliceDefault,
 			IndependentDesignSlice,
 			IndependentDesignSliceDefaultPrimaryFeaturesItem,
 			IndependentDesignSliceDefaultPrimary,

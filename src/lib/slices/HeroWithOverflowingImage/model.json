@@ -1,0 +1,52 @@
+{
+  "id": "hero_with_overflowing_image",
+  "type": "SharedSlice",
+  "name": "HeroWithOverflowingImage",
+  "description": "HeroWithOverflowingImage",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading1,strong"
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "scroller_label": {
+          "type": "Text",
+          "config": {
+            "label": "Scroller label",
+            "placeholder": "(Scroll to explore)"
+          }
+        },
+        "overflowing_image": {
+          "type": "Image",
+          "config": {
+            "label": "Overflowing image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

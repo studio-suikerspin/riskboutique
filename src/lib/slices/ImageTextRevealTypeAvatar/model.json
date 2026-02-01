@@ -1,0 +1,43 @@
+{
+  "id": "image_text_reveal_type_avatar",
+  "type": "SharedSlice",
+  "name": "ImageTextRevealTypeAvatar",
+  "description": "ImageTextRevealTypeAvatar",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "reveal_type": {
+          "type": "Text",
+          "config": {
+            "label": "Reveal type heading",
+            "placeholder": ""
+          }
+        },
+        "subtext": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtext",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

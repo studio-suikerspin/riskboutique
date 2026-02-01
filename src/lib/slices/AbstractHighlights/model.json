@@ -1,0 +1,42 @@
+{
+  "id": "abstract_highlights",
+  "type": "SharedSlice",
+  "name": "AbstractHighlights",
+  "description": "AbstractHighlights",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "highlights": {
+          "type": "Group",
+          "config": {
+            "label": "Highlights",
+            "repeat": true,
+            "fields": {
+              "text": {
+                "type": "Text",
+                "config": {
+                  "label": "Text",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

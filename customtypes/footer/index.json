@@ -29,7 +29,12 @@
 								"allowTargetBlank": true,
 								"allowText": false,
 								"repeat": false,
-								"variants": ["linkedin", "mail", "instagram", "tiktok"]
+								"variants": [
+									"linkedin",
+									"mail",
+									"instagram",
+									"tiktok"
+								]
 							}
 						}
 					}

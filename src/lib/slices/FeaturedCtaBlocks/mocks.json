@@ -1,0 +1,62 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"headline": {
+				"__TYPE__": "FieldContent",
+				"value": "with",
+				"type": "Text"
+			},
+			"subheadline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do Lorem enim exercitation velit minim ipsum consectetur in aliqua eiusmod."
+						}
+					}
+				]
+			},
+			"shape": {
+				"__TYPE__": "FieldContent",
+				"value": "roundWorldShape",
+				"type": "Select"
+			},
+			"featured_blocks": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"headline",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "film",
+									"type": "Text"
+								}
+							],
+							[
+								"content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Labore aliqua eu adipisicing. Aliquip minim velit exercitation aliqua laboris excepteur cupidatat veniam laborum incididunt irure consectetur adipisicing occaecat. Aliquip adipisicing irure eu pariatur eiusmod duis eiusmod id sit eu duis ipsum nostrud ullamco."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
