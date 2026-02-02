@@ -1927,11 +1927,86 @@ export type CtaProfileContactSliceInlineHeading = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *CtaProfileContact → WithRevealType → Primary*
+ */
+export interface CtaProfileContactSliceWithRevealTypePrimary {
+	/**
+	 * Reveal type field in *CtaProfileContact → WithRevealType → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.withRevealType.primary.reveal_type
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	reveal_type: prismic.KeyTextField
+
+	/**
+	 * Side Image field in *CtaProfileContact → WithRevealType → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.withRevealType.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Sub Text field in *CtaProfileContact → WithRevealType → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.withRevealType.primary.sub_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	sub_text: prismic.RichTextField
+
+	/**
+	 * Primary CTA field in *CtaProfileContact → WithRevealType → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.withRevealType.primary.primary_cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	primary_cta: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
+
+	/**
+	 * Section padding field in *CtaProfileContact → WithRevealType → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.withRevealType.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+}
+
+/**
+ * WithRevealType variation for CtaProfileContact Slice
+ *
+ * - **API ID**: `withRevealType`
+ * - **Description**: Standard layout with headline, image on left, info and CTA on right, and a compact contact profile card below call to action.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CtaProfileContactSliceWithRevealType = prismic.SharedSliceVariation<
+	'withRevealType',
+	Simplify<CtaProfileContactSliceWithRevealTypePrimary>,
+	never
+>
+
+/**
  * Slice variation for *CtaProfileContact*
  */
 type CtaProfileContactSliceVariation =
 	| CtaProfileContactSliceDefault
 	| CtaProfileContactSliceInlineHeading
+	| CtaProfileContactSliceWithRevealType
 
 /**
  * CtaProfileContact Shared Slice
@@ -4107,9 +4182,11 @@ declare module '@prismicio/client' {
 			CtaProfileContactSlice,
 			CtaProfileContactSliceDefaultPrimary,
 			CtaProfileContactSliceInlineHeadingPrimary,
+			CtaProfileContactSliceWithRevealTypePrimary,
 			CtaProfileContactSliceVariation,
 			CtaProfileContactSliceDefault,
 			CtaProfileContactSliceInlineHeading,
+			CtaProfileContactSliceWithRevealType,
 			FeatureGridSlice,
 			FeatureGridSliceDefaultPrimaryFeaturesItem,
 			FeatureGridSliceDefaultPrimary,
