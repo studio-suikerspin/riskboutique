@@ -11,6 +11,15 @@
       "imageUrl": "",
       "docURL": "...",
       "primary": {
+        "dark_mode": {
+          "type": "Boolean",
+          "config": {
+            "label": "Dark mode",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
         "content": {
           "type": "Text",
           "config": {

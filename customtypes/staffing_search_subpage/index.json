@@ -17,6 +17,15 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"hero_with_background": {
+							"type": "SharedSlice"
+						},
+						"feature_grid_2": {
+							"type": "SharedSlice"
+						},
+						"highlighted_text_block": {
+							"type": "SharedSlice"
+						},
 						"abstract_highlights": {
 							"type": "SharedSlice"
 						},

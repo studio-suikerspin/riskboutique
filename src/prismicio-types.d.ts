@@ -828,6 +828,9 @@ export type SocialLinksDocument<Lang extends string = string> =
 	>
 
 type StaffingSearchSubpageDocumentDataSlicesSlice =
+	| HeroWithBackgroundSlice
+	| FeatureGrid2Slice
+	| HighlightedTextBlockSlice
 	| AbstractHighlightsSlice
 	| FeaturedCtaBlocksSlice
 	| ImageTextRevealTypeAvatarSlice
@@ -2030,6 +2033,17 @@ export interface FeatureGrid2SliceDefaultPrimary {
 	>
 
 	/**
+	 * Use gradient background for cards field in *FeatureGrid2 → Default → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: feature_grid_2.default.primary.use_gradient
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	use_gradient: prismic.BooleanField
+
+	/**
 	 * Section padding field in *FeatureGrid2 → Default → Primary*
 	 *
 	 * - **Field Type**: Select
@@ -2743,6 +2757,17 @@ export type HeroWithSplitVisualSlice = prismic.SharedSlice<
  * Primary content in *RevealTypeBlock → default → Primary*
  */
 export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
+	/**
+	 * Dark mode field in *RevealTypeBlock → default → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.dark_mode
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	dark_mode: prismic.BooleanField
+
 	/**
 	 * Content field in *RevealTypeBlock → default → Primary*
 	 *

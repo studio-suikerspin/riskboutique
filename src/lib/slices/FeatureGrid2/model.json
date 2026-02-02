@@ -48,6 +48,15 @@
             }
           }
         },
+        "use_gradient": {
+          "type": "Boolean",
+          "config": {
+            "label": "Use gradient background for cards",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
         "section_padding": {
           "type": "Select",
           "config": {
