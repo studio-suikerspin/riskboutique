@@ -28,17 +28,15 @@
             "multi": "paragraph,strong,em,hyperlink"
           }
         },
-        "shape": {
-          "type": "Select",
+        "cta_link": {
+          "type": "Link",
           "config": {
-            "label": "Shape",
+            "label": "cta_link",
             "placeholder": "",
-            "options": [
-              "roundWorldShape",
-              "roundVerticalLines",
-              "TriangleShape"
-            ],
-            "default_value": "roundWorldShape"
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         },
         "featured_blocks": {
@@ -61,6 +59,26 @@
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              },
+              "show_contact_info": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Show contact info",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": true
+                }
+              },
+              "cta_link": {
+                "type": "Link",
+                "config": {
+                  "label": "CTA Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
                 }
               }
             }

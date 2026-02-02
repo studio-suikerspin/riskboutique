@@ -1,12 +1,11 @@
 <script lang="ts">
-	import type { RichTextField } from '@prismicio/client'
-
 	type Props = {
 		shape: string
-		featureGrid: boolean
+		featureGrid?: boolean
+		color?: string
 	}
 
-	const { shape, featureGrid }: Props = $props()
+	const { shape, featureGrid, color = '' }: Props = $props()
 </script>
 
 {#if featureGrid == true}
@@ -616,7 +615,7 @@
 		</svg>
 	{/if}
 {:else if shape === 'roundVerticalLines'}
-	<div class="round-lines">
+	<div class="round-lines {color}">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="393"
@@ -929,7 +928,7 @@
 		</svg>
 	</div>
 {:else if shape === 'roundWorldShape'}
-	<div class="world-shape">
+	<div class="world-shape {color}">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="394"
@@ -988,7 +987,7 @@
 		</svg>
 	</div>
 {:else if shape === 'TriangleShape'}
-	<div class="triangle-shape">
+	<div class="triangle-shape {color}">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="394"
