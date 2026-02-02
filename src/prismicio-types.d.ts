@@ -2361,6 +2361,33 @@ export interface FeaturedCtaBlocksSliceDefaultPrimaryFeaturedBlocksItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	content: prismic.RichTextField
+
+	/**
+	 * Show contact info field in *FeaturedCtaBlocks → Default → Primary → Featured blocks*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: featured_cta_blocks.default.primary.featured_blocks[].show_contact_info
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	show_contact_info: prismic.BooleanField
+
+	/**
+	 * CTA Link field in *FeaturedCtaBlocks → Default → Primary → Featured blocks*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.featured_blocks[].cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
 }
 
 /**
@@ -2388,17 +2415,19 @@ export interface FeaturedCtaBlocksSliceDefaultPrimary {
 	subheadline: prismic.RichTextField
 
 	/**
-	 * Shape field in *FeaturedCtaBlocks → Default → Primary*
+	 * cta_link field in *FeaturedCtaBlocks → Default → Primary*
 	 *
-	 * - **Field Type**: Select
+	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
-	 * - **Default Value**: roundWorldShape
-	 * - **API ID Path**: featured_cta_blocks.default.primary.shape
-	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 * - **API ID Path**: featured_cta_blocks.default.primary.cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
-	shape: prismic.SelectField<
-		'roundWorldShape' | 'roundVerticalLines' | 'TriangleShape',
-		'filled'
+	cta_link: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
 	>
 
 	/**

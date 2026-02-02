@@ -19,11 +19,6 @@
 					}
 				]
 			},
-			"shape": {
-				"__TYPE__": "FieldContent",
-				"value": "roundWorldShape",
-				"type": "Select"
-			},
 			"featured_blocks": {
 				"__TYPE__": "GroupContentType",
 				"value": [
@@ -51,10 +46,38 @@
 										}
 									]
 								}
+							],
+							[
+								"show_contact_info",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": true
+								}
+							],
+							[
+								"cta_link",
+								{
+									"key": "fab1b0af-1ff6-4369-a843-da990a7a1e83",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io",
+										"text": "lady"
+									}
+								}
 							]
 						]
 					}
 				]
+			},
+			"cta_link": {
+				"key": "27502bb1-4848-4556-9c91-71d50d20ea85",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "wish"
+				}
 			}
 		},
 		"items": []
