@@ -36,8 +36,14 @@
 	data-slice-variation={slice.variation}
 >
 	<div class="container">
+		{#if slice.variation == 'default'}
+			<h2 class="cta-profile-contact__headline h1">
+				{slice.primary.headline}
+			</h2>
+		{/if}
+
 		<div class="cta-profile-contact__inner">
-			<div class="cta-profile-contact__image-wrap">
+			<div class="cta-profile-contact__image-wrap border-radius">
 				<PrismicImage field={slice.primary.image} />
 			</div>
 
@@ -47,6 +53,10 @@
 						text={slice.primary.reveal_type}
 						trigger=".cta-profile-contact__content-wrap"
 					/>
+				{:else if slice.variation === 'default'}
+					<h3 class="cta-profile-contact__subheadline">
+						{slice.primary.main_text}
+					</h3>
 				{/if}
 
 				<div class="cta-profile-contact__subtext">
@@ -68,6 +78,14 @@
 
 <style lang="scss">
 	.cta-profile-contact {
+		&__headline {
+			margin-bottom: 2.5rem;
+
+			@media (min-width: 1024px) {
+				margin-bottom: 5rem;
+			}
+		}
+
 		&__inner {
 			display: flex;
 			flex-direction: column;
@@ -86,6 +104,7 @@
 			height: 100%;
 			width: 100%;
 			aspect-ratio: 9 / 16;
+			overflow: hidden;
 
 			@media (min-width: 1400px) {
 				display: block;
@@ -105,7 +124,7 @@
 			gap: 1.5rem;
 
 			@media (min-width: 1024px) {
-				gap: 4rem;
+				gap: 2.5rem;
 			}
 		}
 
@@ -113,6 +132,23 @@
 			display: flex;
 			flex-direction: column;
 			gap: 1.5rem;
+		}
+	}
+
+	[data-slice-variation='default'].cta-profile-contact {
+		.cta-profile-contact__inner {
+			@media (min-width: 992px) {
+				flex-direction: row;
+				align-items: center;
+				gap: 5rem;
+			}
+		}
+
+		.cta-profile-contact__image-wrap {
+			aspect-ratio: 1 / 1;
+			max-width: 630px;
+			display: block;
+			flex: 1;
 		}
 	}
 </style>
