@@ -17,6 +17,9 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"cta_profile_contact": {
+							"type": "SharedSlice"
+						},
 						"hero_with_background": {
 							"type": "SharedSlice"
 						},

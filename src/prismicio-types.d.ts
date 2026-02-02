@@ -828,6 +828,7 @@ export type SocialLinksDocument<Lang extends string = string> =
 	>
 
 type StaffingSearchSubpageDocumentDataSlicesSlice =
+	| CtaProfileContactSlice
 	| HeroWithBackgroundSlice
 	| FeatureGrid2Slice
 	| HighlightedTextBlockSlice
@@ -1852,9 +1853,85 @@ export type CtaProfileContactSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *CtaProfileContact → With inline heading → Primary*
+ */
+export interface CtaProfileContactSliceInlineHeadingPrimary {
+	/**
+	 * Headline field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Side Image field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Sub Text field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.sub_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	sub_text: prismic.RichTextField
+
+	/**
+	 * Primary CTA field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.primary_cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	primary_cta: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
+
+	/**
+	 * Section padding field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+}
+
+/**
+ * With inline heading variation for CtaProfileContact Slice
+ *
+ * - **API ID**: `inlineHeading`
+ * - **Description**: Standard layout with headline, image on left, info and CTA on right, and a compact contact profile card below call to action.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CtaProfileContactSliceInlineHeading = prismic.SharedSliceVariation<
+	'inlineHeading',
+	Simplify<CtaProfileContactSliceInlineHeadingPrimary>,
+	never
+>
+
+/**
  * Slice variation for *CtaProfileContact*
  */
-type CtaProfileContactSliceVariation = CtaProfileContactSliceDefault
+type CtaProfileContactSliceVariation =
+	| CtaProfileContactSliceDefault
+	| CtaProfileContactSliceInlineHeading
 
 /**
  * CtaProfileContact Shared Slice
@@ -2754,6 +2831,21 @@ export type HeroWithSplitVisualSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *RevealTypeBlock → default → Primary → Items - use for stacked blocks!*
+ */
+export interface HighlightedTextBlockSliceWithSecondaryStatementPrimaryItemsItem {
+	/**
+	 * Content field in *RevealTypeBlock → default → Primary → Items - use for stacked blocks!*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.items[].content
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	content: prismic.KeyTextField
+}
+
+/**
  * Primary content in *RevealTypeBlock → default → Primary*
  */
 export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
@@ -2777,6 +2869,18 @@ export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	content: prismic.KeyTextField
+
+	/**
+	 * Items - use for stacked blocks! field in *RevealTypeBlock → default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<
+		Simplify<HighlightedTextBlockSliceWithSecondaryStatementPrimaryItemsItem>
+	>
 
 	/**
 	 * Section padding field in *RevealTypeBlock → default → Primary*
@@ -4002,8 +4106,10 @@ declare module '@prismicio/client' {
 			ContentImageGridSliceTextImageMasonry,
 			CtaProfileContactSlice,
 			CtaProfileContactSliceDefaultPrimary,
+			CtaProfileContactSliceInlineHeadingPrimary,
 			CtaProfileContactSliceVariation,
 			CtaProfileContactSliceDefault,
+			CtaProfileContactSliceInlineHeading,
 			FeatureGridSlice,
 			FeatureGridSliceDefaultPrimaryFeaturesItem,
 			FeatureGridSliceDefaultPrimary,
@@ -4048,6 +4154,7 @@ declare module '@prismicio/client' {
 			HeroWithSplitVisualSliceVariation,
 			HeroWithSplitVisualSliceDefault,
 			HighlightedTextBlockSlice,
+			HighlightedTextBlockSliceWithSecondaryStatementPrimaryItemsItem,
 			HighlightedTextBlockSliceWithSecondaryStatementPrimary,
 			HighlightedTextBlockSliceVariation,
 			HighlightedTextBlockSliceWithSecondaryStatement,

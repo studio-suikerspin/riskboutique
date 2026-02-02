@@ -27,6 +27,22 @@
             "placeholder": ""
           }
         },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "Items - use for stacked blocks!",
+            "repeat": true,
+            "fields": {
+              "content": {
+                "type": "Text",
+                "config": {
+                  "label": "Content",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
         "section_padding": {
           "type": "Select",
           "config": {
