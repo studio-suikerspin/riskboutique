@@ -2831,6 +2831,21 @@ export type HeroWithSplitVisualSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *RevealTypeBlock → default → Primary → Items - use for stacked blocks!*
+ */
+export interface HighlightedTextBlockSliceWithSecondaryStatementPrimaryItemsItem {
+	/**
+	 * Content field in *RevealTypeBlock → default → Primary → Items - use for stacked blocks!*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.items[].content
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	content: prismic.KeyTextField
+}
+
+/**
  * Primary content in *RevealTypeBlock → default → Primary*
  */
 export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
@@ -2854,6 +2869,18 @@ export interface HighlightedTextBlockSliceWithSecondaryStatementPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	content: prismic.KeyTextField
+
+	/**
+	 * Items - use for stacked blocks! field in *RevealTypeBlock → default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: highlighted_text_block.with_secondary_statement.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<
+		Simplify<HighlightedTextBlockSliceWithSecondaryStatementPrimaryItemsItem>
+	>
 
 	/**
 	 * Section padding field in *RevealTypeBlock → default → Primary*
@@ -4127,6 +4154,7 @@ declare module '@prismicio/client' {
 			HeroWithSplitVisualSliceVariation,
 			HeroWithSplitVisualSliceDefault,
 			HighlightedTextBlockSlice,
+			HighlightedTextBlockSliceWithSecondaryStatementPrimaryItemsItem,
 			HighlightedTextBlockSliceWithSecondaryStatementPrimary,
 			HighlightedTextBlockSliceVariation,
 			HighlightedTextBlockSliceWithSecondaryStatement,

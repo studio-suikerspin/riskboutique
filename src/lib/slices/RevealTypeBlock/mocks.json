@@ -16,6 +16,24 @@
 			"dark_mode": {
 				"__TYPE__": "BooleanContent",
 				"value": false
+			},
+			"items": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"content",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "mission",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
 			}
 		},
 		"items": []
