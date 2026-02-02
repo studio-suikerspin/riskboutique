@@ -44,7 +44,11 @@
 		&__stack {
 			display: flex;
 			flex-direction: column;
-			gap: 4.75rem;
+			gap: 2.5rem;
+
+			@media (min-width: 1024px) {
+				gap: 4.75rem;
+			}
 		}
 	}
 </style>
