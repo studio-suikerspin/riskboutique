@@ -115,6 +115,59 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "withRevealType",
+      "name": "WithRevealType",
+      "description": "Standard layout with headline, image on left, info and CTA on right, and a compact contact profile card below call to action.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "reveal_type": {
+          "type": "Text",
+          "config": {
+            "label": "Reveal type",
+            "placeholder": ""
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Side Image"
+          }
+        },
+        "sub_text": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Sub Text"
+          }
+        },
+        "primary_cta": {
+          "type": "Link",
+          "config": {
+            "label": "Primary CTA",
+            "allowText": true,
+            "repeat": false,
+            "select": null
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }
