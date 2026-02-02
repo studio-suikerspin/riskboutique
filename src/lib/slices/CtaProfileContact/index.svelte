@@ -57,6 +57,10 @@
 					<h3 class="cta-profile-contact__subheadline">
 						{slice.primary.main_text}
 					</h3>
+				{:else if slice.variation === 'inlineHeading'}
+					<h2 class="cta-profile-contact__headline">
+						{slice.primary.headline}
+					</h2>
 				{/if}
 
 				<div class="cta-profile-contact__subtext">
@@ -135,7 +139,8 @@
 		}
 	}
 
-	[data-slice-variation='default'].cta-profile-contact {
+	[data-slice-variation='default'],
+	[data-slice-variation='inlineHeading'] {
 		.cta-profile-contact__inner {
 			@media (min-width: 992px) {
 				flex-direction: row;
