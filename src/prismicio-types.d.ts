@@ -148,7 +148,16 @@ export type AdvisorySubpageDocument<Lang extends string = string> =
 		Lang
 	>
 
-type AssuranceSubpageDocumentDataSlicesSlice = never
+type AssuranceSubpageDocumentDataSlicesSlice =
+	| CtaProfileContactSlice
+	| StepCardListSlice
+	| TimelineStepsSlice
+	| HeroWithIntroAndColumnsSlice
+	| FeatureGrid2Slice
+	| HighlightedTextBlockSlice
+	| HeroWithBackgroundSlice
+	| MarqueeTextSlice
+	| ImageTextColumns2Slice
 
 /**
  * Content for Assurance subpage documents
@@ -1769,6 +1778,68 @@ export type ContentImageGridSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *CtaProfileContact → With inline heading → Primary → image block*
+ */
+export interface CtaProfileContactSliceInlineHeadingPrimaryImageBlockItem {
+	/**
+	 * Headline field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Side image field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].side_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	side_image: prismic.ImageField<never>
+
+	/**
+	 * sub text field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].sub_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	sub_text: prismic.RichTextField
+
+	/**
+	 * Image position field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].image_position
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	image_position: prismic.BooleanField
+
+	/**
+	 * Primary CTA field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].primary_cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	primary_cta: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
+}
+
+/**
  * Primary content in *CtaProfileContact → Default → Primary*
  */
 export interface CtaProfileContactSliceDefaultPrimary {
@@ -1857,52 +1928,6 @@ export type CtaProfileContactSliceDefault = prismic.SharedSliceVariation<
  */
 export interface CtaProfileContactSliceInlineHeadingPrimary {
 	/**
-	 * Headline field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.headline
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	headline: prismic.KeyTextField
-
-	/**
-	 * Side Image field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>
-
-	/**
-	 * Sub Text field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.sub_text
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	sub_text: prismic.RichTextField
-
-	/**
-	 * Primary CTA field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.primary_cta
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	primary_cta: prismic.LinkField<
-		string,
-		string,
-		unknown,
-		prismic.FieldState,
-		never
-	>
-
-	/**
 	 * Section padding field in *CtaProfileContact → With inline heading → Primary*
 	 *
 	 * - **Field Type**: Select
@@ -1911,6 +1936,18 @@ export interface CtaProfileContactSliceInlineHeadingPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * image block field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	image_block: prismic.GroupField<
+		Simplify<CtaProfileContactSliceInlineHeadingPrimaryImageBlockItem>
+	>
 }
 
 /**
@@ -2801,6 +2838,108 @@ type HeroWithBackgroundSliceVariation = HeroWithBackgroundSliceDefault
 export type HeroWithBackgroundSlice = prismic.SharedSlice<
 	'hero_with_background',
 	HeroWithBackgroundSliceVariation
+>
+
+/**
+ * Item in *HeroWithIntroAndColumns → Default → Primary → Description Columns*
+ */
+export interface HeroWithIntroAndColumnsSliceDefaultPrimaryDescriptionsItem {
+	/**
+	 * Section Title field in *HeroWithIntroAndColumns → Default → Primary → Description Columns*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_intro_and_columns.default.primary.descriptions[].section_title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	section_title: prismic.RichTextField
+
+	/**
+	 * Section Description field in *HeroWithIntroAndColumns → Default → Primary → Description Columns*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_intro_and_columns.default.primary.descriptions[].section_body
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	section_body: prismic.RichTextField
+}
+
+/**
+ * Primary content in *HeroWithIntroAndColumns → Default → Primary*
+ */
+export interface HeroWithIntroAndColumnsSliceDefaultPrimary {
+	/**
+	 * Background Image field in *HeroWithIntroAndColumns → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_intro_and_columns.default.primary.background_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	background_image: prismic.ImageField<never>
+
+	/**
+	 * Title field in *HeroWithIntroAndColumns → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_intro_and_columns.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField
+
+	/**
+	 * Subtitle field in *HeroWithIntroAndColumns → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_intro_and_columns.default.primary.subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subtitle: prismic.RichTextField
+
+	/**
+	 * Description Columns field in *HeroWithIntroAndColumns → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_intro_and_columns.default.primary.descriptions[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	descriptions: prismic.GroupField<
+		Simplify<HeroWithIntroAndColumnsSliceDefaultPrimaryDescriptionsItem>
+	>
+}
+
+/**
+ * Default variation for HeroWithIntroAndColumns Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard layout with hero image and two supporting description columns beneath the main heading/subheading.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroWithIntroAndColumnsSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeroWithIntroAndColumnsSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *HeroWithIntroAndColumns*
+ */
+type HeroWithIntroAndColumnsSliceVariation = HeroWithIntroAndColumnsSliceDefault
+
+/**
+ * HeroWithIntroAndColumns Shared Slice
+ *
+ * - **API ID**: `hero_with_intro_and_columns`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroWithIntroAndColumnsSlice = prismic.SharedSlice<
+	'hero_with_intro_and_columns',
+	HeroWithIntroAndColumnsSliceVariation
 >
 
 /**
@@ -3942,6 +4081,260 @@ export type ServiceOverviewSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *StepCardList → Default → Primary → Steps*
+ */
+export interface StepCardListSliceDefaultPrimaryStepsItem {
+	/**
+	 * Image field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Step Number field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].step_number
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	step_number: prismic.KeyTextField
+
+	/**
+	 * Description field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Call To Action field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+	/**
+	 * Contact Name field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].contact_name
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_name: prismic.KeyTextField
+
+	/**
+	 * Contact Role field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].contact_role
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_role: prismic.KeyTextField
+
+	/**
+	 * Contact Email field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].contact_email
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_email: prismic.KeyTextField
+
+	/**
+	 * Contact Phone field in *StepCardList → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[].contact_phone
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	contact_phone: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *StepCardList → Default → Primary*
+ */
+export interface StepCardListSliceDefaultPrimary {
+	/**
+	 * Steps field in *StepCardList → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.steps[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	steps: prismic.GroupField<
+		Simplify<StepCardListSliceDefaultPrimaryStepsItem>
+	>
+}
+
+/**
+ * Default variation for StepCardList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Each item in the list presents a step with an image, number, rich description, button, and associated contact details.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type StepCardListSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<StepCardListSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *StepCardList*
+ */
+type StepCardListSliceVariation = StepCardListSliceDefault
+
+/**
+ * StepCardList Shared Slice
+ *
+ * - **API ID**: `step_card_list`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type StepCardListSlice = prismic.SharedSlice<
+	'step_card_list',
+	StepCardListSliceVariation
+>
+
+/**
+ * Item in *TimelineSteps → Default → Primary → Steps*
+ */
+export interface TimelineStepsSliceDefaultPrimaryStepsItem {
+	/**
+	 * Step Number field in *TimelineSteps → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.steps[].step_number
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	step_number: prismic.NumberField
+
+	/**
+	 * Step Title field in *TimelineSteps → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.steps[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Step Description field in *TimelineSteps → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.steps[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField
+
+	/**
+	 * Step Image field in *TimelineSteps → Default → Primary → Steps*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.steps[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *TimelineSteps → Default → Primary*
+ */
+export interface TimelineStepsSliceDefaultPrimary {
+	/**
+	 * Section Title field in *TimelineSteps → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.section_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	section_title: prismic.KeyTextField
+
+	/**
+	 * Introduction field in *TimelineSteps → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.introduction
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	introduction: prismic.RichTextField
+
+	/**
+	 * Steps field in *TimelineSteps → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.steps[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	steps: prismic.GroupField<
+		Simplify<TimelineStepsSliceDefaultPrimaryStepsItem>
+	>
+
+	/**
+	 * Section padding field in *TimelineSteps → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+}
+
+/**
+ * Default variation for TimelineSteps Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard timeline layout with a left-aligned introduction and right-aligned vertical step sequence, each step featuring structured content and optional supporting media.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TimelineStepsSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<TimelineStepsSliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *TimelineSteps*
+ */
+type TimelineStepsSliceVariation = TimelineStepsSliceDefault
+
+/**
+ * TimelineSteps Shared Slice
+ *
+ * - **API ID**: `timeline_steps`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TimelineStepsSlice = prismic.SharedSlice<
+	'timeline_steps',
+	TimelineStepsSliceVariation
+>
+
+/**
  * Item in *TrustedBy → Default → Primary → Logos*
  */
 export interface TrustedBySliceDefaultPrimaryLogosItem {
@@ -4210,6 +4603,7 @@ declare module '@prismicio/client' {
 			ContentImageGridSliceTextImageMasonry,
 			CtaProfileContactSlice,
 			CtaProfileContactSliceDefaultPrimary,
+			CtaProfileContactSliceInlineHeadingPrimaryImageBlockItem,
 			CtaProfileContactSliceInlineHeadingPrimary,
 			CtaProfileContactSliceWithRevealTypePrimary,
 			CtaProfileContactSliceVariation,
@@ -4251,6 +4645,11 @@ declare module '@prismicio/client' {
 			HeroWithBackgroundSliceDefaultPrimary,
 			HeroWithBackgroundSliceVariation,
 			HeroWithBackgroundSliceDefault,
+			HeroWithIntroAndColumnsSlice,
+			HeroWithIntroAndColumnsSliceDefaultPrimaryDescriptionsItem,
+			HeroWithIntroAndColumnsSliceDefaultPrimary,
+			HeroWithIntroAndColumnsSliceVariation,
+			HeroWithIntroAndColumnsSliceDefault,
 			HeroWithOverflowingImageSlice,
 			HeroWithOverflowingImageSliceDefaultPrimary,
 			HeroWithOverflowingImageSliceVariation,
@@ -4306,6 +4705,16 @@ declare module '@prismicio/client' {
 			ServiceOverviewSliceWithSliderAndContactPrimary,
 			ServiceOverviewSliceVariation,
 			ServiceOverviewSliceWithSliderAndContact,
+			StepCardListSlice,
+			StepCardListSliceDefaultPrimaryStepsItem,
+			StepCardListSliceDefaultPrimary,
+			StepCardListSliceVariation,
+			StepCardListSliceDefault,
+			TimelineStepsSlice,
+			TimelineStepsSliceDefaultPrimaryStepsItem,
+			TimelineStepsSliceDefaultPrimary,
+			TimelineStepsSliceVariation,
+			TimelineStepsSliceDefault,
 			TrustedBySlice,
 			TrustedBySliceDefaultPrimaryLogosItem,
 			TrustedBySliceDefaultPrimary,

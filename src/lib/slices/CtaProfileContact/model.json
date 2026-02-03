@@ -71,35 +71,6 @@
       "imageUrl": "",
       "docURL": "...",
       "primary": {
-        "headline": {
-          "type": "Text",
-          "config": {
-            "label": "Headline",
-            "placeholder": ""
-          }
-        },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Side Image"
-          }
-        },
-        "sub_text": {
-          "type": "StructuredText",
-          "config": {
-            "multi": "paragraph,strong,em,hyperlink",
-            "label": "Sub Text"
-          }
-        },
-        "primary_cta": {
-          "type": "Link",
-          "config": {
-            "label": "Primary CTA",
-            "allowText": true,
-            "repeat": false,
-            "select": null
-          }
-        },
         "section_padding": {
           "type": "Select",
           "config": {
@@ -111,6 +82,59 @@
               "both",
               "none"
             ]
+          }
+        },
+        "image_block": {
+          "type": "Group",
+          "config": {
+            "label": "image block",
+            "repeat": true,
+            "fields": {
+              "headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Headline",
+                  "placeholder": ""
+                }
+              },
+              "side_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Side image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "sub_text": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "sub text",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "image_position": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Image position",
+                  "placeholder_false": "left",
+                  "placeholder_true": "right",
+                  "default_value": false
+                }
+              },
+              "primary_cta": {
+                "type": "Link",
+                "config": {
+                  "label": "Primary CTA",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
           }
         }
       },

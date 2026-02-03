@@ -1,0 +1,78 @@
+{
+  "type": "SharedSlice",
+  "id": "timeline_steps",
+  "name": "TimelineSteps",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard timeline layout with a left-aligned introduction and right-aligned vertical step sequence, each step featuring structured content and optional supporting media.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "section_title": {
+          "type": "Text",
+          "config": {
+            "label": "Section Title",
+            "placeholder": ""
+          }
+        },
+        "introduction": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Introduction"
+          }
+        },
+        "steps": {
+          "type": "Group",
+          "config": {
+            "label": "Steps",
+            "fields": {
+              "step_number": {
+                "type": "Number",
+                "config": {
+                  "label": "Step Number"
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Step Title"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,hyperlink",
+                  "label": "Step Description"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Step Image"
+                }
+              }
+            }
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
