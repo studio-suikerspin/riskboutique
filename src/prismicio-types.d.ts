@@ -149,6 +149,7 @@ export type AdvisorySubpageDocument<Lang extends string = string> =
 	>
 
 type AssuranceSubpageDocumentDataSlicesSlice =
+	| CtaProfileContactSlice
 	| StepCardListSlice
 	| TimelineStepsSlice
 	| HeroWithIntroAndColumnsSlice
@@ -1777,6 +1778,68 @@ export type ContentImageGridSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *CtaProfileContact → With inline heading → Primary → image block*
+ */
+export interface CtaProfileContactSliceInlineHeadingPrimaryImageBlockItem {
+	/**
+	 * Headline field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Side image field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].side_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	side_image: prismic.ImageField<never>
+
+	/**
+	 * sub text field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].sub_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	sub_text: prismic.RichTextField
+
+	/**
+	 * Image position field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].image_position
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	image_position: prismic.BooleanField
+
+	/**
+	 * Primary CTA field in *CtaProfileContact → With inline heading → Primary → image block*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[].primary_cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	primary_cta: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
+}
+
+/**
  * Primary content in *CtaProfileContact → Default → Primary*
  */
 export interface CtaProfileContactSliceDefaultPrimary {
@@ -1865,52 +1928,6 @@ export type CtaProfileContactSliceDefault = prismic.SharedSliceVariation<
  */
 export interface CtaProfileContactSliceInlineHeadingPrimary {
 	/**
-	 * Headline field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.headline
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	headline: prismic.KeyTextField
-
-	/**
-	 * Side Image field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>
-
-	/**
-	 * Sub Text field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.sub_text
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	sub_text: prismic.RichTextField
-
-	/**
-	 * Primary CTA field in *CtaProfileContact → With inline heading → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.primary_cta
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	primary_cta: prismic.LinkField<
-		string,
-		string,
-		unknown,
-		prismic.FieldState,
-		never
-	>
-
-	/**
 	 * Section padding field in *CtaProfileContact → With inline heading → Primary*
 	 *
 	 * - **Field Type**: Select
@@ -1919,6 +1936,18 @@ export interface CtaProfileContactSliceInlineHeadingPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * image block field in *CtaProfileContact → With inline heading → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.inlineHeading.primary.image_block[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	image_block: prismic.GroupField<
+		Simplify<CtaProfileContactSliceInlineHeadingPrimaryImageBlockItem>
+	>
 }
 
 /**
@@ -4235,12 +4264,12 @@ export interface TimelineStepsSliceDefaultPrimary {
 	/**
 	 * Section Title field in *TimelineSteps → Default → Primary*
 	 *
-	 * - **Field Type**: Rich Text
+	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: timeline_steps.default.primary.section_title
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	section_title: prismic.RichTextField
+	section_title: prismic.KeyTextField
 
 	/**
 	 * Introduction field in *TimelineSteps → Default → Primary*
@@ -4263,6 +4292,16 @@ export interface TimelineStepsSliceDefaultPrimary {
 	steps: prismic.GroupField<
 		Simplify<TimelineStepsSliceDefaultPrimaryStepsItem>
 	>
+
+	/**
+	 * Section padding field in *TimelineSteps → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: timeline_steps.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**
@@ -4564,6 +4603,7 @@ declare module '@prismicio/client' {
 			ContentImageGridSliceTextImageMasonry,
 			CtaProfileContactSlice,
 			CtaProfileContactSliceDefaultPrimary,
+			CtaProfileContactSliceInlineHeadingPrimaryImageBlockItem,
 			CtaProfileContactSliceInlineHeadingPrimary,
 			CtaProfileContactSliceWithRevealTypePrimary,
 			CtaProfileContactSliceVariation,

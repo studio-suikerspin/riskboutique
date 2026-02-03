@@ -28,6 +28,12 @@
 				return ''
 		}
 	})
+
+	function getImagePositionClass(item: any) {
+		if (slice.variation !== 'inlineHeading') return ''
+		return item.image_position == false ? 'image-left' : 'image-right'
+		
+	}
 </script>
 
 <section
@@ -42,41 +48,74 @@
 			</h2>
 		{/if}
 
-		<div class="cta-profile-contact__inner">
-			<div class="cta-profile-contact__image-wrap border-radius">
-				<PrismicImage field={slice.primary.image} />
-			</div>
+		{#if slice.variation == 'inlineHeading'}
+				<div class="cta-profile-contact__group">
+				{#each slice.primary.image_block as item}
+					<div class="cta-profile-contact__inner inline-heading {getImagePositionClass(item)}">
+						<div class="cta-profile-contact__image-wrap border-radius">
+							<PrismicImage field={item.side_image} />
+						</div>
 
-			<div class="cta-profile-contact__content-wrap">
-				{#if slice.variation === 'withRevealType'}
-					<RevealTypeContent
-						text={slice.primary.reveal_type}
-						trigger=".cta-profile-contact__content-wrap"
-					/>
-				{:else if slice.variation === 'default'}
-					<h3 class="cta-profile-contact__subheadline">
-						{slice.primary.main_text}
-					</h3>
-				{:else if slice.variation === 'inlineHeading'}
-					<h2 class="cta-profile-contact__headline">
-						{slice.primary.headline}
-					</h2>
-				{/if}
+						<div class="cta-profile-contact__content-wrap">
+							<h3 class="cta-profile-contact__headline low">
+								{item.headline}
+							</h3>
+							
 
-				<div class="cta-profile-contact__subtext">
-					<PrismicRichText field={slice.primary.sub_text} />
+							<div class="cta-profile-contact__subtext rich-text-content">
+								<PrismicRichText field={item.sub_text} />
+							</div>
+
+							<div class="cta-profile-contact__contact-wrap">
+								<!-- <AvatarWithContactInfo /> -->
+								<Button
+									field={item.primary_cta}
+									text="Request proposal"
+									icon="icon-arrow-right"
+								/>
+							</div>
+						</div>
+					</div>
+				{/each}
+				</div>
+		{:else }
+			<div class="cta-profile-contact__inner">
+				<div class="cta-profile-contact__image-wrap border-radius">
+					<PrismicImage field={slice.primary.image} />
 				</div>
 
-				<div class="cta-profile-contact__contact-wrap">
-					<AvatarWithContactInfo />
-					<Button
-						field={slice.primary.primary_cta}
-						text="Request proposal"
-						icon="icon-arrow-right"
-					/>
+				<div class="cta-profile-contact__content-wrap">
+					{#if slice.variation === 'withRevealType'}
+						<RevealTypeContent
+							text={slice.primary.reveal_type}
+							trigger=".cta-profile-contact__content-wrap"
+						/>
+					{:else if slice.variation === 'default'}
+						<h3 class="cta-profile-contact__subheadline">
+							{slice.primary.main_text}
+						</h3>
+					{:else if slice.variation === 'inlineHeading'}
+						<h2 class="cta-profile-contact__headline">
+							{slice.primary.headline}
+						</h2>
+					{/if}
+
+					<div class="cta-profile-contact__subtext">
+						<PrismicRichText field={slice.primary.sub_text} />
+					</div>
+
+					<div class="cta-profile-contact__contact-wrap">
+						<AvatarWithContactInfo />
+						<Button
+							field={slice.primary.primary_cta}
+							text="Request proposal"
+							icon="icon-arrow-right"
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
+	{/if}
+
 	</div>
 </section>
 
@@ -90,6 +129,10 @@
 			}
 		}
 
+		.inline-heading &__headline {
+			margin-bottom: 0 !important;
+		}
+
 		&__inner {
 			display: flex;
 			flex-direction: column;
@@ -99,6 +142,14 @@
 				flex-direction: row;
 				align-items: center;
 				gap: 5rem;
+			}
+		}
+
+		&__inner.inline-heading{
+			flex-direction: column-reverse;
+
+			@media (min-width: 1400px) {
+				flex-direction: row;
 			}
 		}
 
@@ -137,7 +188,15 @@
 			flex-direction: column;
 			gap: 1.5rem;
 		}
+
+		&__group{
+			display: flex;
+			flex-direction: column;
+			gap: 5rem;
+		}
 	}
+
+
 
 	[data-slice-variation='default'],
 	[data-slice-variation='inlineHeading'] {
@@ -155,5 +214,22 @@
 			display: block;
 			flex: 1;
 		}
+		
+
 	}
+
+	.cta-profile-contact__subtext{
+		max-width: 37.5rem;
+	}
+
+	.cta-profile-contact__inner.image-right {
+		flex-direction: column-reverse;
+
+		@media(min-width: 768px){
+			flex-direction: row-reverse;
+		}
+
+	}
+
+
 </style>

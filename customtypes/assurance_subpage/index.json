@@ -17,6 +17,9 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"cta_profile_contact": {
+							"type": "SharedSlice"
+						},
 						"step_card_list": {
 							"type": "SharedSlice"
 						},
