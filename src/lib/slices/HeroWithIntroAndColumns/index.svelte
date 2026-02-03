@@ -52,8 +52,11 @@
 		background: url('/bg-gradient-licht.svg');
 		background-repeat: no-repeat;
 		background-size: cover;
-		height: 110vh;
+		min-height: 100vh;
 
+		@media(min-width: 768px){
+			min-height: 110vh;
+		}
 		
 
 
@@ -67,8 +70,12 @@
 
 		&__image{
 			width: 100%;
-			height: 55vh;
+			height: 35vh;
 			position: relative;
+
+			@media(min-width: 768px){
+				height: 55vh;
+			}
 
 			:global img{
 				object-fit: cover;
@@ -96,16 +103,24 @@
 		&__title{
 			display: flex;
 			flex-direction: column;
-			gap: 1.5rem;
+			gap: 1rem;
+
+			@media(min-width: 768px){
+				gap: 1.5rem;
+			}
 
 			.subtitle{
 
 				:global p{
-					font-size: 2.5rem;
+					font-size: 1.5rem;
 					font-weight: 600;
 					line-height: 90%; /* 36px */
 					letter-spacing: -1.6px;
 					color: rgba(11, 14, 19, 0.75);
+
+					@media(min-width: 768px){
+						font-size: 2.5rem;
+					}
 				}
 			}
 		}
@@ -113,7 +128,13 @@
 		&__columns{
 			display: flex;
 			justify-content: space-between;
-			gap: 5rem;
+			flex-direction: column;
+			gap: 1rem;
+
+			@media(min-width: 768px){
+				flex-direction: row;
+				gap: 5rem;
+			}
 
 			&_item{
 				flex: 1;				
