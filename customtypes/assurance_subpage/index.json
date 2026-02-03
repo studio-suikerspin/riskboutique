@@ -1,6 +1,9 @@
 {
 	"format": "page",
 	"id": "assurance_subpage",
+	"label": "Assurance subpage",
+	"repeatable": true,
+	"status": true,
 	"json": {
 		"Main": {
 			"uid": {
@@ -10,11 +13,36 @@
 				}
 			},
 			"slices": {
-				"config": {
-					"choices": {}
-				},
+				"type": "Slices",
 				"fieldset": "Slice Zone",
-				"type": "Slices"
+				"config": {
+					"choices": {
+						"step_card_list": {
+							"type": "SharedSlice"
+						},
+						"timeline_steps": {
+							"type": "SharedSlice"
+						},
+						"hero_with_intro_and_columns": {
+							"type": "SharedSlice"
+						},
+						"feature_grid_2": {
+							"type": "SharedSlice"
+						},
+						"highlighted_text_block": {
+							"type": "SharedSlice"
+						},
+						"hero_with_background": {
+							"type": "SharedSlice"
+						},
+						"marquee_text": {
+							"type": "SharedSlice"
+						},
+						"image_text_columns_2": {
+							"type": "SharedSlice"
+						}
+					}
+				}
 			}
 		},
 		"SEO & Metadata": {
@@ -44,8 +72,5 @@
 				"type": "Image"
 			}
 		}
-	},
-	"label": "Assurance subpage",
-	"repeatable": true,
-	"status": true
+	}
 }

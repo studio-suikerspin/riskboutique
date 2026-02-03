@@ -1,0 +1,109 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"steps": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"image",
+								{
+									"__TYPE__": "ImageContent",
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
+										"width": 6597,
+										"height": 4398
+									},
+									"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
+									"width": 6597,
+									"height": 4398,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "owner"
+								}
+							],
+							[
+								"step_number",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "society",
+									"type": "Text"
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Irure ad exercitation amet nulla dolore dolor aute non ut aliquip sunt eu."
+											}
+										}
+									]
+								}
+							],
+							[
+								"cta",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "6826bf64-e806-482d-b45f-bbf3a069126f",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com",
+										"text": "statement"
+									}
+								}
+							],
+							[
+								"contact_name",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "stronger",
+									"type": "Text"
+								}
+							],
+							[
+								"contact_role",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "arrangement",
+									"type": "Text"
+								}
+							],
+							[
+								"contact_email",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "weight",
+									"type": "Text"
+								}
+							],
+							[
+								"contact_phone",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "leather",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

@@ -15,6 +15,7 @@ import FeaturedCtaBlocks from './FeaturedCtaBlocks/index.svelte'
 import HeadlineWithImageTrail from './HeadlineWithImageTrail/index.svelte'
 import HeroHomepage from './HeroHomepage/index.svelte'
 import HeroWithBackground from './HeroWithBackground/index.svelte'
+import HeroWithIntroAndColumns from './HeroWithIntroAndColumns/index.svelte'
 import HeroWithOverflowingImage from './HeroWithOverflowingImage/index.svelte'
 import HeroWithSplitVisual from './HeroWithSplitVisual/index.svelte'
 import RevealTypeBlock from './RevealTypeBlock/index.svelte'
@@ -26,6 +27,8 @@ import HeroWithOverflowingMedia from './HeroWithOverflowingMedia/index.svelte'
 import MarqueeText from './MarqueeText/index.svelte'
 import FeatureCards from './FeatureCards/index.svelte'
 import ServiceOverview from './ServiceOverview/index.svelte'
+import StepCardList from './StepCardList/index.svelte'
+import TimelineSteps from './TimelineSteps/index.svelte'
 import TrustedBy from './TrustedBy/index.svelte'
 import RevealTypeWithCta from './RevealTypeWithCta/index.svelte'
 
@@ -45,6 +48,7 @@ export const components = {
 	headline_with_corner_images: HeadlineWithImageTrail,
 	hero_statement: HeroHomepage,
 	hero_with_background: HeroWithBackground,
+	hero_with_intro_and_columns: HeroWithIntroAndColumns,
 	hero_with_overflowing_image: HeroWithOverflowingImage,
 	hero_with_split_visual: HeroWithSplitVisual,
 	highlighted_text_block: RevealTypeBlock,
@@ -56,6 +60,8 @@ export const components = {
 	marquee_text: MarqueeText,
 	pillars: FeatureCards,
 	service_overview: ServiceOverview,
+	step_card_list: StepCardList,
+	timeline_steps: TimelineSteps,
 	trusted_by: TrustedBy,
 	value_proposition: RevealTypeWithCta
 }
