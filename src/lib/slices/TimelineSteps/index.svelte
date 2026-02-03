@@ -3,6 +3,8 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
+	import { onMount } from 'svelte'
+	import { gsap } from '$lib/gsap'
 
 	type Props = SliceComponentProps<Content.TimelineStepsSlice>
 
@@ -17,6 +19,26 @@
 			default: return '';
 		}
 	});
+
+	onMount(() => {
+
+		// Progress lijn animatie op basis van scroll
+		const progressLine = document.querySelector('[data-progress-line]')
+		const timelineBlock = document.querySelector('[data-timeline-block]')
+		
+		if (progressLine && timelineBlock) {
+			gsap.to(progressLine, {
+				height: '100%',
+				ease: 'none',
+				scrollTrigger: {
+					trigger: timelineBlock,
+					start: 'top center',
+					end: 'bottom bottom',
+					scrub: 0.5
+				}
+			})
+		}
+	})
 
 </script>
 
@@ -35,8 +57,9 @@
 				<PrismicRichText field={slice.primary.introduction} />
 			</div>
 		</div>
-		<div class="time-line-steps__second-block">
-			{#each slice.primary.steps as item}
+		<div class="time-line-steps__second-block" data-timeline-block>
+			<div class="time-line-steps__progress-line" data-progress-line></div>
+			{#each slice.primary.steps as item, i}
 				<div class="time-line-steps__item">
 					<div class="time-line-steps__item-heading">
 						<div class="number">
@@ -67,31 +90,75 @@
 
 		&__inner{
 			display: flex;
+			flex-direction: column;
 			justify-content: space-between;
-			gap: 5rem;
+			gap: 2.5rem;
+
+			@media(min-width: 768px){
+				flex-direction: row;
+				gap: 5rem;
+			}
 		}
 
 		&__first-block{
 			flex: 1;
 			display: flex;
 			flex-direction: column;
-			gap: 2.5rem;
-			position: sticky;
-			top: 1rem;
-			align-self: flex-start;
+			gap: 2.54rem;
+
+			@media(min-width: 768px){
+				position: sticky;
+				top: 1rem;
+				align-self: flex-start;
+			}
 	}
 
 	&__item{
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
+
+		position: relative;
+		@media(min-width: 992px){
+			&::before {
+				content: "";
+				position: absolute;
+				left: -2.78rem; // uitlijnen op de lijn
+				top: 0.4rem; // uitlijnen met nummer
+				width: 0.75rem;
+				height: 0.75rem;
+				background-color: #0f4c5c;
+				border-radius: 50%;
+			}
+		}
+
 	}
 
 	&__second-block{
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 5rem;
+		gap: 2.5rem;
+
+		position: relative;
+
+		@media(min-width: 768px){
+			gap: 5rem;
+		}
+
+		@media(min-width: 992px){
+			&::before {
+				content: "";
+				position: absolute;
+				left: -2.51rem;
+				top: 0.75rem;
+				bottom: 0.75rem;
+				width: 2px;
+				background-color: rgba(178, 193, 189, 0.7);
+			}
+		}
+
+
 
 			.number{
 				font-size: 1.5rem;
@@ -101,9 +168,13 @@
 
 			.image-content{
 				width: 100%;
-				height: 17.8rem;
+				height: 14rem;
 				overflow: hidden;
 				border-radius: 0.5rem;
+
+				@media(min-width: 768px){
+					height: 17.8rem;
+				}
 
 				:global img{
 					width: 100%;
@@ -117,6 +188,19 @@
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
+		}
+
+	
+
+		&__progress-line {
+			position: absolute;
+			left: -2.51rem;
+			top: 0.75rem;
+			width: 2px;
+			height: 0;
+			background-color: #0f4c5c;
+			transform-origin: top;
+			z-index: 1;
 		}
 	}
 </style>
