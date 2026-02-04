@@ -24,7 +24,7 @@ import type { Content } from '@prismicio/client'
 	data-slice-variation={slice.variation}
 	class="image-text-columns"
 >
-<div class="container">
+<div class="container medium">
 	
 		<div class="image-text-columns__content {paddingClass()}">
 		{#each slice.primary.blocks as item, index}
@@ -58,6 +58,8 @@ import type { Content } from '@prismicio/client'
 		// 	padding-bottom: 12.5rem;
 		// 	padding-top: 6.25rem;
 		// }
+
+		
 		
 		&__content{
 			display: flex;
@@ -78,7 +80,7 @@ import type { Content } from '@prismicio/client'
 			.image-text-columns__column.second{
 				max-width: 52.5rem;
 				align-self: center;
-				margin-left: 25rem;
+				margin-left: 27rem;
 			}
 			.image-text-columns__column.third{
 				max-width: 81.25rem;

@@ -32,7 +32,7 @@
 	data-slice-variation={slice.variation}
 	class="double-column {paddingClass()}"
 >
-	<div class="container">
+	<div class="container medium">
 		<div class="double-column__inner">
 			<div class="double-column__first">
 				<div class="double-column__heading">

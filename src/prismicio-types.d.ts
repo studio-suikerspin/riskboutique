@@ -4275,14 +4275,14 @@ export interface StepCardListSliceDefaultPrimaryStepsItem {
 	step_number: prismic.KeyTextField
 
 	/**
-	 * Description field in *StepCardList → Default → Primary → Steps*
+	 * Title field in *StepCardList → Default → Primary → Steps*
 	 *
-	 * - **Field Type**: Rich Text
+	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: step_card_list.default.primary.steps[].description
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 * - **API ID Path**: step_card_list.default.primary.steps[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	description: prismic.RichTextField
+	title: prismic.KeyTextField
 
 	/**
 	 * Call To Action field in *StepCardList → Default → Primary → Steps*
@@ -4340,6 +4340,16 @@ export interface StepCardListSliceDefaultPrimaryStepsItem {
  */
 export interface StepCardListSliceDefaultPrimary {
 	/**
+	 * Top title field in *StepCardList → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.top_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	top_title: prismic.KeyTextField
+
+	/**
 	 * Steps field in *StepCardList → Default → Primary*
 	 *
 	 * - **Field Type**: Group
@@ -4350,6 +4360,26 @@ export interface StepCardListSliceDefaultPrimary {
 	steps: prismic.GroupField<
 		Simplify<StepCardListSliceDefaultPrimaryStepsItem>
 	>
+
+	/**
+	 * Bottom title field in *StepCardList → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.bottom_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	bottom_title: prismic.KeyTextField
+
+	/**
+	 * Section padding field in *StepCardList → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
 }
 
 /**

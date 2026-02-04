@@ -16,6 +16,8 @@
 	let swiper: Swiper;
 
 	onMount(() => {
+		
+	
 		swiper = new Swiper('.swiper', {
 			loop: false,
 			slidesPerView: 1,
@@ -115,6 +117,8 @@
 		&__content{
 			background: url('/bg-gradient-donker.svg') no-repeat center center;
 			background-size: cover;
+			position: relative;
+			overflow: hidden;
 			width: 100%;
 			border-radius: 0.5rem;
 
@@ -122,6 +126,7 @@
 				border-radius: 1.5rem 0;
 			}
 		}
+
 
 		&__item{
 			display: flex;

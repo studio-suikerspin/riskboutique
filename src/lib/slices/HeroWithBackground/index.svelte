@@ -56,6 +56,19 @@
 <style lang="scss">
 	.banner{
 
+		@media(max-width: 767px){
+			.container{
+				max-width: none;
+				padding: 0;
+			}
+		}
+
+		&__image :global img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
 		&__inner{
 			position: relative;
 			display: flex;
@@ -63,28 +76,33 @@
 			justify-content: center;
 			text-align: center;
 			min-height: 20rem;
-			padding: 1.5rem;
+			padding: 0.5rem;
 			overflow: hidden;
-			border-radius: 0.5rem;
+			// border-radius: 0.5rem;
+
+			@media(min-width: 767px){
+				border-radius: 0.5rem;
+				padding: 1.5rem;
+			}
 
 			.h3{
 				display: block;
 
-				@media(min-width: 768px){
+				@media(min-width: 992px){
 					display: none;
 				}
 			}
 
 			.h2{
 				display: none;
-				@media(min-width: 768px){
+				@media(min-width: 992px){
 					display: block;
 				}
 			}
 			
 			
 
-			@media(min-width: 768px){
+			@media(min-width: 992px){
 				min-height: 36.625rem;
 				padding: 2.5rem;
 				border-radius: 1.5rem 0;
@@ -124,6 +142,8 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 2.5rem;
+			max-width: 75rem;
+
 		}
 
 		&__buttons{

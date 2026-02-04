@@ -74,6 +74,9 @@
 	.container.small {
 		max-width: var(--size-container);
 	}
+	.container.medium {
+  	max-width: var(--size-container);
+	}
 }
 /* End jesse testing scaling system */
 
@@ -105,7 +108,7 @@ h1,
 	letter-spacing: -0.96px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h1,
 	.h1 {
 		font-size: 7.5rem;
@@ -120,7 +123,7 @@ h2,
 	letter-spacing: -0.96px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h2,
 	.h2 {
 		font-size: 5rem;
@@ -136,7 +139,7 @@ h3,
 	font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h3,
 	.h3 {
 		font-size: 3.5rem;
@@ -157,7 +160,7 @@ h4,
 	letter-spacing: -0.48px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h4,
 	.h4 {
 		font-size: 2.5rem;
@@ -172,7 +175,7 @@ h5,
 	font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h5,
 	.h5 {
 		font-size: 1.5rem;
@@ -213,8 +216,9 @@ p {
 	border-radius: 0.5rem;
 	border: 0.03125rem solid var(--color-snow-white);
 
-	font-weight: 500;
 	font-size: 1rem;
+
+	font-weight: 500;
 
 	cursor: pointer;
 
@@ -247,7 +251,7 @@ p {
 	}
 
 	.btn__icon {
-		font-size: 1rem;
+		font-size: 1.5rem;
 
 		&.btn__icon--rotate {
 			rotate: -45deg;

@@ -9,10 +9,16 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
+	import { initContentRevealScroll } from '$lib/revealContent.js'
+	import { onMount } from 'svelte'
 
 	type Props = SliceComponentProps<Content.CtaProfileContactSlice>
 
 	const { slice }: Props = $props()
+
+	onMount(() => {
+    initContentRevealScroll()
+  })
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
@@ -41,7 +47,7 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-	<div class="container">
+	<div class="container medium">
 		{#if slice.variation == 'default'}
 			<h2 class="cta-profile-contact__headline h1">
 				{slice.primary.headline}
@@ -51,7 +57,7 @@
 		{#if slice.variation == 'inlineHeading'}
 				<div class="cta-profile-contact__group">
 				{#each slice.primary.image_block as item}
-					<div class="cta-profile-contact__inner inline-heading {getImagePositionClass(item)}">
+					<div class="cta-profile-contact__inner inline-heading {getImagePositionClass(item)}" data-reveal-group>
 						<div class="cta-profile-contact__image-wrap border-radius">
 							<PrismicImage field={item.side_image} />
 						</div>
@@ -174,7 +180,7 @@
 		}
 
 		&__content-wrap {
-			// flex: 1;
+			flex: 1;
 			display: flex;
 			flex-direction: column;
 			gap: 1.5rem;
@@ -210,10 +216,15 @@
 		}
 
 		.cta-profile-contact__image-wrap {
-			aspect-ratio: 1 / 1;
-			max-width: 630px;
+			aspect-ratio: 3 / 4;
+			max-height: 750px;
+			max-width: 100%;
 			display: block;
-			// flex: 1;
+			flex: 1;
+
+			@media (min-width: 992px) {
+				// max-width: 630px;
+			}
 		}
 		
 
@@ -226,7 +237,7 @@
 	.cta-profile-contact__inner.image-right {
 		flex-direction: column-reverse;
 
-		@media(min-width: 768px){
+		@media(min-width: 992px){
 			flex-direction: row-reverse;
 		}
 

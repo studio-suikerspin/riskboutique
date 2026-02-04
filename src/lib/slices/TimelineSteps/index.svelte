@@ -47,7 +47,7 @@
 	data-slice-variation={slice.variation}
 	class="time-line-steps {paddingClass()}"
 >
-<div class="container">
+<div class="container medium">
 	<div class="time-line-steps__inner">
 		<div class="time-line-steps__first-block">
 			<div class="heading h3 low">
