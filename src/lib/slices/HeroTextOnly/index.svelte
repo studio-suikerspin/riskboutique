@@ -8,15 +8,29 @@
 </script>
 
 <section
+	class="hero"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-	Placeholder component for {slice.slice_type} (variation: {slice.variation})
-	slices.
-	<br />
-	<strong>You can edit this slice directly in your code editor.</strong>
-	<!--
-	💡 Use the Prismic MCP server with your code editor
-	📚 Docs: https://prismic.io/docs/ai#code-with-prismics-mcp-server
-	-->
+	<div class="hero__inner">
+		<h1 class="h2">{slice.primary.headline}</h1>
+	</div>
 </section>
+
+<style lang="scss">
+	.hero {
+		background: url('/bg-gradient-donker.svg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+
+		&__inner {
+			padding-block: 9rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			color: var(--color-snow-white);
+		}
+	}
+</style>
