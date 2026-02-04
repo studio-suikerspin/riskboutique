@@ -27,6 +27,36 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"content_cards_with_image": {
+							"type": "SharedSlice"
+						},
+						"hero_text_only": {
+							"type": "SharedSlice"
+						},
+						"hero_with_intro_and_columns": {
+							"type": "SharedSlice"
+						},
+						"step_card_list": {
+							"type": "SharedSlice"
+						},
+						"hero_with_overflowing_image": {
+							"type": "SharedSlice"
+						},
+						"image_text_reveal_type_avatar": {
+							"type": "SharedSlice"
+						},
+						"timeline_steps": {
+							"type": "SharedSlice"
+						},
+						"featured_cta_blocks": {
+							"type": "SharedSlice"
+						},
+						"coming_soon": {
+							"type": "SharedSlice"
+						},
+						"abstract_highlights": {
+							"type": "SharedSlice"
+						},
 						"headline_with_corner_images": {
 							"type": "SharedSlice"
 						},

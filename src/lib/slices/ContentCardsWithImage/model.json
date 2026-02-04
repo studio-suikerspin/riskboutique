@@ -1,0 +1,75 @@
+{
+  "type": "SharedSlice",
+  "id": "content_cards_with_image",
+  "name": "ContentCardsWithImage",
+  "variations": [
+    {
+      "id": "image_left_text_right",
+      "name": "default",
+      "description": "Each card displays an image on the left and text content on the right, often used to highlight a category or feature with supporting details.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "fields": {
+              "media": {
+                "type": "Image",
+                "config": {
+                  "label": "Image"
+                }
+              },
+              "image_position": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Image position",
+                  "placeholder_false": "left",
+                  "placeholder_true": "right",
+                  "default_value": false
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+                  "label": "Description"
+                }
+              }
+            }
+          }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
