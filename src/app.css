@@ -6,7 +6,7 @@
   --size-unit: 16; /* body font-size in design - no px */
   --size-container-ideal: 1500; /* screen-size in design - no px */
   --size-container-min: 992px;
-  --size-container-max: 1420px;
+  --size-container-max: 1920px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
 
@@ -16,6 +16,7 @@
 	--color-snow-white: #f9f9f8;
 
 	--z-header: 1000;
+	--container-padding: 2.875rem
 }
 
 /* Tablet */
@@ -47,6 +48,7 @@
 
 .container {
   max-width: var(--size-container);
+	/* padding-inline: 0.75rem; */
 	padding-inline: 0.75rem;
 	margin-left: auto;
 	margin-right: auto;
@@ -54,19 +56,17 @@
 
 .container.medium {
   max-width: calc(var(--size-container) * 0.85);
-	padding-inline: 0.75rem;
+	/* padding-inline: 0.75rem; */
 }
 
 .container.small {
   max-width: calc(var(--size-container) * 0.7);
-	padding-inline: 0.75rem;
+	/* padding-inline: 0.75rem; */
 }
 
 @media(min-width: 768px){
-	.container ,
-	.container.medium ,
-	.container.small {
-		padding-inline: 1.25rem;
+	.container{
+		padding-inline: var(--container-padding);
 	}
 }
 
@@ -80,7 +80,8 @@
 body {
 	font-family: 'General Sans Variable', sans-serif;
 	background: var(--color-snow-white);
-	font-size: 16px;
+	/* font-size: 16px; */
+	font-size: var(--size-unit);
 }
 
 h1,
