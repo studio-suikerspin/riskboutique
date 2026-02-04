@@ -5,6 +5,7 @@ import FloatingImages from './FloatingImages/index.svelte'
 import StickyTitleSection from './StickyTitleSection/index.svelte'
 import ComingSoon from './ComingSoon/index.svelte'
 import ContactBlock from './ContactBlock/index.svelte'
+import ContentCardsWithImage from './ContentCardsWithImage/index.svelte'
 import CareersHero from './CareersHero/index.svelte'
 import ContentImageGrid from './ContentImageGrid/index.svelte'
 import CtaProfileContact from './CtaProfileContact/index.svelte'
@@ -14,6 +15,7 @@ import FeatureIntroDoubleColumn from './FeatureIntroDoubleColumn/index.svelte'
 import FeaturedCtaBlocks from './FeaturedCtaBlocks/index.svelte'
 import HeadlineWithImageTrail from './HeadlineWithImageTrail/index.svelte'
 import HeroHomepage from './HeroHomepage/index.svelte'
+import HeroTextOnly from './HeroTextOnly/index.svelte'
 import HeroWithBackground from './HeroWithBackground/index.svelte'
 import HeroWithIntroAndColumns from './HeroWithIntroAndColumns/index.svelte'
 import HeroWithOverflowingImage from './HeroWithOverflowingImage/index.svelte'
@@ -38,6 +40,7 @@ export const components = {
 	centered_message: StickyTitleSection,
 	coming_soon: ComingSoon,
 	contact_block: ContactBlock,
+	content_cards_with_image: ContentCardsWithImage,
 	content_hero: CareersHero,
 	content_image_grid: ContentImageGrid,
 	cta_profile_contact: CtaProfileContact,
@@ -47,6 +50,7 @@ export const components = {
 	featured_cta_blocks: FeaturedCtaBlocks,
 	headline_with_corner_images: HeadlineWithImageTrail,
 	hero_statement: HeroHomepage,
+	hero_text_only: HeroTextOnly,
 	hero_with_background: HeroWithBackground,
 	hero_with_intro_and_columns: HeroWithIntroAndColumns,
 	hero_with_overflowing_image: HeroWithOverflowingImage,

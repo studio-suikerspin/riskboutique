@@ -1,0 +1,26 @@
+{
+  "id": "hero_text_only",
+  "type": "SharedSlice",
+  "name": "HeroTextOnly",
+  "description": "HeroTextOnly",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

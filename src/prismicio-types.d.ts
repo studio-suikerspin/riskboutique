@@ -612,6 +612,16 @@ export type OpenRoleDocument<Lang extends string = string> =
 	>
 
 type PageDocumentDataSlicesSlice =
+	| ContentCardsWithImageSlice
+	| HeroTextOnlySlice
+	| HeroWithIntroAndColumnsSlice
+	| StepCardListSlice
+	| HeroWithOverflowingImageSlice
+	| ImageTextRevealTypeAvatarSlice
+	| TimelineStepsSlice
+	| FeaturedCtaBlocksSlice
+	| ComingSoonSlice
+	| AbstractHighlightsSlice
 	| HeadlineWithCornerImagesSlice
 	| ContentImageGridSlice
 	| IntroWithMediaRowSlice
@@ -1588,6 +1598,121 @@ type ContactBlockSliceVariation = ContactBlockSliceDefault
 export type ContactBlockSlice = prismic.SharedSlice<
 	'contact_block',
 	ContactBlockSliceVariation
+>
+
+/**
+ * Item in *ContentCardsWithImage → default → Primary → Cards*
+ */
+export interface ContentCardsWithImageSliceImageLeftTextRightPrimaryItemsItem {
+	/**
+	 * Image field in *ContentCardsWithImage → default → Primary → Cards*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.items[].media
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	media: prismic.ImageField<never>
+
+	/**
+	 * Image position field in *ContentCardsWithImage → default → Primary → Cards*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.items[].image_position
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	image_position: prismic.BooleanField
+
+	/**
+	 * Title field in *ContentCardsWithImage → default → Primary → Cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.items[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField
+
+	/**
+	 * Description field in *ContentCardsWithImage → default → Primary → Cards*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.items[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField
+}
+
+/**
+ * Primary content in *ContentCardsWithImage → default → Primary*
+ */
+export interface ContentCardsWithImageSliceImageLeftTextRightPrimary {
+	/**
+	 * Headline field in *ContentCardsWithImage → default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+
+	/**
+	 * Cards field in *ContentCardsWithImage → default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<
+		Simplify<ContentCardsWithImageSliceImageLeftTextRightPrimaryItemsItem>
+	>
+
+	/**
+	 * Section padding field in *ContentCardsWithImage → default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+}
+
+/**
+ * default variation for ContentCardsWithImage Slice
+ *
+ * - **API ID**: `image_left_text_right`
+ * - **Description**: Each card displays an image on the left and text content on the right, often used to highlight a category or feature with supporting details.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentCardsWithImageSliceImageLeftTextRight =
+	prismic.SharedSliceVariation<
+		'image_left_text_right',
+		Simplify<ContentCardsWithImageSliceImageLeftTextRightPrimary>,
+		never
+	>
+
+/**
+ * Slice variation for *ContentCardsWithImage*
+ */
+type ContentCardsWithImageSliceVariation =
+	ContentCardsWithImageSliceImageLeftTextRight
+
+/**
+ * ContentCardsWithImage Shared Slice
+ *
+ * - **API ID**: `content_cards_with_image`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContentCardsWithImageSlice = prismic.SharedSlice<
+	'content_cards_with_image',
+	ContentCardsWithImageSliceVariation
 >
 
 /**
@@ -2745,6 +2870,51 @@ type HeroStatementSliceVariation = HeroStatementSliceDefault
 export type HeroStatementSlice = prismic.SharedSlice<
 	'hero_statement',
 	HeroStatementSliceVariation
+>
+
+/**
+ * Primary content in *HeroTextOnly → Default → Primary*
+ */
+export interface HeroTextOnlySliceDefaultPrimary {
+	/**
+	 * Headline field in *HeroTextOnly → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text_only.default.primary.headline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	headline: prismic.KeyTextField
+}
+
+/**
+ * Default variation for HeroTextOnly Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroTextOnlySliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeroTextOnlySliceDefaultPrimary>,
+	never
+>
+
+/**
+ * Slice variation for *HeroTextOnly*
+ */
+type HeroTextOnlySliceVariation = HeroTextOnlySliceDefault
+
+/**
+ * HeroTextOnly Shared Slice
+ *
+ * - **API ID**: `hero_text_only`
+ * - **Description**: HeroTextOnly
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroTextOnlySlice = prismic.SharedSlice<
+	'hero_text_only',
+	HeroTextOnlySliceVariation
 >
 
 /**
@@ -4592,6 +4762,11 @@ declare module '@prismicio/client' {
 			ContactBlockSliceDefaultPrimary,
 			ContactBlockSliceVariation,
 			ContactBlockSliceDefault,
+			ContentCardsWithImageSlice,
+			ContentCardsWithImageSliceImageLeftTextRightPrimaryItemsItem,
+			ContentCardsWithImageSliceImageLeftTextRightPrimary,
+			ContentCardsWithImageSliceVariation,
+			ContentCardsWithImageSliceImageLeftTextRight,
 			ContentHeroSlice,
 			ContentHeroSliceVisualRightPrimary,
 			ContentHeroSliceVariation,
@@ -4641,6 +4816,10 @@ declare module '@prismicio/client' {
 			HeroStatementSliceDefaultPrimary,
 			HeroStatementSliceVariation,
 			HeroStatementSliceDefault,
+			HeroTextOnlySlice,
+			HeroTextOnlySliceDefaultPrimary,
+			HeroTextOnlySliceVariation,
+			HeroTextOnlySliceDefault,
 			HeroWithBackgroundSlice,
 			HeroWithBackgroundSliceDefaultPrimary,
 			HeroWithBackgroundSliceVariation,
