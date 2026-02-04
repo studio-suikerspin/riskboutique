@@ -234,6 +234,12 @@ p {
 		border-color: var(--color-snow-white);
 	}
 
+	&.btn--outline {
+		background: transparent;
+		color: var(--color-dark-mode);
+		border-color: var(--color-dark-mode);
+	}
+
 	/* Children */
 	.btn__text {
 		text-wrap: nowrap;
