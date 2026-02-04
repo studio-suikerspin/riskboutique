@@ -136,6 +136,7 @@
 		&__inner {
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
 			gap: 2rem;
 
 			@media (min-width: 1400px) {
@@ -173,7 +174,7 @@
 		}
 
 		&__content-wrap {
-			flex: 1;
+			// flex: 1;
 			display: flex;
 			flex-direction: column;
 			gap: 1.5rem;
@@ -212,7 +213,7 @@
 			aspect-ratio: 1 / 1;
 			max-width: 630px;
 			display: block;
-			flex: 1;
+			// flex: 1;
 		}
 		
 
