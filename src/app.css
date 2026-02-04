@@ -6,7 +6,7 @@
   --size-unit: 16; /* body font-size in design - no px */
   --size-container-ideal: 1500; /* screen-size in design - no px */
   --size-container-min: 992px;
-  --size-container-max: 1420px;
+  --size-container-max: 1920px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
 
@@ -16,6 +16,7 @@
 	--color-snow-white: #f9f9f8;
 
 	--z-header: 1000;
+	--container-padding: 2.875rem
 }
 
 /* Tablet */
@@ -47,6 +48,7 @@
 
 .container {
   max-width: var(--size-container);
+	/* padding-inline: 0.75rem; */
 	padding-inline: 0.75rem;
 	margin-left: auto;
 	margin-right: auto;
@@ -54,19 +56,17 @@
 
 .container.medium {
   max-width: calc(var(--size-container) * 0.85);
-	padding-inline: 0.75rem;
+	/* padding-inline: 0.75rem; */
 }
 
 .container.small {
   max-width: calc(var(--size-container) * 0.7);
-	padding-inline: 0.75rem;
+	/* padding-inline: 0.75rem; */
 }
 
 @media(min-width: 768px){
-	.container ,
-	.container.medium ,
-	.container.small {
-		padding-inline: 1.25rem;
+	.container{
+		padding-inline: var(--container-padding);
 	}
 }
 
@@ -74,13 +74,17 @@
 	.container.small {
 		max-width: var(--size-container);
 	}
+	.container.medium {
+  	max-width: var(--size-container);
+	}
 }
 /* End jesse testing scaling system */
 
 body {
 	font-family: 'General Sans Variable', sans-serif;
 	background: var(--color-snow-white);
-	font-size: 16px;
+	/* font-size: 16px; */
+	font-size: var(--size-unit);
 }
 
 h1,
@@ -104,7 +108,7 @@ h1,
 	letter-spacing: -0.96px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h1,
 	.h1 {
 		font-size: 7.5rem;
@@ -119,7 +123,7 @@ h2,
 	letter-spacing: -0.96px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h2,
 	.h2 {
 		font-size: 5rem;
@@ -135,7 +139,7 @@ h3,
 	font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h3,
 	.h3 {
 		font-size: 3.5rem;
@@ -156,7 +160,7 @@ h4,
 	letter-spacing: -0.48px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h4,
 	.h4 {
 		font-size: 2.5rem;
@@ -171,7 +175,7 @@ h5,
 	font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	h5,
 	.h5 {
 		font-size: 1.5rem;
@@ -212,8 +216,9 @@ p {
 	border-radius: 0.5rem;
 	border: 0.03125rem solid var(--color-snow-white);
 
-	font-weight: 500;
 	font-size: 1rem;
+
+	font-weight: 500;
 
 	cursor: pointer;
 
@@ -246,7 +251,7 @@ p {
 	}
 
 	.btn__icon {
-		font-size: 1rem;
+		font-size: 1.5rem;
 
 		&.btn__icon--rotate {
 			rotate: -45deg;

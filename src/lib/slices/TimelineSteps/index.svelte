@@ -47,7 +47,7 @@
 	data-slice-variation={slice.variation}
 	class="time-line-steps {paddingClass()}"
 >
-<div class="container">
+<div class="container medium">
 	<div class="time-line-steps__inner">
 		<div class="time-line-steps__first-block">
 			<div class="heading h3 low">
@@ -111,6 +111,10 @@
 				top: 1rem;
 				align-self: flex-start;
 			}
+
+			.description{
+				max-width: 40rem;
+			}
 	}
 
 	&__item{
@@ -130,6 +134,10 @@
 				background-color: #0f4c5c;
 				border-radius: 50%;
 			}
+		}
+
+		.general-content{
+			max-width: 40rem;
 		}
 
 	}
@@ -177,9 +185,10 @@
 				}
 
 				:global img{
-					width: 100%;
+					width: fit-content;
 					height: 100%;
 					object-fit: cover;
+					border-radius: 0.5rem;
 				}
 			}
 		}

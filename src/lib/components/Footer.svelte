@@ -30,7 +30,8 @@
 			<div class="footer__top">
 				<div class="logo-wrap">
 					<PrismicImage field={footer.logo} />
-					<div class=company__wrap>
+				</div>
+					<div class="company__wrap mobile-only">
 						<div class="kvk">
 							<span class="first">Risk Boutique B.V.</span>
 							<span>KvK: 98321307</span>
@@ -43,27 +44,25 @@
 							<span>Keizersgracht 241</span>
 							<span>1016 EA, Amsterdam</span>
 						</div>
-					</div>
-				</div>
-
-				<ul class="socials">
-					{#each socials as { social_link }, index (index)}
-						<li class="socials__item">
-							<PrismicLink
-								field={social_link}
-								class="socials__item-link"
-								data-sidenav-fade=""
-							>
-								<i class="icon-linkedin"></i>
-							</PrismicLink>
-						</li>
-					{/each}
-					<li class="socials__item">
-							<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="" aria-label="mail">
-								<i class="icon-mail"></i>
-							</a>
-						</li>
-				</ul>
+						<ul class="socials">
+							{#each socials as { social_link }, index (index)}
+								<li class="socials__item">
+									<PrismicLink
+										field={social_link}
+										class="socials__item-link"
+										data-sidenav-fade=""
+									>
+										<i class="icon-linkedin"></i>
+									</PrismicLink>
+								</li>
+							{/each}
+								<li class="socials__item">
+									<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="" aria-label="mail">
+										<i class="icon-mail"></i>
+									</a>
+								</li>
+							</ul>
+					</div>	
 			</div>
 
 			<div class="footer__columns">
@@ -122,7 +121,60 @@
 				</div>
 
 				<div class="footer__grid">
+					<div class="footer__grid__company-socials">
+						<!-- <PrismicImage field={footer.logo} /> -->
+						<div class=company__wrap>
+							<div class="kvk">
+								<span class="first">Risk Boutique B.V.</span>
+								<span>KvK: 98321307</span>
+							</div>
+							<div class="kvk">
+								<span class="first">Risk Boutique Interim Solutions B.V.</span>
+								<span>KvK: 98322265</span>
+							</div>
+							<div class="adress">
+								<span>Keizersgracht 241</span>
+								<span>1016 EA, Amsterdam</span>
+							</div>
+						</div>
+					<ul class="socials">
+					{#each socials as { social_link }, index (index)}
+						<li class="socials__item">
+							<PrismicLink
+								field={social_link}
+								class="socials__item-link"
+								data-sidenav-fade=""
+							>
+								<i class="icon-linkedin"></i>
+							</PrismicLink>
+						</li>
+					{/each}
+						<li class="socials__item">
+							<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="" aria-label="mail">
+								<i class="icon-mail"></i>
+							</a>
+						</li>
+					</ul>
+					</div>
 					{#each footer.columns as footerColumn, index (index)}
+					{#if index === footer.columns.length - 2}
+						<div class="footer__grid-item combined">
+							{#each footer.columns.slice(-2) as col}
+								<div class="footer__grid-item-combined">
+									<div class="footer__grid-item-title">
+										{col.column_title}
+									</div>
+									<ul class="footer__grid-item-list">
+										{#each col.links as link}
+											<li>
+												<PrismicLink field={link} />
+											</li>
+										{/each}
+									</ul>
+								</div>
+							{/each}
+						</div>
+					{:else if index < footer.columns.length - 2}
 						<div class="footer__grid-item">
 							<div class="footer__grid-item-title">
 								{footerColumn.column_title}
@@ -135,11 +187,12 @@
 								{/each}
 							</ul>
 						</div>
-					{/each}
-				</div>
+					{/if}
+				{/each}
 			</div>
+		</div>
 
-			<!-- <div class="footer__cta">
+		<!-- <div class="footer__cta">
 				<PrismicLink
 					field={footer.cta_link}
 					class="footer__cta-link"
@@ -174,10 +227,10 @@
 		&__inner {
 			display: flex;
 			flex-flow: column;
-			gap: 5rem;
+			gap: 2rem;
 
-			@media (min-width: 768px) {
-				gap: 4.25rem;
+			@media (min-width: 992px) {
+				gap: 1.5rem;
 			}
 		}
 
@@ -185,13 +238,8 @@
 			display: flex;
 			flex-direction: column;
 			align-items: start;
-			gap: 1.5rem;
+			gap: 1rem;
 
-			@media (min-width: 768px) {
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: end;
-			}
 		}
 
 		.logo-wrap {
@@ -199,7 +247,7 @@
 		}
 
 		.company__wrap{
-			margin-top: 1rem;
+			// margin-top: 1rem;
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
@@ -222,10 +270,17 @@
 			}
 		}
 
+		.company__wrap.mobile-only{
+			display: flex;
+				@media(min-width: 992px){
+					display: none;
+				}
+		}
+
 		.socials {
 			display: flex;
 			align-items: center;
-			justify-content: center;
+			// justify-content: center;
 			gap: 0.5rem;
 
 			:global &__item-link {
@@ -241,6 +296,24 @@
 				color: var(--color-snow-white);
 
 				font-size: 1.125rem;
+			}
+
+			&__item{
+
+				:global a{
+					transition: all 0.3s ease;
+				}
+
+
+
+					&:hover {
+
+						:global a{
+							background: var(--color-dark-mode);
+							color: var(--color-snow-white);
+							transform: scale(1.1);
+						}
+					}
 			}
 		}
 
@@ -351,6 +424,16 @@
 			gap: 1.5rem;
 		}
 
+		&__grid-item.combined {
+			gap: 2.5rem;
+		}
+
+		&__grid-item-combined {
+			display: flex;
+			flex-flow: column;
+			gap: 1.5rem;
+		}
+
 		&__grid-item-title {
 			font-size: 1.125rem;
 			font-weight: 600;
@@ -364,6 +447,12 @@
 			:global li a{
 				font-size: 1rem;
 			}
+		}
+
+		&__grid__company-socials{
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
 		}
 
 		&__cta{

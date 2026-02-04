@@ -22,7 +22,7 @@
 	class="hero-advisory"
 >
 <canvas id="gradient-canvas" class="hero-advisory__gradient" data-transition-in></canvas>
-		<div class="container">
+		<div class="container medium">
 			<div class="hero-advisory__content">
 				<div class="hero-advisory__title-wrap">
 					<h1 class="hero-advisory__title">Advisory</h1>
