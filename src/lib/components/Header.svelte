@@ -114,6 +114,15 @@
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
+
+			.btn{
+				transition: all ease 0.3s;
+			}
+
+			.btn:hover{
+				background: var(--color-snow-white);
+				color: var(--color-dark-mode);
+			}
 		}
 
 		:global &__cta {
