@@ -93,6 +93,7 @@
 
 			@media (min-width: 1024px) {
 				max-height: 90vh;
+				position: relative;
 			}
 		}
 
@@ -128,9 +129,10 @@
 			font-weight: 500;
 			color: var(--color-snow-white);
 
-			position: relative;
+			position: absolute;
 			z-index: 2;
 			padding-bottom: 1.5rem;
+			bottom: 0;
 		}
 
 		&__image-wrap {
@@ -143,13 +145,18 @@
 			aspect-ratio: 1/1;
 			z-index: 2;
 
+			overflow: hidden;
+
+			border-radius: 4px 0 0 4px;
+			border: 1px solid var(--SNOW-WHITE, #f9f9f8);
+
 			:global img {
 				object-fit: cover;
 				width: 100%;
 				height: 100%;
 			}
 
-			@media (min-width: 1024px) {
+			@media (min-width: 1200px) {
 				display: block;
 				max-width: 500px;
 			}
