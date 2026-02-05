@@ -37,7 +37,6 @@
 			tl.clear()
 				.set(navWrap, { display: 'block' })
 				.set(menu, { xPercent: 0 }, '<')
-				// .fromTo(menuButtonTexts, { yPercent: 0 }, { yPercent: -100, stagger: 0.2 })
 				.fromTo(menuButtonIcon, { rotate: 90 }, { rotate: 0 }, '<')
 				.fromTo(overlay, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
 				.fromTo(
@@ -46,10 +45,15 @@
 					{ xPercent: 0, stagger: 0.12, duration: 0.575 },
 					'<'
 				)
-				.fromTo(menuHeader, { autoAlpha: 0 }, { autoAlpha: 1 }, '<')
+				.fromTo(
+					menuHeader,
+					{ autoAlpha: 0 },
+					{ autoAlpha: 1 },
+					'-=0.25'
+				)
 				.fromTo(
 					menuLinks,
-					{ yPercent: 140, rotate: 10 },
+					{ yPercent: 210, rotate: 10 },
 					{ yPercent: 0, rotate: 0, stagger: 0.05 },
 					'<+=0.35'
 				)
