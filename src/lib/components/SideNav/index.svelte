@@ -55,7 +55,7 @@
 					menuLinks,
 					{ yPercent: 210, rotate: 10 },
 					{ yPercent: 0, rotate: 0, stagger: 0.05 },
-					'<+=0.35'
+					'<+=0.10'
 				)
 				.fromTo(
 					fadeTargets,
@@ -146,7 +146,7 @@
 			)
 			.fromTo(
 				menuItems,
-				{ yPercent: 140, rotate: 10 },
+				{ yPercent: 210, rotate: 10 },
 				{ yPercent: 0, rotate: 0, stagger: 0.05 },
 				'<+=0.35'
 			)
