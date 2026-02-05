@@ -86,15 +86,16 @@
 
 <style lang="scss">
   .hero{
-    background: url('/bg-gradient-licht.svg');
+    background: url('/gradient-licht-gedraaid.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 100vh;
     overflow: hidden;
     position: relative;
+    padding-bottom: 2rem;
 
-    @media(min-width: 768px){
+    @media(min-width: 992px){
       min-height: 110vh;
+      padding-bottom: 0;
     }
     
 
@@ -156,7 +157,7 @@
           font-size: 1.5rem;
           font-weight: 600;
           line-height: 90%; /* 36px */
-          letter-spacing: -1.6px;
+          letter-spacing: -0.5px;
           color: rgba(11, 14, 19, 0.75);
 
           @media(min-width: 768px){

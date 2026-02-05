@@ -76,6 +76,26 @@
 				"__TYPE__": "FieldContent",
 				"value": "top",
 				"type": "Select"
+			},
+			"subtekst": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Elit magna Lorem sint occaecat commodo fugiat ullamco voluptate elit reprehenderit amet deserunt pariatur esse."
+						}
+					}
+				]
+			},
+			"call_to_action": {
+				"key": "0fe500a8-606b-4cd8-bac9-c51175b7c5ef",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "stay"
+				}
 			}
 		},
 		"items": []

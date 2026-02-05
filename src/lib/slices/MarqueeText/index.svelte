@@ -26,7 +26,7 @@
   <div data-css-marquee-list="" class="marquee-css__list">
 		{#each slice.primary.items as item}
 		<div class="marquee-css__item">
-      <div class="marquee-css__item-p h1">{item.marquee_text}</div>
+      <div class="marquee-css__item-p h1" class:is-asterisk={item.marquee_text === '*'}>{item.marquee_text}</div>
     </div>
 		{/each}
  
@@ -34,7 +34,7 @@
 	<div data-css-marquee-list="" class="marquee-css__list">
 		{#each slice.primary.items as item}
 		<div class="marquee-css__item">
-      <div class="marquee-css__item-p h1">{item.marquee_text}</div>
+      <div class="marquee-css__item-p h1" class:is-asterisk={item.marquee_text === '*'}>{item.marquee_text}</div>
     </div>
 		{/each}  
   </div>
@@ -81,6 +81,15 @@
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.marquee-css__item-p.is-asterisk {
+	line-height: 100%;
+	max-height: 30px;
+
+	@media(min-width: 768px){
+		max-height: 80px;
+	}
 }
 
 /* CSS Keyframe Animation */

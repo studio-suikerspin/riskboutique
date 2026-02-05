@@ -191,7 +191,7 @@
 			@media(min-width: 992px) {
 				padding-left: 6.25rem;
 				padding-bottom: 6.25rem;
-				margin-top: 0;
+				margin-top: 1rem;
 			}
 
 			.custom-prev,
@@ -221,20 +221,20 @@
 				color: var(--color-dark-mode);
 				border: 1px solid var(--color-snow-white);
 
-				&:hover {
-					background-color: transparent;
-					color: var(--color-snow-white);
-				}
+				// &:hover {
+				// 	background-color: transparent;
+				// 	color: var(--color-snow-white);
+				// }
 			}
 
 			.custom-prev{
 				border: 1px solid var(--color-snow-white);
 				color: var(--color-snow-white);
 
-				&:hover {
-					background-color: var(--color-snow-white);
-					color: var(--color-dark-mode);
-				}
+				// &:hover {
+				// 	background-color: var(--color-snow-white);
+				// 	color: var(--color-dark-mode);
+				// }
 			}
 		
 		}

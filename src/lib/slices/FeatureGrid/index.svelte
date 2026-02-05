@@ -5,37 +5,48 @@
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import { gsap, ScrollTrigger } from '$lib/gsap'
+	import Swiper from 'swiper/bundle'
+	import 'swiper/css/bundle'
+	import { initContentRevealScroll } from '$lib/revealContent.js'
 
 	type Props = SliceComponentProps<Content.FeatureGridSlice>
 
 	const { slice }: Props = $props()
 
+	let swiper: Swiper
+
 	onMount(() => {
-		setTimeout(() => {
-			const items = document.querySelectorAll('.feature-grid__item')
-
-			// Set initial state
-			gsap.set(items, { y: 40, autoAlpha: 0 })
-
-			// Create staggered animation
-			ScrollTrigger.create({
-				trigger: '.feature-grid__content',
-				start: 'top 85%',
-				once: true,
-				onEnter: () => {
-					gsap.to(items, {
-						y: 0,
-						autoAlpha: 1,
-						duration: 0.8,
-						ease: 'power4.out',
-						stagger: 0.2,
-						onComplete: () => {
-							gsap.set(items, { clearProps: 'transform,opacity' })
-						}
-					})
+		initContentRevealScroll()
+		swiper = new Swiper('.feature-grid__swiper', {
+			loop: false,
+			slidesPerView: 1,
+			spaceBetween: 16,
+			breakpoints: {
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 16
+				},
+				1024: {
+					slidesPerView: 3,
+					spaceBetween: 16
+				},
+				1200: {
+					slidesPerView: 4,
+					spaceBetween: 16
 				}
-			})
-		}, 200)
+
+			},
+			navigation: {
+				nextEl: '.feature-grid__nav-next',
+				prevEl: '.feature-grid__nav-prev'
+			}
+		})
+
+		return () => {
+			if (swiper) {
+				swiper.destroy()
+			}
+		}
 	})
 
 	const paddingClass = $derived(() => {
@@ -58,24 +69,43 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 	class="feature-grid {paddingClass()}"
+	data-reveal-group
 >
 	<div class="container">
 		<div class="feature-grid__inner">
 			<div class="feature-grid__heading">
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
-			<div class="feature-grid__content">
-				{#each slice.primary.features as item, index (index)}
-					<div class="feature-grid__item">
-						<div class="icon">
-							<FeatureGridShapes shape={item.icon} />
+			<div class="feature-grid__content swiper feature-grid__swiper">
+				<div class="swiper-wrapper" data-reveal-group-nested>
+					{#each slice.primary.features as item, index (index)}
+						<div class="feature-grid__item swiper-slide">
+							<div class="icon">
+								<FeatureGridShapes shape={item.icon} />
+							</div>
+							<div class="text general-content">
+								<PrismicRichText field={item.description} />
+							</div>
 						</div>
-						<div class="text general-content">
-							<PrismicRichText field={item.description} />
-						</div>
+					{/each}
+				</div>
+
+					<div class="feature-grid__navigation">
+						<button
+							class="feature-grid__nav-prev navigation-button"
+							aria-label="Previous"
+						>
+							<i class="icon-chevron prev-icon"></i>
+						</button>
+						<button
+							class="feature-grid__nav-next navigation-button"
+							aria-label="Next"
+						>
+							<i class="icon-chevron next-icon"></i>
+						</button>
 					</div>
-				{/each}
 			</div>
+			
 		</div>
 	</div>
 </section>
@@ -89,15 +119,11 @@
 		}
 
 		&__content {
-			display: flex;
-			gap: 1rem;
-			overflow-x: scroll;
-
-			scroll-snap-type: x mandatory;
+			width: 100%;
 		}
 
 		&__item {
-			flex: 1;
+			// flex: 1;
 			display: flex;
 			flex-direction: column;
 			gap: 0.625rem;
@@ -107,29 +133,58 @@
 			background-size: cover;
 			padding: 1.5rem;
 			border-radius: 0.5rem;
-			min-width: 16.875rem;
-
-			scroll-snap-align: start;
-
-			@media (min-width: 768px) {
-				width: unset;
-			}
+			height: auto;
+			// min-width: 16.875rem;
 
 			.icon {
 				:global svg {
 					width: 2.5rem;
 					height: 2.5rem;
 
-					@media (min-width: 768px) {
+					@media (min-width: 992px) {
 						width: 4.5rem;
 						height: 4.5rem;
+						flex: 1;
 					}
 				}
 			}
 
-			.text {
-				max-width: 18.75rem;
+			@media(min-width: 992px) {
+				.text {
+					max-width: 18.75rem;
+				}
 			}
+		}
+
+		&__navigation {
+			display: flex;
+			gap: 0.5rem;
+			margin-top: 1rem;
+
+			@media(min-width: 1200px) {
+				display: none;
+			}
+		}
+
+		&__nav-prev,
+		&__nav-next {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 3rem;
+			height: 3rem;
+			border-radius: 0.5rem;
+			cursor: pointer;
+			border: 1px solid var(--color-dark-mode);
+		}
+
+		&__nav-prev i{
+			rotate: 180deg;
+		}
+
+		&__nav-prev:disabled,
+		&__nav-next:disabled {
+			opacity: 0.5 !important;
 		}
 	}
 </style>

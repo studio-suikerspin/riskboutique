@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']]
 
 type AdvisorySubpageDocumentDataSlicesSlice =
+	| ContentCardsWithImageSlice
 	| ImageTextColumns2Slice
 	| HeroWithBackgroundSlice
 	| MarqueeTextSlice
@@ -1696,6 +1697,32 @@ export interface ContentCardsWithImageSliceImageLeftTextRightPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	headline: prismic.KeyTextField
+
+	/**
+	 * subtekst field in *ContentCardsWithImage → default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.subtekst
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subtekst: prismic.RichTextField
+
+	/**
+	 * call to action field in *ContentCardsWithImage → default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.call_to_action
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	call_to_action: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
 
 	/**
 	 * Cards field in *ContentCardsWithImage → default → Primary*

@@ -150,10 +150,26 @@
 			display: flex;
 			gap: 0.5rem;
 
+			:global .btn{
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+
 			:global .btn--secondary{
 				background: transparent;
 				color: var(--color-snow-white);
 			}
+
+			:global .btn--secondary:hover{
+				background: var(--color-snow-white);
+				color: var(--color-dark-mode);
+			}
+
+			:global .btn--primary:hover{
+				background: var(--color-dark-mode);
+				color: var(--color-snow-white);
+			}
+
+
 		}
 	}
 </style>

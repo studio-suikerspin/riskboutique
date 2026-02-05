@@ -90,12 +90,12 @@
 			display: flex;
 			flex-direction: column;
 			align-items: start;
-			justify-content: end;
+			justify-content: center;
 			gap: 2.5rem;
 			position: relative;
 			z-index: 2;
 
-			@media (min-width: 768px) {
+			@media (min-width: 992px) {
 				flex-direction: row;
 				gap: 2.5rem;
 				align-items: center;

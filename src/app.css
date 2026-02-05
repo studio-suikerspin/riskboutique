@@ -119,7 +119,7 @@ h1,
 h2,
 .h2 {
 	font-size: 2.5rem;
-	line-height: 90%;
+	line-height: 99%;
 	letter-spacing: -0.96px;
 }
 
@@ -150,7 +150,7 @@ h3,
 .h3.low ,
 h3.low{
 	font-weight: 600;
-	line-height: 85%;
+	line-height: 99%;
 }
 
 h4,
@@ -230,8 +230,8 @@ p {
 	}
 
 	&:hover {
-		opacity: 0.8;
-		box-shadow: 0px 4px 2px rgba(0,0,0,0.05);
+		/* opacity: 0.8; */
+		/* box-shadow: 0px 4px 2px rgba(0,0,0,0.05); */
 		transition: all 150ms ease;
 	}
 

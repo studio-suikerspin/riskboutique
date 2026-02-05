@@ -18,6 +18,26 @@
             "placeholder": ""
           }
         },
+        "subtekst": {
+          "type": "StructuredText",
+          "config": {
+            "label": "subtekst",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "call_to_action": {
+          "type": "Link",
+          "config": {
+            "label": "call to action",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
         "items": {
           "type": "Group",
           "config": {

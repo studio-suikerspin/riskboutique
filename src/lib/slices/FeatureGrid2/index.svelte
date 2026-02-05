@@ -11,80 +11,9 @@
 
 	const { slice }: Props = $props()
 
-	function initMomentumBasedHover(root: HTMLElement) {
-		if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches)
-			return
-
-		const xyMultiplier = 30
-		const rotationMultiplier = 20
-		const inertiaResistance = 200
-
-		const clampXY = gsap.utils.clamp(-1080, 1080)
-		const clampRot = gsap.utils.clamp(-60, 60)
-
-		let prevX = 0
-		let prevY = 0
-		let velX = 0
-		let velY = 0
-		let rafId: number | null = null
-
-		root.addEventListener('mousemove', (e) => {
-			if (rafId) return
-			rafId = requestAnimationFrame(() => {
-				velX = e.clientX - prevX
-				velY = e.clientY - prevY
-				prevX = e.clientX
-				prevY = e.clientY
-				rafId = null
-			})
-		})
-
-		root.querySelectorAll('[data-momentum-hover-element]').forEach((el) => {
-			el.addEventListener('mouseenter', (e) => {
-				const target = el.querySelector(
-					'[data-momentum-hover-target]'
-				) as HTMLElement
-				if (!target) return
-
-				const { left, top, width, height } =
-					target.getBoundingClientRect()
-				const centerX = left + width / 2
-				const centerY = top + height / 2
-
-				const offsetX = (e as MouseEvent).clientX - centerX
-				const offsetY = (e as MouseEvent).clientY - centerY
-
-				const rawTorque = offsetX * velY - offsetY * velX
-				const leverDist = Math.hypot(offsetX, offsetY) || 1
-				const angularForce = rawTorque / leverDist
-
-				gsap.to(target, {
-					inertia: {
-						x: { velocity: clampXY(velX * xyMultiplier), end: 0 },
-						y: { velocity: clampXY(velY * xyMultiplier), end: 0 },
-						rotation: {
-							velocity: clampRot(
-								angularForce * rotationMultiplier
-							),
-							end: 0
-						},
-						resistance: inertiaResistance
-					}
-				})
-			})
-		})
-	}
 
 	onMount(() => {
 		initContentRevealScroll()
-
-		const grid = document.querySelector(
-			'.feature-grid-second__grid'
-		) as HTMLElement
-
-		if (grid) {
-			initMomentumBasedHover(grid)
-		}
 	})
 
 	const paddingClass = $derived(() => {
@@ -107,24 +36,23 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 	class="feature-grid-second {paddingClass()}"
+	data-reveal-group
 >
 	<div class="container">
 		<div class="feature-grid-second__inner">
 			<div
 				class="feature-grid-second__heading"
-				data-reveal-group
+				
 			>
 				<div class="h1">{slice.primary.heading}</div>
 			</div>
-			<div class="feature-grid-second__grid">
+			<div class="feature-grid-second__grid" data-reveal-group-nested >
 				{#each slice.primary.features as item, index (index)}
 					<div
 						class="feature-grid-second__item"
-						data-momentum-hover-element
 					>
 						<div
 							class="feature-grid-second__item-inner"
-							data-momentum-hover-target
 						>
 							<div class="text-icon">
 								<div class="icon">

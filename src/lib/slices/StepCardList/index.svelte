@@ -101,7 +101,7 @@
 			gap: 4rem;
 
 			@media(min-width: 992px){
-				gap: 6.5rem;
+				gap: 6.25rem;
 			}
 		}
 
@@ -142,7 +142,7 @@
 
 				@media(min-width: 992px){
 					flex-direction: row;
-					gap: 5rem;
+					gap: 1.5rem;
 				}	
 
 				.number{
@@ -162,6 +162,13 @@
 					overflow: hidden;
 					// max-height: 37.5rem;
 					aspect-ratio: 16 / 9;
+
+					:global img{
+						border-radius: 0.5rem;
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
 
 					@media(min-width: 992px){
 						max-height: 37.5rem;
@@ -193,7 +200,7 @@
 				.cta{
 					display: flex;
 					flex-direction: column;
-					gap: 16px;
+					gap: 1rem;
 					width: fit-content;
 
 					.btn{

@@ -8,6 +8,11 @@ export function initContentRevealScroll() {
 
   const ctx = gsap.context(() => {
 
+    const getClearProps = (el) => {
+      if (el?.classList?.contains('swiper-slide')) return 'transform,opacity';
+      return 'all';
+    };
+
     document.querySelectorAll('[data-reveal-group]').forEach(groupEl => {
       // Config from attributes or defaults (group-level)
       const groupStaggerSec = (parseFloat(groupEl.getAttribute('data-stagger')) || 100) / 1000; // ms → sec
@@ -36,7 +41,7 @@ export function initContentRevealScroll() {
             autoAlpha: 1, 
             duration: animDuration, 
             ease: animEase,
-            onComplete: () => gsap.set(groupEl, { clearProps: 'all' })
+            onComplete: () => gsap.set(groupEl, { clearProps: getClearProps(groupEl) })
           })
         });
         return;
@@ -97,7 +102,7 @@ export function initContentRevealScroll() {
                 autoAlpha: 1, 
                 duration: animDuration, 
                 ease: animEase,
-                onComplete: () => gsap.set(slot.el, { clearProps: 'all' })
+                onComplete: () => gsap.set(slot.el, { clearProps: getClearProps(slot.el) })
               }, slotTime);
             } else {
               // Optionally include the parent at the same slot time (parent uses group distance)
@@ -107,7 +112,7 @@ export function initContentRevealScroll() {
                   autoAlpha: 1,
                   duration: animDuration,
                   ease: animEase,
-                  onComplete: () => gsap.set(slot.parentEl, { clearProps: 'all' })
+                  onComplete: () => gsap.set(slot.parentEl, { clearProps: getClearProps(slot.parentEl) })
                 }, slotTime);
               }
               // Nested children use nested stagger (ms → sec); fallback to group stagger
@@ -119,7 +124,7 @@ export function initContentRevealScroll() {
                   autoAlpha: 1, 
                   duration: animDuration, 
                   ease: animEase,
-                  onComplete: () => gsap.set(nestedChild, { clearProps: 'all' })
+                  onComplete: () => gsap.set(nestedChild, { clearProps: getClearProps(nestedChild) })
                 }, slotTime + nestedIndex * nestedStaggerSec);
               });
             }

@@ -29,7 +29,7 @@
 	data-slice-variation={slice.variation}
 	class="image-text-columns"
 >
-	<div class="container medium">
+	<div class="container">
 		<div class="image-text-columns__content {paddingClass()}">
 			{#each slice.primary.blocks as item, index (index)}
 				<div
@@ -80,7 +80,12 @@
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
+
+			@media(min-width: 768px){
+				padding-inline: 5rem;
+			}
 		}
+			
 
 		&__column {
 			display: flex;

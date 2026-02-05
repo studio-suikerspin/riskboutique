@@ -104,7 +104,7 @@
 			flex: 1;
 			display: flex;
 			flex-direction: column;
-			gap: 2.54rem;
+			gap: 2.5rem;
 
 			@media(min-width: 768px){
 				position: sticky;
