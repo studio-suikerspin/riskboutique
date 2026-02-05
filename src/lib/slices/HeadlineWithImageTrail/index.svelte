@@ -9,71 +9,84 @@
 	const { slice }: Props = $props()
 
 	function initRotatingImageTrail() {
-		var area = document.querySelector('[data-trail-area]')
+		const area = document.querySelector('[data-trail-area]')
 		if (!area) return
 
-		var collection = area.querySelector('[data-trail-collection]')
-		if (!collection) return
+		const poolItems = area.querySelectorAll('[data-trail-pool-item]')
+		if (!poolItems.length) return
 
-		var items = collection.querySelectorAll('[data-trail-item]')
-		if (!items.length) return
+		// Pool management
+		let currentIndex = 0
+		let lastX: number | null = null
+		let lastY: number | null = null
+		let lastSpawnTime = 0
+		const minSpawnInterval = 50
 
-		// Distance logic
-		var index = 0
-		var lastCloneX = null
-		var lastCloneY = null
+		const cardWidth = poolItems[0].getBoundingClientRect().width
+		const stepDistance = cardWidth * 0.5
 
-		var cardWidth = items[0].getBoundingClientRect().width
-		var stepDistance = cardWidth * 0.5
+		// Initialize all pool items as hidden
+		gsap.set(poolItems, {
+			scale: 0,
+			rotation: -20,
+			xPercent: -50,
+			yPercent: -50,
+			autoAlpha: 1
+		})
 
-		function spawnTrailItem(x, y) {
-			var original = items[index]
-			var clone = original.cloneNode(true)
+		function spawnTrailItem(x: number, y: number) {
+			const item = poolItems[currentIndex]
 
-			clone.style.left = x + 'px'
-			clone.style.top = y + 'px'
+			// Kill any ongoing animation on this item
+			gsap.killTweensOf(item)
 
-			clone.setAttribute('data-trail-item', 'hidden')
+			// Position and animate in
+			gsap.set(item, { left: x, top: y, scale: 0, rotation: -20 })
 
-			area.appendChild(clone)
+			gsap.to(item, {
+				scale: 1,
+				rotation: 0,
+				duration: 0.4,
+				ease: 'power3.out',
+				onComplete: () => {
+					// Animate out after a brief hold
+					gsap.to(item, {
+						scale: 0,
+						rotation: 180,
+						duration: 0.8,
+						ease: 'power2.in'
+					})
+				}
+			})
 
-			void clone.getBoundingClientRect()
-
-			clone.setAttribute('data-trail-item', 'visible')
-
-			setTimeout(function () {
-				clone.setAttribute('data-trail-item', 'transition-out')
-			}, 400)
-
-			setTimeout(function () {
-				clone.remove()
-			}, 1200)
-
-			index = (index + 1) % items.length
-			lastCloneX = x
-			lastCloneY = y
+			currentIndex = (currentIndex + 1) % poolItems.length
+			lastX = x
+			lastY = y
+			lastSpawnTime = performance.now()
 		}
 
-		// Mouse movement logic
-		area.addEventListener('mousemove', function (event) {
-			var rect = area.getBoundingClientRect()
-			var x = event.clientX - rect.left
-			var y = event.clientY - rect.top
+		area.addEventListener('mousemove', (event: MouseEvent) => {
+			const now = performance.now()
+			if (now - lastSpawnTime < minSpawnInterval) return
+
+			const rect = area.getBoundingClientRect()
+			const x = event.clientX - rect.left
+			const y = event.clientY - rect.top
 
 			if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
-				lastCloneX = null
-				lastCloneY = null
+				lastX = null
+				lastY = null
 				return
 			}
 
-			if (lastCloneX === null || lastCloneY === null) {
+			if (lastX === null || lastY === null) {
 				spawnTrailItem(x, y)
 				return
 			}
 
-			var dx = x - lastCloneX
-			var dy = y - lastCloneY
-			var distance = Math.sqrt(dx * dx + dy * dy)
+			const dx = x - lastX
+			const dy = y - lastY
+			const distance = Math.sqrt(dx * dx + dy * dy)
 
 			if (distance >= stepDistance) {
 				spawnTrailItem(x, y)
@@ -90,7 +103,7 @@
 			scrollTrigger: {
 				trigger: '.image-trail-slice',
 				start: 'top 70%',
-				end: 'bottom 20%',
+				end: 'bottom 20%'
 			}
 		})
 
@@ -99,60 +112,61 @@
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 </script>
 
 <section
-	class="{paddingClass()}"
+	class={paddingClass()}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-<div class="image-trail-slice">
-	<div class="container">
-		<div class="image-trail-slice__inner">
-			<h2
-				class="image-trail-slice__headline h2"
-				data-reveal-text
-			>
-				{slice.primary.headline}
-			</h2>
-			<div
-				class="image-trail-slice__subheadline h2"
-				data-reveal-text
-			>
-				{slice.primary.subheadline}
+	<div class="image-trail-slice">
+		<div class="container">
+			<div class="image-trail-slice__inner">
+				<h2
+					class="image-trail-slice__headline h2"
+					data-reveal-text
+				>
+					{slice.primary.headline}
+				</h2>
+				<div
+					class="image-trail-slice__subheadline h2"
+					data-reveal-text
+				>
+					{slice.primary.subheadline}
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div
-		class="image-trail-slice__trail"
-		data-trail-area=""
-	>
 		<div
-			data-trail-collection=""
-			class="image-trail-slice__collection"
+			class="image-trail-slice__trail"
+			data-trail-area=""
 		>
-			<div class="image-trail-slice__list">
-				{#each slice.primary.images as item, index (index)}
+			<!-- Pool of reusable trail items - each image repeated for smooth trails -->
+			{#each { length: 3 } as _, repeat}
+				{#each slice.primary.images as item, index (repeat * slice.primary.images.length + index)}
 					<div
-						data-trail-item=""
-						class="image-trail-slice__item"
+						data-trail-pool-item=""
+						class="image-trail-slice__pool-item"
 					>
 						<div class="image-trail-slice__card">
 							<PrismicImage field={item.image} />
 						</div>
 					</div>
 				{/each}
-			</div>
+			{/each}
 		</div>
-	</div>
 	</div>
 </section>
 
@@ -163,7 +177,7 @@
 		position: relative;
 		padding: 10rem 0;
 
-		@media(min-width: 768px){
+		@media (min-width: 768px) {
 			padding: 18.75rem 0;
 		}
 
@@ -192,23 +206,13 @@
 			left: 0;
 		}
 
-		&__collection {
-			opacity: 0;
-			pointer-events: none;
-		}
-
-		&__list {
-			display: flex;
-			flex-flow: wrap;
-			grid-column-gap: 1rem;
-			grid-row-gap: 1rem;
-		}
-
-		&__item {
+		&__pool-item {
+			position: absolute;
 			user-select: none;
 			-webkit-user-select: none;
 			pointer-events: none;
 			z-index: 10;
+			will-change: transform;
 		}
 
 		&__card {
@@ -217,32 +221,11 @@
 			aspect-ratio: 1 / 1;
 
 			:global img {
-				position: absolute;
-				top: 0;
-				left: 0;
-
 				display: block;
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
 			}
-		}
-
-		:global [data-trail-item='hidden'] {
-			transform: translate(-50%, -50%) scale(0) rotate(-20deg);
-			position: absolute;
-		}
-
-		:global [data-trail-item='visible'] {
-			transform: translate(-50%, -50%) scale(1) rotate(0.001deg);
-			transition: transform 0.4s cubic-bezier(0.625, 0.05, 0, 1);
-			position: absolute;
-		}
-
-		:global [data-trail-item='transition-out'] {
-			transform: translate(-50%, -50%) scale(0) rotate(180deg);
-			transition: transform 0.8s cubic-bezier(0.625, 0, 0.875, 0);
-			position: absolute;
 		}
 	}
 </style>
