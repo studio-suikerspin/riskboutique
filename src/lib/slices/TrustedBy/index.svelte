@@ -270,7 +270,7 @@
 		background: var(--color-snow-white);
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 992px) {
 		.logo-wall__item.third-item {
 			order: 2;
 		}

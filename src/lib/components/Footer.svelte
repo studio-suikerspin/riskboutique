@@ -83,9 +83,9 @@
 									class="accordion-css__item-top"
 									onclick={toggleAccordion}
 								>
-									<h3 class="accordion-css__item-h3">
+									<div class="accordion-css__item-h3 subtitle">
 										{footerColumn.column_title}
-									</h3>
+									</div>
 									<div class="accordion-css__item-icon">
 										<svg
 											class="accordion-css__item-icon-svg"
@@ -368,6 +368,7 @@
 					margin-bottom: 0;
 					font-size: 1.125em;
 					font-weight: 600;
+					letter-spacing: normal;
 				}
 
 				.accordion-css__item-icon {
@@ -380,7 +381,7 @@
 				}
 
 				.accordion-css__item-icon-svg {
-					width: 1.5rem;
+					width: 1rem;
 				}
 
 				:global [data-accordion-status='active'] {
@@ -446,7 +447,15 @@
 
 			:global li a{
 				font-size: 1rem;
+				transition: all 0.3s ease;
 			}
+
+			:global li a:hover 
+			{
+				opacity: 0.65;
+			}
+
+
 		}
 
 		&__grid__company-socials{

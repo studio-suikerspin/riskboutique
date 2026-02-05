@@ -22,10 +22,17 @@
 		let menuHeader = document.querySelector('[data-sidenav-header]')
 		let menuButtonIcon = menuButton?.querySelector('[data-sidenav-icon]')
 
+		const lockBodyScroll = (isLocked) => {
+			if (!document?.body) return
+			document.body.style.overflow = isLocked ? 'hidden' : ''
+			document.body.style.touchAction = isLocked ? 'none' : ''
+		}
+
 		let tl = gsap.timeline()
 
 		const openNav = () => {
 			navWrap.setAttribute('data-nav-state', 'open')
+			lockBodyScroll(true)
 
 			tl.clear()
 				.set(navWrap, { display: 'block' })
@@ -52,12 +59,14 @@
 					{ autoAlpha: 1, yPercent: 0, stagger: 0.04 },
 					'<+=0.2'
 				)
+				.set(menuButtonIcon, { clearProps: 'transform' })
 
 			navWrap.style.pointerEvents = 'all'
 		}
 
-		const closeNav = () => {
+		const closeNavBase = () => {
 			navWrap.setAttribute('data-nav-state', 'closed')
+			lockBodyScroll(false)
 
 			tl.clear()
 				.to(overlay, { autoAlpha: 0 })
@@ -65,7 +74,23 @@
 				// .to(menuButtonTexts, { yPercent: 0 }, '<')
 				.to(menuButtonIcon, { rotate: 0 }, '<')
 				.to(menuHeader, { autoAlpha: 0 }, '<')
+				.set(menuButtonIcon, { clearProps: 'transform' })
 				.set(navWrap, { display: 'none' })
+		}
+
+		const closeNav = () => {
+			const openSubmenus = navWrap?.querySelectorAll(
+				'[data-submenu-state="open"]'
+			)
+
+			if (openSubmenus?.length) {
+				openSubmenus.forEach((submenu) => {
+					const label = submenu.getAttribute('data-submenu')
+					if (label) closeSubmenu(label)
+				})
+			}
+
+			closeNavBase()
 		}
 
 		// Toggle menu open / close depending on its current state
@@ -267,6 +292,27 @@
 					<div class="submenu__inner">
 						<header class="submenu__header">
 							<button
+								role="button"
+								data-sidenav-toggle=""
+								data-sidenav-button=""
+								class="sidenav__button mobile"
+							>
+								<div class="sidenav__button-text">
+									<p
+										data-sidenav-label=""
+										class="sidenav__button-label"
+									>
+										close
+									</p>
+								</div>
+								<div
+									data-sidenav-icon=""
+									class="sidenav__button-icon"
+								>
+									<i class="icon-close sidenav__button-icon-svg"></i>
+								</div>
+							</button>
+							<button
 							    data-submenu-toggle=""
 								class="submenu__button"
 								onclick={() => closeSubmenu(menuItem.label)}
@@ -343,13 +389,17 @@
 
 		&__header {
 			z-index: 10;
-			justify-content: flex-end;
+			justify-content: space-between;
 			align-items: center;
 			display: flex;
 			position: fixed;
 			top: 1.5rem;
 			left: 1.5rem;
 			right: 1.5rem;
+
+			@media(min-width: 768px) {
+				justify-content: flex-end;
+			}
 		}
 
 		&__button {
@@ -389,6 +439,7 @@
 			color: var(--color-dark-mode);
 			overflow: hidden;
 			height: fit-content;
+		
 
 			&__wrap {
 				display: flex;
@@ -399,6 +450,12 @@
 
 			&__text {
 				font-size: 1.125rem;
+				transition: opacity 0.3s ease-in-out;
+
+				&:hover {
+					opacity: 0.75;
+					transition: opacity 0.3s ease-in-out;
+				}
 
 				@media (min-width: 768px) {
 					font-size: 1.5rem;
@@ -579,10 +636,14 @@
 		display: flex;
 		align-items: center;
 		padding-inline: 1.5rem;
-		transition: opacity 0.3s ease-in-out;
+		// transition: opacity 0.3s ease-in-out;
 
-		:hover {
-			opacity: 0.85;
+		&__heading{
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		&__heading:hover {
+			opacity: 0.75;
 			transition: opacity 0.3s ease-in-out;
 		}
 
@@ -612,6 +673,15 @@
 		grid-row-gap: 1.5em;
 		flex-flow: row;
 		display: flex;
+
+		a{
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		a:hover{
+			opacity: 0.75;
+			transition: opacity 0.3s ease-in-out;
+		}
 	}
 
 	.noscript {
@@ -641,6 +711,22 @@
 
 		.sidenav__menu-link-heading {
 			font-size: 4em;
+		}
+	}
+
+	.sidenav__menu-inner .sidenav__header .sidenav__button-icon{
+		transition: 0.3s ease all;
+	}
+
+	.sidenav__menu-inner .sidenav__header .sidenav__button:hover .sidenav__button-icon {
+			transform: rotate(90deg);
+	}
+
+	.sidenav__button.mobile {
+		display: flex;
+
+		@media(min-width: 768px) {
+			display: none;
 		}
 	}
 </style>
