@@ -127,6 +127,7 @@
 			.btn:hover {
 				background: var(--color-snow-white);
 				color: var(--color-dark-mode);
+				border-color: var(--color-dark-mode);
 			}
 		}
 

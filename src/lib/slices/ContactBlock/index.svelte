@@ -2,7 +2,10 @@
 	import Button from '$lib/components/Button.svelte'
 	import Label from '$lib/components/UI/Label.svelte'
 	import type { Content } from '@prismicio/client'
-	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte'
+	import {
+		PrismicRichText,
+		type SliceComponentProps
+	} from '@prismicio/svelte'
 	import { Toaster, toast } from 'svelte-sonner'
 
 	type Props = SliceComponentProps<Content.ContactBlockSlice>
@@ -39,7 +42,7 @@
 			toast.success('Message sent successfully!')
 			form.reset()
 		} catch (error) {
-		    console.error(error)
+			console.error(error)
 			toast.error('Something went wrong. Please try again.')
 		} finally {
 			loading = false
@@ -48,13 +51,18 @@
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 </script>
 
 <section
@@ -66,12 +74,14 @@
 	<div class="contact-block__container container">
 		<div class="contact-block__inner">
 			<div class="content-wrap">
-				<div class="content-wrap__group">
+				<div class="content-wrap__group content-wrap__group-title">
 					<Label>
 						{slice.primary.label_text}
 					</Label>
 
-					<h1 class="h3 contact-title">{slice.primary.heading}</h1>
+					<h1 class="h3 contact-title">
+						{slice.primary.heading}
+					</h1>
 
 					<div class="contact-subtitle">
 						<PrismicRichText field={slice.primary.subtitle} />
@@ -104,9 +114,13 @@
 
 			<div class="contact-block__form-wrap">
 				<div class="form-header">
-					<h3 class="form-header__title h3">{slice.primary.form_heading}</h3>
+					<h3 class="form-header__title h3">
+						{slice.primary.form_heading}
+					</h3>
 					<div class="form-header__description">
-						<PrismicRichText field={slice.primary.form_description} />
+						<PrismicRichText
+							field={slice.primary.form_description}
+						/>
 					</div>
 				</div>
 				<form
@@ -180,7 +194,9 @@
 						/>
 
 						<div class="contact-form__footer-note">
-							<PrismicRichText field={slice.primary.form_footer_note} />
+							<PrismicRichText
+								field={slice.primary.form_footer_note}
+							/>
 						</div>
 					</div>
 				</form>
@@ -218,6 +234,12 @@
 				display: flex;
 				flex-flow: column;
 				gap: 1.5rem;
+
+				&-title {
+					@media (min-width: 568px) {
+						max-width: 650px;
+					}
+				}
 			}
 		}
 
@@ -235,7 +257,7 @@
 
 			font-weight: 500;
 
-			@media (min-width: 1024px) {
+			@media (min-width: 1400px) {
 				flex-flow: row;
 				justify-content: space-between;
 			}
@@ -250,6 +272,10 @@
 				display: flex;
 				gap: 0.5rem;
 				font-size: 1rem;
+
+				strong {
+					font-weight: 600;
+				}
 			}
 		}
 
@@ -304,9 +330,9 @@
 
 					&::placeholder {
 						color: rgba(249, 249, 248, 0.7);
-						opacity: 0.7;
 						font-weight: 400;
 						font-size: 1rem;
+						line-height: 99%;
 					}
 				}
 
@@ -319,9 +345,10 @@
 
 					&::placeholder {
 						color: rgba(249, 249, 248, 0.7);
-						opacity: 0.7;
 						font-weight: 400;
 						font-size: 1rem;
+						line-height: 99%;
+						font-size: 16px;
 					}
 				}
 
