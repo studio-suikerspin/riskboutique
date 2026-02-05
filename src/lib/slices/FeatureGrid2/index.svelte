@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte'
 	import { gsap } from '$lib/gsap'
 	import { initContentRevealScroll } from '$lib/revealContent.js'
+	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
 
 	type Props = SliceComponentProps<Content.FeatureGrid2Slice>
 
@@ -199,11 +200,15 @@
 									<PrismicRichText field={item.description} />
 								</div>
 							</div>
-							<div class="cta">
+							<ConnectWithUs
+								field={item.cta_link}
+								border="dark"
+							/>
+							<!-- <div class="cta">
 								<PrismicLink field={item.cta_link} />
 								<i class="btn__icon--rotate icon-arrow-right"
 								></i>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				{/each}
