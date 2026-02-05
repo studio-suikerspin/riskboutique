@@ -25,7 +25,7 @@
 		background-position: center;
 
 		&__inner {
-			padding-block: 9rem;
+			padding-block: 9.25rem;
 			display: flex;
 			align-items: center;
 			justify-content: center;

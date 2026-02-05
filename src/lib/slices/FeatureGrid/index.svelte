@@ -12,10 +12,10 @@
 
 	onMount(() => {
 		setTimeout(() => {
-			const items = document.querySelectorAll('.feature-grid__item');
+			const items = document.querySelectorAll('.feature-grid__item')
 
 			// Set initial state
-			gsap.set(items, { y: 40, autoAlpha: 0 });
+			gsap.set(items, { y: 40, autoAlpha: 0 })
 
 			// Create staggered animation
 			ScrollTrigger.create({
@@ -30,23 +30,28 @@
 						ease: 'power4.out',
 						stagger: 0.2,
 						onComplete: () => {
-							gsap.set(items, { clearProps: 'transform,opacity' });
+							gsap.set(items, { clearProps: 'transform,opacity' })
 						}
-					});
+					})
 				}
-			});
-		}, 200);
-	});
+			})
+		}, 200)
+	})
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 </script>
 
 <section
@@ -54,47 +59,44 @@
 	data-slice-variation={slice.variation}
 	class="feature-grid {paddingClass()}"
 >
-<div class="container">
-	<div class="feature-grid__inner">
-		<div class="feature-grid__heading">
-			<h3 class="low">{slice.primary.heading}</h3>
-		</div>
-		<div class="feature-grid__content">
-			{#each slice.primary.features as item}
-				<div class="feature-grid__item">
-					<div class="icon">
-						<FeatureGridShapes shape={item.icon} />
+	<div class="container">
+		<div class="feature-grid__inner">
+			<div class="feature-grid__heading">
+				<h3 class="low">{slice.primary.heading}</h3>
+			</div>
+			<div class="feature-grid__content">
+				{#each slice.primary.features as item, index (index)}
+					<div class="feature-grid__item">
+						<div class="icon">
+							<FeatureGridShapes shape={item.icon} />
+						</div>
+						<div class="text general-content">
+							<PrismicRichText field={item.description} />
+						</div>
 					</div>
-					<div class="text general-content">
-						<PrismicRichText field={item.description} />
-					</div>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	</div>
-</div>	
 </section>
 
 <style lang="scss">
-	.feature-grid{
-
-		&__inner{
+	.feature-grid {
+		&__inner {
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
 		}
 
-		&__content{
+		&__content {
 			display: flex;
 			gap: 1rem;
-			overflow: auto;
+			overflow-x: scroll;
 
-			// @media (min-width: 768px) {
-			// 	overflow: auto;
-			// }
+			scroll-snap-type: x mandatory;
 		}
 
-		&__item{
+		&__item {
 			flex: 1;
 			display: flex;
 			flex-direction: column;
@@ -107,28 +109,27 @@
 			border-radius: 0.5rem;
 			min-width: 16.875rem;
 
+			scroll-snap-align: start;
+
 			@media (min-width: 768px) {
 				width: unset;
 			}
 
-			.icon{
-				:global svg{
+			.icon {
+				:global svg {
 					width: 2.5rem;
 					height: 2.5rem;
 
-					@media(min-width: 768px){
+					@media (min-width: 768px) {
 						width: 4.5rem;
 						height: 4.5rem;
 					}
 				}
 			}
 
-			.text{
+			.text {
 				max-width: 18.75rem;
 			}
 		}
-
-
 	}
 </style>
-

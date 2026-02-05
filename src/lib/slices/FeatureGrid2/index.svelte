@@ -204,11 +204,6 @@
 								field={item.cta_link}
 								border="dark"
 							/>
-							<!-- <div class="cta">
-								<PrismicLink field={item.cta_link} />
-								<i class="btn__icon--rotate icon-arrow-right"
-								></i>
-							</div> -->
 						</div>
 					</div>
 				{/each}

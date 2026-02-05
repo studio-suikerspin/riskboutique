@@ -182,6 +182,8 @@
 				overflow: hidden;
 				display: none;
 
+				max-height: 42em;
+
 				:global img {
 					height: 100%;
 					object-fit: cover;
