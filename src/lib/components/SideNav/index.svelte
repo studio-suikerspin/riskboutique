@@ -347,7 +347,6 @@
 								</div>
 							</li>
 							{#each menuItem.submenu.data.submenu_item as submenuItem, index (index)}
-								{console.log(submenuItem)}
 								<li class="submenu__list-item">
 									<PrismicLink
 										field={submenuItem}
