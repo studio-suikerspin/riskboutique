@@ -101,11 +101,11 @@
 			display: grid;
 			grid-template-columns: repeat(1, 1fr);
 			column-gap: 4rem;
-			row-gap: 5rem;
+			row-gap: 4rem;
 
 			@media (min-width: 568px) {
 				grid-template-columns: repeat(2, 1fr);
-				row-gap: 7.5rem;
+				row-gap: 5rem;
 			}
 
 			@media (min-width: 1200px) {
@@ -117,11 +117,15 @@
 		.highlight {
 			display: flex;
 			flex-direction: column;
-			gap: 2.5rem;
+			gap: 1rem;
 			width: 100%;
 			min-width: 0;
 
 			justify-self: flex-start;
+
+			@media (min-width: 768px) {
+				gap: 2.5rem;
+			}
 
 			&__pattern {
 				display: grid;
