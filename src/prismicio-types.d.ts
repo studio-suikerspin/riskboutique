@@ -1093,6 +1093,22 @@ export interface AbstractHighlightsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/boolean
 	 */
 	section_theme: prismic.BooleanField
+
+	/**
+	 * CTA Link field in *AbstractHighlights → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: abstract_highlights.default.primary.cta_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta_link: prismic.LinkField<
+		string,
+		string,
+		unknown,
+		prismic.FieldState,
+		never
+	>
 }
 
 /**

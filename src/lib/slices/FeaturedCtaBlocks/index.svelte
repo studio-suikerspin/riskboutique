@@ -49,9 +49,11 @@
 			>
 				{#each slice.primary.featured_blocks as block, key (key)}
 					<div class="featured-cta-blocks__block border-radius">
-						<h3 class="h2">{block.headline}</h3>
-						<div class="rich-text-content">
-							<PrismicRichText field={block.content} />
+						<div class="block-header">
+							<h3 class="h2">{block.headline}</h3>
+							<div class="rich-text-content">
+								<PrismicRichText field={block.content} />
+							</div>
 						</div>
 
 						{#if block.cta_link.url || block.show_contact_info}
@@ -169,7 +171,16 @@
 				padding: 6rem;
 			}
 
+			.block-header {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
 			.contact-wrap {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
 				align-self: flex-end;
 			}
 		}

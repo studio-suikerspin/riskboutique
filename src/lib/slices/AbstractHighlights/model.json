@@ -56,6 +56,17 @@
             "placeholder_true": "dark",
             "default_value": true
           }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
         }
       },
       "items": {}

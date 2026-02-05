@@ -34,6 +34,15 @@
 			"section_theme": {
 				"__TYPE__": "BooleanContent",
 				"value": false
+			},
+			"cta_link": {
+				"key": "e2db103c-1dab-46bd-aa55-fc4cbf69a43c",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "mine"
+				}
 			}
 		},
 		"items": []

@@ -3,6 +3,8 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { gsap } from '$lib/gsap'
 	import { onMount } from 'svelte'
+	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
+	import Button from '$lib/components/Button.svelte'
 
 	type Props = SliceComponentProps<Content.AbstractHighlightsSlice>
 
@@ -10,6 +12,8 @@
 
 	onMount(() => {
 		const patterns = gsap.utils.toArray('[data-highlight-pattern]')
+
+		if (!patterns) return
 
 		const tl = gsap.timeline()
 		patterns.forEach((pattern) => {
@@ -76,6 +80,16 @@
 					</div>
 				{/each}
 			</div>
+
+			<div class="abstract-highlights__contact-wrap">
+				<AvatarWithContactInfo isDarkBackground={true} />
+				<Button
+					field={slice.primary.cta_link}
+					text={slice.primary.cta_link.text}
+					variant="white"
+					icon="icon-arrow-right"
+				/>
+			</div>
 		</div>
 	</div>
 </section>
@@ -110,8 +124,15 @@
 
 			@media (min-width: 1200px) {
 				grid-template-columns: repeat(4, 1fr);
-				column-gap: 4rem;
+				column-gap: 2.5rem;
 			}
+		}
+
+		&__contact-wrap {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			align-self: flex-end;
 		}
 
 		.highlight {
