@@ -2557,6 +2557,16 @@ export interface FeaturedCtaBlocksSliceDefaultPrimaryFeaturedBlocksItem {
  */
 export interface FeaturedCtaBlocksSliceDefaultPrimary {
 	/**
+	 * Section padding field in *FeaturedCtaBlocks → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
 	 * Headline field in *FeaturedCtaBlocks → Default → Primary*
 	 *
 	 * - **Field Type**: Text

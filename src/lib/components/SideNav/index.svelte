@@ -96,7 +96,7 @@
 		// Toggle menu open / close depending on its current state
 		menuToggles.forEach((toggle) => {
 			toggle.addEventListener('click', () => {
-			     toggle.style.pointerEvents = 'none';
+				toggle.style.pointerEvents = 'none'
 
 				state = navWrap.getAttribute('data-nav-state')
 				if (state === 'open') {
@@ -105,7 +105,7 @@
 					openNav()
 				}
 
-                    toggle.style.pointerEvents = 'auto';
+				toggle.style.pointerEvents = 'auto'
 			})
 		})
 
@@ -121,7 +121,9 @@
 	}
 
 	const openSubmenu = (submenuLabel) => {
-		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`)
+		const submenu = document.querySelector(
+			`[data-submenu="${submenuLabel}"]`
+		)
 
 		if (!submenu) return
 
@@ -132,7 +134,12 @@
 		submenu.style.pointerEvents = 'all'
 
 		tl.clear()
-			.fromTo(submenu, { x: '100%' }, { x: '0%', stagger: 0.04 }, '<+=0.2')
+			.fromTo(
+				submenu,
+				{ x: '100%' },
+				{ x: '0%', stagger: 0.04 },
+				'<+=0.2'
+			)
 			.fromTo(
 				menuItems,
 				{ yPercent: 140, rotate: 10 },
@@ -144,7 +151,9 @@
 	}
 
 	const closeSubmenu = (submenuLabel) => {
-		const submenu = document.querySelector(`[data-submenu="${submenuLabel}"]`)
+		const submenu = document.querySelector(
+			`[data-submenu="${submenuLabel}"]`
+		)
 
 		if (!submenu) return
 
@@ -168,14 +177,16 @@
 	})
 
 	onNavigate(() => {
-	    const nav = document.querySelector('[data-nav-state]');
-		const { navState } = nav.dataset;
+		const nav = document.querySelector('[data-nav-state]')
+		const { navState } = nav.dataset
 
-	    if (navState === 'closed') return;
+		if (navState === 'closed') return
 
-		const openSubmenus = document.querySelectorAll('[data-submenu-state="open"]')
-		openSubmenus.forEach(submenu => {
-		    const label = submenu.getAttribute('data-submenu')
+		const openSubmenus = document.querySelectorAll(
+			'[data-submenu-state="open"]'
+		)
+		openSubmenus.forEach((submenu) => {
+			const label = submenu.getAttribute('data-submenu')
 			setTimeout(() => closeSubmenu(label), 150)
 		})
 
@@ -309,11 +320,13 @@
 									data-sidenav-icon=""
 									class="sidenav__button-icon"
 								>
-									<i class="icon-close sidenav__button-icon-svg"></i>
+									<i
+										class="icon-close sidenav__button-icon-svg"
+									></i>
 								</div>
 							</button>
 							<button
-							    data-submenu-toggle=""
+								data-submenu-toggle=""
 								class="submenu__button"
 								onclick={() => closeSubmenu(menuItem.label)}
 							>
@@ -334,6 +347,7 @@
 								</div>
 							</li>
 							{#each menuItem.submenu.data.submenu_item as submenuItem, index (index)}
+								{console.log(submenuItem)}
 								<li class="submenu__list-item">
 									<PrismicLink
 										field={submenuItem}
@@ -343,9 +357,13 @@
 											class="submenu-item__wrap"
 											data-submenu-item
 										>
-											<p class="submenu-item__text">{submenuItem.text}</p>
+											<p class="submenu-item__text">
+												{submenuItem.text}
+											</p>
 											<p class="submenu-item__eyebrow">
-												{index + 1 < 10 ? '0' + (index + 1) : index + 1}
+												{index + 1 < 10
+													? '0' + (index + 1)
+													: index + 1}
 											</p>
 										</div>
 									</PrismicLink>
@@ -397,7 +415,7 @@
 			left: 1.5rem;
 			right: 1.5rem;
 
-			@media(min-width: 768px) {
+			@media (min-width: 768px) {
 				justify-content: flex-end;
 			}
 		}
@@ -439,7 +457,6 @@
 			color: var(--color-dark-mode);
 			overflow: hidden;
 			height: fit-content;
-		
 
 			&__wrap {
 				display: flex;
@@ -638,7 +655,7 @@
 		padding-inline: 1.5rem;
 		// transition: opacity 0.3s ease-in-out;
 
-		&__heading{
+		&__heading {
 			transition: opacity 0.3s ease-in-out;
 		}
 
@@ -674,11 +691,11 @@
 		flex-flow: row;
 		display: flex;
 
-		a{
+		a {
 			transition: opacity 0.3s ease-in-out;
 		}
 
-		a:hover{
+		a:hover {
 			opacity: 0.75;
 			transition: opacity 0.3s ease-in-out;
 		}
@@ -714,18 +731,21 @@
 		}
 	}
 
-	.sidenav__menu-inner .sidenav__header .sidenav__button-icon{
+	.sidenav__menu-inner .sidenav__header .sidenav__button-icon {
 		transition: 0.3s ease all;
 	}
 
-	.sidenav__menu-inner .sidenav__header .sidenav__button:hover .sidenav__button-icon {
-			transform: rotate(90deg);
+	.sidenav__menu-inner
+		.sidenav__header
+		.sidenav__button:hover
+		.sidenav__button-icon {
+		transform: rotate(90deg);
 	}
 
 	.sidenav__button.mobile {
 		display: flex;
 
-		@media(min-width: 768px) {
+		@media (min-width: 768px) {
 			display: none;
 		}
 	}

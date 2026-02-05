@@ -21,6 +21,8 @@ const routes: Route[] = [
 	// { type: 'under_construction_page', path: '/' },
 	{ type: 'homepage', path: '/' },
 	{ type: 'advisory_subpage', path: '/advisory/:uid' },
+	{ type: 'assurance_subpage', path: '/assurance/:uid' },
+	{ type: 'staffing_search_subpage', path: '/staffing-and-search/:uid' },
 	{ type: 'page', path: '/:uid' }
 ]
 
