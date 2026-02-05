@@ -14,7 +14,7 @@
 </script>
 
 <section
-	class="featured-cta-blocks"
+	class="featured-cta-blocks block-padding-{slice.primary.section_padding}"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
