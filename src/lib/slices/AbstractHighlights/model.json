@@ -34,6 +34,28 @@
               }
             }
           }
+        },
+        "section_padding": {
+          "type": "Select",
+          "config": {
+            "label": "Section padding",
+            "placeholder": "",
+            "options": [
+              "top",
+              "bottom",
+              "both",
+              "none"
+            ]
+          }
+        },
+        "section_theme": {
+          "type": "Boolean",
+          "config": {
+            "label": "Section theme",
+            "placeholder_false": "light",
+            "placeholder_true": "dark",
+            "default_value": true
+          }
         }
       },
       "items": {}

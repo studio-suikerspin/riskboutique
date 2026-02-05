@@ -1072,6 +1072,27 @@ export interface AbstractHighlightsSliceDefaultPrimary {
 	highlights: prismic.GroupField<
 		Simplify<AbstractHighlightsSliceDefaultPrimaryHighlightsItem>
 	>
+
+	/**
+	 * Section padding field in *AbstractHighlights → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: abstract_highlights.default.primary.section_padding
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * Section theme field in *AbstractHighlights → Default → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: abstract_highlights.default.primary.section_theme
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	section_theme: prismic.BooleanField
 }
 
 /**
