@@ -9,23 +9,28 @@
 	let { site_settings, header, socials } = page.data
 
 	onMount(() => {
-	     window.addEventListener('scroll', () => {
-		const scrollY = window.scrollY;
-		const toggle = document.querySelector('.floating-menu-toggle');
+		window.addEventListener('scroll', () => {
+			const scrollY = window.scrollY
+			const toggle = document.querySelector('.floating-menu-toggle')
 
-		if (scrollY > 400) {
-			toggle?.classList.add('floating-menu-toggle--scrolled');
-		} else {
-			toggle?.classList.remove('floating-menu-toggle--scrolled');
-		}
-	});
+			if (scrollY > 400) {
+				toggle?.classList.add('floating-menu-toggle--scrolled')
+			} else {
+				toggle?.classList.remove('floating-menu-toggle--scrolled')
+			}
+		})
 	})
 </script>
 
 <header class="main-header">
 	<div class="container">
 		<div class="main-header__inner">
-			<a href={resolve('/')} data-default-logo={page.params.uid === 'contact' ? 'dark' : 'light'}>
+			<a
+				href={resolve('/')}
+				data-default-logo={page.params.uid === 'contact'
+					? 'dark'
+					: 'light'}
+			>
 				<PrismicImage
 					field={header.data.logo_light}
 					class={['main-header__logo', 'main-header__logo--light']}
@@ -57,15 +62,15 @@
 </header>
 
 <div class="floating-menu-toggle">
-     <div class="container">
-	<button
-		class="btn btn--dark btn--menu"
-		data-sidenav-toggle
-	>
-		<i class="btn__icon icon-menu"></i>
-		Menu
-	</button>
-     </div>
+	<div class="container">
+		<button
+			class="btn btn--dark btn--menu"
+			data-sidenav-toggle
+		>
+			<i class="btn__icon icon-menu"></i>
+			Menu
+		</button>
+	</div>
 </div>
 
 <SideNav
@@ -97,12 +102,12 @@
 				display: none;
 			}
 
-			[data-default-logo="dark"] &--light {
+			[data-default-logo='dark'] &--light {
 				display: none;
 			}
 
-			[data-default-logo="dark"] &--dark {
-			     display: block;
+			[data-default-logo='dark'] &--dark {
+				display: block;
 			}
 
 			@media screen and (min-width: 992px) {
@@ -115,11 +120,11 @@
 			align-items: center;
 			gap: 0.5rem;
 
-			.btn{
+			.btn {
 				transition: all ease 0.3s;
 			}
 
-			.btn:hover{
+			.btn:hover {
 				background: var(--color-snow-white);
 				color: var(--color-dark-mode);
 			}
@@ -153,11 +158,22 @@
 		opacity: 0;
 		transform: translateX(100%) scaleX(0);
 		transition: all 200ms cubic-bezier(0.78, 0, 0.22, 1);
+
+		.btn {
+			transition: all 200ms cubic-bezier(0.78, 0, 0.22, 1);
+		}
+
+		.btn:hover {
+			background: var(--color-snow-white);
+			color: var(--color-dark-mode);
+			border-color: var(--color-dark-mode);
+			transition: all 200ms cubic-bezier(0.78, 0, 0.22, 1);
+		}
 	}
 
 	:global .floating-menu-toggle.floating-menu-toggle--scrolled {
-	     opacity: 1;
-	     transform: translateX(0) scaleX(1);
+		opacity: 1;
+		transform: translateX(0) scaleX(1);
 		transition: all 350ms cubic-bezier(0.78, 0, 0.22, 1);
 	}
 </style>

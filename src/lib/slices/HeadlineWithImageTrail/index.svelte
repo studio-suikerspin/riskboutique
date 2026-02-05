@@ -135,13 +135,13 @@
 		<div class="container">
 			<div class="image-trail-slice__inner">
 				<h2
-					class="image-trail-slice__headline h2"
+					class="image-trail-slice__headline h3 low"
 					data-reveal-text
 				>
 					{slice.primary.headline}
 				</h2>
 				<div
-					class="image-trail-slice__subheadline h2"
+					class="image-trail-slice__subheadline h3 low"
 					data-reveal-text
 				>
 					{slice.primary.subheadline}
