@@ -140,7 +140,6 @@
 			bottom: -3rem;
 			right: -2.5rem;
 			width: 40%;
-			max-width: 650px;
 			aspect-ratio: 1/1;
 			z-index: 2;
 
@@ -152,10 +151,12 @@
 
 			@media (min-width: 1024px) {
 				display: block;
+				max-width: 500px;
 			}
 
 			@media (min-width: 2000px) {
 				right: 5%;
+				max-width: 650px;
 			}
 
 			@media (min-width: 2200px) {
