@@ -2,11 +2,12 @@
 <!-- <RevealTypeContent text={slice.primary.content} />-->
 
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import { browser } from '$app/environment'
 	import { gsap } from '$lib/gsap'
 	import { SplitText } from 'gsap/SplitText'
 	import type { KeyTextField } from '@prismicio/client'
+	import { afterNavigate } from '$app/navigation'
+	import { onMount } from 'svelte'
 
 	type Props = {
 		text: KeyTextField
@@ -41,6 +42,12 @@
 	}
 
 	onMount(() => {
+		if (browser) {
+			revealType()
+		}
+	})
+
+	afterNavigate(() => {
 		if (browser) {
 			revealType()
 		}
