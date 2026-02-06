@@ -10,6 +10,7 @@
 	import { onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
+	import { initContentRevealScroll } from '$lib/revealContent.js'
 
 
 
@@ -28,8 +29,8 @@
 		});
 
 
-
 	onMount(() => {
+		initContentRevealScroll()
 		new Swiper('.content-cards__slider', {
 			navigation: {
 				prevEl: '.custom-prev',
@@ -63,7 +64,7 @@
 	<div class="container">
 
 		
-			<div class="content-cards__headline_wrap">
+			<div class="content-cards__headline_wrap" data-reveal-group>
 				<h2 class="content-cards__headline">{slice.primary.headline}</h2>
 				{#if slice.primary.subtekst.length > 0}
 				<div class="general-content subtext-wrapper">

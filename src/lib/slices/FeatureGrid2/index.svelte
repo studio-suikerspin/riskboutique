@@ -37,6 +37,7 @@
 	data-slice-variation={slice.variation}
 	class="feature-grid-second {paddingClass()}"
 	data-reveal-group
+	data-start="top 60%"
 >
 	<div class="container">
 		<div class="feature-grid-second__inner">
@@ -46,7 +47,11 @@
 			>
 				<div class="h1">{slice.primary.heading}</div>
 			</div>
-			<div class="feature-grid-second__grid" data-reveal-group-nested >
+			<div
+				class="feature-grid-second__grid"
+				data-reveal-group-nested
+				data-stagger="300"
+			>
 				{#each slice.primary.features as item, index (index)}
 					<div
 						class="feature-grid-second__item"

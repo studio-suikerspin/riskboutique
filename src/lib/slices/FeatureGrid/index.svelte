@@ -77,7 +77,7 @@
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
 			<div class="feature-grid__content swiper feature-grid__swiper">
-				<div class="swiper-wrapper" data-reveal-group-nested>
+				<div class="swiper-wrapper" data-reveal-group-nested data-stagger="200">
 					{#each slice.primary.features as item, index (index)}
 						<div class="feature-grid__item swiper-slide">
 							<div class="icon">

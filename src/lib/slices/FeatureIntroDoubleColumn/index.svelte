@@ -31,6 +31,7 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 	class="double-column {paddingClass()}"
+	data-reveal-group
 >
 	<div class="container medium">
 		<div class="double-column__inner">
