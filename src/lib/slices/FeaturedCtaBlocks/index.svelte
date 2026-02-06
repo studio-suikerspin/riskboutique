@@ -184,5 +184,9 @@
 				align-self: flex-end;
 			}
 		}
+
+			.contact-wrap :global a{
+				width: 100%;
+			}
 	}
 </style>

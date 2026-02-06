@@ -182,4 +182,12 @@
 			}
 		}
 	}
+
+	.abstract-highlights__contact-wrap {
+		width: fit-content;
+
+		:global a{
+			width: 100%;
+		}
+	}
 </style>

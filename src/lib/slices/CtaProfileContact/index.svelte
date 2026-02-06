@@ -236,4 +236,13 @@
 			flex-direction: row-reverse;
 		}
 	}
+
+	.cta-profile-contact__contact-wrap{
+		width: fit-content;
+	}
+	
+	.cta-profile-contact__contact-wrap :global a {
+		width: 100%;
+
+	}
 </style>
