@@ -25,8 +25,8 @@
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: trigger || textElement,
-				start: `top top+=${800}`, // Start when the top of the elment hits the top of the container + 100px
-				end: `center top`, // End when the center of the element hits the top of the container
+				start: `top bottom-=10%`, // Start when the top of the elment hits the top of the container + 100px
+				end: `bottom center`, // End when the center of the element hits the top of the container
 				scrub: true
 				// markers: true
 			}
