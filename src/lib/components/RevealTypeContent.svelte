@@ -6,7 +6,6 @@
 	import { gsap } from '$lib/gsap'
 	import { SplitText } from 'gsap/SplitText'
 	import type { KeyTextField } from '@prismicio/client'
-	import { afterNavigate } from '$app/navigation'
 	import { onMount } from 'svelte'
 
 	type Props = {
@@ -42,12 +41,6 @@
 	}
 
 	onMount(() => {
-		if (browser) {
-			revealType()
-		}
-	})
-
-	afterNavigate(() => {
 		if (browser) {
 			revealType()
 		}
