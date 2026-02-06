@@ -35,6 +35,8 @@
 
 		if (!browser || !progressLine || !timelineBlock) return
 
+		cleanup?.()
+
 		const tl = gsap.timeline().to(progressLine, {
 			height: '100%',
 			ease: 'none',
