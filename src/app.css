@@ -292,7 +292,7 @@ p {
 	border-radius: 0.5rem;
 }
 
-.block-padding {
+.block-padding, .block-padding-both {
 	padding: 9.375rem 0;
 }
 
