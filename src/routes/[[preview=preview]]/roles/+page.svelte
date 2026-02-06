@@ -1,9 +1,15 @@
 <script>
+	import { afterNavigate } from '$app/navigation'
 	import { resolve } from '$app/paths'
+	import { initContentRevealScroll } from '$lib'
 
 	const { data } = $props()
 
 	const openRoles = data.openRoles || []
+
+	afterNavigate(() => {
+		initContentRevealScroll()
+	})
 </script>
 
 <svelte:head>
@@ -51,10 +57,10 @@
 					</ul>
 
 					<a
-							href={resolve(`/roles/${openRole.uid}`)}
-							class="role__cta mobile"
-						>
-							Apply <i class="icon-arrow-right"></i>
+						href={resolve(`/roles/${openRole.uid}`)}
+						class="role__cta mobile"
+					>
+						Apply <i class="icon-arrow-right"></i>
 					</a>
 				</li>
 			{/each}
@@ -80,10 +86,9 @@
 	}
 
 	.roles {
-
 		padding-top: 2.5rem;
 
-		@media(min-width: 768px){
+		@media (min-width: 768px) {
 			padding-top: 6.25rem;
 		}
 
@@ -140,17 +145,17 @@
 			}
 		}
 
-		&__cta.mobile{
+		&__cta.mobile {
 			display: flex;
 
-			@media(min-width: 992px){
+			@media (min-width: 992px) {
 				display: none;
 			}
 		}
 
-		&__cta.desktop-btn{
+		&__cta.desktop-btn {
 			display: none;
-			@media(min-width: 992px){
+			@media (min-width: 992px) {
 				display: flex;
 			}
 		}

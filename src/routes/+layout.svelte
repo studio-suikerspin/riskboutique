@@ -4,13 +4,11 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit'
 	import { page } from '$app/state'
 	import { repositoryName } from '$lib/prismicio'
-	import { afterNavigate, onNavigate } from '$app/navigation'
+	import { onNavigate } from '$app/navigation'
 
 	import Header from '$lib/components/Header.svelte'
 	import PageLoader from '$lib/components/PageLoader.svelte'
 	import Footer from '$lib/components/Footer.svelte'
-	import { onMount } from 'svelte'
-	import { initContentRevealScroll } from '$lib'
 
 	let { children } = $props()
 
@@ -23,10 +21,6 @@
 				await navigation.complete
 			})
 		})
-	})
-
-	afterNavigate(() => {
-		initContentRevealScroll()
 	})
 </script>
 
