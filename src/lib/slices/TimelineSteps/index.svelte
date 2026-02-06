@@ -3,7 +3,7 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
-	import { onMount, tick } from 'svelte'
+	import { tick } from 'svelte'
 	import { gsap } from '$lib/gsap'
 	import { browser } from '$app/environment'
 	import { afterNavigate } from '$app/navigation'
@@ -37,15 +37,18 @@
 
 		cleanup?.()
 
-		const tl = gsap.timeline().to(progressLine, {
-			height: '100%',
-			ease: 'none',
+		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: timelineBlock,
 				start: 'top center',
 				end: 'bottom bottom',
 				scrub: 0.5
 			}
+		})
+
+		tl.to(progressLine, {
+			height: '100%',
+			ease: 'none'
 		})
 
 		cleanup = () => {
@@ -90,7 +93,7 @@
 					class="time-line-steps__progress-line"
 					data-progress-line
 				></div>
-				{#each slice.primary.steps as item, i}
+				{#each slice.primary.steps as item, i (i)}
 					<div class="time-line-steps__item">
 						<div class="time-line-steps__item-heading">
 							<div class="number">
