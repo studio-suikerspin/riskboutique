@@ -3,10 +3,10 @@
 
 <script lang="ts">
 	import { browser } from '$app/environment'
-	import { gsap } from '$lib/gsap'
-	import { SplitText } from 'gsap/SplitText'
+	import { afterNavigate } from '$app/navigation'
+	import { gsap, SplitText } from '$lib/gsap'
 	import type { KeyTextField } from '@prismicio/client'
-	import { onMount } from 'svelte'
+	import { tick } from 'svelte'
 
 	type Props = {
 		text: KeyTextField
@@ -16,19 +16,21 @@
 
 	const { text, darkBackground = false, trigger }: Props = $props()
 	let textElement: HTMLElement
+	let cleanup: (() => void) | undefined
 
-	function revealType() {
-		if (!textElement) return
+	const initRevealType = () => {
+		if (!browser || !textElement) return
 
-		let split = SplitText.create(textElement, { type: 'words' })
+		cleanup?.()
+
+		const split = SplitText.create(textElement, { type: 'words' })
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: trigger || textElement,
-				start: `top bottom-=10%`, // Start when the top of the elment hits the top of the container + 100px
-				end: `bottom center`, // End when the center of the element hits the top of the container
+				start: `top bottom-=10%`,
+				end: `bottom center`,
 				scrub: true
-				// markers: true
 			}
 		})
 
@@ -38,12 +40,22 @@
 				: 'rgba(0, 0, 0, 0.08)',
 			stagger: 0.1
 		})
+
+		cleanup = () => {
+			tl.scrollTrigger?.kill()
+			tl.kill()
+			split.revert()
+		}
 	}
 
-	onMount(() => {
-		if (browser) {
-			revealType()
-		}
+	$effect(() => {
+		initRevealType()
+		return () => cleanup?.()
+	})
+
+	afterNavigate(async () => {
+		await tick()
+		initRevealType()
 	})
 </script>
 

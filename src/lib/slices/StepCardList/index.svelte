@@ -4,9 +4,7 @@
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
-	import { PrismicRichText } from '@prismicio/svelte'
 	import { PrismicLink } from '@prismicio/svelte'
-	import { onMount } from 'svelte'
 
 	type Props = SliceComponentProps<Content.StepCardListSlice>
 
@@ -39,7 +37,7 @@
 				<h3>
 					<RevealTypeContent
 						text={slice.primary.top_title}
-						trigger=".step-card-list__text "
+						trigger=".step-card-list__text"
 						darkBackground={true}
 					/>
 				</h3>
