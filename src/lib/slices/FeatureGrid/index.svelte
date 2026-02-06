@@ -7,6 +7,7 @@
 	import { gsap, ScrollTrigger } from '$lib/gsap'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
+	
 
 	type Props = SliceComponentProps<Content.FeatureGridSlice>
 
@@ -76,8 +77,6 @@
 			<div class="feature-grid__content swiper feature-grid__swiper">
 				<div
 					class="swiper-wrapper"
-					data-reveal-group-nested
-					data-stagger="200"
 				>
 					{#each slice.primary.features as item, index (index)}
 						<div class="feature-grid__item swiper-slide">
