@@ -7,7 +7,6 @@
 	import { gsap, ScrollTrigger } from '$lib/gsap'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
-	import { initContentRevealScroll } from '$lib/revealContent.js'
 
 	type Props = SliceComponentProps<Content.FeatureGridSlice>
 
@@ -16,7 +15,6 @@
 	let swiper: Swiper
 
 	onMount(() => {
-		initContentRevealScroll()
 		swiper = new Swiper('.feature-grid__swiper', {
 			loop: false,
 			slidesPerView: 1,
@@ -34,7 +32,6 @@
 					slidesPerView: 4,
 					spaceBetween: 16
 				}
-
 			},
 			navigation: {
 				nextEl: '.feature-grid__nav-next',
@@ -77,7 +74,11 @@
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
 			<div class="feature-grid__content swiper feature-grid__swiper">
-				<div class="swiper-wrapper" data-reveal-group-nested data-stagger="200">
+				<div
+					class="swiper-wrapper"
+					data-reveal-group-nested
+					data-stagger="200"
+				>
 					{#each slice.primary.features as item, index (index)}
 						<div class="feature-grid__item swiper-slide">
 							<div class="icon">
@@ -90,22 +91,21 @@
 					{/each}
 				</div>
 
-					<div class="feature-grid__navigation">
-						<button
-							class="feature-grid__nav-prev navigation-button"
-							aria-label="Previous"
-						>
-							<i class="icon-chevron prev-icon"></i>
-						</button>
-						<button
-							class="feature-grid__nav-next navigation-button"
-							aria-label="Next"
-						>
-							<i class="icon-chevron next-icon"></i>
-						</button>
-					</div>
+				<div class="feature-grid__navigation">
+					<button
+						class="feature-grid__nav-prev navigation-button"
+						aria-label="Previous"
+					>
+						<i class="icon-chevron prev-icon"></i>
+					</button>
+					<button
+						class="feature-grid__nav-next navigation-button"
+						aria-label="Next"
+					>
+						<i class="icon-chevron next-icon"></i>
+					</button>
+				</div>
 			</div>
-			
 		</div>
 	</div>
 </section>
@@ -149,7 +149,7 @@
 				}
 			}
 
-			@media(min-width: 992px) {
+			@media (min-width: 992px) {
 				.text {
 					max-width: 18.75rem;
 				}
@@ -161,7 +161,7 @@
 			gap: 0.5rem;
 			margin-top: 1rem;
 
-			@media(min-width: 1200px) {
+			@media (min-width: 1200px) {
 				display: none;
 			}
 		}
@@ -178,7 +178,7 @@
 			border: 1px solid var(--color-dark-mode);
 		}
 
-		&__nav-prev i{
+		&__nav-prev i {
 			rotate: 180deg;
 		}
 

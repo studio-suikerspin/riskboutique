@@ -9,16 +9,9 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
-	import { initContentRevealScroll } from '$lib/revealContent.js'
-	import { onMount } from 'svelte'
-
 	type Props = SliceComponentProps<Content.CtaProfileContactSlice>
 
 	const { slice }: Props = $props()
-
-	onMount(() => {
-    initContentRevealScroll()
-  })
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
@@ -38,7 +31,6 @@
 	function getImagePositionClass(item: any) {
 		if (slice.variation !== 'inlineHeading') return ''
 		return item.image_position == false ? 'image-left' : 'image-right'
-		
 	}
 </script>
 
@@ -55,10 +47,17 @@
 		{/if}
 
 		{#if slice.variation == 'inlineHeading'}
-				<div class="cta-profile-contact__group">
+			<div class="cta-profile-contact__group">
 				{#each slice.primary.image_block as item}
-					<div class="cta-profile-contact__inner inline-heading {getImagePositionClass(item)}" data-reveal-group>
-						<div class="cta-profile-contact__image-wrap border-radius">
+					<div
+						class="cta-profile-contact__inner inline-heading {getImagePositionClass(
+							item
+						)}"
+						data-reveal-group
+					>
+						<div
+							class="cta-profile-contact__image-wrap border-radius"
+						>
 							<PrismicImage field={item.side_image} />
 						</div>
 
@@ -66,9 +65,10 @@
 							<h3 class="cta-profile-contact__headline low">
 								{item.headline}
 							</h3>
-							
 
-							<div class="cta-profile-contact__subtext rich-text-content">
+							<div
+								class="cta-profile-contact__subtext rich-text-content"
+							>
 								<PrismicRichText field={item.sub_text} />
 							</div>
 
@@ -83,8 +83,8 @@
 						</div>
 					</div>
 				{/each}
-				</div>
-		{:else }
+			</div>
+		{:else}
 			<div class="cta-profile-contact__inner">
 				<div class="cta-profile-contact__image-wrap border-radius">
 					<PrismicImage field={slice.primary.image} />
@@ -120,8 +120,7 @@
 					</div>
 				</div>
 			</div>
-	{/if}
-
+		{/if}
 	</div>
 </section>
 
@@ -152,7 +151,7 @@
 			}
 		}
 
-		&__inner.inline-heading{
+		&__inner.inline-heading {
 			flex-direction: column-reverse;
 
 			@media (min-width: 1400px) {
@@ -196,14 +195,12 @@
 			gap: 1.5rem;
 		}
 
-		&__group{
+		&__group {
 			display: flex;
 			flex-direction: column;
 			gap: 5rem;
 		}
 	}
-
-
 
 	[data-slice-variation='default'],
 	[data-slice-variation='inlineHeading'] {
@@ -226,22 +223,17 @@
 				// max-width: 630px;
 			}
 		}
-		
-
 	}
 
-	.cta-profile-contact__subtext{
+	.cta-profile-contact__subtext {
 		max-width: 37.5rem;
 	}
 
 	.cta-profile-contact__inner.image-right {
 		flex-direction: column-reverse;
 
-		@media(min-width: 992px){
+		@media (min-width: 992px) {
 			flex-direction: row-reverse;
 		}
-
 	}
-
-
 </style>

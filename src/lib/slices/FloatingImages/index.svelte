@@ -1,51 +1,73 @@
 <script lang="ts">
-	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte';
-	import SvgShapes from '$lib/components/SvgShapes.svelte';
-	import type { Content } from '@prismicio/client';
-	import type { SliceComponentProps } from '@prismicio/svelte';
-	import { PrismicRichText } from '@prismicio/svelte';
-	import { PrismicLink } from '@prismicio/svelte';
-	import { initContentRevealScroll } from '$lib/revealContent.js';
-	
+	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
+	import SvgShapes from '$lib/components/SvgShapes.svelte'
+	import type { Content } from '@prismicio/client'
+	import type { SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicRichText } from '@prismicio/svelte'
 
-	type Props = SliceComponentProps<Content.AssuranceWithImagesSlice>;
+	type Props = SliceComponentProps<Content.AssuranceWithImagesSlice>
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 
-	const { slice }: Props = $props();
+	const { slice }: Props = $props()
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="{paddingClass()}">
-
-		<div class="floating-images">
-			<div class="container">
-
-				<div class="floating-images__inner">
-
-					<div class="floating-images__shape">
-						<SvgShapes shape="squareShape"/>
-					</div>
+<section
+	data-slice-type={slice.slice_type}
+	data-slice-variation={slice.variation}
+	class={paddingClass()}
+>
+	<div class="floating-images">
+		<div class="container">
+			<div class="floating-images__inner">
+				<div class="floating-images__shape">
+					<SvgShapes shape="squareShape" />
+				</div>
 
 				<div class="floating-images__text">
-					<div class="floating-images__heading" data-reveal-group>
+					<div
+						class="floating-images__heading"
+						data-reveal-group
+					>
 						<div class="h1">
 							<PrismicRichText field={slice.primary.heading} />
 						</div>
 
 						<div class="floating-images__heading_video">
-							<video autoplay muted loop playsinline>
-								<source src="/floating-video-1.mp4" type="video/mp4" />
+							<video
+								autoplay
+								muted
+								loop
+								playsinline
+							>
+								<source
+									src="/floating-video-1.mp4"
+									type="video/mp4"
+								/>
 							</video>
-							<video autoplay muted loop playsinline>
-								<source src="/floating-video-2.mp4" type="video/mp4" />
+							<video
+								autoplay
+								muted
+								loop
+								playsinline
+							>
+								<source
+									src="/floating-video-2.mp4"
+									type="video/mp4"
+								/>
 							</video>
 						</div>
 					</div>
@@ -54,44 +76,77 @@
 							<PrismicRichText field={slice.primary.body} />
 						</div>
 						<div class="floating-images__cta">
-								<ConnectWithUs field={slice.primary.ctaLink} border="light" />
+							<ConnectWithUs
+								field={slice.primary.ctaLink}
+								border="light"
+							/>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="floating-images__videos-wrapper">
 					<div class="floating-images__videos">
-							<div class="floating-images__video first">
-								<video autoplay muted loop playsinline>
-									<source src="/floating-video-1.mp4" type="video/mp4" />
-								</video>
-							</div>
-							<div class="floating-images__video second">
-								<video autoplay muted loop playsinline>
-									<source src="/floating-video-2.mp4" type="video/mp4" />
-								</video>
-							</div>
-							<div class="floating-images__video third">
-								<video autoplay muted loop playsinline>
-									<source src="/floating-video-3.mp4" type="video/mp4" />
-								</video>
-							</div>
-							<div class="floating-images__video fourth">
-								<video autoplay muted loop playsinline>
-									<source src="/floating-video-4.mp4" type="video/mp4" />
-								</video>
-							</div>
+						<div class="floating-images__video first">
+							<video
+								autoplay
+								muted
+								loop
+								playsinline
+							>
+								<source
+									src="/floating-video-1.mp4"
+									type="video/mp4"
+								/>
+							</video>
+						</div>
+						<div class="floating-images__video second">
+							<video
+								autoplay
+								muted
+								loop
+								playsinline
+							>
+								<source
+									src="/floating-video-2.mp4"
+									type="video/mp4"
+								/>
+							</video>
+						</div>
+						<div class="floating-images__video third">
+							<video
+								autoplay
+								muted
+								loop
+								playsinline
+							>
+								<source
+									src="/floating-video-3.mp4"
+									type="video/mp4"
+								/>
+							</video>
+						</div>
+						<div class="floating-images__video fourth">
+							<video
+								autoplay
+								muted
+								loop
+								playsinline
+							>
+								<source
+									src="/floating-video-4.mp4"
+									type="video/mp4"
+								/>
+							</video>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
+	</div>
 </section>
 
 <style lang="scss">
-	.floating-images{
+	.floating-images {
 		padding: 4rem 0;
 		background-color: var(--color-dark-mode);
 		color: var(--color-snow-white);
@@ -103,28 +158,28 @@
 		align-items: center;
 		justify-content: center;
 
-		@media(min-width: 992px) {
+		@media (min-width: 992px) {
 			padding: 9.375rem 0;
 		}
 
-		&__shape{
+		&__shape {
 			position: absolute;
-			bottom:-9.375rem;
+			bottom: -9.375rem;
 			left: 100px;
 			z-index: 1;
 			display: none;
 
-			:global svg{
+			:global svg {
 				width: 300px;
 				height: auto;
 			}
 
-			@media(min-width: 992px) {
+			@media (min-width: 992px) {
 				display: block;
 			}
 		}
 
-		&__inner{
+		&__inner {
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -133,18 +188,18 @@
 			z-index: 9;
 		}
 
-		&__cta{
+		&__cta {
 			z-index: 9;
 		}
 
-		&__text{
+		&__text {
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
 			flex: 3;
 			// width: 100%;
 
-			@media(min-width: 992px) {
+			@media (min-width: 992px) {
 				gap: 6.25rem;
 			}
 		}
@@ -155,29 +210,29 @@
 			flex-direction: column;
 			gap: 1.5rem;
 
-			@media(min-width: 992px) {
+			@media (min-width: 992px) {
 				text-indent: 10%;
 				display: block;
 			}
 
-			:global strong{
+			:global strong {
 				font-weight: 600;
 				color: var(--color-clay-green);
 			}
 
-			&_video{
+			&_video {
 				display: flex;
 				gap: 0.5rem;
 				width: 100%;
 
-				video{
+				video {
 					width: 100%;
 					height: 150px;
 					border-radius: 8px;
 					object-fit: cover;
 				}
 
-				@media(min-width: 992px) {
+				@media (min-width: 992px) {
 					display: none;
 				}
 			}
@@ -190,17 +245,17 @@
 			max-width: 600px;
 		}
 
-		&__videos-wrapper{
+		&__videos-wrapper {
 			position: relative;
 			flex: 1;
 			display: none;
 
-			@media(min-width: 992px) {
+			@media (min-width: 992px) {
 				display: block;
 			}
 		}
 
-		&__videos{
+		&__videos {
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
@@ -214,7 +269,7 @@
 			// max-width: 600px;
 		}
 
-		&__video{
+		&__video {
 			border-radius: 8px;
 			overflow: hidden;
 
@@ -222,7 +277,7 @@
 			align-items: center;
 			justify-content: start;
 
-			video{
+			video {
 				width: 152px;
 				height: 152px;
 				display: block;
@@ -241,7 +296,5 @@
 		&__video.fourth {
 			justify-content: start;
 		}
-
 	}
-
 </style>

@@ -5,7 +5,6 @@
 	import { browser } from '$app/environment'
 	import { onMount } from 'svelte'
 	import { gsap, ScrollTrigger } from '$lib/gsap'
-	import { initContentRevealScroll } from '$lib/revealContent.js'
 
 	type Props = SliceComponentProps<Content.TrustedBySlice>
 
@@ -13,214 +12,239 @@
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 
 	function initLogoWallCycle() {
 		if (!browser) return
 		const loopDelay = 1.5 // Loop Duration
 		const duration = 0.9 // Animation Duration
 
-		document.querySelectorAll('[data-logo-wall-cycle-init]').forEach((root) => {
-			const list = root.querySelector('[data-logo-wall-list]')
-			const items = Array.from(list.querySelectorAll('[data-logo-wall-item]'))
-
-			const shuffleFront =
-				root.getAttribute('data-logo-wall-shuffle') !== 'false'
-			const originalTargets = items
-				.map((item) => item.querySelector('[data-logo-wall-target]'))
-				.filter(Boolean)
-
-			let visibleItems = []
-			let visibleCount = 0
-			let pool = []
-			let pattern = []
-			let patternIndex = 0
-			let tl
-
-			function isVisible(el) {
-				return window.getComputedStyle(el).display !== 'none'
-			}
-
-			function shuffleArray(arr) {
-				const a = arr.slice()
-				for (let i = a.length - 1; i > 0; i--) {
-					const j = Math.floor(Math.random() * (i + 1))
-					;[a[i], a[j]] = [a[j], a[i]]
-				}
-				return a
-			}
-
-			function setup() {
-				if (tl) {
-					tl.kill()
-				}
-				visibleItems = items.filter(isVisible)
-				visibleCount = visibleItems.length
-
-				pattern = shuffleArray(
-					Array.from({ length: visibleCount }, (_, i) => i)
+		document
+			.querySelectorAll('[data-logo-wall-cycle-init]')
+			.forEach((root) => {
+				const list = root.querySelector('[data-logo-wall-list]')
+				const items = Array.from(
+					list.querySelectorAll('[data-logo-wall-item]')
 				)
-				patternIndex = 0
 
-				// remove all injected targets
-				items.forEach((item) => {
-					item
-						.querySelectorAll('[data-logo-wall-target]')
-						.forEach((old) => old.remove())
-				})
+				const shuffleFront =
+					root.getAttribute('data-logo-wall-shuffle') !== 'false'
+				const originalTargets = items
+					.map((item) =>
+						item.querySelector('[data-logo-wall-target]')
+					)
+					.filter(Boolean)
 
-				pool = originalTargets.map((n) => n.cloneNode(true))
+				let visibleItems = []
+				let visibleCount = 0
+				let pool = []
+				let pattern = []
+				let patternIndex = 0
+				let tl
 
-				let front, rest
-				if (shuffleFront) {
-					const shuffledAll = shuffleArray(pool)
-					front = shuffledAll.slice(0, visibleCount)
-					rest = shuffleArray(shuffledAll.slice(visibleCount))
-				} else {
-					front = pool.slice(0, visibleCount)
-					rest = shuffleArray(pool.slice(visibleCount))
+				function isVisible(el) {
+					return window.getComputedStyle(el).display !== 'none'
 				}
-				pool = front.concat(rest)
 
-				for (let i = 0; i < visibleCount; i++) {
+				function shuffleArray(arr) {
+					const a = arr.slice()
+					for (let i = a.length - 1; i > 0; i--) {
+						const j = Math.floor(Math.random() * (i + 1))
+						;[a[i], a[j]] = [a[j], a[i]]
+					}
+					return a
+				}
+
+				function setup() {
+					if (tl) {
+						tl.kill()
+					}
+					visibleItems = items.filter(isVisible)
+					visibleCount = visibleItems.length
+
+					pattern = shuffleArray(
+						Array.from({ length: visibleCount }, (_, i) => i)
+					)
+					patternIndex = 0
+
+					// remove all injected targets
+					items.forEach((item) => {
+						item.querySelectorAll(
+							'[data-logo-wall-target]'
+						).forEach((old) => old.remove())
+					})
+
+					pool = originalTargets.map((n) => n.cloneNode(true))
+
+					let front, rest
+					if (shuffleFront) {
+						const shuffledAll = shuffleArray(pool)
+						front = shuffledAll.slice(0, visibleCount)
+						rest = shuffleArray(shuffledAll.slice(visibleCount))
+					} else {
+						front = pool.slice(0, visibleCount)
+						rest = shuffleArray(pool.slice(visibleCount))
+					}
+					pool = front.concat(rest)
+
+					for (let i = 0; i < visibleCount; i++) {
+						const parent =
+							visibleItems[i].querySelector(
+								'[data-logo-wall-target-parent]'
+							) || visibleItems[i]
+						parent.appendChild(pool.shift())
+					}
+
+					tl = gsap.timeline({ repeat: -1, repeatDelay: loopDelay })
+					tl.call(swapNext)
+					tl.play()
+				}
+
+				function swapNext() {
+					const nowCount = items.filter(isVisible).length
+					if (nowCount !== visibleCount) {
+						setup()
+						return
+					}
+					if (!pool.length) return
+
+					const idx = pattern[patternIndex % visibleCount]
+					patternIndex++
+
+					const container = visibleItems[idx]
 					const parent =
-						visibleItems[i].querySelector('[data-logo-wall-target-parent]') ||
-						visibleItems[i]
-					parent.appendChild(pool.shift())
-				}
+						container.querySelector(
+							'[data-logo-wall-target-parent]'
+						) ||
+						container.querySelector(
+							'*:has(> [data-logo-wall-target])'
+						) ||
+						container
+					const existing = parent.querySelectorAll(
+						'[data-logo-wall-target]'
+					)
+					if (existing.length > 1) return
 
-				tl = gsap.timeline({ repeat: -1, repeatDelay: loopDelay })
-				tl.call(swapNext)
-				tl.play()
-			}
+					const current = parent.querySelector(
+						'[data-logo-wall-target]'
+					)
+					const incoming = pool.shift()
 
-			function swapNext() {
-				const nowCount = items.filter(isVisible).length
-				if (nowCount !== visibleCount) {
-					setup()
-					return
-				}
-				if (!pool.length) return
+					gsap.set(incoming, { yPercent: 50, autoAlpha: 0 })
+					parent.appendChild(incoming)
 
-				const idx = pattern[patternIndex % visibleCount]
-				patternIndex++
+					if (current) {
+						gsap.to(current, {
+							yPercent: -50,
+							autoAlpha: 0,
+							duration,
+							ease: 'expo.inOut',
+							onComplete: () => {
+								current.remove()
+								pool.push(current)
+							}
+						})
+					}
 
-				const container = visibleItems[idx]
-				const parent =
-					container.querySelector('[data-logo-wall-target-parent]') ||
-					container.querySelector('*:has(> [data-logo-wall-target])') ||
-					container
-				const existing = parent.querySelectorAll('[data-logo-wall-target]')
-				if (existing.length > 1) return
-
-				const current = parent.querySelector('[data-logo-wall-target]')
-				const incoming = pool.shift()
-
-				gsap.set(incoming, { yPercent: 50, autoAlpha: 0 })
-				parent.appendChild(incoming)
-
-				if (current) {
-					gsap.to(current, {
-						yPercent: -50,
-						autoAlpha: 0,
+					gsap.to(incoming, {
+						yPercent: 0,
+						autoAlpha: 1,
 						duration,
-						ease: 'expo.inOut',
-						onComplete: () => {
-							current.remove()
-							pool.push(current)
-						}
+						delay: 0.1,
+						ease: 'expo.inOut'
 					})
 				}
 
-				gsap.to(incoming, {
-					yPercent: 0,
-					autoAlpha: 1,
-					duration,
-					delay: 0.1,
-					ease: 'expo.inOut'
+				setup()
+
+				ScrollTrigger.create({
+					trigger: root,
+					start: 'top bottom',
+					end: 'bottom top',
+					onEnter: () => tl.play(),
+					onLeave: () => tl.pause(),
+					onEnterBack: () => tl.play(),
+					onLeaveBack: () => tl.pause()
 				})
-			}
 
-			setup()
-
-			ScrollTrigger.create({
-				trigger: root,
-				start: 'top bottom',
-				end: 'bottom top',
-				onEnter: () => tl.play(),
-				onLeave: () => tl.pause(),
-				onEnterBack: () => tl.play(),
-				onLeaveBack: () => tl.pause()
+				document.addEventListener('visibilitychange', () =>
+					document.hidden ? tl.pause() : tl.play()
+				)
 			})
-
-			document.addEventListener('visibilitychange', () =>
-				document.hidden ? tl.pause() : tl.play()
-			)
-		})
 	}
 
 	// Initialize Logo Wall Cycle
 	onMount(() => {
 		initLogoWallCycle()
-		initContentRevealScroll()
 	})
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="{paddingClass()}"
+	class={paddingClass()}
 	data-reveal-group
 >
-<div class="container">
-	<div class="logo__wrapper">
-		<div class="logo__heading">
-			<div class="logo__title h1">{slice.primary.heading}</div>
-		</div>
-		<div>
-			<div
-				data-logo-wall-shuffle="false"
-				data-logo-wall-cycle-init=""
-				class="logo-wall"
-			>
-				<div class="logo-wall__collection">
-					<div
-						data-logo-wall-list=""
-						class="logo-wall__list"
-					>
-						{#each slice.primary.logos as item, index (index)}
-							<div
-								data-logo-wall-item=""
-								class="logo-wall__item {item.with_background
-									? 'logo-wall__item--with-background'
-									: ''} {index % 4 === 2 ? 'third-item' : ''}"
-							>
+	<div class="container">
+		<div class="logo__wrapper">
+			<div class="logo__heading">
+				<div class="logo__title h1">{slice.primary.heading}</div>
+			</div>
+			<div>
+				<div
+					data-logo-wall-shuffle="false"
+					data-logo-wall-cycle-init=""
+					class="logo-wall"
+				>
+					<div class="logo-wall__collection">
+						<div
+							data-logo-wall-list=""
+							class="logo-wall__list"
+						>
+							{#each slice.primary.logos as item, index (index)}
 								<div
-									data-logo-wall-target-parent=""
-									class="logo-wall__logo"
+									data-logo-wall-item=""
+									class="logo-wall__item {item.with_background
+										? 'logo-wall__item--with-background'
+										: ''} {index % 4 === 2
+										? 'third-item'
+										: ''}"
 								>
-									<div class="logo-wall__logo-before"></div>
 									<div
-										data-logo-wall-target=""
-										class="logo-wall__logo-target"
+										data-logo-wall-target-parent=""
+										class="logo-wall__logo"
 									>
-										<PrismicImage field={item.logo_image} />
+										<div
+											class="logo-wall__logo-before"
+										></div>
+										<div
+											data-logo-wall-target=""
+											class="logo-wall__logo-target"
+										>
+											<PrismicImage
+												field={item.logo_image}
+											/>
+										</div>
 									</div>
 								</div>
-							</div>
-						{/each}
+							{/each}
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </section>
 
 <style>

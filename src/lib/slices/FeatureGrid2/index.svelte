@@ -3,18 +3,11 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText, PrismicLink } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
-	import { gsap } from '$lib/gsap'
-	import { initContentRevealScroll } from '$lib/revealContent.js'
 	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
 
 	type Props = SliceComponentProps<Content.FeatureGrid2Slice>
 
 	const { slice }: Props = $props()
-
-
-	onMount(() => {
-		initContentRevealScroll()
-	})
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
@@ -41,10 +34,7 @@
 >
 	<div class="container">
 		<div class="feature-grid-second__inner">
-			<div
-				class="feature-grid-second__heading"
-				
-			>
+			<div class="feature-grid-second__heading">
 				<div class="h1">{slice.primary.heading}</div>
 			</div>
 			<div
@@ -53,12 +43,8 @@
 				data-stagger="300"
 			>
 				{#each slice.primary.features as item, index (index)}
-					<div
-						class="feature-grid-second__item"
-					>
-						<div
-							class="feature-grid-second__item-inner"
-						>
+					<div class="feature-grid-second__item">
+						<div class="feature-grid-second__item-inner">
 							<div class="text-icon">
 								<div class="icon">
 									<!-- <PrismicImage field={item.icon} /> -->

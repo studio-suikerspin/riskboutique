@@ -5,7 +5,6 @@
 		type SliceComponentProps
 	} from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
-	import { initContentRevealScroll } from '$lib/revealContent.js'
 	import { onMount } from 'svelte'
 	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte'
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
@@ -14,10 +13,6 @@
 	type Props = SliceComponentProps<Content.ImageTextRevealTypeAvatarSlice>
 
 	const { slice }: Props = $props()
-
-	onMount(() => {
-		initContentRevealScroll()
-	})
 
 	// const paddingClass = $derived(() => {
 	// 	switch (slice.primary.section_padding) {
