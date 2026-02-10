@@ -8,15 +8,6 @@
 				"value": "color",
 				"type": "Text"
 			},
-			"cta_link": {
-				"key": "d612ba98-30e4-48cd-87f9-ab31f0480846",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com",
-					"text": "useful"
-				}
-			},
 			"content": {
 				"__TYPE__": "FieldContent",
 				"value": "have",
@@ -26,6 +17,15 @@
 				"__TYPE__": "FieldContent",
 				"value": "none",
 				"type": "Select"
+			},
+			"cta_link": {
+				"key": "9946959c-7c21-4483-8ebe-a1d3396da8a9",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "earn"
+				}
 			}
 		},
 		"items": []

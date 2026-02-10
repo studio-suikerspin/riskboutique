@@ -4727,7 +4727,7 @@ export interface ValuePropositionSliceDefaultPrimary {
 	 * CTA Link field in *RevealTypeWithCta → Default → Primary*
 	 *
 	 * - **Field Type**: Link
-	 * - **Placeholder**: Talk to us
+	 * - **Placeholder**: *None*
 	 * - **API ID Path**: value_proposition.default.primary.cta_link
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */

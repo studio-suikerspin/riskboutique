@@ -30,10 +30,11 @@
           "type": "Link",
           "config": {
             "label": "CTA Link",
-            "placeholder": "Talk to us",
-            "allowText": true,
+            "placeholder": "",
             "select": null,
-            "allowTargetBlank": true
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         },
         "section_padding": {
