@@ -100,14 +100,16 @@
 							{/each}
 						</ul>
 
-						<div class="phone-contact">
-							<div class="phone-contact__label">
-								{slice.primary.phone_whatsapp[0].label}
+						{#if slice.primary.phone_whatsapp.length}
+							<div class="phone-contact">
+								<div class="phone-contact__label">
+									{slice.primary.phone_whatsapp[0]?.label}
+								</div>
+								<div class="phone-contact__number">
+									{slice.primary.phone_whatsapp[0]?.phone}
+								</div>
 							</div>
-							<div class="phone-contact__number">
-								{slice.primary.phone_whatsapp[0].phone}
-							</div>
-						</div>
+						{/if}
 					</div>
 				</div>
 			</div>
