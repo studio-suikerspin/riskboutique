@@ -27,14 +27,16 @@
 				</div>
 			</div>
 
-			<div class="contact-wrap">
-				<AvatarWithContactInfo />
-				<Button
-					field={slice.primary.cta_link}
-					icon="icon-arrow-right"
-					text={slice.primary.cta_link.text}
-				/>
-			</div>
+			{#if slice.primary.cta_link.url}
+				<div class="contact-wrap">
+					<AvatarWithContactInfo />
+					<Button
+						field={slice.primary.cta_link}
+						icon="icon-arrow-right"
+						text={slice.primary.cta_link.text}
+					/>
+				</div>
+			{/if}
 		</div>
 
 		<div class="featured-cta-blocks__inner">
@@ -185,8 +187,8 @@
 			}
 		}
 
-			.contact-wrap :global a{
-				width: 100%;
-			}
+		.contact-wrap :global a {
+			width: 100%;
+		}
 	}
 </style>
