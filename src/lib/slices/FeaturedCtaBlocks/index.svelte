@@ -52,7 +52,7 @@
 				{#each slice.primary.featured_blocks as block, key (key)}
 					<div class="featured-cta-blocks__block border-radius">
 						<div class="block-header">
-							<h3 class="h2">{block.headline}</h3>
+							<h3 class="h3 low">{block.headline}</h3>
 							<div class="rich-text-content">
 								<PrismicRichText field={block.content} />
 							</div>
@@ -155,7 +155,7 @@
 			gap: 2.5rem;
 
 			padding-block: 4rem;
-			padding-inline: 2.5rem;
+			padding-inline: 1.5rem;
 
 			background: url('/bg-gradient-clay-green.svg') no-repeat center
 				center / cover;
