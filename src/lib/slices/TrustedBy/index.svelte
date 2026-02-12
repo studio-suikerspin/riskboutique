@@ -66,6 +66,42 @@
 					return a
 				}
 
+				function getLogoKey(node) {
+					return node?.getAttribute?.('data-logo-key') || ''
+				}
+
+				function buildFrontAndRest(allNodes) {
+					const available = shuffleFront
+						? shuffleArray(allNodes)
+						: allNodes.slice()
+					const front = []
+					const rest = []
+					const seen = new Set()
+
+					available.forEach((node) => {
+						if (front.length >= visibleCount) {
+							rest.push(node)
+							return
+						}
+						const key = getLogoKey(node)
+						if (!key || !seen.has(key)) {
+							front.push(node)
+							if (key) seen.add(key)
+						} else {
+							rest.push(node)
+						}
+					})
+
+					while (front.length < visibleCount && rest.length) {
+						front.push(rest.shift())
+					}
+
+					return {
+						front,
+						rest: shuffleArray(rest)
+					}
+				}
+
 				function setup() {
 					if (tl) {
 						tl.kill()
@@ -87,15 +123,7 @@
 
 					pool = originalTargets.map((n) => n.cloneNode(true))
 
-					let front, rest
-					if (shuffleFront) {
-						const shuffledAll = shuffleArray(pool)
-						front = shuffledAll.slice(0, visibleCount)
-						rest = shuffleArray(shuffledAll.slice(visibleCount))
-					} else {
-						front = pool.slice(0, visibleCount)
-						rest = shuffleArray(pool.slice(visibleCount))
-					}
+					const { front, rest } = buildFrontAndRest(pool)
 					pool = front.concat(rest)
 
 					for (let i = 0; i < visibleCount; i++) {
@@ -139,7 +167,30 @@
 					const current = parent.querySelector(
 						'[data-logo-wall-target]'
 					)
-					const incoming = pool.shift()
+
+					const visibleKeys = new Set(
+						visibleItems
+							.filter((item) => item !== container)
+							.map((item) =>
+								getLogoKey(
+									item.querySelector('[data-logo-wall-target]')
+								)
+							)
+							.filter(Boolean)
+					)
+
+					let incoming
+					let attempts = pool.length
+					while (attempts-- > 0) {
+						const candidate = pool.shift()
+						const key = getLogoKey(candidate)
+						if (!key || !visibleKeys.has(key)) {
+							incoming = candidate
+							break
+						}
+						pool.push(candidate)
+					}
+					if (!incoming) return
 
 					gsap.set(incoming, { yPercent: 50, autoAlpha: 0 })
 					parent.appendChild(incoming)
@@ -230,6 +281,7 @@
 										></div>
 										<div
 											data-logo-wall-target=""
+												data-logo-key={item.logo_image?.url || index}
 											class="logo-wall__logo-target"
 										>
 											<PrismicImage

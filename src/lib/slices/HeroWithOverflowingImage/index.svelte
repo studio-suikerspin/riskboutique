@@ -31,25 +31,31 @@
 	></canvas>
 
 	<div class="container hero-ss__container">
-		<div class="hero-ss__inner block-padding">
+		<div class="hero-ss__inner">
 			<div class="hero-ss__content-wrap">
 				<div class="hero-ss__headline">
 					<PrismicRichText field={slice.primary.headline} />
 				</div>
-				<div class="hero-ss__content subtitle">
-					<PrismicRichText field={slice.primary.content} />
+
+				<div class="hero-ss__text-image-wrap">
+					<div class="hero-ss__content subtitle">
+						<PrismicRichText field={slice.primary.content} />
+					</div>
+					<div class="hero-ss__image-wrap">
+						<PrismicImage field={slice.primary.overflowing_image} />
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="hero-ss__scroll-hint">
+		<!-- <div class="hero-ss__scroll-hint">
 			{slice.primary.scroller_label}
-		</div>
+		</div> -->
 	</div>
 
-	<div class="hero-ss__image-wrap">
+	<!-- <div class="hero-ss__image-wrap">
 		<PrismicImage field={slice.primary.overflowing_image} />
-	</div>
+	</div> -->
 </section>
 
 <style lang="scss">
@@ -58,10 +64,6 @@
 		display: flex;
 		overflow: hidden;
 		min-height: 100vh;
-
-		@media (min-width: 1024px) {
-			padding-bottom: 2rem;
-		}
 
 		&__gradient {
 			position: absolute;
@@ -84,18 +86,26 @@
 		&__inner {
 			position: relative;
 			z-index: 2;
-		}
-
-		&__container {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
+			padding-top: 8.5rem;
+			padding-bottom: 2rem;
+			
 
 			@media (min-width: 1024px) {
-				max-height: 90vh;
-				position: relative;
+				padding-top: 12.5rem;
+				padding-bottom: 0;
 			}
 		}
+
+		// &__container {
+		// 	display: flex;
+		// 	flex-direction: column;
+		// 	justify-content: space-between;
+
+		// 	@media (min-width: 1024px) {
+		// 		max-height: 90vh;
+		// 		position: relative;
+		// 	}
+		// }
 
 		&__content-wrap {
 			flex: 1;
@@ -117,7 +127,7 @@
 
 		&__content {
 			color: var(--color-snow-white);
-			max-width: 680px;
+			max-width: 42rem;
 
 			display: flex;
 			flex-flow: column;
@@ -131,48 +141,35 @@
 
 			position: absolute;
 			z-index: 2;
-			padding-bottom: 1.5rem;
 			bottom: 0;
 		}
 
-		&__image-wrap {
-			display: none;
 
-			position: absolute;
-			bottom: -3rem;
-			right: -2.5rem;
-			width: 40%;
-			aspect-ratio: 1/1;
-			z-index: 2;
+		&__text-image-wrap {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				gap: 2.5rem;
 
-			overflow: hidden;
-
-			border-radius: 4px 0 0 4px;
-			border: 1px solid var(--SNOW-WHITE, #f9f9f8);
-
-			:global img {
-				object-fit: cover;
-				width: 100%;
-				height: 100%;
-			}
-
-			@media (min-width: 1200px) {
-				display: block;
-				max-width: 500px;
-			}
-
-			@media (min-width: 2000px) {
-				right: 5%;
-				max-width: 650px;
-			}
-
-			@media (min-width: 2200px) {
-				right: 10%;
-			}
-
-			@media (min-width: 2400px) {
-				right: 15%;
-			}
+				@media (min-width: 1024px) {
+					gap: 5rem;
+					flex-direction: row;
+				}
 		}
+
+		&__image-wrap {
+				width: 100%;
+				height: auto;
+				max-width: 500px;
+				max-height: 500px;
+
+				:global img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
+					border-radius: 0.5rem;
+				}
+			}
 	}
 </style>

@@ -25,13 +25,12 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-	<div class="container">
+	<div class="container {slice.primary.items.length ? 'medium' : ''}">
 		{#if slice.primary.items.length}
 			<div class="reveal-type-block__stack">
 				{#each slice.primary.items as item, key (key)}
 					<RevealTypeContent
 						text={item.content}
-						{trigger}
 						darkBackground={slice.primary.dark_mode}
 					/>
 				{/each}
@@ -39,6 +38,7 @@
 		{:else}
 			<RevealTypeContent
 				text={slice.primary.content}
+				{trigger}
 				darkBackground={slice.primary.dark_mode}
 			/>
 		{/if}

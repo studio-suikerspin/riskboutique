@@ -10,14 +10,15 @@
 		text_color?: string
 		number?: string
 		shape?: string
+		isSliderCard?: boolean
 	}
 
-	const { title, description, background, text_color, number, shape }: Props =
+	const { title, description, background, text_color, number, shape, isSliderCard }: Props =
 		$props()
 </script>
 
 <div
-	class="feature-card border-radius"
+	class="feature-card border-radius {isSliderCard ? 'feature-cards--slider' : ''}"
 	style="background: var(--color-{background}); color: var(--color-{text_color});"
 >
 	<div class="feature-card__text">
@@ -46,6 +47,16 @@
 </div>
 
 <style lang="scss">
+	.feature-card.feature-cards--slider {
+		height: 35rem;
+		min-height: unset;
+		// height: fit-content;
+
+		@media(min-width: 768px) {
+			height: 40rem;
+		}
+	}
+
 	.feature-card {
 		display: flex;
 		flex-direction: column;

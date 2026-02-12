@@ -26,6 +26,7 @@
 
 	const isSlider = slice.variation === 'slider'
 
+
 	onMount(() => {
 		swiper = new Swiper('.swiper', {
 			loop: false,
@@ -33,15 +34,15 @@
 			spaceBetween: 0,
 			breakpoints: {
 				768: {
-					slidesPerView: isSlider ? 1.5 : 2,
+					slidesPerView: isSlider ? 1 : 2,
 					spaceBetween: 20
 				},
 				992: {
-					slidesPerView: isSlider ? 2.5 : 3,
+					slidesPerView: isSlider ? 2 : 2,
 					spaceBetween: 20
 				},
-				1024: {
-					slidesPerView: isSlider ? 3.25 : 3,
+				1224: {
+					slidesPerView: isSlider ? 3 : 3,
 					spaceBetween: 20
 				}
 			},
@@ -128,8 +129,9 @@
 											description={item.description}
 											background={item.bg_color}
 											text_color={item.text_shape_color}
-											number={item.index}
+											number={String(item.index ?? index + 1).padStart(2, '0')}
 											shape={item.shape}
+											isSliderCard={isSlider}
 										/>
 									</div>
 								</div>
@@ -143,8 +145,9 @@
 											description={item.description}
 											background={item.bg_color}
 											text_color={item.text_shape_color}
-											number={item.index}
+											number={String(item.index ?? index + 1).padStart(2, '0')}
 											shape={item.shape}
+											isSliderCard={isSlider}
 										/>
 									</div>
 								</div>
@@ -201,14 +204,15 @@
 	}
 
 	.swiper-slide {
-		height: 43.75rem;
+		// height: 43.75rem;
+		height: auto;
 	}
 
-	@media (min-width: 768px) {
-		.swiper-slide {
-			height: 50rem;
-		}
-	}
+	// @media (min-width: 768px) {
+	// 	.swiper-slide {
+	// 		height: 50rem;
+	// 	}
+	// }
 
 	.slide-content {
 		height: 100%;
