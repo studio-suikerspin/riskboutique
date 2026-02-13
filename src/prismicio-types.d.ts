@@ -1831,7 +1831,14 @@ export interface ContentCardsWithImageSliceImageLeftTextRightPrimary {
 	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.contact_avatar
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	contact_avatar: prismic.ContentRelationshipField<'avatar_contact_info'>
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**

@@ -7,6 +7,7 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
+	
 	import { onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
@@ -70,14 +71,15 @@
 				{#if slice.primary.subtekst.length > 0}
 				<div class="general-content subtext-wrapper">
 					<PrismicRichText field={slice.primary.subtekst} />
-					<div class="avatar">
-						<AvatarWithContactInfo />
-						<div class="btn btn--dark ">
-							<i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
-							<PrismicLink field={slice.primary.call_to_action}  />
-						</div>
-					</div>
-					<!-- <ContactInfo avatarImage={slice.primary.avatarImage} name={slice.primary.name} /> -->
+					{#if slice.primary.contact_avatar?.data}
+						<ContactInfo
+							image={slice.primary.contact_avatar.data.image}
+							name={slice.primary.contact_avatar.data.name}
+							role={slice.primary.contact_avatar.data.role}
+							phone={slice.primary.contact_avatar.data.phone}
+							email={slice.primary.contact_avatar.data.email}
+						/>
+					{/if}
 				</div>
 				{/if}
 			</div>
