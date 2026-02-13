@@ -224,6 +224,82 @@ export type AssuranceSubpageDocument<Lang extends string = string> =
 	>
 
 /**
+ * Content for Avatar contact info documents
+ */
+interface AvatarContactInfoDocumentData {
+	/**
+	 * Image field in *Avatar contact info*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: avatar_contact_info.image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Name field in *Avatar contact info*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: avatar_contact_info.name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField
+
+	/**
+	 * Role field in *Avatar contact info*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: avatar_contact_info.role
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	role: prismic.KeyTextField
+
+	/**
+	 * Phone field in *Avatar contact info*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: avatar_contact_info.phone
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	phone: prismic.KeyTextField
+
+	/**
+	 * Email field in *Avatar contact info*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: avatar_contact_info.email
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	email: prismic.KeyTextField
+}
+
+/**
+ * Avatar contact info document from Prismic
+ *
+ * - **API ID**: `avatar_contact_info`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AvatarContactInfoDocument<Lang extends string = string> =
+	prismic.PrismicDocumentWithUID<
+		Simplify<AvatarContactInfoDocumentData>,
+		'avatar_contact_info',
+		Lang
+	>
+
+/**
  * Item in *Footer → Social icons*
  */
 export interface FooterDocumentDataSocialIconsItem {
@@ -1022,6 +1098,7 @@ export type UnderConstructionPageDocument<Lang extends string = string> =
 export type AllDocumentTypes =
 	| AdvisorySubpageDocument
 	| AssuranceSubpageDocument
+	| AvatarContactInfoDocument
 	| FooterDocument
 	| HeaderDocument
 	| HomepageDocument
@@ -1745,6 +1822,16 @@ export interface ContentCardsWithImageSliceImageLeftTextRightPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * Contact avatar field in *ContentCardsWithImage → default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: prismic.ContentRelationshipField<'avatar_contact_info'>
 }
 
 /**
@@ -4807,6 +4894,8 @@ declare module '@prismicio/client' {
 			AssuranceSubpageDocument,
 			AssuranceSubpageDocumentData,
 			AssuranceSubpageDocumentDataSlicesSlice,
+			AvatarContactInfoDocument,
+			AvatarContactInfoDocumentData,
 			FooterDocument,
 			FooterDocumentData,
 			FooterDocumentDataSocialIconsItem,

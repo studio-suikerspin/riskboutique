@@ -87,6 +87,17 @@
               "none"
             ]
           }
+        },
+        "contact_avatar": {
+          "type": "Link",
+          "config": {
+            "label": "Contact avatar",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "avatar_contact_info"
+            ]
+          }
         }
       },
       "items": {}

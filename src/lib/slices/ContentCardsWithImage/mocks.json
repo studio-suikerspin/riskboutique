@@ -96,6 +96,14 @@
 					"url": "https://slicemachine.dev",
 					"text": "stay"
 				}
+			},
+			"contact_avatar": {
+				"__TYPE__": "LinkContent",
+				"key": "6797ba04-ba4c-448d-a459-cd3f0a77418b",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []
