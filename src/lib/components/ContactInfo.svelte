@@ -14,18 +14,13 @@
   <div class="avatar-info">
     <div class="name-and-details">
        <div class="image">
-          <div class="second">
-            <PrismicImage field={image} />
-          </div>
+          <PrismicImage field={image} />
+          <div class="name">Reach out to {name}:</div>
         </div>
       <div class="contact-details">
-        <!-- <div class="name-and-role">
-          <div class="name">{name}</div>
-          <div class="role">{role}</div>
-        </div> -->
-        <div class="name">Reach out to {name}:</div>
         <div class="phone-and-email">
-          <a href="tel:{phone}" class="phone">{phone} 
+          <a href="tel:{phone}" class="phone">
+            {phone} 
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14 19L21 12L14 5" stroke="black" stroke-miterlimit="10"></path>
               <path d="M21 12H2" stroke="black" stroke-miterlimit="10"></path>
@@ -62,24 +57,23 @@
   gap: 8px;
 }
 
-.avatar-info .image{
-  width: 56px;
-  height: 56px;
-  /* border-radius: 50%; */
-  border-radius: 8px;
-  overflow: hidden;
-}
 
-.images-and-title{
+.avatar-info .image{
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+}
+.avatar-info .image :global img{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .name-and-details{
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
 }
 
 .phone-and-email{
