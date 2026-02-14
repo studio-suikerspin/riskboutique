@@ -12,37 +12,48 @@
 
 <div class="avatar">
   <div class="avatar-info">
-    <div class="images">
-      <div class="first">
-        <img src="/risk-gradient-beeldmerk.png" />
-      </div>
-      <div class="second">
-        <PrismicImage field={image} />
-      </div>
-    </div>
-    <div class="contact-details">
-      <div class="name-and-role">
-        <div class="name">{name}</div>
-        <div class="role">{role}</div>
-      </div>
-      <div class="phone-and-email">
-        <a href="tel:{phone}" class="phone">{phone}</a>
-        <a href="mailto:{email}">{email}</a>
+    <div class="name-and-details">
+       <div class="image">
+          <div class="second">
+            <PrismicImage field={image} />
+          </div>
+        </div>
+      <div class="contact-details">
+        <!-- <div class="name-and-role">
+          <div class="name">{name}</div>
+          <div class="role">{role}</div>
+        </div> -->
+        <div class="name">Reach out to {name}:</div>
+        <div class="phone-and-email">
+          <a href="tel:{phone}" class="phone">{phone} 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 19L21 12L14 5" stroke="black" stroke-miterlimit="10"></path>
+              <path d="M21 12H2" stroke="black" stroke-miterlimit="10"></path>
+              </svg>
+          </a>
+          <a href="mailto:{email}">
+            {email}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 19L21 12L14 5" stroke="black" stroke-miterlimit="10"></path>
+            <path d="M21 12H2" stroke="black" stroke-miterlimit="10"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-.avatar{
+/* .avatar{
   padding: 8px 24px;
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 12px rgba(14, 79, 99, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .avatar-info{
   display: flex;
@@ -51,64 +62,40 @@
   gap: 8px;
 }
 
-.avatar-info .images{
-  display: flex;
-  position: relative;
-  width: 98px;
-  height: 56px;
-}
-
-.avatar-info .images .first{
+.avatar-info .image{
   width: 56px;
   height: 56px;
-  border-radius: 100%;
+  /* border-radius: 50%; */
+  border-radius: 8px;
   overflow: hidden;
-  position: absolute;
-  left: 0;
-  z-index: 1;
 }
 
-.avatar-info .images .second{
-  width: 56px;
-  height: 56px;
-  border-radius: 100%;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  z-index: 2;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.avatar:hover .images .second{
-  right: 42px;
-  transform: scale(1.05);
-}
-
-.contact-details{
+.images-and-title{
   display: flex;
-  gap: 48px;
+  align-items: center;
+  gap: 4px;
 }
 
-.name-and-role{
+.name-and-details{
   display: flex;
-  flex-direction: column;
-  /* gap: 4px; */
-}
-
-.name-and-role .name{
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-aqua);
-}
-
-.name-and-role .role{
-  font-size: 0.875rem;
-  color: var(--color-dark-mode);
+  align-items: center;
+  gap: 8px;
 }
 
 .phone-and-email{
   display: flex;
-  flex-direction: column;
-  /* gap: 4px; */
+  gap: 4px;
+}
+
+.phone-and-email a{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-aqua);
+  text-decoration: none;
+}
+
+.phone-and-email svg{
+  transform: rotate(-45deg);
 }
 </style>
