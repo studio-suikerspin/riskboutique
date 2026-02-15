@@ -12,27 +12,31 @@
 	import 'swiper/css/bundle'
 	import { initContentRevealScroll } from '$lib/revealContent.js'
 	import ContactInfo from '$lib/components/ContactInfo.svelte'
-
-
+	import { resolve } from '$app/paths'
 
 	type Props = SliceComponentProps<Content.ContentCardsWithImageSlice>
 
 	const { slice }: Props = $props()
 
 	const paddingClass = $derived(() => {
-			switch (slice.primary.section_padding) {
-				case 'top': return 'block-padding-top';
-				case 'bottom': return 'block-padding-bottom';
-				case 'both': return 'block-padding';
-				case 'none': return '';
-				default: return '';
-			}
-		});
-
+		switch (slice.primary.section_padding) {
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
+		}
+	})
 
 	onMount(() => {
 		initContentRevealScroll()
 		new Swiper('.content-cards__slider', {
+			slidesPerView: 1.2,
 			navigation: {
 				prevEl: '.custom-prev',
 				nextEl: '.custom-next'
@@ -63,74 +67,75 @@
 	data-slice-variation={slice.variation}
 >
 	<div class="container">
-
-		
-			<div class="content-cards__headline_wrap" data-reveal-group>
-				<h2 class="content-cards__headline">{slice.primary.headline}</h2>
-				{#if slice.primary.subtekst.length > 0}
+		<div
+			class="content-cards__headline_wrap"
+			data-reveal-group
+		>
+			<h2 class="content-cards__headline">{slice.primary.headline}</h2>
+			{#if slice.primary.subtekst.length > 0}
 				<div class="general-content subtext-wrapper">
 					<PrismicRichText field={slice.primary.subtekst} />
 					<div class="avatar">
 						<AvatarWithContactInfo />
-						<div class="btn btn--dark ">
-							<i class="btn__icon btn__icon--rotate icon-arrow-right"></i>
-							<PrismicLink field={slice.primary.call_to_action}  />
+						<div class="btn btn--dark">
+							<i
+								class="btn__icon btn__icon--rotate icon-arrow-right"
+							></i>
+							<PrismicLink field={slice.primary.call_to_action} />
 						</div>
 					</div>
 					<!-- <ContactInfo avatarImage={slice.primary.avatarImage} name={slice.primary.name} /> -->
 				</div>
-				{/if}
-			</div>
+			{/if}
+		</div>
 
-			<div class="content-cards__slider swiper">
-				<div class="swiper-wrapper">
-					{#each slice.primary.items as item, key (key)}
-						<div class="swiper-slide item">
-							<div class="content-cards__card-wrap">
-								<div class="content-card border-radius">
-									<div class="content-card__media-wrap">
-										<PrismicImage field={item.media} />
-									</div>
-									<div class="content-card__content">
-										<h3 class="h4">{item.title}</h3>
-										<div class="rich-text-content">
-											<PrismicRichText
-												field={item.description}
-											/>
-										</div>
+		<div class="content-cards__slider swiper">
+			<div class="swiper-wrapper">
+				{#each slice.primary.items as item, key (key)}
+					<div class="swiper-slide item">
+						<div class="content-cards__card-wrap">
+							<div class="content-card border-radius">
+								<div class="content-card__media-wrap">
+									<PrismicImage field={item.media} />
+								</div>
+								<div class="content-card__content">
+									<h3 class="h4">{item.title}</h3>
+									<div class="rich-text-content">
+										<PrismicRichText
+											field={item.description}
+										/>
 									</div>
 								</div>
 							</div>
 						</div>
-					{/each}
-				</div>
-
-				<div class="content-cards__slider-nav">
-					<div class="swiper-scrollbar"></div>
-
-					<div class="buttons-wrap">
-						<button
-							class="custom-prev navigation-button btn btn--outline"
-							aria-label="Previous"
-						>
-							Prev
-						</button>
-						<button
-							class="custom-next navigation-button btn btn--dark"
-							aria-label="Next"
-						>
-							Next
-						</button>
-
-						
 					</div>
-
-					<a class="btn btn--dark mobile-only" href="/contact">Request proposal</a>
-
-					
-				</div>
+				{/each}
 			</div>
-		
+
+			<div class="content-cards__slider-nav">
+				<div class="swiper-scrollbar"></div>
+
+				<div class="buttons-wrap">
+					<button
+						class="custom-prev navigation-button btn btn--outline"
+						aria-label="Previous"
+					>
+						Prev
+					</button>
+					<button
+						class="custom-next navigation-button btn btn--dark"
+						aria-label="Next"
+					>
+						Next
+					</button>
+				</div>
+
+				<a
+					class="btn btn--dark mobile-only"
+					href={resolve('/contact')}>Request proposal</a
+				>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -138,16 +143,15 @@
 	.content-cards {
 		overflow: hidden;
 
-
 		&__headline_wrap {
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
 
-			.general-content :global p{
+			.general-content :global p {
 				max-width: 40rem;
 			}
-			.avatar{
+			.avatar {
 				width: fit-content;
 				display: flex;
 				flex-direction: column;
@@ -160,7 +164,7 @@
 					display: flex;
 				}
 
-				:global .btn{
+				:global .btn {
 					width: 100%;
 				}
 			}
@@ -190,11 +194,10 @@
 			overflow: visible;
 			margin-top: 2.5rem;
 
-			.item{
+			.item {
 				height: auto;
 			}
 
-		
 			@media (min-width: 1024px) {
 				margin-top: 5rem;
 			}
