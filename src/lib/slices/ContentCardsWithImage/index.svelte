@@ -7,12 +7,12 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
-	import { onMount } from 'svelte'
+	import { onDestroy, onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
 	import { initContentRevealScroll } from '$lib/revealContent.js'
-	import ContactInfo from '$lib/components/ContactInfo.svelte'
 	import { resolve } from '$app/paths'
+	import { afterNavigate } from '$app/navigation'
 
 	type Props = SliceComponentProps<Content.ContentCardsWithImageSlice>
 
@@ -35,6 +35,9 @@
 
 	onMount(() => {
 		initContentRevealScroll()
+	})
+
+	afterNavigate(() => {
 		new Swiper('.content-cards__slider', {
 			slidesPerView: 1.2,
 			navigation: {
@@ -84,7 +87,6 @@
 							<PrismicLink field={slice.primary.call_to_action} />
 						</div>
 					</div>
-					<!-- <ContactInfo avatarImage={slice.primary.avatarImage} name={slice.primary.name} /> -->
 				</div>
 			{/if}
 		</div>
@@ -114,7 +116,6 @@
 
 			<div class="content-cards__slider-nav">
 				<div class="swiper-scrollbar"></div>
-
 				<div class="buttons-wrap">
 					<button
 						class="custom-prev navigation-button btn btn--outline"
