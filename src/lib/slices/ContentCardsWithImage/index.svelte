@@ -32,15 +32,10 @@
 		}
 	})
 
-	let swiper: Swiper
-
 	onMount(() => {
-		swiper = new Swiper('.content-cards__slider', {
+		new Swiper('.content-cards__slider', {
+			loop: false,
 			slidesPerView: 1.2,
-			navigation: {
-				prevEl: '.custom-prev',
-				nextEl: '.custom-next'
-			},
 			scrollbar: {
 				el: '.swiper-scrollbar'
 			},
@@ -56,14 +51,12 @@
 				1024: {
 					spaceBetween: '40px'
 				}
+			},
+			navigation: {
+				prevEl: '.custom-prev',
+				nextEl: '.custom-next'
 			}
 		})
-
-		return () => {
-			if (swiper) {
-				swiper.destroy()
-			}
-		}
 	})
 </script>
 
@@ -94,7 +87,7 @@
 			{/if}
 		</div>
 
-		<div class="content-cards__slider swiper">
+		<div class="content-cards__slider">
 			<div class="swiper-wrapper">
 				{#each slice.primary.items as item, key (key)}
 					<div class="swiper-slide item">

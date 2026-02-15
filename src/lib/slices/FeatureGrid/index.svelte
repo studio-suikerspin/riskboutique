@@ -11,10 +11,8 @@
 
 	const { slice }: Props = $props()
 
-	let swiper: Swiper
-
 	onMount(() => {
-		swiper = new Swiper('.feature-grid__swiper', {
+		new Swiper('.feature-grid__swiper', {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 16,
@@ -37,12 +35,6 @@
 				prevEl: '.feature-grid__nav-prev'
 			}
 		})
-
-		return () => {
-			if (swiper) {
-				swiper.destroy()
-			}
-		}
 	})
 
 	const paddingClass = $derived(() => {
