@@ -7,12 +7,11 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
-	import { onDestroy, onMount } from 'svelte'
+	import { onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
 	import { initContentRevealScroll } from '$lib/revealContent.js'
 	import { resolve } from '$app/paths'
-	import { afterNavigate } from '$app/navigation'
 
 	type Props = SliceComponentProps<Content.ContentCardsWithImageSlice>
 
