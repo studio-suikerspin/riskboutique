@@ -4,10 +4,8 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
-	import { gsap, ScrollTrigger } from '$lib/gsap'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
-	
 
 	type Props = SliceComponentProps<Content.FeatureGridSlice>
 
@@ -75,9 +73,7 @@
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
 			<div class="feature-grid__content swiper feature-grid__swiper">
-				<div
-					class="swiper-wrapper"
-				>
+				<div class="swiper-wrapper">
 					{#each slice.primary.features as item, index (index)}
 						<div class="feature-grid__item swiper-slide">
 							<div class="icon">

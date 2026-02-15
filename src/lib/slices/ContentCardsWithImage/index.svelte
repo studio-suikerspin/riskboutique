@@ -33,12 +33,12 @@
 		}
 	})
 
+	let swiper: Swiper
+
 	onMount(() => {
 		initContentRevealScroll()
-	})
 
-	afterNavigate(() => {
-		new Swiper('.content-cards__slider', {
+		swiper = new Swiper('.content-cards__slider', {
 			slidesPerView: 1.2,
 			navigation: {
 				prevEl: '.custom-prev',
@@ -61,6 +61,12 @@
 				}
 			}
 		})
+
+		return () => {
+			if (swiper) {
+				swiper.destroy()
+			}
+		}
 	})
 </script>
 
