@@ -7,11 +7,11 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
+	import { resolve } from '$app/paths'
+
 	import { onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
-	import { initContentRevealScroll } from '$lib/revealContent.js'
-	import { resolve } from '$app/paths'
 
 	type Props = SliceComponentProps<Content.ContentCardsWithImageSlice>
 
@@ -35,8 +35,6 @@
 	let swiper: Swiper
 
 	onMount(() => {
-		initContentRevealScroll()
-
 		swiper = new Swiper('.content-cards__slider', {
 			slidesPerView: 1.2,
 			navigation: {
