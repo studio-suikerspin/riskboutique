@@ -43,6 +43,14 @@
 					"url": "https://prismic.io",
 					"text": "mine"
 				}
+			},
+			"contact_avatar": {
+				"__TYPE__": "LinkContent",
+				"key": "4a5dd88b-ffb8-48d2-8c04-e9a5d5d9b47e",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []

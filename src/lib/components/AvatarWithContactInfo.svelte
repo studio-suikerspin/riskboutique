@@ -50,14 +50,14 @@
 
 			.avatar-wrap {
 				width: 3.5rem;
-				// height: 3.5rem;
-				height: 100%;
+				height: 3.5rem;
 				border-radius: 0.5rem;
 				overflow: hidden;
 				border: 1px solid var(--color-aqua);
 
 				:global(img) {
 					width: 100%;
+					height: 100%;
 					object-fit: cover;
 				}
 			}

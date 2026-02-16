@@ -41,6 +41,14 @@
 						}
 					}
 				]
+			},
+			"contact_avatar": {
+				"__TYPE__": "LinkContent",
+				"key": "20155e0d-baf0-44a0-92c8-243874a418a3",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []

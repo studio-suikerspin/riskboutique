@@ -16,21 +16,23 @@
 	let swiper: Swiper
 
 	onMount(() => {
+		const itemCount = slice.primary.features.length
+
 		swiper = new Swiper('.feature-grid__swiper', {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 16,
 			breakpoints: {
 				768: {
-					slidesPerView: 2,
+					slidesPerView: Math.min(itemCount, 2),
 					spaceBetween: 16
 				},
 				1024: {
-					slidesPerView: 3,
+					slidesPerView: Math.min(itemCount, 3),
 					spaceBetween: 16
 				},
 				1200: {
-					slidesPerView: 4,
+					slidesPerView: Math.min(itemCount, 4),
 					spaceBetween: 16
 				}
 			},

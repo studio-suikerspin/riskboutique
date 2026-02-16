@@ -64,6 +64,7 @@
 
 		&__item {
 			display: flex;
+			align-items: center;
 			flex-direction: column;
 			gap: 2rem;
 

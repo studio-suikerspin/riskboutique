@@ -111,7 +111,16 @@
 					</div>
 
 					<div class="cta-profile-contact__contact-wrap">
-						<AvatarWithContactInfo />
+						<!-- <AvatarWithContactInfo /> -->
+						{#if slice.primary.contact_avatar?.data}
+							<AvatarWithContactInfo
+								image={slice.primary.contact_avatar.data.image}
+								name={slice.primary.contact_avatar.data.name}
+								role={slice.primary.contact_avatar.data.role}
+								phone={slice.primary.contact_avatar.data.phone}
+								email={slice.primary.contact_avatar.data.email}
+							/>
+						{/if}
 						<Button
 							field={slice.primary.primary_cta}
 							text="Request proposal"

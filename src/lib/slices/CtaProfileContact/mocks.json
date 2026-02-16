@@ -59,6 +59,14 @@
 				"__TYPE__": "FieldContent",
 				"value": "bottom",
 				"type": "Select"
+			},
+			"contact_avatar": {
+				"__TYPE__": "LinkContent",
+				"key": "aa16e6ca-d1b5-44bf-88fa-ecb010792e33",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []
@@ -136,8 +144,8 @@
 							[
 								"primary_cta",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "c96f12d5-1e96-4b82-b3c3-a725da85bb16",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "ExternalLink",
 										"url": "http://twitter.com",
@@ -212,6 +220,14 @@
 				"__TYPE__": "FieldContent",
 				"value": "colony",
 				"type": "Text"
+			},
+			"contact_avatar": {
+				"key": "d375c857-3060-4707-ab82-c9c5980b9631",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": [

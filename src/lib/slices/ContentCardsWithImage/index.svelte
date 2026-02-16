@@ -82,10 +82,12 @@
 							/>
 						{/if}
 						<div class="btn btn--dark">
-							<i
-								class="btn__icon btn__icon--rotate icon-arrow-right"
-							></i>
-							<PrismicLink field={slice.primary.call_to_action} />
+							<PrismicLink field={slice.primary.call_to_action}>
+								<i
+									class="btn__icon btn__icon--rotate icon-arrow-right"
+								></i>
+								<span>Request proposal</span>
+							</PrismicLink>
 						</div>
 					</div>
 				</div>
@@ -136,11 +138,20 @@
 					</div>
 
 					<div class="mobile-call-to-action">
-						<div class="btn btn--dark">
+						<!-- <div class="btn btn--dark">
 							<i
 								class="btn__icon btn__icon--rotate icon-arrow-right"
 							></i>
 							<PrismicLink field={slice.primary.call_to_action} />
+						</div> -->
+						<div class="btn btn--dark">
+							<!-- <PrismicLink field={item.cta} /> -->
+							<PrismicLink field={slice.primary.call_to_action}>
+								<i
+									class="btn__icon btn__icon--rotate icon-arrow-right"
+								></i>
+								<span>Request proposal</span>
+							</PrismicLink>
 						</div>
 						{#if slice.primary.contact_avatar?.data}
 							<AvatarWithContactInfo
