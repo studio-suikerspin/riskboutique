@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PrismicImage } from '@prismicio/svelte';
 
-	export let avatar = 'https://images.prismic.io/riskboutique/aW-1UwIvOtkhBv-c_portret-robert.jpg?auto=format,compress';
+	export let image: string;
 	export let name = "Robert Dreyer";
 	export let role = "MSc RO";
 	export let email = "info@riskboutique.nl";
@@ -12,21 +12,28 @@
 <div class="avatar-contact {isDarkBackground ? 'dark-background' : ''}">
 	<div class="avatar-contact__person">
 		<div class="avatar-wrap">
-			<img src={avatar} alt="Avatar" />
+			<PrismicImage field={image} />
 		</div>
 		<div class="contact-info">
+			<div class="avatar-contact__name-and-role">
 			<span class="contact-info__name">{name}</span>
 			<span class="contact-info__role">{role}</span>
+			</div>
+			<div class="avatar-contact__actions">
+			<a href="mailto:{email}">
+				{email}</a>
+			<a href="tel:{phone.replace(/\s/g, '')}">
+				{phone}</a>
+			</div>
 		</div>
+		<!-- <div class="divider"></div> -->
 	</div>
 
-	<div class="divider"></div>
 
-	<div class="contact-details">
-		<span class="title">Vragen?</span>
+	<!-- <div class="contact-details">
 		<a href="mailto:{email}">{email}</a>
 		<a href="tel:{phone.replace(/\s/g, '')}">{phone}</a>
-	</div>
+	</div> -->
 </div>
 
 <style lang="scss">
@@ -43,17 +50,11 @@
 
 			.avatar-wrap {
 				width: 3.5rem;
-				height: 3.5rem;
+				// height: 3.5rem;
+				height: 100%;
 				border-radius: 0.5rem;
 				overflow: hidden;
-				border: 2px solid rgba(0, 0, 0, 0.1);
-				cursor: pointer;
-				transition: transform 0.3s ease;
-
-				&:hover {
-					transform: scale(1.5);
-					z-index: 10;
-				}
+				border: 1px solid var(--color-aqua);
 
 				:global(img) {
 					width: 100%;
@@ -63,8 +64,8 @@
 
 			.contact-info {
 				display: flex;
-				flex-direction: column;
-				gap: 0.125rem;
+				align-items: center;
+				gap: 1.5rem;
 				line-height: 1.2;
 
 				&__name {
@@ -79,10 +80,45 @@
 			}
 		}
 
+		&__name-and-role{
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		&__actions {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+
+			a {
+				display: flex;
+				align-items: center;
+				gap: 0.25rem;
+				// color: var(--color-aqua);
+				// text-decoration: none;
+				// font-size: 0.75rem;
+
+				&:hover {
+					text-decoration: underline;
+				}
+
+				i {
+					font-size: 0.75rem;
+					transition: transform 0.2s;
+
+					&:hover {
+						transform: translateX(2px);
+					}
+				}
+			}
+		}
+
 		.divider {
 			width: 1px;
 			height: 2rem;
-			background: rgba(0, 0, 0, 0.1);
+			background: var(--color-aqua);
+			opacity: 0.5;
 		}
 
 		.contact-details {
@@ -93,19 +129,18 @@
 
 			.title {
 				font-weight: 500;
-				color: #000;
+				color: var(--color-dark-mode);
 				font-size: 0.75rem;
 			}
 
 			a {
 				text-decoration: underline;
-				color: rgba(0, 0, 0, 0.6);
+				color: var(--color-dark-mode);
 				font-size: 0.75rem;
 				transition: color 0.2s;
 
 				&:hover {
-					color: #000;
-					text-decoration: none;
+					color: var(--color-aqua);
 				}
 			}
 		}

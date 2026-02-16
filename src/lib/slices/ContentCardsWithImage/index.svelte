@@ -71,15 +71,23 @@
 				{#if slice.primary.subtekst.length > 0}
 				<div class="general-content subtext-wrapper">
 					<PrismicRichText field={slice.primary.subtekst} />
-					{#if slice.primary.contact_avatar?.data}
-						<ContactInfo
-							image={slice.primary.contact_avatar.data.image}
-							name={slice.primary.contact_avatar.data.name}
-							role={slice.primary.contact_avatar.data.role}
-							phone={slice.primary.contact_avatar.data.phone}
-							email={slice.primary.contact_avatar.data.email}
-						/>
-					{/if}
+					<div class="avatar">
+						{#if slice.primary.contact_avatar?.data}
+							<AvatarWithContactInfo
+								image={slice.primary.contact_avatar.data.image}
+								name={slice.primary.contact_avatar.data.name}
+								role={slice.primary.contact_avatar.data.role}
+								phone={slice.primary.contact_avatar.data.phone}
+								email={slice.primary.contact_avatar.data.email}
+							/>
+						{/if}
+						<div class="btn btn--dark">
+							<i
+								class="btn__icon btn__icon--rotate icon-arrow-right"
+							></i>
+							<PrismicLink field={slice.primary.call_to_action} />
+						</div>
+					</div>
 				</div>
 				{/if}
 			</div>
@@ -127,7 +135,23 @@
 						
 					</div>
 
-					<a class="btn btn--dark mobile-only" href="/contact">Request proposal</a>
+					<div class="mobile-call-to-action">
+						<div class="btn btn--dark">
+							<i
+								class="btn__icon btn__icon--rotate icon-arrow-right"
+							></i>
+							<PrismicLink field={slice.primary.call_to_action} />
+						</div>
+						{#if slice.primary.contact_avatar?.data}
+							<AvatarWithContactInfo
+								image={slice.primary.contact_avatar.data.image}
+								name={slice.primary.contact_avatar.data.name}
+								role={slice.primary.contact_avatar.data.role}
+								phone={slice.primary.contact_avatar.data.phone}
+								email={slice.primary.contact_avatar.data.email}
+							/>
+						{/if}
+					</div>
 
 					
 				</div>
@@ -158,7 +182,7 @@
 				gap: 0.5rem;
 				display: none;
 
-				@media (min-width: 768px) {
+				@media (min-width: 992px) {
 					display: flex;
 				}
 
@@ -217,6 +241,7 @@
 			align-items: center;
 			gap: 2.5rem;
 			justify-content: space-between;
+			flex-direction: column;
 
 			@media (min-width: 1024px) {
 				margin-top: 2.5rem;
@@ -241,6 +266,16 @@
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
+				width: 100%;
+
+				button{
+					width: 100%;
+
+					@media (min-width: 767px) {
+						width: fit-content;
+					}
+				}
+
 			}
 		}
 
@@ -304,6 +339,20 @@
 
 		@media (max-width: 767px) {
 			display: flex;
+		}
+	}
+
+	.mobile-call-to-action{
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+
+		@media(min-width: 768px){
+			display: none;
+		}
+
+		 .btn{
+			width: 100%;
 		}
 	}
 </style>
