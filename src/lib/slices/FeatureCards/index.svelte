@@ -14,18 +14,22 @@
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 
 	let swiper: Swiper
 
 	const isSlider = slice.variation === 'slider'
-
 
 	onMount(() => {
 		swiper = new Swiper('.swiper', {
@@ -59,7 +63,6 @@
 			}
 		})
 
-		// Custom reveal animation for slides
 		setTimeout(() => {
 			const slides = document.querySelectorAll(
 				'.feature-cards .slide-content'
@@ -91,7 +94,6 @@
 			})
 		}, 200)
 
-		// Cleanup function
 		return () => {
 			if (swiper) {
 				swiper.destroy()
@@ -129,7 +131,9 @@
 											description={item.description}
 											background={item.bg_color}
 											text_color={item.text_shape_color}
-											number={String(item.index ?? index + 1).padStart(2, '0')}
+											number={String(
+												item.index ?? index + 1
+											).padStart(2, '0')}
 											shape={item.shape}
 											isSliderCard={isSlider}
 										/>
@@ -145,7 +149,9 @@
 											description={item.description}
 											background={item.bg_color}
 											text_color={item.text_shape_color}
-											number={String(item.index ?? index + 1).padStart(2, '0')}
+											number={String(
+												item.index ?? index + 1
+											).padStart(2, '0')}
 											shape={item.shape}
 											isSliderCard={isSlider}
 										/>
@@ -176,7 +182,7 @@
 
 <style lang="scss">
 	.feature-cards {
-	     overflow: hidden;
+		overflow: hidden;
 
 		&__inner {
 			display: flex;

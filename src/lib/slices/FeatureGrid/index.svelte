@@ -4,35 +4,30 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
-	import { gsap, ScrollTrigger } from '$lib/gsap'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
-	
 
 	type Props = SliceComponentProps<Content.FeatureGridSlice>
 
 	const { slice }: Props = $props()
 
-	let swiper: Swiper
-
 	onMount(() => {
-		const itemCount = slice.primary.features.length
-
-		swiper = new Swiper('.feature-grid__swiper', {
+		// const itemCount = slice.primary.features.length
+		new Swiper('.feature-grid__swiper', {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 16,
 			breakpoints: {
 				768: {
-					slidesPerView: Math.min(itemCount, 2),
+					slidesPerView: 2,
 					spaceBetween: 16
 				},
 				1024: {
-					slidesPerView: Math.min(itemCount, 3),
+					slidesPerView: 3,
 					spaceBetween: 16
 				},
 				1200: {
-					slidesPerView: Math.min(itemCount, 4),
+					slidesPerView: 4,
 					spaceBetween: 16
 				}
 			},
@@ -41,12 +36,6 @@
 				prevEl: '.feature-grid__nav-prev'
 			}
 		})
-
-		return () => {
-			if (swiper) {
-				swiper.destroy()
-			}
-		}
 	})
 
 	const paddingClass = $derived(() => {
@@ -77,9 +66,7 @@
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
 			<div class="feature-grid__content swiper feature-grid__swiper">
-				<div
-					class="swiper-wrapper"
-				>
+				<div class="swiper-wrapper">
 					{#each slice.primary.features as item, index (index)}
 						<div class="feature-grid__item swiper-slide">
 							<div class="icon">

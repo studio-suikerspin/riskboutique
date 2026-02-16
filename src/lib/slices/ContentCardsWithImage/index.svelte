@@ -12,7 +12,7 @@
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
 	import { initContentRevealScroll } from '$lib/revealContent.js'
-	import ContactInfo from '$lib/components/ContactInfo.svelte'
+
 
 
 
