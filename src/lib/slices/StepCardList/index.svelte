@@ -62,20 +62,24 @@
 							</div>
 							<div class="cta">
 								<div class="btn btn--white">
-									<i
-										class="btn__icon btn__icon--rotate icon-arrow-right"
-									></i>
-									<PrismicLink field={item.cta} />
+									<!-- <PrismicLink field={item.cta} /> -->
+									<PrismicLink field={item.cta}>
+										<i
+											class="btn__icon btn__icon--rotate icon-arrow-right"
+										></i>
+										<span>Request proposal</span>
+									</PrismicLink>
 								</div>
-								<AvatarWithContactInfo
-									isDarkBackground={true}
-									name={item.contact_name ?? 'Robert Dreyer'}
-									role={item.contact_role ?? 'MSc RO'}
-									email={item.contact_email ??
-										'info@riskboutique.nl'}
-									phone={item.contact_phone ??
-										'+31 6 123 456 78'}
-								/>
+								{#if slice.primary.contact_avatar?.data}
+									<AvatarWithContactInfo
+										isDarkBackground={true}
+										image={slice.primary.contact_avatar.data.image}
+										name={slice.primary.contact_avatar.data.name}
+										role={slice.primary.contact_avatar.data.role}
+										phone={slice.primary.contact_avatar.data.phone}
+										email={slice.primary.contact_avatar.data.email}
+									/>
+								{/if}
 							</div>
 						</div>
 					</div>

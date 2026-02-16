@@ -29,7 +29,15 @@
 
 			{#if slice.primary.cta_link.url}
 				<div class="contact-wrap">
-					<AvatarWithContactInfo />
+					{#if slice.primary.contact_avatar?.data}
+						<AvatarWithContactInfo
+							image={slice.primary.contact_avatar.data.image}
+							name={slice.primary.contact_avatar.data.name}
+							role={slice.primary.contact_avatar.data.role}
+							phone={slice.primary.contact_avatar.data.phone}
+							email={slice.primary.contact_avatar.data.email}
+						/>
+					{/if}
 					<Button
 						field={slice.primary.cta_link}
 						icon="icon-arrow-right"
@@ -69,7 +77,15 @@
 									/>
 								{/if}
 								{#if block.show_contact_info}
-									<AvatarWithContactInfo />
+									{#if slice.primary.contact_avatar?.data}
+										<AvatarWithContactInfo
+											image={slice.primary.contact_avatar.data.image}
+											name={slice.primary.contact_avatar.data.name}
+											role={slice.primary.contact_avatar.data.role}
+											phone={slice.primary.contact_avatar.data.phone}
+											email={slice.primary.contact_avatar.data.email}
+										/>
+									{/if}
 								{/if}
 							</div>
 						{/if}

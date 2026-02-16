@@ -82,7 +82,16 @@
 			</div>
 
 			<div class="abstract-highlights__contact-wrap">
-				<AvatarWithContactInfo isDarkBackground={true} />
+				{#if slice.primary.contact_avatar?.data}
+					<AvatarWithContactInfo
+					isDarkBackground={true}
+						image={slice.primary.contact_avatar.data.image}
+						name={slice.primary.contact_avatar.data.name}
+						role={slice.primary.contact_avatar.data.role}
+						phone={slice.primary.contact_avatar.data.phone}
+						email={slice.primary.contact_avatar.data.email}
+					/>
+				{/if}
 				<Button
 					field={slice.primary.cta_link}
 					text={slice.primary.cta_link.text}

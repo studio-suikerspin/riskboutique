@@ -35,6 +35,26 @@
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink"
           }
+        },
+        "contact_avatar": {
+          "type": "Link",
+          "config": {
+            "label": "Contact avatar",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "avatar_contact_info",
+                "fields": [
+                  "image",
+                  "name",
+                  "role",
+                  "phone",
+                  "email"
+                ]
+              }
+            ]
+          }
         }
       },
       "items": {}

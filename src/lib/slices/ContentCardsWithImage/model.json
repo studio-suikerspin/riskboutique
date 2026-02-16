@@ -95,7 +95,16 @@
             "select": "document",
             "repeat": false,
             "customtypes": [
-              "avatar_contact_info"
+              {
+                "id": "avatar_contact_info",
+                "fields": [
+                  "image",
+                  "name",
+                  "role",
+                  "phone",
+                  "email"
+                ]
+              }
             ]
           }
         }

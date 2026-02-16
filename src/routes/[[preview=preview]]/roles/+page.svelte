@@ -36,7 +36,10 @@
 			{#each openRoles as openRole, index (index)}
 				<li class="role">
 					<div class="role__heading">
-						<h4 class="h4">{openRole.data.title}</h4>
+						<a
+							href={resolve(`/roles/${openRole.uid}`)}
+							class="h4"
+						>{openRole.data.title}</a>
 
 						<a
 							href={resolve(`/roles/${openRole.uid}`)}
@@ -143,6 +146,10 @@
 				transform: rotate(-45deg);
 				transition: transform 150ms ease;
 			}
+		}
+
+		&__cta.h4{
+			color: var(--color-dark-mode);
 		}
 
 		&__cta.mobile {

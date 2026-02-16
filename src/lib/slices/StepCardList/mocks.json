@@ -112,6 +112,14 @@
 				"__TYPE__": "FieldContent",
 				"value": "both",
 				"type": "Select"
+			},
+			"contact_avatar": {
+				"__TYPE__": "LinkContent",
+				"key": "4976099c-cb7d-48e2-ba99-91f2ac1ed29f",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []

@@ -670,6 +670,24 @@ interface OpenRoleDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	tags: prismic.GroupField<Simplify<OpenRoleDocumentDataTagsItem>>
+
+	/**
+	 * Contact avatar field in *Open role*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: open_role.contact_avatar
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**
@@ -1186,6 +1204,23 @@ export interface AbstractHighlightsSliceDefaultPrimary {
 		unknown,
 		prismic.FieldState,
 		never
+	>
+
+	/**
+	 * Contact avatar field in *AbstractHighlights → Default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: abstract_highlights.default.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
 	>
 }
 
@@ -1831,7 +1866,14 @@ export interface ContentCardsWithImageSliceImageLeftTextRightPrimary {
 	 * - **API ID Path**: content_cards_with_image.image_left_text_right.primary.contact_avatar
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	contact_avatar: prismic.ContentRelationshipField<'avatar_contact_info'>
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**
@@ -2184,6 +2226,23 @@ export interface CtaProfileContactSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * Contact avatar field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.default.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**
@@ -2298,6 +2357,23 @@ export interface CtaProfileContactSliceWithRevealTypePrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * Contact avatar field in *CtaProfileContact → WithRevealType → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: cta_profile_contact.withRevealType.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**
@@ -2763,6 +2839,23 @@ export interface FeaturedCtaBlocksSliceDefaultPrimary {
 	 */
 	featured_blocks: prismic.GroupField<
 		Simplify<FeaturedCtaBlocksSliceDefaultPrimaryFeaturedBlocksItem>
+	>
+
+	/**
+	 * Contact avatar field in *FeaturedCtaBlocks → Default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: featured_cta_blocks.default.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
 	>
 }
 
@@ -3739,6 +3832,23 @@ export interface ImageTextRevealTypeAvatarSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	subtext: prismic.RichTextField
+
+	/**
+	 * Contact avatar field in *ImageTextRevealTypeAvatar → Default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_text_reveal_type_avatar.default.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**
@@ -4541,6 +4651,23 @@ export interface StepCardListSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'top' | 'bottom' | 'both' | 'none'>
+
+	/**
+	 * Contact avatar field in *StepCardList → Default → Primary*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: step_card_list.default.primary.contact_avatar
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	contact_avatar: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'avatar_contact_info'
+				fields: ['image', 'name', 'role', 'phone', 'email']
+			}
+		]
+	>
 }
 
 /**

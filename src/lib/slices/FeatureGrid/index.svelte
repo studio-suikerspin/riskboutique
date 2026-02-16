@@ -12,6 +12,7 @@
 	const { slice }: Props = $props()
 
 	onMount(() => {
+		// const itemCount = slice.primary.features.length
 		new Swiper('.feature-grid__swiper', {
 			loop: false,
 			slidesPerView: 1,
