@@ -1,9 +1,14 @@
 import { createClient } from '$lib/prismicio';
 
-export async function load({ fetch, cookies }) {
+export async function load({ fetch, cookies, setHeaders }) {
 	const client = createClient({ fetch, cookies });
 
 	const page = await client.getSingle('homepage');
+
+ setHeaders({
+    'Cache-Control': 'public, s-maxage=60'
+  });
+
 
 	return {
 		page,
