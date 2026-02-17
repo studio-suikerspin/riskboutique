@@ -2,15 +2,10 @@ import { asText } from '@prismicio/client'
 
 import { createClient } from '$lib/prismicio'
 
-export async function load({ params, fetch, cookies, setHeaders }) {
+export async function load({ params, fetch, cookies }) {
 	const client = createClient({ fetch, cookies })
 
 	const page = await client.getByUID('advisory_subpage', params.uid)
-
- setHeaders({
-    'Cache-Control': 'public, s-maxage=60'
-  });
-
 
 	return {
 		page,
