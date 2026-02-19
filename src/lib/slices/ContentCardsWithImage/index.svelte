@@ -1,39 +1,38 @@
 <script lang="ts">
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
 	import type { Content } from '@prismicio/client'
+	import { onMount } from 'svelte'
 	import {
 		PrismicImage,
 		PrismicLink,
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
-	
-	import { onMount } from 'svelte'
-	import Swiper from 'swiper/bundle'
-	import 'swiper/css/bundle'
+	import { Swiper } from 'swiper/bundle'
+
 	import { initContentRevealScroll } from '$lib/revealContent.js'
-
-
-
 
 	type Props = SliceComponentProps<Content.ContentCardsWithImageSlice>
 
 	const { slice }: Props = $props()
 
 	const paddingClass = $derived(() => {
-			switch (slice.primary.section_padding) {
-				case 'top': return 'block-padding-top';
-				case 'bottom': return 'block-padding-bottom';
-				case 'both': return 'block-padding';
-				case 'none': return '';
-				default: return '';
-			}
-		});
+		switch (slice.primary.section_padding) {
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
+		}
+	})
 
-
-	onMount(() => {
-		initContentRevealScroll()
-		new Swiper('.content-cards__slider', {
+	function initSwiper(node) {
+		new Swiper(node, {
 			navigation: {
 				prevEl: '.custom-prev',
 				nextEl: '.custom-next'
@@ -55,6 +54,10 @@
 				}
 			}
 		})
+	}
+
+	onMount(() => {
+		initContentRevealScroll()
 	})
 </script>
 
@@ -64,11 +67,12 @@
 	data-slice-variation={slice.variation}
 >
 	<div class="container">
-
-		
-			<div class="content-cards__headline_wrap" data-reveal-group>
-				<h2 class="content-cards__headline">{slice.primary.headline}</h2>
-				{#if slice.primary.subtekst.length > 0}
+		<div
+			class="content-cards__headline_wrap"
+			data-reveal-group
+		>
+			<h2 class="content-cards__headline">{slice.primary.headline}</h2>
+			{#if slice.primary.subtekst.length > 0}
 				<div class="general-content subtext-wrapper">
 					<PrismicRichText field={slice.primary.subtekst} />
 					<div class="avatar">
@@ -91,83 +95,73 @@
 						</div>
 					</div>
 				</div>
-				{/if}
-			</div>
+			{/if}
+		</div>
 
-			<div class="content-cards__slider swiper">
-				<div class="swiper-wrapper">
-					{#each slice.primary.items as item, key (key)}
-						<div class="swiper-slide item">
-							<div class="content-cards__card-wrap">
-								<div class="content-card border-radius">
-									<div class="content-card__media-wrap">
-										<PrismicImage field={item.media} />
-									</div>
-									<div class="content-card__content">
-										<h3 class="h4">{item.title}</h3>
-										<div class="rich-text-content">
-											<PrismicRichText
-												field={item.description}
-											/>
-										</div>
+		<div
+			class="content-cards__slider"
+			use:initSwiper
+		>
+			<div class="swiper-wrapper">
+				{#each slice.primary.items as item, key (key)}
+					<div class="swiper-slide item">
+						<div class="content-cards__card-wrap">
+							<div class="content-card border-radius">
+								<div class="content-card__media-wrap">
+									<PrismicImage field={item.media} />
+								</div>
+								<div class="content-card__content">
+									<h3 class="h4">{item.title}</h3>
+									<div class="rich-text-content">
+										<PrismicRichText
+											field={item.description}
+										/>
 									</div>
 								</div>
 							</div>
 						</div>
-					{/each}
-				</div>
-
-				<div class="content-cards__slider-nav">
-					<div class="swiper-scrollbar"></div>
-
-					<div class="buttons-wrap">
-						<button
-							class="custom-prev navigation-button btn btn--outline"
-							aria-label="Previous"
-						>
-							Prev
-						</button>
-						<button
-							class="custom-next navigation-button btn btn--dark"
-							aria-label="Next"
-						>
-							Next
-						</button>
-
-						
 					</div>
-
-					<div class="mobile-call-to-action">
-						<!-- <div class="btn btn--dark">
-							<i
-								class="btn__icon btn__icon--rotate icon-arrow-right"
-							></i>
-							<PrismicLink field={slice.primary.call_to_action} />
-						</div> -->
-						<div class="btn btn--dark">
-							<!-- <PrismicLink field={item.cta} /> -->
-							<PrismicLink field={slice.primary.call_to_action}>
-								<i
-									class="btn__icon btn__icon--rotate icon-arrow-right"
-								></i>
-								<span>Request proposal</span>
-							</PrismicLink>
-						</div>
-						{#if slice.primary.contact_avatar?.data}
-							<AvatarWithContactInfo
-								image={slice.primary.contact_avatar.data.image}
-								name={slice.primary.contact_avatar.data.name}
-								role={slice.primary.contact_avatar.data.role}
-								phone={slice.primary.contact_avatar.data.phone}
-								email={slice.primary.contact_avatar.data.email}
-							/>
-						{/if}
-					</div>
-
-					
-				</div>
+				{/each}
 			</div>
-		
+		</div>
+
+		<div class="content-cards__slider-nav">
+			<div class="swiper-scrollbar"></div>
+
+			<div class="buttons-wrap">
+				<button
+					class="custom-prev navigation-button btn btn--outline"
+					aria-label="Previous"
+				>
+					Prev
+				</button>
+				<button
+					class="custom-next navigation-button btn btn--dark"
+					aria-label="Next"
+				>
+					Next
+				</button>
+			</div>
+
+			<div class="mobile-call-to-action">
+				<div class="btn btn--dark">
+					<PrismicLink field={slice.primary.call_to_action}>
+						<i class="btn__icon btn__icon--rotate icon-arrow-right"
+						></i>
+						<span>Request proposal</span>
+					</PrismicLink>
+				</div>
+				{#if slice.primary.contact_avatar?.data}
+					<AvatarWithContactInfo
+						image={slice.primary.contact_avatar.data.image}
+						name={slice.primary.contact_avatar.data.name}
+						role={slice.primary.contact_avatar.data.role}
+						phone={slice.primary.contact_avatar.data.phone}
+						email={slice.primary.contact_avatar.data.email}
+					/>
+				{/if}
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -175,16 +169,15 @@
 	.content-cards {
 		overflow: hidden;
 
-
 		&__headline_wrap {
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
 
-			.general-content :global p{
+			.general-content :global p {
 				max-width: 40rem;
 			}
-			.avatar{
+			.avatar {
 				width: fit-content;
 				display: flex;
 				flex-direction: column;
@@ -197,7 +190,7 @@
 					display: flex;
 				}
 
-				:global .btn{
+				:global .btn {
 					width: 100%;
 				}
 			}
@@ -227,11 +220,10 @@
 			overflow: visible;
 			margin-top: 2.5rem;
 
-			.item{
+			.item {
 				height: auto;
 			}
 
-		
 			@media (min-width: 1024px) {
 				margin-top: 5rem;
 			}
@@ -279,14 +271,13 @@
 				gap: 0.5rem;
 				width: 100%;
 
-				button{
+				button {
 					width: 100%;
 
 					@media (min-width: 767px) {
 						width: fit-content;
 					}
 				}
-
 			}
 		}
 
@@ -353,16 +344,16 @@
 		}
 	}
 
-	.mobile-call-to-action{
+	.mobile-call-to-action {
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
 
-		@media(min-width: 768px){
+		@media (min-width: 768px) {
 			display: none;
 		}
 
-		 .btn{
+		.btn {
 			width: 100%;
 		}
 	}

@@ -5,12 +5,18 @@
 	import { page } from '$app/state'
 	import { repositoryName } from '$lib/prismicio'
 	import { onNavigate } from '$app/navigation'
+	import { register } from 'swiper/element/bundle'
 
 	import Header from '$lib/components/Header.svelte'
 	import PageLoader from '$lib/components/PageLoader.svelte'
 	import Footer from '$lib/components/Footer.svelte'
+	import { onMount } from 'svelte'
 
 	let { children } = $props()
+
+	onMount(() => {
+		register()
+	})
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return
