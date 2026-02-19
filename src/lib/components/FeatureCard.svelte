@@ -48,12 +48,12 @@
 
 <style lang="scss">
 	.feature-card.feature-cards--slider {
-		height: 35rem;
+		// height: 35rem;
 		min-height: unset;
 		// height: fit-content;
 
 		@media(min-width: 768px) {
-			height: 40rem;
+			// height: 40rem;
 		}
 	}
 

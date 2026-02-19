@@ -86,7 +86,7 @@
 			</div>
 		{:else}
 			<div class="cta-profile-contact__inner">
-				<div class="cta-profile-contact__image-wrap border-radius">
+				<div class="cta-profile-contact__image-wrap border-radius {slice.variation == 'default' ? 'default-image-wrap' : ''}">
 					<PrismicImage field={slice.primary.image} />
 				</div>
 
@@ -222,7 +222,7 @@
 		}
 
 		.cta-profile-contact__image-wrap {
-			aspect-ratio: 3 / 4;
+			aspect-ratio: 3 / 5;
 			max-height: 750px;
 			max-width: 100%;
 			display: block;
@@ -231,6 +231,10 @@
 			@media (min-width: 992px) {
 				// max-width: 630px;
 			}
+		}
+
+		.cta-profile-contact__image-wrap.default-image-wrap {
+			max-height: 950px;
 		}
 	}
 
