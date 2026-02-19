@@ -5,7 +5,6 @@
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
-	import 'swiper/css/bundle'
 	import { gsap, ScrollTrigger } from '$lib/gsap'
 
 	type Props = SliceComponentProps<Content.PillarsSlice>
@@ -27,12 +26,8 @@
 		}
 	})
 
-	let swiper: Swiper
-
-	const isSlider = slice.variation === 'slider'
-
-	onMount(() => {
-		swiper = new Swiper('.swiper', {
+	function initSwiper(node) {
+		new Swiper(node, {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 0,
@@ -62,7 +57,11 @@
 				prevEl: '.custom-prev'
 			}
 		})
+	}
 
+	const isSlider = slice.variation === 'slider'
+
+	onMount(() => {
 		setTimeout(() => {
 			const slides = document.querySelectorAll(
 				'.feature-cards .slide-content'
@@ -93,12 +92,6 @@
 				}
 			})
 		}, 200)
-
-		return () => {
-			if (swiper) {
-				swiper.destroy()
-			}
-		}
 	})
 </script>
 
@@ -119,6 +112,7 @@
 					'slider'
 						? 'swiper--overflow'
 						: ''}"
+					use:initSwiper
 				>
 					<!-- Additional required wrapper -->
 					<div class="swiper-wrapper">

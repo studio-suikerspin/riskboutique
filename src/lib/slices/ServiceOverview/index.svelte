@@ -13,10 +13,8 @@
 
 	const { slice }: Props = $props()
 
-	let swiper: Swiper
-
-	onMount(() => {
-		swiper = new Swiper('.swiper', {
+	function initSwiper(node) {
+		new Swiper('.swiper', {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 20,
@@ -27,7 +25,7 @@
 				prevEl: '.custom-prev'
 			}
 		})
-	})
+	}
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
@@ -58,9 +56,12 @@
 					description={slice.primary.description}
 				/>
 			</div>
-			<div class="service-overview__content swiper">
+			<div
+				class="service-overview__content swiper"
+				use:initSwiper
+			>
 				<div class="swiper-wrapper">
-					{#each slice.primary.service_items as item, index}
+					{#each slice.primary.service_items as item, index (index)}
 						<div class="service-overview__item swiper-slide">
 							<div class="service-overview__item-text">
 								<div class="service-overview__title-wrap">

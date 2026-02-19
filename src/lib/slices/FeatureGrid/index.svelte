@@ -11,9 +11,8 @@
 
 	const { slice }: Props = $props()
 
-	onMount(() => {
-		// const itemCount = slice.primary.features.length
-		new Swiper('.feature-grid__swiper', {
+	function initSwiper(node) {
+		new Swiper(node, {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 16,
@@ -36,7 +35,7 @@
 				prevEl: '.feature-grid__nav-prev'
 			}
 		})
-	})
+	}
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
@@ -65,7 +64,10 @@
 			<div class="feature-grid__heading">
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
-			<div class="feature-grid__content swiper feature-grid__swiper">
+			<div
+				class="feature-grid__content swiper feature-grid__swiper"
+				use:initSwiper
+			>
 				<div class="swiper-wrapper">
 					{#each slice.primary.features as item, index (index)}
 						<div class="feature-grid__item swiper-slide">
