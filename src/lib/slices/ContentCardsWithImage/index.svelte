@@ -85,14 +85,16 @@
 								email={slice.primary.contact_avatar.data.email}
 							/>
 						{/if}
-						<div class="btn btn--dark">
-							<PrismicLink field={slice.primary.call_to_action}>
-								<i
-									class="btn__icon btn__icon--rotate icon-arrow-right"
-								></i>
-								<span>Request proposal</span>
-							</PrismicLink>
-						</div>
+						{#if slice.primary.call_to_action?.url}
+							<div class="btn btn--dark">
+								<PrismicLink field={slice.primary.call_to_action}>
+									<i
+										class="btn__icon btn__icon--rotate icon-arrow-right"
+									></i>
+									<span>Request proposal</span>
+								</PrismicLink>
+							</div>
+						{/if}
 					</div>
 				</div>
 			{/if}
@@ -144,13 +146,15 @@
 			</div>
 
 			<div class="mobile-call-to-action">
-				<div class="btn btn--dark">
-					<PrismicLink field={slice.primary.call_to_action}>
-						<i class="btn__icon btn__icon--rotate icon-arrow-right"
-						></i>
-						<span>Request proposal</span>
-					</PrismicLink>
-				</div>
+				{#if slice.primary.call_to_action?.url}
+					<div class="btn btn--dark">
+						<PrismicLink field={slice.primary.call_to_action}>
+							<i class="btn__icon btn__icon--rotate icon-arrow-right"
+							></i>
+							<span>Request proposal</span>
+						</PrismicLink>
+					</div>
+				{/if}
 				{#if slice.primary.contact_avatar?.data}
 					<AvatarWithContactInfo
 						image={slice.primary.contact_avatar.data.image}
