@@ -1,14 +1,24 @@
-<script>
+<script lang="ts">
 	import { resolve } from '$app/paths'
 	import { page } from '$app/state'
 	import { PrismicImage } from '@prismicio/svelte'
 	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
+	import type { Attachment } from 'svelte/attachments'
+	import Headroom from 'headroom.js'
 
 	let { site_settings, header, socials } = page.data
+
+	const initFixedOnScroll: Attachment = (node) => {
+		const headroom = new Headroom(node)
+		headroom.init()
+	}
 </script>
 
-<header class="main-header">
+<header
+	class="main-header"
+	{@attach initFixedOnScroll}
+>
 	<div class="container">
 		<div class="main-header__inner">
 			<a
@@ -53,14 +63,35 @@
 />
 
 <style lang="scss">
+	:global .headroom {
+		will-change: transform;
+		transition: transform 500ms cubic-bezier(0.66, 0, 0.34, 1);
+
+		&--pinned {
+			transform: translateY(0%);
+		}
+
+		&--unpinned {
+			transform: translateY(-100%);
+		}
+
+		&--not-top {
+			.main-header__logo {
+				max-width: 200px;
+			}
+
+			background: #0b0e135e;
+			backdrop-filter: blur(10px);
+		}
+	}
+
 	.main-header {
 		padding-block: 1.25rem;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		z-index: var(--z-header);
-		transition: all 150ms cubic-bezier(0.86, 0, 0.14, 1);
 
 		&__inner {
 			display: flex;
@@ -71,6 +102,7 @@
 
 		:global &__logo {
 			max-width: 170px;
+			transition: max-width 250ms ease-out;
 
 			&--dark {
 				display: none;
