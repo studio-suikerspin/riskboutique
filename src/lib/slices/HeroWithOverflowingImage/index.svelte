@@ -41,21 +41,12 @@
 					<div class="hero-ss__content subtitle">
 						<PrismicRichText field={slice.primary.content} />
 					</div>
-					<div class="hero-ss__image-wrap">
-						<PrismicImage field={slice.primary.overflowing_image} />
-					</div>
+
+					<PrismicImage field={slice.primary.overflowing_image} />
 				</div>
 			</div>
 		</div>
-
-		<!-- <div class="hero-ss__scroll-hint">
-			{slice.primary.scroller_label}
-		</div> -->
 	</div>
-
-	<!-- <div class="hero-ss__image-wrap">
-		<PrismicImage field={slice.primary.overflowing_image} />
-	</div> -->
 </section>
 
 <style lang="scss">
@@ -64,6 +55,11 @@
 		display: flex;
 		overflow: hidden;
 		min-height: 100vh;
+
+		@media (min-width: 1024px) {
+			min-height: unset;
+			height: 900px;
+		}
 
 		&__gradient {
 			position: absolute;
@@ -74,7 +70,7 @@
 			inset: 0%;
 
 			@media (min-width: 1024px) {
-				height: 90vh;
+				height: 800px;
 			}
 
 			--gradient-color-1: #b2c1bd;
@@ -88,32 +84,22 @@
 			z-index: 2;
 			padding-top: 8.5rem;
 			padding-bottom: 2rem;
-			
 
 			@media (min-width: 1024px) {
+				height: 100%;
 				padding-top: 12.5rem;
 				padding-bottom: 0;
 			}
 		}
 
-		// &__container {
-		// 	display: flex;
-		// 	flex-direction: column;
-		// 	justify-content: space-between;
-
-		// 	@media (min-width: 1024px) {
-		// 		max-height: 90vh;
-		// 		position: relative;
-		// 	}
-		// }
-
 		&__content-wrap {
-			flex: 1;
 			height: 100%;
 
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
+
+			overflow: hidden;
 		}
 
 		&__headline {
@@ -128,48 +114,33 @@
 		&__content {
 			color: var(--color-snow-white);
 			max-width: 42rem;
+			height: fit-content;
 
 			display: flex;
 			flex-flow: column;
 			gap: 2.5rem;
 		}
 
-		&__scroll-hint {
-			font-size: 1.125rem;
-			font-weight: 500;
-			color: var(--color-snow-white);
-
-			position: absolute;
-			z-index: 2;
-			bottom: 0;
-		}
-
-
 		&__text-image-wrap {
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				gap: 2.5rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: 2.5rem;
+
+			@media (min-width: 1024px) {
+				gap: 5rem;
+				flex-direction: row;
+				/* height: 100%; */
+			}
+
+			:global img {
+				border-radius: 0.5rem;
 
 				@media (min-width: 1024px) {
-					gap: 5rem;
-					flex-direction: row;
-				}
-		}
-
-		&__image-wrap {
-				width: 100%;
-				height: auto;
-				max-width: 500px;
-				max-height: 500px;
-
-				:global img{
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					object-position: center;
-					border-radius: 0.5rem;
+					width: 400px;
+					height: 400px;
 				}
 			}
+		}
 	}
 </style>
