@@ -124,7 +124,7 @@
 			max-width: 35.75rem;
 			// max-height: 572px;
 			object-fit: cover;
-			border-radius: 1.5rem 0;
+			border-radius: 0.5rem;
 			border: 1px solid var(--color-snow-white);
 		}
 	}

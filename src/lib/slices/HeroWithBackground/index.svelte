@@ -105,7 +105,7 @@
 			@media (min-width: 992px) {
 				min-height: 36.625rem;
 				padding: 2.5rem;
-				border-radius: 1.5rem 0;
+				border-radius: 0.5rem;
 			}
 		}
 
