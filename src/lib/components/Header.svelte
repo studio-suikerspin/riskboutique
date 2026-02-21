@@ -65,7 +65,7 @@
 <style lang="scss">
 	:global .headroom {
 		will-change: transform;
-		transition: transform 500ms cubic-bezier(0.66, 0, 0.34, 1);
+		transition: all 500ms cubic-bezier(0.66, 0, 0.34, 1);
 
 		&--pinned {
 			transform: translateY(0%);
@@ -77,7 +77,9 @@
 
 		&--not-top {
 			.main-header__logo {
-				max-width: 200px;
+				@media (min-width: 992px) {
+					max-width: 200px;
+				}
 			}
 
 			background: #0b0e135e;
