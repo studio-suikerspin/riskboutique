@@ -30,15 +30,6 @@
 			</div>
 
 			<div class="role__cta">
-				{#if role.data.contact_avatar?.data}
-					<AvatarWithContactInfo
-						image={role.data.contact_avatar.data.image}
-						name={role.data.contact_avatar.data.name}
-						role={role.data.contact_avatar.data.role}
-						phone={role.data.contact_avatar.data.phone}
-						email={role.data.contact_avatar.data.email}
-					/>
-				{/if}
 				<a
 					href="mailto:careers@riskboutique.nl"
 					title="Apply now"
@@ -66,7 +57,7 @@
 
 			color: var(--color-snow-white);
 
-			h2{
+			h2 {
 				max-width: 875px;
 				text-align: center;
 				line-height: 100%;
@@ -87,22 +78,23 @@
 
 			// padding-inline: 1.5rem;
 
-			@media(min-width: 768px){
+			@media (min-width: 768px) {
 				padding-top: 6.25rem;
-
 			}
 		}
 
-		&__cta{
-				display: flex;
-				flex-direction: column;
-				gap: 1rem;
-				width: fit-content;
+		&__cta {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			width: fit-content;
 
-				:global .btn{
-					width: 100%;
-				}
+			margin-top: 1.5rem;
+
+			:global .btn {
+				width: 100%;
 			}
+		}
 
 		&__content {
 			@media (min-width: 1024px) {
