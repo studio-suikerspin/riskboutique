@@ -112,7 +112,7 @@
 					'slider'
 						? 'swiper--overflow'
 						: ''}"
-					use:initSwiper
+					{@attach initSwiper}
 				>
 					<!-- Additional required wrapper -->
 					<div class="swiper-wrapper">

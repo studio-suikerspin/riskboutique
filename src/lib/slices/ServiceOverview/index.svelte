@@ -58,7 +58,7 @@
 			</div>
 			<div
 				class="service-overview__content swiper"
-				use:initSwiper
+				{@attach initSwiper}
 			>
 				<div class="swiper-wrapper">
 					{#each slice.primary.service_items as item, index (index)}

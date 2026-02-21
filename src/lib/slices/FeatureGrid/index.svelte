@@ -66,7 +66,7 @@
 			</div>
 			<div
 				class="feature-grid__content swiper feature-grid__swiper"
-				use:initSwiper
+				{@attach initSwiper}
 			>
 				<div class="swiper-wrapper">
 					{#each slice.primary.features as item, index (index)}

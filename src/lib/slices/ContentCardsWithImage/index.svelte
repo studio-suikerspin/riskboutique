@@ -100,7 +100,7 @@
 
 		<div
 			class="content-cards__slider"
-			use:initSwiper
+			{@attach initSwiper}
 		>
 			<div class="swiper-wrapper">
 				{#each slice.primary.items as item, key (key)}
