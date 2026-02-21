@@ -24,6 +24,25 @@
 	})
 
 	const { slice }: Props = $props()
+
+	const formattedHeading = $derived(() => {
+		const text = slice.primary.heading
+		if (!text) return text
+		
+		// Split before "as a Service" or "as a service"
+		const regex = /\s+(as a [Ss]ervice)/i
+		const match = text.match(regex)
+		
+		if (match) {
+			const parts = text.split(regex)
+			return `${parts[0]}<br>${match[1]}${parts[2] || ''}`
+		}
+		
+		// Fallback to splitting after second word if no "as a service" found
+		const words = text.split(' ')
+		if (words.length <= 2) return text
+		return `${words[0]} ${words[1]}<br>${words.slice(2).join(' ')}`
+	})
 </script>
 
 <section
@@ -36,7 +55,7 @@
 		<div class="double-column__inner">
 			<div class="double-column__first">
 				<div class="double-column__heading">
-					<h1>{slice.primary.heading}</h1>
+					<h2>{@html formattedHeading()}</h2>
 				</div>
 				<div class="double-column__flex-text">
 					<div class="text general-content">
@@ -81,12 +100,13 @@
 			gap: 2.5rem;
 
 			@media (min-width: 768px) {
-				gap: 5rem;
+				// gap: 2.5rem;
 			}
 		}
 
 		&__heading {
-			max-width: 68.75rem;
+			// max-width: 68.75rem;
+			max-width: 78rem;
 		}
 
 		&__flex-text {

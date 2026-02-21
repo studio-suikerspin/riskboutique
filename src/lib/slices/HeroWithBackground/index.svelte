@@ -41,15 +41,19 @@
 			>
 				<div class="h2">{slice.primary.headline}</div>
 				<div class="h3 low">{slice.primary.headline}</div>
-				<div class="banner__buttons">
-					{#each slice.primary.cta_button as link (link.key)}
-						<Button
-							field={link}
-							text={link.text || 'Connect with us'}
-							variant={link.variant || 'light'}
-						/>
-					{/each}
-				</div>
+				{#if slice.primary.cta_button?.some(link => link?.url)}
+					<div class="banner__buttons">
+						{#each slice.primary.cta_button as link (link.key)}
+							{#if link?.url}
+								<Button
+									field={link}
+									text={link.text || 'Connect with us'}
+									variant={link.variant || 'light'}
+								/>
+							{/if}
+						{/each}
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -104,7 +108,7 @@
 			@media (min-width: 992px) {
 				min-height: 36.625rem;
 				padding: 2.5rem;
-				border-radius: 1.5rem;
+				border-radius: 0.5rem;
 			}
 		}
 
