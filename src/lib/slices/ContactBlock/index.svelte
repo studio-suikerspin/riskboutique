@@ -173,6 +173,27 @@
 					</div>
 					<div class="contact-form__group">
 						<label
+							for="subject"
+							class="contact-form__label">Subject</label
+						>
+						<div class="contact-form__select-wrap">
+							<select
+								class="contact-form__input contact-form__select"
+								required
+							>
+								<option
+									selected
+									disabled>Pick a subject...</option
+								>
+								{#each slice.primary.subject_options as { label }, index (index)}
+									<option value={label}>{label}</option>
+								{/each}
+							</select>
+							<i class="icon-chevron"></i>
+						</div>
+					</div>
+					<div class="contact-form__group">
+						<label
 							for="message"
 							class="contact-form__label">Message</label
 						>
@@ -322,7 +343,7 @@
 				}
 
 				&__input {
-					padding: 1rem;
+					padding-inline: 1rem;
 					border-radius: 0.25rem;
 
 					width: 100%;
@@ -330,12 +351,33 @@
 
 					background: rgba(249, 249, 248, 0.2);
 
+					&:not(select) {
+						padding-block: 1rem;
+					}
+
 					&::placeholder {
 						color: rgba(249, 249, 248, 0.7);
 						font-weight: 400;
 						font-size: 1rem;
 						line-height: 99%;
 					}
+				}
+
+				&__select-wrap {
+					position: relative;
+
+					i {
+						position: absolute;
+						top: 50%;
+						right: 0.75rem;
+						translate: 0% -50%;
+						rotate: 90deg;
+					}
+				}
+
+				&__select {
+					appearance: none;
+					--webkit-appearance: none;
 				}
 
 				&__textarea {

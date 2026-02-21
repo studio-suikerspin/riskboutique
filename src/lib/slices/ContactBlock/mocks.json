@@ -118,6 +118,24 @@
 				"__TYPE__": "FieldContent",
 				"value": "top",
 				"type": "Select"
+			},
+			"subject_options": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "school",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
 			}
 		},
 		"items": []
