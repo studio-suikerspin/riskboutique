@@ -65,30 +65,6 @@
 								<PrismicRichText field={block.content} />
 							</div>
 						</div>
-
-						{#if block.cta_link.url || block.show_contact_info}
-							<div class="contact-wrap">
-								{#if block.cta_link.url}
-									<Button
-										field={block.cta_link}
-										icon="icon-arrow-right"
-										text={block.cta_link.text}
-										variant="aqua"
-									/>
-								{/if}
-								{#if block.show_contact_info}
-									{#if slice.primary.contact_avatar?.data}
-										<AvatarWithContactInfo
-											image={slice.primary.contact_avatar.data.image}
-											name={slice.primary.contact_avatar.data.name}
-											role={slice.primary.contact_avatar.data.role}
-											phone={slice.primary.contact_avatar.data.phone}
-											email={slice.primary.contact_avatar.data.email}
-										/>
-									{/if}
-								{/if}
-							</div>
-						{/if}
 					</div>
 				{/each}
 			</main>
