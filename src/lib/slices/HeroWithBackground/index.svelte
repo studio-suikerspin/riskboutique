@@ -3,7 +3,6 @@
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicImage } from '@prismicio/svelte'
-	import { onMount } from 'svelte'
 
 	type Props = SliceComponentProps<Content.HeroWithBackgroundSlice>
 
@@ -105,7 +104,7 @@
 			@media (min-width: 992px) {
 				min-height: 36.625rem;
 				padding: 2.5rem;
-				border-radius: 1.5rem 0;
+				border-radius: 1.5rem;
 			}
 		}
 
