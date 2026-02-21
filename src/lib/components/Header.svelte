@@ -5,13 +5,18 @@
 	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
 	import type { Attachment } from 'svelte/attachments'
-	import Headroom from 'headroom.js'
 
 	let { site_settings, header, socials } = page.data
 
 	const initFixedOnScroll: Attachment = (node) => {
-		const headroom = new Headroom(node)
-		headroom.init()
+		window.addEventListener('scroll', () => {
+			if (window.scrollY >= 600) {
+				node.classList.add('main-header--fixed')
+				return
+			}
+
+			node.classList.remove('main-header--fixed')
+		})
 	}
 </script>
 
@@ -63,19 +68,15 @@
 />
 
 <style lang="scss">
-	:global .headroom {
-		will-change: transform;
-		transition: all 500ms cubic-bezier(0.66, 0, 0.34, 1);
+	.main-header {
+		padding-block: 1.25rem;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: var(--z-header);
 
-		&--pinned {
-			transform: translateY(0%);
-		}
-
-		&--unpinned {
-			transform: translateY(-100%);
-		}
-
-		&--not-top {
+		:global &--fixed {
 			.main-header__logo {
 				@media (min-width: 992px) {
 					max-width: 200px;
@@ -85,15 +86,6 @@
 			background: #0b0e135e;
 			backdrop-filter: blur(10px);
 		}
-	}
-
-	.main-header {
-		padding-block: 1.25rem;
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: var(--z-header);
 
 		&__inner {
 			display: flex;
