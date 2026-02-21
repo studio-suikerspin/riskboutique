@@ -285,7 +285,9 @@
 									data-sidenav-fade=""
 									field={social_link}
 									class="sidenav__button-label"
-								/>
+								>
+									<i class="icon-linkedin"></i>
+								</PrismicLink>
 							{/each}
 						</div>
 					{/if}
