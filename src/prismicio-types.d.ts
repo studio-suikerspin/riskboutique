@@ -1612,6 +1612,21 @@ export interface ContactBlockSliceDefaultPrimaryPhoneWhatsappItem {
 }
 
 /**
+ * Item in *ContactBlock → Default → Primary → Subject options*
+ */
+export interface ContactBlockSliceDefaultPrimarySubjectOptionsItem {
+	/**
+	 * Label field in *ContactBlock → Default → Primary → Subject options*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.subject_options[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField
+}
+
+/**
  * Primary content in *ContactBlock → Default → Primary*
  */
 export interface ContactBlockSliceDefaultPrimary {
@@ -1718,6 +1733,18 @@ export interface ContactBlockSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
 	section_padding: prismic.SelectField<'bottom' | 'both' | 'none' | 'top'>
+
+	/**
+	 * Subject options field in *ContactBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_block.default.primary.subject_options[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	subject_options: prismic.GroupField<
+		Simplify<ContactBlockSliceDefaultPrimarySubjectOptionsItem>
+	>
 }
 
 /**
@@ -5079,6 +5106,7 @@ declare module '@prismicio/client' {
 			ContactBlockSlice,
 			ContactBlockSliceDefaultPrimaryContactMethodsItem,
 			ContactBlockSliceDefaultPrimaryPhoneWhatsappItem,
+			ContactBlockSliceDefaultPrimarySubjectOptionsItem,
 			ContactBlockSliceDefaultPrimary,
 			ContactBlockSliceVariation,
 			ContactBlockSliceDefault,
