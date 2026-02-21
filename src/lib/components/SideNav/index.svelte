@@ -284,7 +284,7 @@
 								<PrismicLink
 									data-sidenav-fade=""
 									field={social_link}
-									class="sidenav__button-label"
+									class="sidenav__button-label social-icon"
 								>
 									<i class="icon-linkedin"></i>
 								</PrismicLink>
@@ -694,6 +694,18 @@
 		a:hover {
 			opacity: 0.75;
 			transition: opacity 0.3s ease-in-out;
+		}
+
+		:global .social-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			background: var(--color-dark-mode);
+			color: var(--color-snow-white);
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
 		}
 	}
 
