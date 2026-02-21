@@ -1,28 +1,29 @@
-<script>
+<script lang="ts">
 	import { resolve } from '$app/paths'
 	import { page } from '$app/state'
 	import { PrismicImage } from '@prismicio/svelte'
 	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
-	import { onMount } from 'svelte'
+	import type { Attachment } from 'svelte/attachments'
 
 	let { site_settings, header, socials } = page.data
 
-	onMount(() => {
+	const initFixedOnScroll: Attachment = (node) => {
 		window.addEventListener('scroll', () => {
-			const scrollY = window.scrollY
-			const toggle = document.querySelector('.floating-menu-toggle')
-
-			if (scrollY > 400) {
-				toggle?.classList.add('floating-menu-toggle--scrolled')
-			} else {
-				toggle?.classList.remove('floating-menu-toggle--scrolled')
+			if (window.scrollY >= 600) {
+				node.classList.add('main-header--fixed')
+				return
 			}
+
+			node.classList.remove('main-header--fixed')
 		})
-	})
+	}
 </script>
 
-<header class="main-header">
+<header
+	class="main-header"
+	{@attach initFixedOnScroll}
+>
 	<div class="container">
 		<div class="main-header__inner">
 			<a
@@ -61,18 +62,6 @@
 	</div>
 </header>
 
-<div class="floating-menu-toggle">
-	<div class="container">
-		<button
-			class="btn btn--dark btn--menu"
-			data-sidenav-toggle
-		>
-			<i class="btn__icon icon-menu"></i>
-			Menu
-		</button>
-	</div>
-</div>
-
 <SideNav
 	menuItems={header.data.menu_items}
 	{socials}
@@ -81,12 +70,22 @@
 <style lang="scss">
 	.main-header {
 		padding-block: 1.25rem;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		z-index: var(--z-header);
-		transition: all 150ms cubic-bezier(0.86, 0, 0.14, 1);
+
+		:global &--fixed {
+			.main-header__logo {
+				@media (min-width: 992px) {
+					max-width: 200px;
+				}
+			}
+
+			background: #0b0e135e;
+			backdrop-filter: blur(10px);
+		}
 
 		&__inner {
 			display: flex;
@@ -97,6 +96,7 @@
 
 		:global &__logo {
 			max-width: 170px;
+			transition: max-width 250ms ease-out;
 
 			&--dark {
 				display: none;
@@ -148,33 +148,5 @@
 				padding-block: 0.75rem;
 			}
 		}
-	}
-
-	.floating-menu-toggle {
-		position: fixed;
-		z-index: var(--z-header);
-		right: 0;
-		top: 1.25rem;
-
-		opacity: 0;
-		transform: translateX(100%) scaleX(0);
-		transition: all 200ms cubic-bezier(0.78, 0, 0.22, 1);
-
-		.btn {
-			transition: all 200ms cubic-bezier(0.78, 0, 0.22, 1);
-		}
-
-		.btn:hover {
-			background: var(--color-snow-white);
-			color: var(--color-dark-mode);
-			border-color: var(--color-dark-mode);
-			transition: all 200ms cubic-bezier(0.78, 0, 0.22, 1);
-		}
-	}
-
-	:global .floating-menu-toggle.floating-menu-toggle--scrolled {
-		opacity: 1;
-		transform: translateX(0) scaleX(1);
-		transition: all 350ms cubic-bezier(0.78, 0, 0.22, 1);
 	}
 </style>

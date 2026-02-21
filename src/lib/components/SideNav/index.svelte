@@ -5,7 +5,7 @@
 	import MenuLink from './MenuLink.svelte'
 	import MenuLinkWithSubs from './MenuLinkWithSubs.svelte'
 	import { PrismicLink } from '@prismicio/svelte'
-	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
+	import { onNavigate } from '$app/navigation'
 
 	let { menuItems, socials } = $props()
 
@@ -262,14 +262,10 @@
 							{#if menuItem.has_submenu}
 								<MenuLinkWithSubs
 									{menuItem}
-									{index}
 									{openSubmenu}
 								/>
 							{:else}
-								<MenuLink
-									{menuItem}
-									{index}
-								/>
+								<MenuLink {menuItem} />
 							{/if}
 						</li>
 					{/each}
@@ -288,8 +284,10 @@
 								<PrismicLink
 									data-sidenav-fade=""
 									field={social_link}
-									class="sidenav__button-label"
-								/>
+									class="sidenav__button-label social-icon"
+								>
+									<i class="icon-linkedin"></i>
+								</PrismicLink>
 							{/each}
 						</div>
 					{/if}
@@ -362,11 +360,6 @@
 										>
 											<p class="submenu-item__text">
 												{submenuItem.text}
-											</p>
-											<p class="submenu-item__eyebrow">
-												{index + 1 < 10
-													? '0' + (index + 1)
-													: index + 1}
 											</p>
 										</div>
 									</PrismicLink>
@@ -701,6 +694,18 @@
 		a:hover {
 			opacity: 0.75;
 			transition: opacity 0.3s ease-in-out;
+		}
+
+		:global .social-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			background: var(--color-dark-mode);
+			color: var(--color-snow-white);
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
 		}
 	}
 

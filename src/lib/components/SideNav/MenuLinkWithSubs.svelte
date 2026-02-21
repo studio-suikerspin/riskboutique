@@ -1,16 +1,20 @@
 <script>
-	let { menuItem, index, openSubmenu } = $props();
+	let { menuItem, openSubmenu } = $props()
 </script>
 
-<button class="link-item" onclick={() => openSubmenu(menuItem.label)} data-sidenav-link="">
+<button
+	class="link-item"
+	onclick={() => openSubmenu(menuItem.label)}
+	data-sidenav-link=""
+>
 	<div class="link-item__wrap">
 		<p class="link-item__heading h4">{menuItem.label}</p>
-		<p class="link-item__eyebrow">
-			{index + 1 < 10 ? '0' + (index + 1) : index + 1}
-		</p>
 	</div>
 
-	<i class="sidenav__menu-icon icon-chevron" data-sidenav-fade=""></i>
+	<i
+		class="sidenav__menu-icon icon-chevron"
+		data-sidenav-fade=""
+	></i>
 </button>
 
 <style>
