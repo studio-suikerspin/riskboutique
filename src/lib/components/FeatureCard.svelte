@@ -13,12 +13,21 @@
 		isSliderCard?: boolean
 	}
 
-	const { title, description, background, text_color, number, shape, isSliderCard }: Props =
-		$props()
+	const {
+		title,
+		description,
+		background,
+		text_color,
+		number,
+		shape,
+		isSliderCard
+	}: Props = $props()
 </script>
 
 <div
-	class="feature-card border-radius {isSliderCard ? 'feature-cards--slider' : ''}"
+	class="feature-card border-radius {isSliderCard
+		? 'feature-cards--slider'
+		: ''}"
 	style="background: var(--color-{background}); color: var(--color-{text_color});"
 >
 	<div class="feature-card__text">
@@ -38,25 +47,9 @@
 	<div class="feature-card__shape">
 		<SvgShapes {shape} />
 	</div>
-	<div
-		class="feature-card__number"
-		style="color: var(--color-{text_color});"
-	>
-		{number}
-	</div>
 </div>
 
 <style lang="scss">
-	.feature-card.feature-cards--slider {
-		// height: 35rem;
-		min-height: unset;
-		// height: fit-content;
-
-		@media(min-width: 768px) {
-			// height: 40rem;
-		}
-	}
-
 	.feature-card {
 		display: flex;
 		flex-direction: column;
@@ -73,22 +66,14 @@
 
 		&__shape {
 			display: flex;
-			align-items: center;
+			align-items: flex-end;
 			justify-content: center;
-		}
-
-		&__number {
-			font-size: 1.5rem;
-			line-height: 85%;
-
-			@media (min-width: 768px) {
-				font-size: 2.5rem;
-			}
 		}
 	}
 
 	.feature-card__shape {
-		padding: 2.5rem;
+		padding-block-start: 2.5rem;
+		padding-inline: 2.5rem;
 	}
 
 	.feature-card__shape :global svg {

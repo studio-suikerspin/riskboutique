@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicRichText, PrismicLink } from '@prismicio/svelte'
-	import { onMount } from 'svelte'
+	import { PrismicRichText } from '@prismicio/svelte'
 	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
 
 	type Props = SliceComponentProps<Content.FeatureGrid2Slice>
@@ -119,10 +118,10 @@
 									<PrismicRichText field={item.description} />
 								</div>
 							</div>
-							<ConnectWithUs
+							<!-- <ConnectWithUs
 								field={item.cta_link}
 								border="dark"
-							/>
+							/> -->
 						</div>
 					</div>
 				{/each}
@@ -187,7 +186,6 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			min-height: 20rem;
 
 			.text-icon {
 				display: flex;

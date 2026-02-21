@@ -75,16 +75,28 @@
 		left: 0;
 		right: 0;
 		z-index: var(--z-header);
+		transition: all 150ms ease;
 
 		:global &--fixed {
 			.main-header__logo {
 				@media (min-width: 992px) {
 					max-width: 200px;
 				}
+
+				&--dark {
+					position: absolute;
+					z-index: 1;
+					top: 50%;
+					translate: 0% -50%;
+					display: block;
+				}
+
+				&--light {
+				}
 			}
 
-			background: #0b0e135e;
-			backdrop-filter: blur(10px);
+			background: #fff;
+			transition: all 250ms ease-out;
 		}
 
 		&__inner {

@@ -3,7 +3,6 @@
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
-	import { onMount } from 'svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
 

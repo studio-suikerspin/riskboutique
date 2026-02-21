@@ -48,7 +48,7 @@
 
 		{#if slice.variation == 'inlineHeading'}
 			<div class="cta-profile-contact__group">
-				{#each slice.primary.image_block as item}
+				{#each slice.primary.image_block as item, index (index)}
 					<div
 						class="cta-profile-contact__inner inline-heading {getImagePositionClass(
 							item
@@ -74,11 +74,13 @@
 
 							<div class="cta-profile-contact__contact-wrap">
 								<!-- <AvatarWithContactInfo /> -->
-								<Button
-									field={item.primary_cta}
-									text="Request proposal"
-									icon="icon-arrow-right"
-								/>
+								{#if item.primary_cta?.url}
+									<Button
+										field={item.primary_cta}
+										text="Request proposal"
+										icon="icon-arrow-right"
+									/>
+								{/if}
 							</div>
 						</div>
 					</div>
@@ -86,7 +88,12 @@
 			</div>
 		{:else}
 			<div class="cta-profile-contact__inner">
-				<div class="cta-profile-contact__image-wrap border-radius {slice.variation == 'default' ? 'default-image-wrap' : ''}">
+				<div
+					class="cta-profile-contact__image-wrap border-radius {slice.variation ==
+					'default'
+						? 'default-image-wrap'
+						: ''}"
+				>
 					<PrismicImage field={slice.primary.image} />
 				</div>
 
@@ -121,11 +128,14 @@
 								email={slice.primary.contact_avatar.data.email}
 							/>
 						{/if}
-						<Button
-							field={slice.primary.primary_cta}
-							text="Request proposal"
-							icon="icon-arrow-right"
-						/>
+
+						{#if slice.primary.primary_cta.url}
+							<Button
+								field={slice.primary.primary_cta}
+								text="Request proposal"
+								icon="icon-arrow-right"
+							/>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -250,12 +260,11 @@
 		}
 	}
 
-	.cta-profile-contact__contact-wrap{
+	.cta-profile-contact__contact-wrap {
 		width: fit-content;
 	}
-	
+
 	.cta-profile-contact__contact-wrap :global a {
 		width: 100%;
-
 	}
 </style>

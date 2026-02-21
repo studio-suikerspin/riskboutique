@@ -34,7 +34,7 @@
 >
 	<div class="container">
 		<div class="image-block__inner">
-			{#each slice.primary.image_text_block as item}
+			{#each slice.primary.image_text_block as item, index (index)}
 				<div
 					class="image-block__item"
 					data-reveal-group
