@@ -5,7 +5,7 @@
 	import MenuLink from './MenuLink.svelte'
 	import MenuLinkWithSubs from './MenuLinkWithSubs.svelte'
 	import { PrismicLink } from '@prismicio/svelte'
-	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
+	import { onNavigate } from '$app/navigation'
 
 	let { menuItems, socials } = $props()
 
@@ -262,14 +262,10 @@
 							{#if menuItem.has_submenu}
 								<MenuLinkWithSubs
 									{menuItem}
-									{index}
 									{openSubmenu}
 								/>
 							{:else}
-								<MenuLink
-									{menuItem}
-									{index}
-								/>
+								<MenuLink {menuItem} />
 							{/if}
 						</li>
 					{/each}
@@ -362,11 +358,6 @@
 										>
 											<p class="submenu-item__text">
 												{submenuItem.text}
-											</p>
-											<p class="submenu-item__eyebrow">
-												{index + 1 < 10
-													? '0' + (index + 1)
-													: index + 1}
 											</p>
 										</div>
 									</PrismicLink>
