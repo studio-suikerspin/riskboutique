@@ -262,13 +262,17 @@
 		&__slider-nav {
 			margin-top: 1rem;
 			display: flex;
-			align-items: center;
+			align-items: start;
 			gap: 2.5rem;
 			justify-content: space-between;
 			flex-direction: column;
 
 			@media (min-width: 1024px) {
 				margin-top: 2.5rem;
+			}
+
+			@media(min-width: 992px){
+				align-items: center;
 			}
 
 			.swiper-scrollbar {
@@ -370,7 +374,7 @@
 		flex-direction: column;
 		gap: 0.75rem;
 
-		@media (min-width: 768px) {
+		@media (min-width: 992px) {
 			display: none;
 		}
 
