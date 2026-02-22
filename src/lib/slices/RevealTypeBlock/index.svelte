@@ -25,7 +25,7 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-	<div class="container {slice.primary.items.length ? 'medium' : ''}">
+	<div class="container {slice.primary.items.length > 1 ? 'medium' : ''}">
 		{#if slice.primary.items.length}
 			<div class="reveal-type-block__stack">
 				{#each slice.primary.items as item, key (key)}

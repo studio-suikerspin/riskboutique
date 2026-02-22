@@ -79,6 +79,15 @@
               }
             ]
           }
+        },
+        "is_big_image": {
+          "type": "Boolean",
+          "config": {
+            "label": "is big image",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

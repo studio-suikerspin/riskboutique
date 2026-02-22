@@ -38,6 +38,7 @@
 <style lang="scss">
 	.avatar-contact {
 		font-size: 0.875rem;
+		min-width: 220px;
 
 		&__person{
 			display: flex;

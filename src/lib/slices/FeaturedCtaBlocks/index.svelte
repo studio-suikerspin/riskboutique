@@ -27,24 +27,28 @@
 				</div>
 			</div>
 
-			{#if slice.primary.cta_link.url}
+			{#if slice.primary.contact_avatar?.data}
+			<div class="avatar desktop">
+				<AvatarWithContactInfo
+					image={slice.primary.contact_avatar.data.image}
+					name={slice.primary.contact_avatar.data.name}
+					role={slice.primary.contact_avatar.data.role}
+					phone={slice.primary.contact_avatar.data.phone}
+					email={slice.primary.contact_avatar.data.email}
+				/>
+			</div>
+			{/if}
+
+			<!-- {#if slice.primary.cta_link.url}
 				<div class="contact-wrap">
-					{#if slice.primary.contact_avatar?.data}
-						<AvatarWithContactInfo
-							image={slice.primary.contact_avatar.data.image}
-							name={slice.primary.contact_avatar.data.name}
-							role={slice.primary.contact_avatar.data.role}
-							phone={slice.primary.contact_avatar.data.phone}
-							email={slice.primary.contact_avatar.data.email}
-						/>
-					{/if}
+					
 					<Button
 						field={slice.primary.cta_link}
 						icon="icon-arrow-right"
 						text={slice.primary.cta_link.text}
 					/>
 				</div>
-			{/if}
+			{/if} -->
 		</div>
 
 		<div class="featured-cta-blocks__inner">
@@ -69,6 +73,18 @@
 				{/each}
 			</main>
 		</div>
+
+		{#if slice.primary.contact_avatar?.data}
+		<div class="avatar mobile">
+			<AvatarWithContactInfo
+				image={slice.primary.contact_avatar.data.image}
+				name={slice.primary.contact_avatar.data.name}
+				role={slice.primary.contact_avatar.data.role}
+				phone={slice.primary.contact_avatar.data.phone}
+				email={slice.primary.contact_avatar.data.email}
+			/>
+		</div>
+		{/if}
 	</div>
 </section>
 
@@ -182,5 +198,22 @@
 		.contact-wrap :global a {
 			width: 100%;
 		}
+	}
+
+	.avatar.desktop {
+		display: none;
+
+		@media(min-width: 992px) {
+			display: block;
+		}
+	}
+
+	.avatar.mobile{
+		display: block;
+		margin-top: 2.5rem;
+
+		@media(min-width: 992px) {
+			display: none;
+		 }
 	}
 </style>

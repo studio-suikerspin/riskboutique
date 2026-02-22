@@ -157,7 +157,7 @@
 			justify-content: center;
 
 			.h1 {
-				max-width: 75rem;
+				max-width: 76rem;
 				line-height: 100%;
 
 				@media (max-width: 767px) {
