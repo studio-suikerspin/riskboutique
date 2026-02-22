@@ -61,6 +61,7 @@
 								{item.title}
 							</div>
 							<div class="cta">
+							{#if item.cta?.data}
 								<div class="btn btn--white">
 									<!-- <PrismicLink field={item.cta} /> -->
 									<PrismicLink field={item.cta}>
@@ -70,6 +71,7 @@
 										<span>Request proposal</span>
 									</PrismicLink>
 								</div>
+							{/if}
 								{#if slice.primary.contact_avatar?.data}
 									<AvatarWithContactInfo
 										isDarkBackground={true}
