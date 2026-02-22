@@ -16,7 +16,7 @@
 
 		width: fit-content;
 
-		border-radius: 8px 0;
+		border-radius: 0.5rem;
 
 		font-size: 1.125rem;
 		font-weight: 600;

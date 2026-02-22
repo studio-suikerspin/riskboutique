@@ -3143,6 +3143,17 @@ export interface HeroStatementSliceDefaultPrimary {
 	gallery: prismic.GroupField<
 		Simplify<HeroStatementSliceDefaultPrimaryGalleryItem>
 	>
+
+	/**
+	 * Turn off image slider field in *HeroHomepage → Default → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: hero_statement.default.primary.turn_off_image_slider
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	turn_off_image_slider: prismic.BooleanField
 }
 
 /**
@@ -4090,6 +4101,17 @@ export interface IntroWithMediaRowSliceTextWithImageRowPrimary {
 	media: prismic.GroupField<
 		Simplify<IntroWithMediaRowSliceTextWithImageRowPrimaryMediaItem>
 	>
+
+	/**
+	 * Turn off image slider field in *HeroWithOverflowingMedia → default → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: intro_with_media_row.text_with_image_row.primary.turn_off_image_slider
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	turn_off_image_slider: prismic.BooleanField
 }
 
 /**

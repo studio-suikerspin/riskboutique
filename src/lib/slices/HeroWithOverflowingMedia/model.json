@@ -40,6 +40,15 @@
               }
             }
           }
+        },
+        "turn_off_image_slider": {
+          "type": "Boolean",
+          "config": {
+            "label": "Turn off image slider",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
         }
       },
       "items": {}

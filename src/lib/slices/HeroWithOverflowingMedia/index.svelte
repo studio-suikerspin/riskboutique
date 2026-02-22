@@ -42,16 +42,18 @@
 			</div>
 		</div>
 
+		{#if slice.primary.turn_off_image_slider == false}
 		<div class="hero-section__bottom">
 			<ScrollDirectionSlider images={slice.primary.media} classNames="media-item" />
 		</div>
+		{/if}
 	</div>
 </section>
 
 <style lang="scss">
 	.hero-section {
 		position: relative;
-		min-height: 90vh;
+		min-height: 100vh;
 		display: flex;
 		flex-flow: column;
 		gap: 2.5rem;
@@ -59,7 +61,7 @@
 		&__gradient {
 			position: absolute;
 			width: 100%;
-			height: 90%;
+			height: 100%;
 			z-index: 0;
 			object-fit: cover;
 			inset: 0%;
@@ -71,11 +73,12 @@
 		}
 
 		&__container {
-		     min-height: 60vh;
+		     min-height: 100vh;
 			display: flex;
 			flex-flow: column;
 			justify-content: end;
 			gap: 1.5rem;
+			padding-bottom: 5rem;
 		}
 
 		&__inner {
