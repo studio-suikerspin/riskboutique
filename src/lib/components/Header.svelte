@@ -95,8 +95,9 @@
 				}
 			}
 
-			background: #fff;
+			background: var(--color-snow-white);
 			transition: all 250ms ease-out;
+			border-bottom: 1px solid #b2c1bd4d;
 		}
 
 		&__inner {
