@@ -7,176 +7,84 @@
 	export let email = "info@riskboutique.nl";
 	export let phone = "+31 6 123 456 78";
 	export let isDarkBackground: boolean = false;
+	export let second_role = "Partner";
 </script>
 
 <div class="avatar-contact {isDarkBackground ? 'dark-background' : ''}">
 	<div class="avatar-contact__person">
-		<div class="avatar-wrap">
+		<div class="avatar-contact__image">
 			<PrismicImage field={image} />
 		</div>
-		<div class="contact-info">
+
+		<div class="avatar-contact__info">
 			<div class="avatar-contact__name-and-role">
-			<span class="contact-info__name">{name}</span>
-			<span class="contact-info__role">{role}</span>
+				<span class="contact-info__name">{name}</span>
+				<span class="">-</span>
+				<span class="contact-info__role">{role}</span>
 			</div>
+			<!-- <div class="avatar__middle">{second_role}</div> -->
 			<div class="avatar-contact__actions">
-			<a href="mailto:{email}">
-				{email}</a>
-			<a href="tel:{phone.replace(/\s/g, '')}">
-				{phone}</a>
+				<a href="mailto:{email}">
+					E: {email}
+				</a>
+				<a href="tel:{phone.replace(/\s/g, '')}">
+					T: {phone}</a>
 			</div>
 		</div>
-		<!-- <div class="divider"></div> -->
 	</div>
 
-
-	<!-- <div class="contact-details">
-		<a href="mailto:{email}">{email}</a>
-		<a href="tel:{phone.replace(/\s/g, '')}">{phone}</a>
-	</div> -->
 </div>
 
 <style lang="scss">
 	.avatar-contact {
-		display: flex;
-		align-items: center;
-		gap: 1.5rem;
-		font-size: 0.825rem;
+		font-size: 0.875rem;
 
-		&__person {
+		&__person{
 			display: flex;
+			gap: 0.5rem;
 			align-items: center;
-			gap: 0.75rem;
 
-			.avatar-wrap {
-				width: 3.5rem;
-				height: 3.5rem;
-				border-radius: 0.5rem;
-				overflow: hidden;
-				border: 1px solid var(--color-aqua);
-
-				:global(img) {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-				}
+			@media(min-width: 992px){
+				flex-direction: column;
+				align-items: start;
 			}
+		}
 
-			.contact-info {
-				display: flex;
-				align-items: center;
-				gap: 1.5rem;
-				line-height: 1.2;
+		&__image :global img{
+			// width: 100%;
+			// height: auto;
+			aspect-ratio: 2 / 5;
+			height: 90px;
+			width: 90px;
+			object-fit: cover;
+			border-radius: 0.5rem;
+			border: 1.5px solid var(--color-aqua);
+		}
 
-				&__name {
-					font-weight: 600;
-					color: #000;
-				}
-
-				&__role {
-					color: rgba(0, 0, 0, 0.6);
-					font-size: 0.75rem;
-				}
-			}
+		&__info{
+			display: flex;
+			flex-direction: column;
+			// gap: 0.5rem;
 		}
 
 		&__name-and-role{
 			display: flex;
-			flex-direction: column;
 			gap: 0.25rem;
+			font-weight: 600;
 		}
 
-		&__actions {
+		&__actions{
 			display: flex;
 			flex-direction: column;
-			gap: 0.25rem;
+			// gap: 0.25rem;
 
 			a {
-				display: flex;
-				align-items: center;
-				gap: 0.25rem;
 				// color: var(--color-aqua);
-				// text-decoration: none;
-				// font-size: 0.75rem;
+				text-decoration: none;
+				transition: color 0.3s ease;
 
 				&:hover {
-					text-decoration: underline;
-				}
-
-				i {
-					font-size: 0.75rem;
-					transition: transform 0.2s;
-
-					&:hover {
-						transform: translateX(2px);
-					}
-				}
-			}
-		}
-
-		.divider {
-			width: 1px;
-			height: 2rem;
-			background: var(--color-aqua);
-			opacity: 0.5;
-		}
-
-		.contact-details {
-			display: flex;
-			flex-direction: column;
-			gap: 0.125rem;
-			line-height: 1.3;
-
-			.title {
-				font-weight: 500;
-				color: var(--color-dark-mode);
-				font-size: 0.75rem;
-			}
-
-			a {
-				text-decoration: underline;
-				color: var(--color-dark-mode);
-				font-size: 0.75rem;
-				transition: color 0.2s;
-
-				&:hover {
-					color: var(--color-aqua);
-				}
-			}
-		}
-
-		&.dark-background {
-			.avatar-contact__person {
-				.avatar-wrap {
-					border-color: rgba(255, 255, 255, 0.2);
-				}
-
-				.contact-info {
-					&__name {
-						color: #fff;
-					}
-
-					&__role {
-						color: rgba(255, 255, 255, 0.7);
-					}
-				}
-			}
-
-			.divider {
-				background: rgba(255, 255, 255, 0.2);
-			}
-
-			.contact-details {
-				.title {
-					color: #fff;
-				}
-
-				a {
-					color: rgba(255, 255, 255, 0.7);
-
-					&:hover {
-						color: #fff;
-					}
+					color: var(--color-primary-dark);
 				}
 			}
 		}

@@ -34,6 +34,13 @@
 					"placeholder": ""
 				}
 			},
+			"second_role": {
+				"type": "Text",
+				"config": {
+					"label": "Second role",
+					"placeholder": ""
+				}
+			},
 			"phone": {
 				"type": "Text",
 				"config": {

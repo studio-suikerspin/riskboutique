@@ -261,6 +261,17 @@ interface AvatarContactInfoDocumentData {
 	role: prismic.KeyTextField
 
 	/**
+	 * Second role field in *Avatar contact info*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: avatar_contact_info.second_role
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	second_role: prismic.KeyTextField
+
+	/**
 	 * Phone field in *Avatar contact info*
 	 *
 	 * - **Field Type**: Text
