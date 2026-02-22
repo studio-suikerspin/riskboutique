@@ -81,7 +81,7 @@
 				{/each}
 			</div>
 
-			<div class="abstract-highlights__contact-wrap">
+			<!-- <div class="abstract-highlights__contact-wrap">
 				{#if slice.primary.contact_avatar?.data}
 					<AvatarWithContactInfo
 					isDarkBackground={true}
@@ -98,7 +98,7 @@
 					variant="white"
 					icon="icon-arrow-right"
 				/>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>

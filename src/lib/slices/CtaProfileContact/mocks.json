@@ -61,12 +61,16 @@
 				"type": "Select"
 			},
 			"contact_avatar": {
-				"__TYPE__": "LinkContent",
 				"key": "aa16e6ca-d1b5-44bf-88fa-ecb010792e33",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "DocumentLink",
 					"id": "mock_document_id"
 				}
+			},
+			"is_big_image": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": []

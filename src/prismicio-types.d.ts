@@ -2281,6 +2281,17 @@ export interface CtaProfileContactSliceDefaultPrimary {
 			}
 		]
 	>
+
+	/**
+	 * is big image field in *CtaProfileContact → Default → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: cta_profile_contact.default.primary.is_big_image
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	is_big_image: prismic.BooleanField
 }
 
 /**

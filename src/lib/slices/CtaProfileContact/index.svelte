@@ -90,7 +90,7 @@
 			<div class="cta-profile-contact__inner">
 				<div
 					class="cta-profile-contact__image-wrap border-radius {slice.variation ==
-					'default'
+					'default' && slice.primary.is_big_image == true
 						? 'default-image-wrap'
 						: ''}"
 				>
