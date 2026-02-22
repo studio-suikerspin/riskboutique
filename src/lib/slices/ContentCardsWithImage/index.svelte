@@ -71,20 +71,12 @@
 			class="content-cards__headline_wrap"
 			data-reveal-group
 		>
-			<h2 class="content-cards__headline">{slice.primary.headline}</h2>
-			{#if slice.primary.subtekst.length > 0}
-				<div class="general-content subtext-wrapper">
-					<PrismicRichText field={slice.primary.subtekst} />
-					<div class="avatar">
-						{#if slice.primary.contact_avatar?.data}
-							<AvatarWithContactInfo
-								image={slice.primary.contact_avatar.data.image}
-								name={slice.primary.contact_avatar.data.name}
-								role={slice.primary.contact_avatar.data.role}
-								phone={slice.primary.contact_avatar.data.phone}
-								email={slice.primary.contact_avatar.data.email}
-							/>
-						{/if}
+		<div class="content-cards__inner">
+			<div class="content-cards__text">
+				<h2 class="content-cards__headline">{slice.primary.headline}</h2>
+				{#if slice.primary.subtekst.length > 0}
+					<div class="general-content subtext-wrapper">
+						<PrismicRichText field={slice.primary.subtekst} />
 						{#if slice.primary.call_to_action?.url}
 							<div class="btn btn--dark">
 								<PrismicLink field={slice.primary.call_to_action}>
@@ -96,7 +88,19 @@
 							</div>
 						{/if}
 					</div>
-				</div>
+				{/if}
+			</div>
+			{#if slice.primary.contact_avatar?.data}
+			<div class="avatar">
+				<AvatarWithContactInfo
+					image={slice.primary.contact_avatar.data.image}
+					name={slice.primary.contact_avatar.data.name}
+					role={slice.primary.contact_avatar.data.role}
+					phone={slice.primary.contact_avatar.data.phone}
+					email={slice.primary.contact_avatar.data.email}
+					second_role={slice.primary.contact_avatar.data.second_role}
+				/>
+			</div>
 			{/if}
 		</div>
 
@@ -162,6 +166,7 @@
 						role={slice.primary.contact_avatar.data.role}
 						phone={slice.primary.contact_avatar.data.phone}
 						email={slice.primary.contact_avatar.data.email}
+						second_role={slice.primary.contact_avatar.data.second_role}
 					/>
 				{/if}
 			</div>
@@ -172,6 +177,18 @@
 <style lang="scss">
 	.content-cards {
 		overflow: hidden;
+
+		&__inner{
+			display: flex;
+			justify-content: space-between;
+			align-items: end;
+		}
+
+		&__text{
+			display: flex;
+			flex-direction: column;
+			gap: 2.5rem;
+		}
 
 		&__headline_wrap {
 			display: flex;
