@@ -152,8 +152,14 @@
 		}
 
 		:global &__cta {
-			&:not(.main-header__cta--mobile) {
-				display: none;
+			display: none;
+
+			@media (min-width: 768px) {
+				display: flex;
+
+				&--mobile {
+					display: none;
+				}
 			}
 		}
 
