@@ -701,7 +701,7 @@
 			align-items: center;
 			justify-content: center;
 
-			background: var(--color-dark-mode);
+			background: var(--color-aqua);
 			color: var(--color-snow-white);
 			width: 36px;
 			height: 36px;

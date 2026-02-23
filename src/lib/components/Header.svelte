@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths'
 	import { page } from '$app/state'
-	import { PrismicImage } from '@prismicio/svelte'
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
 	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
 	import type { Attachment } from 'svelte/attachments'
@@ -10,7 +10,7 @@
 
 	const initFixedOnScroll: Attachment = (node) => {
 		window.addEventListener('scroll', () => {
-			if (window.scrollY >= 600) {
+			if (window.scrollY >= 50) {
 				node.classList.add('main-header--fixed')
 				return
 			}
@@ -47,7 +47,7 @@
 					data-sidenav-toggle
 				>
 					<i class="btn__icon icon-menu"></i>
-					Menu
+					<span class="menu-btn__text"> Menu </span>
 				</button>
 
 				<Button
@@ -57,6 +57,13 @@
 					text={site_settings.data.contact_link.text}
 					field={site_settings.data.contact_link}
 				></Button>
+
+				<PrismicLink
+					field={site_settings.data.contact_link}
+					class="main-header__cta--mobile btn"
+				>
+					<i class="icon-message-circle"></i>
+				</PrismicLink>
 			</nav>
 		</div>
 	</div>
@@ -145,16 +152,33 @@
 		}
 
 		:global &__cta {
-			display: none;
+			&:not(.main-header__cta--mobile) {
+				display: none;
+			}
+		}
 
-			@media (min-width: 768px) {
-				display: flex;
+		:global &__cta {
+			&--mobile {
+				padding-block: 0.5rem;
+				padding-inline: 0.825rem;
+				font-size: 1.5rem;
 			}
 		}
 
 		:global .btn--menu {
 			padding-block: 0.5rem;
 			padding-inline: 0.825rem;
+			color: var(--color-snow-white);
+
+			order: 2;
+
+			.menu-btn__text {
+				display: none;
+
+				@media (min-width: 768px) {
+					display: initial;
+				}
+			}
 
 			@media (min-width: 768px) {
 				padding-inline: 0.75rem 1rem;
