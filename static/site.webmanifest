@@ -1,6 +1,6 @@
 {
   "name": "Risk Boutique",
-  "short_name": "Risk Boutique",
+  "short_name": "RB",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#0E4F63",
-  "background_color": "#F9F9F8",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone"
 }
