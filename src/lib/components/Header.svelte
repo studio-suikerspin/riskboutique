@@ -57,13 +57,6 @@
 					text={site_settings.data.contact_link.text}
 					field={site_settings.data.contact_link}
 				></Button>
-
-				<PrismicLink
-					field={site_settings.data.contact_link}
-					class="main-header__cta--mobile btn"
-				>
-					<i class="icon-message-circle"></i>
-				</PrismicLink>
 			</nav>
 		</div>
 	</div>
@@ -156,10 +149,6 @@
 
 			@media (min-width: 768px) {
 				display: flex;
-
-				&--mobile {
-					display: none;
-				}
 			}
 		}
 
