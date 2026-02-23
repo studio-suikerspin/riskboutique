@@ -47,7 +47,7 @@
 					data-sidenav-toggle
 				>
 					<i class="btn__icon icon-menu"></i>
-					<span class="menu-btn__text"> Menu </span>
+					Menu
 				</button>
 
 				<Button
@@ -152,28 +152,10 @@
 			}
 		}
 
-		:global &__cta {
-			&--mobile {
-				padding-block: 0.5rem;
-				padding-inline: 0.825rem;
-				font-size: 1.5rem;
-			}
-		}
-
 		:global .btn--menu {
 			padding-block: 0.5rem;
 			padding-inline: 0.825rem;
 			color: var(--color-snow-white);
-
-			order: 2;
-
-			.menu-btn__text {
-				display: none;
-
-				@media (min-width: 768px) {
-					display: initial;
-				}
-			}
 
 			@media (min-width: 768px) {
 				padding-inline: 0.75rem 1rem;
