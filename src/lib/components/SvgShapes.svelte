@@ -932,8 +932,8 @@
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="394"
-			height="421"
-			viewBox="0 0 394 421"
+			height="388"
+			viewBox="0 0 394 388"
 			fill="none"
 		>
 			<path

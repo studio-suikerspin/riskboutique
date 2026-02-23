@@ -55,7 +55,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2.5rem;
-		min-height: 700px;
+		min-height: 600px;
 		height: 100%;
 
 		&__text {
