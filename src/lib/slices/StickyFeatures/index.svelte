@@ -1,57 +1,70 @@
 <script lang="ts">
-	import type { Content } from '@prismicio/client';
+	import type { Content } from '@prismicio/client'
 	import {
 		PrismicImage,
 		PrismicRichText,
-		PrismicLink,
 		type SliceComponentProps
-	} from '@prismicio/svelte';
-	import { onMount } from 'svelte';
+	} from '@prismicio/svelte'
+	import { onMount } from 'svelte'
 
-	import { gsap, ScrollTrigger } from '$lib/gsap';
-	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte';
+	import { gsap, ScrollTrigger } from '$lib/gsap'
 	import Button from '$lib/components/Button.svelte'
 
-	type Props = SliceComponentProps<Content.IndependentDesignSlice>;
+	type Props = SliceComponentProps<Content.IndependentDesignSlice>
 
-	const { slice }: Props = $props();
+	const { slice }: Props = $props()
 
 	function initStickyFeatures(root) {
-		const wraps = Array.from((root || document).querySelectorAll('[data-sticky-feature-wrap]'));
-		if (!wraps.length) return;
+		const wraps = Array.from(
+			(root || document).querySelectorAll('[data-sticky-feature-wrap]')
+		)
+		if (!wraps.length) return
 
 		wraps.forEach((w) => {
-			const visualWraps = Array.from(w.querySelectorAll('[data-sticky-feature-visual-wrap]'));
-			const items = Array.from(w.querySelectorAll('[data-sticky-feature-item]'));
-			const progressBar = w.querySelector('[data-sticky-feature-progress]');
+			const visualWraps = Array.from(
+				w.querySelectorAll('[data-sticky-feature-visual-wrap]')
+			)
+			const items = Array.from(
+				w.querySelectorAll('[data-sticky-feature-item]')
+			)
+			const progressBar = w.querySelector(
+				'[data-sticky-feature-progress]'
+			)
 
 			if (visualWraps.length !== items.length) {
-				console.warn('[initStickyFeatures] visualWraps and items count do not match:', {
-					visualWraps: visualWraps.length,
-					items: items.length,
-					wrap: w
-				});
+				console.warn(
+					'[initStickyFeatures] visualWraps and items count do not match:',
+					{
+						visualWraps: visualWraps.length,
+						items: items.length,
+						wrap: w
+					}
+				)
 			}
 
-			const count = Math.min(visualWraps.length, items.length);
-			if (count < 1) return;
+			const count = Math.min(visualWraps.length, items.length)
+			if (count < 1) return
 
-			const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-			const DURATION = rm ? 0.01 : 0.75; // If user prefers reduced motion, reduce duration
-			const EASE = 'power4.inOut';
-			const SCROLL_AMOUNT = 0.9; // % of scroll used for step transitions
+			const rm = window.matchMedia(
+				'(prefers-reduced-motion: reduce)'
+			).matches
+			const DURATION = rm ? 0.01 : 0.75 // If user prefers reduced motion, reduce duration
+			const EASE = 'power4.inOut'
+			const SCROLL_AMOUNT = 0.9 // % of scroll used for step transitions
 
-			const getTexts = (el) => Array.from(el.querySelectorAll('[data-sticky-feature-text]'));
+			const getTexts = (el) =>
+				Array.from(el.querySelectorAll('[data-sticky-feature-text]'))
 
-			if (visualWraps[0]) gsap.set(visualWraps[0], { clipPath: 'inset(0% round 0.75em)' });
-			gsap.set(items[0], { autoAlpha: 1 });
+			if (visualWraps[0])
+				gsap.set(visualWraps[0], { clipPath: 'inset(0% round 0.75em)' })
+			gsap.set(items[0], { autoAlpha: 1 })
 
-			let currentIndex = 0;
+			let currentIndex = 0
 
 			// Transition Function
 			function transition(fromIndex, toIndex) {
-				if (fromIndex === toIndex) return;
-				const tl = gsap.timeline({ defaults: { overwrite: 'auto' } });
+				if (fromIndex === toIndex) return
+				const tl = gsap.timeline({ defaults: { overwrite: 'auto' } })
 
 				if (fromIndex < toIndex) {
 					tl.to(
@@ -62,7 +75,7 @@
 							ease: EASE
 						},
 						0
-					);
+					)
 				} else {
 					tl.to(
 						visualWraps[fromIndex],
@@ -72,28 +85,28 @@
 							ease: EASE
 						},
 						0
-					);
+					)
 				}
-				animateOut(items[fromIndex]);
-				animateIn(items[toIndex]);
+				animateOut(items[fromIndex])
+				animateIn(items[toIndex])
 			}
 
 			// Fade out text content items
 			function animateOut(itemEl) {
-				const texts = getTexts(itemEl);
+				const texts = getTexts(itemEl)
 				gsap.to(texts, {
 					autoAlpha: 0,
 					y: -30,
 					ease: 'power4.out',
 					duration: 0.4,
 					onComplete: () => gsap.set(itemEl, { autoAlpha: 0 })
-				});
+				})
 			}
 
 			// Reveal incoming text content items
 			function animateIn(itemEl) {
-				const texts = getTexts(itemEl);
-				gsap.set(itemEl, { autoAlpha: 1 });
+				const texts = getTexts(itemEl)
+				gsap.set(itemEl, { autoAlpha: 1 })
 				gsap.fromTo(
 					texts,
 					{
@@ -107,10 +120,10 @@
 						duration: DURATION,
 						stagger: 0.1
 					}
-				);
+				)
 			}
 
-			const steps = Math.max(1, count - 1);
+			const steps = Math.max(1, count - 1)
 
 			ScrollTrigger.create({
 				trigger: w,
@@ -120,27 +133,28 @@
 				scrub: true,
 				invalidateOnRefresh: true,
 				onUpdate: (self) => {
-					const p = Math.min(self.progress, SCROLL_AMOUNT) / SCROLL_AMOUNT;
-					let idx = Math.floor(p * steps + 1e-6);
-					idx = Math.max(0, Math.min(steps, idx));
+					const p =
+						Math.min(self.progress, SCROLL_AMOUNT) / SCROLL_AMOUNT
+					let idx = Math.floor(p * steps + 1e-6)
+					idx = Math.max(0, Math.min(steps, idx))
 
 					gsap.to(progressBar, {
 						scaleX: p,
 						ease: 'none'
-					});
+					})
 
 					if (idx !== currentIndex) {
-						transition(currentIndex, idx);
-						currentIndex = idx;
+						transition(currentIndex, idx)
+						currentIndex = idx
 					}
 				}
-			});
-		});
+			})
+		})
 	}
 
 	onMount(() => {
-		initStickyFeatures();
-	});
+		initStickyFeatures()
+	})
 </script>
 
 <section
@@ -148,40 +162,68 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-	<div data-sticky-feature-wrap="" class="sticky-features__wrap">
+	<div
+		data-sticky-feature-wrap=""
+		class="sticky-features__wrap"
+	>
 		<div class="sticky-features__scroll">
 			<div class="sticky-features__container">
 				<div class="sticky-features__col is--img">
 					<div class="sticky-features__img-collection">
 						<div class="sticky-features__img-list">
 							{#each slice.primary.features as feature, index (index)}
-								<div data-sticky-feature-visual-wrap="" class="sticky-features__img-item">
-									<PrismicImage class="sticky-features__img" field={feature.image} />
+								<div
+									data-sticky-feature-visual-wrap=""
+									class="sticky-features__img-item"
+								>
+									<PrismicImage
+										class="sticky-features__img"
+										field={feature.image}
+									/>
 								</div>
 							{/each}
 						</div>
 					</div>
 					<div class="sticky-features__progress-w">
-						<div class="sticky-features__progress-bar" data-sticky-feature-progress></div>
+						<div
+							class="sticky-features__progress-bar"
+							data-sticky-feature-progress
+						></div>
 					</div>
 				</div>
 				<div class="sticky-features__col">
 					<div class="sticky-features__text-collection">
 						<div class="sticky-features__text-list">
 							{#each slice.primary.features as feature, index (index)}
-								<div data-sticky-feature-item="" class="sticky-features__text-item">
-									<span data-sticky-feature-text="" class="sticky-features__tag"
-										>{index + 1 < 10 ? '0' + (index + 1) : index + 1}</span
+								<div
+									data-sticky-feature-item=""
+									class="sticky-features__text-item"
+								>
+									<span
+										data-sticky-feature-text=""
+										class="sticky-features__tag"
+										>{index + 1 < 10
+											? '0' + (index + 1)
+											: index + 1}</span
 									>
-									<h2 data-sticky-feature-text="" class="sticky-features__heading h3 low">
+									<h2
+										data-sticky-feature-text=""
+										class="sticky-features__heading h3 low"
+									>
 										{feature.heading}
 									</h2>
 									<div data-sticky-feature-text="">
-										<PrismicRichText field={feature.description} class="sticky-features__p" />
+										<PrismicRichText
+											field={feature.description}
+											class="sticky-features__p"
+										/>
 									</div>
 
 									{#if feature.cta_link.url}
-										<div class="sticky-features__cta" data-sticky-feature-text="">
+										<div
+											class="sticky-features__cta"
+											data-sticky-feature-text=""
+										>
 											<Button
 												field={feature.cta_link}
 												text={feature.cta_link.text}
@@ -357,7 +399,6 @@
 			:global .btn {
 				width: 100%;
 			}
-
 		}
 	}
 
@@ -375,13 +416,13 @@
 			align-items: center;
 			height: auto;
 			min-height: 100svh;
-			padding-top: 1.25em;
-			padding-bottom: 2.5em;
+			padding-top: 3rem;
+			padding-bottom: 1rem;
 		}
 
 		.sticky-features__container {
 			grid-column-gap: 2em;
-			grid-row-gap: 4rem;
+			grid-row-gap: 1.5rem;
 			flex-flow: column;
 			justify-content: flex-start;
 			align-items: stretch;
