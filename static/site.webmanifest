@@ -1,6 +1,6 @@
 {
-  "name": "Risk Boutique",
-  "short_name": "RB",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
