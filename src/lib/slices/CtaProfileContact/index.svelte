@@ -90,7 +90,7 @@
 			<div class="cta-profile-contact__inner">
 				<div
 					class="cta-profile-contact__image-wrap border-radius {slice.variation ==
-					'default' && slice.primary.is_big_image == true
+						'default' && slice.primary.is_big_image == true
 						? 'default-image-wrap'
 						: ''}"
 				>
@@ -113,7 +113,7 @@
 						</h2>
 					{/if}
 
-					<div class="cta-profile-contact__subtext">
+					<div class="cta-profile-contact__subtext rich-text-content">
 						<PrismicRichText field={slice.primary.sub_text} />
 					</div>
 
