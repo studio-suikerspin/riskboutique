@@ -11,7 +11,7 @@
 	const { slice }: Props = $props()
 
 	function initSwiper(node) {
-		new Swiper(node, {
+		const swiper = new Swiper(node, {
 			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 16,
@@ -34,6 +34,10 @@
 				prevEl: '.feature-grid__nav-prev'
 			}
 		})
+
+		return () => {
+			swiper.destroy(true, true)
+		}
 	}
 
 	const paddingClass = $derived(() => {
@@ -63,38 +67,40 @@
 			<div class="feature-grid__heading">
 				<h3 class="low">{slice.primary.heading}</h3>
 			</div>
-			<div
-				class="feature-grid__content swiper feature-grid__swiper"
-				{@attach initSwiper}
-			>
-				<div class="swiper-wrapper">
-					{#each slice.primary.features as item, index (index)}
-						<div class="feature-grid__item swiper-slide">
-							<div class="icon">
-								<FeatureGridShapes shape={item.icon} />
+			{#key slice}
+				<div
+					class="feature-grid__content swiper feature-grid__swiper"
+					{@attach initSwiper}
+				>
+					<div class="swiper-wrapper">
+						{#each slice.primary.features as item, index (index)}
+							<div class="feature-grid__item swiper-slide">
+								<div class="icon">
+									<FeatureGridShapes shape={item.icon} />
+								</div>
+								<div class="text general-content">
+									<PrismicRichText field={item.description} />
+								</div>
 							</div>
-							<div class="text general-content">
-								<PrismicRichText field={item.description} />
-							</div>
-						</div>
-					{/each}
-				</div>
+						{/each}
+					</div>
 
-				<div class="feature-grid__navigation">
-					<button
-						class="feature-grid__nav-prev navigation-button"
-						aria-label="Previous"
-					>
-						<i class="icon-chevron prev-icon"></i>
-					</button>
-					<button
-						class="feature-grid__nav-next navigation-button"
-						aria-label="Next"
-					>
-						<i class="icon-chevron next-icon"></i>
-					</button>
+					<div class="feature-grid__navigation">
+						<button
+							class="feature-grid__nav-prev navigation-button"
+							aria-label="Previous"
+						>
+							<i class="icon-chevron prev-icon"></i>
+						</button>
+						<button
+							class="feature-grid__nav-next navigation-button"
+							aria-label="Next"
+						>
+							<i class="icon-chevron next-icon"></i>
+						</button>
+					</div>
 				</div>
-			</div>
+			{/key}
 		</div>
 	</div>
 </section>
