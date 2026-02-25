@@ -2,7 +2,7 @@
 	import type { Content } from '@prismicio/client'
 	import {
 		type SliceComponentProps,
-		PrismicRichText,
+		PrismicRichText
 	} from '@prismicio/svelte'
 
 	import { Gradient } from '$lib/gradients'
@@ -13,6 +13,19 @@
 	type Props = SliceComponentProps<Content.IntroWithMediaRowSlice>
 
 	const { slice }: Props = $props()
+
+	function setHeightToVisualViewport(node) {
+		if (window.visualViewport) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height}px`
+			)
+
+			return
+		}
+
+		node.setAttribute('style', `height: 100svh`)
+	}
 
 	onMount(() => {
 		const gradient = new Gradient()
@@ -25,6 +38,7 @@
 	class="hero-section"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
+	{@attach setHeightToVisualViewport}
 >
 	<canvas
 		id="gradient-canvas"
@@ -43,9 +57,12 @@
 		</div>
 
 		{#if slice.primary.turn_off_image_slider == false}
-		<div class="hero-section__bottom">
-			<ScrollDirectionSlider images={slice.primary.media} classNames="media-item" />
-		</div>
+			<div class="hero-section__bottom">
+				<ScrollDirectionSlider
+					images={slice.primary.media}
+					classNames="media-item"
+				/>
+			</div>
 		{/if}
 	</div>
 </section>
@@ -53,7 +70,6 @@
 <style lang="scss">
 	.hero-section {
 		position: relative;
-		min-height: 100vh;
 		display: flex;
 		flex-flow: column;
 		gap: 2.5rem;
@@ -73,7 +89,7 @@
 		}
 
 		&__container {
-		     min-height: 100vh;
+			height: 100%;
 			display: flex;
 			flex-flow: column;
 			justify-content: end;
@@ -102,12 +118,12 @@
 			z-index: 1;
 
 			:global .media-item {
-			     height: 185px;
+				height: 185px;
 				width: 220px;
 				overflow: clip;
 
 				@media (min-width: 1024px) {
-				     height: 485px;
+					height: 485px;
 					width: 300px;
 				}
 			}
