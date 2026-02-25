@@ -32,7 +32,7 @@
 			.timeline({
 				defaults: {
 					ease: 'loader',
-					duration: 3
+					duration: 1.5
 				}
 			})
 			.set(wrap, { display: 'block' })
