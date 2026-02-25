@@ -207,7 +207,7 @@
 
 <style lang="scss">
 	.footer {
-		padding-block: 3.125rem 1.25rem;
+		padding-block: 3.125rem 3.125rem;
 
 		background: linear-gradient(
 			to bottom right,
