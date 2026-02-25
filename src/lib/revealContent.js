@@ -14,7 +14,7 @@ export function initContentRevealScroll() {
       const groupDistance = groupEl.getAttribute('data-distance') || '2em';
       const triggerStart = groupEl.getAttribute('data-start') || 'top 80%';
 
-      const animDuration = 0.8;
+      const animDuration = 0.4;
       const animEase = "power4.inOut";
 
       // Reduced motion: show immediately
