@@ -235,8 +235,8 @@
 		top: 50%;
 		transform: translateY(-50%);
 		z-index: 10;
-		width: 2.75em;
-		height: 2.75em;
+		width: 2em;
+		height: 2em;
 		background-color: var(--color-snow-white);
 		border: none;
 		border-radius: 50%;
@@ -247,6 +247,7 @@
 		justify-content: center;
 		transition: all 0.3s ease;
 		display: flex;
+		opacity: 0.65;
 
 		i {
 			font-size: 1.25em;
@@ -259,7 +260,7 @@
 		}
 
 		&:disabled {
-			opacity: 0.3;
+			opacity: 0.15;
 			cursor: not-allowed;
 
 			&:hover {
@@ -268,11 +269,11 @@
 		}
 
 		&.custom-prev {
-			left: 0.625rem;
+			left: 0.225rem;
 		}
 
 		&.custom-next {
-			right: 0.625rem;
+			right: 0.225rem;
 		}
 	}
 </style>

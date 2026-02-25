@@ -354,7 +354,7 @@
 
 		&__heading {
 			color: var(--color-dark-mode);
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 
 			@media (min-width: 768px) {
 				margin-bottom: 2rem;
@@ -374,18 +374,19 @@
 		}
 
 		&__tag {
-			font-size: 1.5rem;
+			font-size: 1rem;
 			font-weight: 500;
 
 			background-color: var(--color-dark-mode);
 			border-radius: 0.25rem;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 			padding: 0.5rem;
 			line-height: 0.95;
 			color: var(--color-snow-white);
 
 			@media (min-width: 768px) {
 				margin-bottom: 3.5rem;
+				font-size: 1.5rem;
 			}
 		}
 
@@ -416,13 +417,13 @@
 			align-items: center;
 			height: auto;
 			min-height: 100svh;
-			padding-top: 3rem;
+			padding-top: 7.5rem;
 			padding-bottom: 1rem;
 		}
 
 		.sticky-features__container {
 			grid-column-gap: 2em;
-			grid-row-gap: 1.5rem;
+			grid-row-gap: 0;
 			flex-flow: column;
 			justify-content: flex-start;
 			align-items: stretch;
