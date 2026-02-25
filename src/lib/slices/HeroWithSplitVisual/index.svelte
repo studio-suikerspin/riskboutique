@@ -9,6 +9,19 @@
 
 	const { slice }: Props = $props()
 
+	function setHeightToVisualViewport(node) {
+		if (window.visualViewport) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height}px`
+			)
+
+			return
+		}
+
+		node.setAttribute('style', `height: 100svh`)
+	}
+
 	onMount(() => {
 		const gradient = new Gradient()
 
@@ -27,7 +40,10 @@
 		data-transition-in
 	></canvas>
 	<div class="container medium">
-		<div class="hero-advisory__content">
+		<div
+			class="hero-advisory__content"
+			{@attach setHeightToVisualViewport}
+		>
 			<div class="hero-advisory__title-wrap">
 				<h1 class="hero-advisory__title">Advisory</h1>
 				<div class="hero-advisory__subtitle h4">
@@ -46,30 +62,6 @@
 		position: relative;
 		overflow: hidden;
 
-		// &::after {
-		// 	content: '';
-		// 	position: absolute;
-		// 	bottom: 0;
-		// 	left: 0;
-		// 	right: 0;
-		// 	height: 12.5rem;
-		// 	background: linear-gradient(
-		// 		to bottom,
-		// 		transparent 0%,
-		// 		rgba(11, 14, 19, 0.3) 40%,
-		// 		rgba(11, 14, 19, 0.8) 80%,
-		// 		#0b0e13 100%
-		// 	);
-		// 	pointer-events: none;
-		// 	z-index: 1;
-		// }
-
-		// @media (min-width: 768px) {
-		// 	&::after {
-		// 		height: 9.375rem;
-		// 	}
-		// }
-
 		&__gradient {
 			position: absolute;
 			width: 100%;
@@ -85,7 +77,6 @@
 		}
 
 		&__content {
-			min-height: 100vh;
 			width: 100%;
 			display: flex;
 			flex-direction: column;

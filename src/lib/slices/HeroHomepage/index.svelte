@@ -1,30 +1,47 @@
 <script lang="ts">
-	import type { Content } from '@prismicio/client';
-	import type { SliceComponentProps } from '@prismicio/svelte';
-	import { PrismicRichText, PrismicLink, PrismicImage } from '@prismicio/svelte';
-	
+	import type { Content } from '@prismicio/client'
+	import type { SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicRichText } from '@prismicio/svelte'
 
-	type Props = SliceComponentProps<Content.ComingSoonSlice>;
+	type Props = SliceComponentProps<Content.ComingSoonSlice>
 
-	const { slice }: Props = $props();
+	const { slice }: Props = $props()
 
-	import { Gradient } from '$lib/gradients';
-	import { onMount } from 'svelte';
-	import ScrollDirectionSlider from '$lib/components/ScrollDirectionSlider.svelte';
+	import { Gradient } from '$lib/gradients'
+	import { onMount } from 'svelte'
+	import ScrollDirectionSlider from '$lib/components/ScrollDirectionSlider.svelte'
+
+	function setHeightToVisualViewport(node) {
+		if (window.visualViewport) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height}px`
+			)
+
+			return
+		}
+
+		node.setAttribute('style', `height: 100svh`)
+	}
 
 	onMount(() => {
-		const gradient = new Gradient();
+		const gradient = new Gradient()
 
-		gradient.initGradient('#gradient-canvas');
-	});
+		gradient.initGradient('#gradient-canvas')
+	})
 </script>
 
 <section
 	class="hero-section"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
+	{@attach setHeightToVisualViewport}
 >
-	<canvas id="gradient-canvas" class="hero-section__gradient" data-transition-in></canvas>
+	<canvas
+		id="gradient-canvas"
+		class="hero-section__gradient"
+		data-transition-in
+	></canvas>
 
 	<div class="hero-section__inner">
 		<div class="hero-section__centered-content">
@@ -39,24 +56,23 @@
 			<div class="hero-section__headline">
 				<PrismicRichText field={slice.primary.heading} />
 			</div>
-
 		</div>
 
 		{#if slice.primary.turn_off_image_slider == false}
-		<div class="hero-section__bottom">
-			<div class="bottom-images">
-				<ScrollDirectionSlider images={slice.primary.gallery} />
+			<div class="hero-section__bottom">
+				<div class="bottom-images">
+					<ScrollDirectionSlider images={slice.primary.gallery} />
+				</div>
 			</div>
-		</div>
 		{/if}
-
 	</div>
 </section>
 
 <style lang="scss">
 	.hero-section {
 		position: relative;
-		min-height: 100dvh;
+		height: fill-available;
+		/* height: 100svh; */
 		display: flex;
 
 		&__gradient {
@@ -80,12 +96,9 @@
 
 			display: flex;
 			flex-direction: column;
-
-			
 		}
 
-
-		&__button{
+		&__button {
 			margin-top: 1.5rem;
 		}
 
@@ -98,7 +111,7 @@
 
 			padding-inline: 0.75rem;
 
-			@media(min-width: 768px){
+			@media (min-width: 768px) {
 				padding-inline: 0;
 			}
 
@@ -147,7 +160,7 @@
 				line-height: 85%;
 			}
 
-			@media(min-width: 768px){
+			@media (min-width: 768px) {
 				max-width: 1200px;
 			}
 
@@ -185,15 +198,14 @@
 				}
 			}
 
-			.scroll_for_more{
+			.scroll_for_more {
 				color: var(--color-snow-white);
 				display: none;
 
-				@media(min-width: 768px){
+				@media (min-width: 768px) {
 					display: block;
 				}
 			}
-
 		}
 	}
 </style>
