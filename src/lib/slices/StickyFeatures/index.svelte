@@ -14,6 +14,19 @@
 
 	const { slice }: Props = $props()
 
+	function setHeightToVisualViewport(node) {
+		const isMobile = window.matchMedia('(max-width: 768px)').matches
+
+		if (window.visualViewport && isMobile) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height}px`
+			)
+
+			return
+		}
+	}
+
 	function initStickyFeatures(root) {
 		const wraps = Array.from(
 			(root || document).querySelectorAll('[data-sticky-feature-wrap]')
@@ -166,7 +179,10 @@
 		data-sticky-feature-wrap=""
 		class="sticky-features__wrap"
 	>
-		<div class="sticky-features__scroll">
+		<div
+			class="sticky-features__scroll"
+			{@attach setHeightToVisualViewport}
+		>
 			<div class="sticky-features__container">
 				<div class="sticky-features__col is--img">
 					<div class="sticky-features__img-collection">
