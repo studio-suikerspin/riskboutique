@@ -634,7 +634,6 @@
 	}
 
 	.sidenav__menu-list-item {
-		height: 2rem;
 		margin-top: 0;
 		margin-bottom: 0;
 		position: relative;
