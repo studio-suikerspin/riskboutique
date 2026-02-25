@@ -10,6 +10,19 @@
 
 	const { slice }: Props = $props()
 
+	function setHeightToVisualViewport(node) {
+		if (window.visualViewport) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height * 3.5}px`
+			)
+
+			return
+		}
+
+		node.setAttribute('style', `height: 350svh`)
+	}
+
 	function initStickyTitleScroll() {
 		const wraps = document.querySelectorAll('[data-sticky-title="wrap"]')
 
@@ -38,7 +51,9 @@
 				const split = SplitText.create(heading, { type: 'words,chars' })
 
 				// Hide all the separate words from screenreader
-				split.words.forEach((word) => word.setAttribute('aria-hidden', 'true'))
+				split.words.forEach((word) =>
+					word.setAttribute('aria-hidden', 'true')
+				)
 
 				// Reset visibility on the 'stacked' headings
 				gsap.set(heading, { visibility: 'visible' })
@@ -79,6 +94,7 @@
 	data-slice-variation={slice.variation}
 	data-sticky-title="wrap"
 	class="section-sticky-title"
+	{@attach setHeightToVisualViewport}
 >
 	<div class="section-sticky-title__container">
 		<div class="section-sticky-title__inner">
@@ -108,7 +124,6 @@
 		background: linear-gradient(#0b0e13, #0e4f63);
 		color: #f9f9f8;
 		width: 100%;
-		height: 350vh;
 		position: relative;
 
 		&__container {
