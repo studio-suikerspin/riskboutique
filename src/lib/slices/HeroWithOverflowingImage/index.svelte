@@ -109,6 +109,13 @@
 				font-weight: unset;
 				color: var(--color-clay-green);
 			}
+
+			@media(max-width: 768px){
+				:global h1{
+					font-size: 2.5rem;
+					line-height: 115%;
+				}	
+			}
 		}
 
 		&__content {
