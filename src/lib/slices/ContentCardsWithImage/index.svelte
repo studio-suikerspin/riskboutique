@@ -193,7 +193,10 @@
 		&__headline_wrap {
 			display: flex;
 			flex-direction: column;
-			gap: 2.5rem;
+
+			@media(min-width: 768px){
+				gap: 2.5rem;
+			}
 
 			.general-content :global p {
 				max-width: 40rem;

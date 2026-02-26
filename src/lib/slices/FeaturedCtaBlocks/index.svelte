@@ -108,7 +108,11 @@
 				display: flex;
 				flex-flow: column;
 				align-items: flex-start;
-				gap: 2.5rem;
+				gap: 1.5rem;
+
+				@media(min-width: 768px){
+					gap: 2.5rem;
+				}
 			}
 
 			.contact-wrap {
@@ -143,7 +147,7 @@
 
 			:global .world-shape {
 				position: sticky;
-				top: 0;
+				top: 40px;
 			}
 		}
 
