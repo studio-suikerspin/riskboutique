@@ -169,6 +169,19 @@
 		submenu.setAttribute('data-submenu-state', 'closed')
 	}
 
+	function setHeightToViewportHeight(node) {
+		const isDesktop = window.matchMedia('(min-width: 992px)').matches
+
+		if (isDesktop) return
+
+		if (window.visualViewport) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height}px`
+			)
+		}
+	}
+
 	onMount(() => {
 		CustomEase.create('main', '0.65, 0.01, 0.05, 0.99')
 
@@ -204,6 +217,7 @@
 		data-sidenav-wrap=""
 		data-nav-state="closed"
 		class="sidenav__nav"
+		{@attach setHeightToViewportHeight}
 	>
 		<div
 			data-sidenav-overlay=""
