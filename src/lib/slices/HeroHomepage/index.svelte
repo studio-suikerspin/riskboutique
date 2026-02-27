@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicRichText } from '@prismicio/svelte'
+	import { PrismicImage, PrismicRichText } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.ComingSoonSlice>
 
@@ -45,11 +45,15 @@
 	data-slice-variation={slice.variation}
 	{@attach attachment}
 >
-	<canvas
-		id="gradient-canvas"
-		class="hero-section__gradient"
-		data-transition-in
-	></canvas>
+	{#if slice.variation === 'default'}
+		<canvas
+			id="gradient-canvas"
+			class="hero-section__gradient"
+			data-transition-in
+		></canvas>
+	{:else if slice.variation === 'withMediaBackground'}
+		<PrismicImage field={slice.primary.background_media} />
+	{/if}
 
 	<div class="hero-section__inner">
 		<div class="hero-section__centered-content">
