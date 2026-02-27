@@ -9,7 +9,7 @@
 
 	const { slice }: Props = $props()
 
-	function setHeightToVisualViewport(node) {
+	function setHeightToVisualViewportHeight(node) {
 		if (window.visualViewport) {
 			node.setAttribute(
 				'style',
@@ -20,6 +20,14 @@
 		}
 
 		node.setAttribute('style', `height: 100svh`)
+	}
+
+	function attachment(node) {
+		window.addEventListener('resize', () => {
+			setHeightToVisualViewportHeight(node)
+		})
+
+		setHeightToVisualViewportHeight(node)
 	}
 
 	onMount(() => {
@@ -42,7 +50,7 @@
 	<div class="container medium">
 		<div
 			class="hero-advisory__content"
-			{@attach setHeightToVisualViewport}
+			{@attach attachment}
 		>
 			<div class="hero-advisory__title-wrap">
 				<h1 class="hero-advisory__title">Advisory</h1>
@@ -78,6 +86,7 @@
 
 		&__content {
 			width: 100%;
+			min-height: 800px;
 			display: flex;
 			flex-direction: column;
 			align-items: start;

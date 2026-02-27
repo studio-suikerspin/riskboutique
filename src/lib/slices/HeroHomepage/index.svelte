@@ -11,7 +11,7 @@
 	import { onMount } from 'svelte'
 	import ScrollDirectionSlider from '$lib/components/ScrollDirectionSlider.svelte'
 
-	function setHeightToVisualViewport(node) {
+	function setHeightToVisualViewportHeight(node) {
 		if (window.visualViewport) {
 			node.setAttribute(
 				'style',
@@ -22,6 +22,14 @@
 		}
 
 		node.setAttribute('style', `height: 100svh`)
+	}
+
+	function attachment(node) {
+		window.addEventListener('resize', () => {
+			setHeightToVisualViewportHeight(node)
+		})
+
+		setHeightToVisualViewportHeight(node)
 	}
 
 	onMount(() => {
@@ -35,7 +43,7 @@
 	class="hero-section"
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	{@attach setHeightToVisualViewport}
+	{@attach attachment}
 >
 	<canvas
 		id="gradient-canvas"
@@ -71,8 +79,7 @@
 <style lang="scss">
 	.hero-section {
 		position: relative;
-		height: fill-available;
-		/* height: 100svh; */
+		min-height: 800px;
 		display: flex;
 
 		&__gradient {

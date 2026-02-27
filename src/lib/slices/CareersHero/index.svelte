@@ -1,20 +1,43 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
 	import type { Content } from '@prismicio/client'
-	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte'
+	import {
+		PrismicRichText,
+		type SliceComponentProps
+	} from '@prismicio/svelte'
 	import { onMount } from 'svelte'
-	import { Gradient } from '$lib/gradients';
+	import { Gradient } from '$lib/gradients'
 
 	type Props = SliceComponentProps<Content.ContentHeroSlice>
 
 	const { slice }: Props = $props()
 
+	function setHeightToVisualViewportHeight(node) {
+		if (window.visualViewport) {
+			node.setAttribute(
+				'style',
+				`height: ${window.visualViewport.height}px`
+			)
+
+			return
+		}
+
+		node.setAttribute('style', `height: 100svh`)
+	}
+
+	function attachment(node) {
+		window.addEventListener('resize', () => {
+			setHeightToVisualViewportHeight(node)
+		})
+
+		setHeightToVisualViewportHeight(node)
+	}
+
 	onMount(() => {
-		const gradient = new Gradient();
+		const gradient = new Gradient()
 
-		gradient.initGradient('#gradient-canvas');
-	});
-
+		gradient.initGradient('#gradient-canvas')
+	})
 </script>
 
 <section
@@ -22,9 +45,16 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-<canvas id="gradient-canvas" class="section-careers-hero__gradient" data-transition-in></canvas>
+	<canvas
+		id="gradient-canvas"
+		class="section-careers-hero__gradient"
+		data-transition-in
+	></canvas>
 	<div class="container">
-		<div class="section-careers-hero__wrapper">
+		<div
+			class="section-careers-hero__wrapper"
+			{@attach attachment}
+		>
 			<div class="section-careers-hero__text">
 				<h1>{slice.primary.headline}</h1>
 				<PrismicRichText field={slice.primary.description} />
@@ -49,10 +79,6 @@
 
 <style lang="scss">
 	.section-careers-hero {
-		// background: url('/bg-gradient-donker.svg');
-		// background-repeat: no-repeat;
-		// background-size: cover;
-		// padding-inline: 1.25rem;
 		position: relative;
 		overflow: hidden;
 
@@ -71,6 +97,7 @@
 		}
 
 		&__wrapper {
+			min-height: fit-content;
 			gap: 5rem;
 			display: grid;
 			padding-block-end: 2.5rem;
