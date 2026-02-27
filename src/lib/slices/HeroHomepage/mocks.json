@@ -225,8 +225,8 @@
 				"value": true
 			},
 			"background_media": {
-				"__TYPE__": "LinkContent",
 				"key": "cdfb565a-27aa-4c3e-9cd8-5f389f37a262",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "FileLink",
 					"id": "mock_Media_link",
