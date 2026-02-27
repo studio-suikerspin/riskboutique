@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
 	import Label from '$lib/components/UI/Label.svelte'
+	import Select from '$lib/components/UI/Select.svelte'
 	import type { Content } from '@prismicio/client'
 	import {
 		PrismicRichText,
@@ -176,21 +177,15 @@
 							for="subject"
 							class="contact-form__label">Subject</label
 						>
-						<div class="contact-form__select-wrap">
-							<select
-								class="contact-form__input contact-form__select"
-								required
-							>
-								<option
-									selected
-									disabled>Pick a subject...</option
-								>
-								{#each slice.primary.subject_options as { label }, index (index)}
-									<option value={label}>{label}</option>
-								{/each}
-							</select>
-							<i class="icon-chevron"></i>
-						</div>
+						<Select
+							name="subject"
+							classes="contact-form__input contact-form__select"
+							placeholder="Pick a subject..."
+						>
+							{#each slice.primary.subject_options as { label }, index (index)}
+								<option value={label}>{label}</option>
+							{/each}
+						</Select>
 					</div>
 					<div class="contact-form__group">
 						<label
