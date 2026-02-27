@@ -3,7 +3,7 @@
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicImage, PrismicRichText } from '@prismicio/svelte'
 
-	type Props = SliceComponentProps<Content.ComingSoonSlice>
+	type Props = SliceComponentProps<Content.HeroStatementSlice>
 
 	const { slice }: Props = $props()
 
@@ -48,14 +48,34 @@
 	{#if slice.variation === 'default'}
 		<canvas
 			id="gradient-canvas"
-			class="hero-section__gradient"
+			class="hero-section__background"
 			data-transition-in
 		></canvas>
 	{:else if slice.variation === 'withMediaBackground'}
-		<PrismicImage field={slice.primary.background_media} />
+		<div class="hero-section__background hero-section__background--media">
+			{#if slice.primary.background_media.kind === 'image'}
+				<img
+					src={slice.primary.background_media?.url}
+					alt="background media"
+				/>
+			{:else}
+				<video
+					autoplay
+					muted
+					loop
+					playsinline
+				>
+					<source src={slice.primary.background_media?.url} />
+				</video>
+			{/if}
+		</div>
 	{/if}
 
-	<div class="hero-section__inner">
+	<div
+		class="hero-section__inner {slice.variation === 'withMediaBackground'
+			? 'hero-section__inner--overlay'
+			: ''}"
+	>
 		<div class="hero-section__centered-content">
 			<div class="taglines">
 				{#each slice.primary.tags as item (item.tag)}
@@ -86,7 +106,7 @@
 		min-height: 800px;
 		display: flex;
 
-		&__gradient {
+		&__background {
 			position: absolute;
 			width: 100%;
 			height: 100%;
@@ -98,6 +118,13 @@
 			--gradient-color-2: #0e4f63;
 			--gradient-color-3: #0e4f63;
 			--gradient-color-4: #0e4f63;
+
+			img,
+			video {
+				object-fit: cover;
+				height: 100%;
+				width: 100%;
+			}
 		}
 
 		&__inner {
@@ -107,6 +134,10 @@
 
 			display: flex;
 			flex-direction: column;
+
+			&--overlay {
+				background: rgba(0, 0, 0, 0.5);
+			}
 		}
 
 		&__button {
