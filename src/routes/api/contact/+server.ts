@@ -31,10 +31,7 @@ export async function POST({ request, fetch }) {
 			}
 		})
 
-		co
-
 		if (error) {
-			console.log(error)
 			return json({ success: false, error }, { status: 500 })
 		}
 

@@ -24,7 +24,8 @@
 			name: formData.get('name'),
 			email: formData.get('email'),
 			phone: formData.get('phone'),
-			message: formData.get('message')
+			message: formData.get('message'),
+			subject: formData.get('subject')
 		}
 
 		loading = true
