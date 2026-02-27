@@ -3304,6 +3304,16 @@ export interface HeroStatementSliceWithMediaBackgroundPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
 	 */
 	background_media: prismic.LinkToMediaField<prismic.FieldState, never>
+
+	/**
+	 * Poster image field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.poster_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	poster_image: prismic.ImageField<never>
 }
 
 /**

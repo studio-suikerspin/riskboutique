@@ -191,6 +191,14 @@
             "select": "media",
             "allowText": true
           }
+        },
+        "poster_image": {
+          "type": "Image",
+          "config": {
+            "label": "Poster image",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

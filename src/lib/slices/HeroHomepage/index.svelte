@@ -64,6 +64,7 @@
 					muted
 					loop
 					playsinline
+					poster={slice.primary.poster_image?.url}
 				>
 					<source src={slice.primary.background_media?.url} />
 				</video>
