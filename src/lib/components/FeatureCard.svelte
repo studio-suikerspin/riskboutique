@@ -38,7 +38,7 @@
 			{title}
 		</h4>
 		<div
-			class="feature-card__description subtitle"
+			class="feature-card__description subtitle rich-text-content"
 			style="color: var(--color-{text_color});"
 		>
 			<PrismicRichText field={description} />

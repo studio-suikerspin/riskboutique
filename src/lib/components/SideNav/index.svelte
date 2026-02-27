@@ -463,6 +463,7 @@
 
 		:global .submenu-item {
 			display: flex;
+			padding-block: 0.125rem;
 			padding-inline: 1.5rem;
 			color: var(--color-dark-mode);
 			overflow: hidden;
