@@ -6,9 +6,9 @@ import { createClient } from '$lib/prismicio.js'
 const resend = new Resend(RESEND_API_KEY)
 
 export async function POST({ request, fetch }) {
-	const { name, email, phone, message } = await request.json()
+	const { name, email, phone, message, subject } = await request.json()
 
-	if (!name || !email || !phone || !message) {
+	if (!name || !email || !phone || !message || !subject) {
 		return json(
 			{ success: false, error: 'Missing required fields' },
 			{ status: 400 }
@@ -27,9 +27,11 @@ export async function POST({ request, fetch }) {
 			to: mailTo.length ? [...mailTo] : ['info@suikerspin.studio'],
 			template: {
 				id: RESEND_TEMPLATE_ID,
-				variables: { name, email, phone, message }
+				variables: { name, email, phone, message, subject }
 			}
 		})
+
+		co
 
 		if (error) {
 			console.log(error)
