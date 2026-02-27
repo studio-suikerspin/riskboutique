@@ -3087,6 +3087,61 @@ export interface HeroStatementSliceDefaultPrimaryGalleryItem {
 }
 
 /**
+ * Item in *HeroHomepage → With media background → Primary → Tags*
+ */
+export interface HeroStatementSliceWithMediaBackgroundPrimaryTagsItem {
+	/**
+	 * Tag field in *HeroHomepage → With media background → Primary → Tags*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.tags[].tag
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	tag: prismic.KeyTextField
+}
+
+/**
+ * Item in *HeroHomepage → With media background → Primary → Address lines*
+ */
+export interface HeroStatementSliceWithMediaBackgroundPrimaryAddressLinesItem {
+	/**
+	 * Line field in *HeroHomepage → With media background → Primary → Address lines*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.address_lines[].line
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	line: prismic.KeyTextField
+}
+
+/**
+ * Item in *HeroHomepage → With media background → Primary → Gallery*
+ */
+export interface HeroStatementSliceWithMediaBackgroundPrimaryGalleryItem {
+	/**
+	 * Image field in *HeroHomepage → With media background → Primary → Gallery*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.gallery[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>
+
+	/**
+	 * Video field in *HeroHomepage → With media background → Primary → Gallery*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.gallery[].video
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video: prismic.LinkToMediaField<prismic.FieldState, never>
+}
+
+/**
  * Primary content in *HeroHomepage → Default → Primary*
  */
 export interface HeroStatementSliceDefaultPrimary {
@@ -3170,9 +3225,107 @@ export type HeroStatementSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *HeroHomepage → With media background → Primary*
+ */
+export interface HeroStatementSliceWithMediaBackgroundPrimary {
+	/**
+	 * Tags field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.tags[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	tags: prismic.GroupField<
+		Simplify<HeroStatementSliceWithMediaBackgroundPrimaryTagsItem>
+	>
+
+	/**
+	 * Heading field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: e.g., We create trust in a digital world.
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField
+
+	/**
+	 * Address lines field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.address_lines[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	address_lines: prismic.GroupField<
+		Simplify<HeroStatementSliceWithMediaBackgroundPrimaryAddressLinesItem>
+	>
+
+	/**
+	 * Scroll Hint field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: e.g., (Scroll for more)
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.scrollHint
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	scrollHint: prismic.KeyTextField
+
+	/**
+	 * Gallery field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.gallery[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	gallery: prismic.GroupField<
+		Simplify<HeroStatementSliceWithMediaBackgroundPrimaryGalleryItem>
+	>
+
+	/**
+	 * Turn off image slider field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.turn_off_image_slider
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	turn_off_image_slider: prismic.BooleanField
+
+	/**
+	 * Background Media field in *HeroHomepage → With media background → Primary*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_statement.withMediaBackground.primary.background_media
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	background_media: prismic.LinkToMediaField<prismic.FieldState, never>
+}
+
+/**
+ * With media background variation for HeroHomepage Slice
+ *
+ * - **API ID**: `withMediaBackground`
+ * - **Description**: Default hero statement variation
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroStatementSliceWithMediaBackground =
+	prismic.SharedSliceVariation<
+		'withMediaBackground',
+		Simplify<HeroStatementSliceWithMediaBackgroundPrimary>,
+		never
+	>
+
+/**
  * Slice variation for *HeroHomepage*
  */
-type HeroStatementSliceVariation = HeroStatementSliceDefault
+type HeroStatementSliceVariation =
+	| HeroStatementSliceDefault
+	| HeroStatementSliceWithMediaBackground
 
 /**
  * HeroHomepage Shared Slice
@@ -5206,8 +5359,13 @@ declare module '@prismicio/client' {
 			HeroStatementSliceDefaultPrimaryAddressLinesItem,
 			HeroStatementSliceDefaultPrimaryGalleryItem,
 			HeroStatementSliceDefaultPrimary,
+			HeroStatementSliceWithMediaBackgroundPrimaryTagsItem,
+			HeroStatementSliceWithMediaBackgroundPrimaryAddressLinesItem,
+			HeroStatementSliceWithMediaBackgroundPrimaryGalleryItem,
+			HeroStatementSliceWithMediaBackgroundPrimary,
 			HeroStatementSliceVariation,
 			HeroStatementSliceDefault,
+			HeroStatementSliceWithMediaBackground,
 			HeroTextOnlySlice,
 			HeroTextOnlySliceDefaultPrimary,
 			HeroTextOnlySliceVariation,
