@@ -50,6 +50,11 @@
 					spaceBetween: '20px'
 				},
 				1024: {
+					slidesPerView: 2.1,
+					spaceBetween: '40px'
+				},
+				1200: {
+					slidesPerView: 1.4,
 					spaceBetween: '40px'
 				}
 			}
@@ -71,89 +76,96 @@
 			class="content-cards__headline_wrap"
 			data-reveal-group
 		>
-		<div class="content-cards__inner">
-			<div class="content-cards__text">
-				<h2 class="content-cards__headline">{slice.primary.headline}</h2>
-				{#if slice.primary.subtekst.length > 0}
-					<div class="general-content subtext-wrapper">
-						<PrismicRichText field={slice.primary.subtekst} />
-						{#if slice.primary.call_to_action?.url}
-							<div class="btn btn--dark">
-								<PrismicLink field={slice.primary.call_to_action}>
-									<i
-										class="btn__icon btn__icon--rotate icon-arrow-right"
-									></i>
-									<span>Request proposal</span>
-								</PrismicLink>
-							</div>
-						{/if}
+			<div class="content-cards__inner">
+				<div class="content-cards__text">
+					<h2 class="content-cards__headline">
+						{slice.primary.headline}
+					</h2>
+					{#if slice.primary.subtekst.length > 0}
+						<div class="general-content subtext-wrapper">
+							<PrismicRichText field={slice.primary.subtekst} />
+							{#if slice.primary.call_to_action?.url}
+								<div class="btn btn--dark">
+									<PrismicLink
+										field={slice.primary.call_to_action}
+									>
+										<i
+											class="btn__icon btn__icon--rotate icon-arrow-right"
+										></i>
+										<span>Request proposal</span>
+									</PrismicLink>
+								</div>
+							{/if}
+						</div>
+					{/if}
+				</div>
+				{#if slice.primary.contact_avatar?.data}
+					<div class="avatar">
+						<AvatarWithContactInfo
+							image={slice.primary.contact_avatar.data.image}
+							name={slice.primary.contact_avatar.data.name}
+							role={slice.primary.contact_avatar.data.role}
+							phone={slice.primary.contact_avatar.data.phone}
+							email={slice.primary.contact_avatar.data.email}
+							second_role={slice.primary.contact_avatar.data
+								.second_role}
+						/>
 					</div>
 				{/if}
 			</div>
-			{#if slice.primary.contact_avatar?.data}
-			<div class="avatar">
-				<AvatarWithContactInfo
-					image={slice.primary.contact_avatar.data.image}
-					name={slice.primary.contact_avatar.data.name}
-					role={slice.primary.contact_avatar.data.role}
-					phone={slice.primary.contact_avatar.data.phone}
-					email={slice.primary.contact_avatar.data.email}
-					second_role={slice.primary.contact_avatar.data.second_role}
-				/>
-			</div>
-			{/if}
-		</div>
 
-		<div
-			class="content-cards__slider"
-			{@attach initSwiper}
-		>
-			<div class="swiper-wrapper">
-				{#each slice.primary.items as item, key (key)}
-					<div class="swiper-slide item">
-						<div class="content-cards__card-wrap">
-							<div class="content-card border-radius">
-								<div class="content-card__media-wrap">
-									<PrismicImage field={item.media} />
-								</div>
-								<div class="content-card__content">
-									<h3 class="h4">{item.title}</h3>
-									<div class="rich-text-content">
-										<PrismicRichText
-											field={item.description}
-										/>
+			<div
+				class="content-cards__slider"
+				{@attach initSwiper}
+			>
+				<div class="swiper-wrapper">
+					{#each slice.primary.items as item, key (key)}
+						<div class="swiper-slide item">
+							<div class="content-cards__card-wrap">
+								<div class="content-card border-radius">
+									<div class="content-card__media-wrap">
+										<PrismicImage field={item.media} />
+									</div>
+									<div class="content-card__content">
+										<h3 class="h4">{item.title}</h3>
+										<div class="rich-text-content">
+											<PrismicRichText
+												field={item.description}
+											/>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
 			</div>
-		</div>
 
-		<div class="content-cards__slider-nav">
-			<div class="swiper-scrollbar"></div>
+			<div class="content-cards__slider-nav">
+				<div class="swiper-scrollbar"></div>
 
-			<div class="buttons-wrap">
-				<button
-					class="custom-prev navigation-button btn btn--outline"
-					aria-label="Previous"
-				>
-					Prev
-				</button>
-				<button
-					class="custom-next navigation-button btn btn--dark"
-					aria-label="Next"
-				>
-					Next
-				</button>
+				<div class="buttons-wrap">
+					<button
+						class="custom-prev navigation-button btn btn--outline"
+						aria-label="Previous"
+					>
+						Prev
+					</button>
+					<button
+						class="custom-next navigation-button btn btn--dark"
+						aria-label="Next"
+					>
+						Next
+					</button>
+				</div>
 			</div>
 
 			<div class="mobile-call-to-action">
 				{#if slice.primary.call_to_action?.url}
 					<div class="btn btn--dark">
 						<PrismicLink field={slice.primary.call_to_action}>
-							<i class="btn__icon btn__icon--rotate icon-arrow-right"
+							<i
+								class="btn__icon btn__icon--rotate icon-arrow-right"
 							></i>
 							<span>Request proposal</span>
 						</PrismicLink>
@@ -166,7 +178,8 @@
 						role={slice.primary.contact_avatar.data.role}
 						phone={slice.primary.contact_avatar.data.phone}
 						email={slice.primary.contact_avatar.data.email}
-						second_role={slice.primary.contact_avatar.data.second_role}
+						second_role={slice.primary.contact_avatar.data
+							.second_role}
 					/>
 				{/if}
 			</div>
@@ -178,13 +191,13 @@
 	.content-cards {
 		overflow: hidden;
 
-		&__inner{
+		&__inner {
 			display: flex;
 			justify-content: space-between;
 			align-items: end;
 		}
 
-		&__text{
+		&__text {
 			display: flex;
 			flex-direction: column;
 			gap: 2.5rem;
@@ -194,7 +207,7 @@
 			display: flex;
 			flex-direction: column;
 
-			@media(min-width: 768px){
+			@media (min-width: 768px) {
 				gap: 2.5rem;
 			}
 
@@ -232,14 +245,6 @@
 			}
 		}
 
-		// &__headline {
-		// 	margin-bottom: 2.5rem;
-
-		// 	@media (min-width: 1024px) {
-		// 		margin-bottom: 5rem;
-		// 	}
-		// }
-
 		&__slider {
 			overflow: visible;
 			margin-top: 2.5rem;
@@ -248,9 +253,9 @@
 				height: auto;
 			}
 
-			@media (min-width: 1024px) {
+			/* @media (min-width: 1024px) {
 				margin-top: 5rem;
-			}
+			} */
 
 			&::-webkit-scrollbar {
 				display: none;
@@ -263,19 +268,15 @@
 		}
 
 		&__slider-nav {
-			margin-top: 1rem;
 			display: flex;
-			align-items: start;
-			gap: 2.5rem;
+			align-items: center;
 			justify-content: space-between;
-			flex-direction: column;
+			gap: 2.5rem;
 
-			@media (min-width: 1024px) {
-				margin-top: 2.5rem;
-			}
+			margin-top: 1rem;
 
-			@media(min-width: 992px){
-				align-items: center;
+			@media (min-width: 768px) {
+				margin-top: 0;
 			}
 
 			.swiper-scrollbar {
@@ -297,7 +298,6 @@
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
-				width: 100%;
 
 				button {
 					width: 100%;
@@ -331,7 +331,7 @@
 
 			gap: 2.5rem;
 
-			@media (min-width: 1400px) {
+			@media (min-width: 1200px) {
 				flex-direction: row;
 			}
 
@@ -376,6 +376,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
+		margin-top: 1.5rem;
 
 		@media (min-width: 992px) {
 			display: none;
