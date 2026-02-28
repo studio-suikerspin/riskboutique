@@ -140,7 +140,7 @@
 
 			@media (min-width: 768px) {
 				position: sticky;
-				top: 1rem;
+				top: 7rem;
 				align-self: flex-start;
 			}
 
