@@ -44,16 +44,14 @@
 		/>
 		<title>{page.data.meta_title}</title>
 	{/if}
-	{#if page.data.meta_image}
-		<meta
-			name="og:image"
-			content={page.data.meta_image}
-		/>
-		<meta
-			name="twitter:card"
-			content="summary_large_image"
-		/>
-	{/if}
+	<meta
+		name="og:image"
+		content="/social-media-icon.png"
+	/>
+	<meta
+		name="twitter:card"
+		content="summary_large_image"
+	/>
 
 	<link
 		rel="stylesheet"

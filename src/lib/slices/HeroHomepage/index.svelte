@@ -54,10 +54,7 @@
 	{:else if slice.variation === 'withMediaBackground'}
 		<div class="hero-section__background hero-section__background--media">
 			{#if slice.primary.background_media.kind === 'image'}
-				<img
-					src={slice.primary.background_media?.url}
-					alt="background media"
-				/>
+				<PrismicImage field={slice.primary.background_media} />
 			{:else}
 				<video
 					autoplay
