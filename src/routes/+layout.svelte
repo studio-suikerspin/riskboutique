@@ -46,7 +46,7 @@
 	{/if}
 	<meta
 		name="og:image"
-		content="/social-media-icon.png"
+		content="/square-og-image.png"
 	/>
 	<meta
 		name="twitter:card"
