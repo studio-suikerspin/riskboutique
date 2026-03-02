@@ -43,6 +43,11 @@
 
 			toast.success('Message sent successfully!')
 			form.reset()
+
+			gtag('generate_lead', {
+				currency: 'EUR',
+				value: 0
+			})
 		} catch (error) {
 			console.error(error)
 			toast.error('Something went wrong. Please try again.')
