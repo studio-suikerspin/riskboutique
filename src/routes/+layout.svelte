@@ -75,6 +75,11 @@
 
 		gtag('config', 'G-V6BH9B0JYP')
 	</script>
+
+	<script
+		async
+		src="https://scripts.simpleanalyticscdn.com/latest.js"
+	></script>
 </svelte:head>
 <main class="relative">
 	<PageLoader />
