@@ -187,11 +187,8 @@
 							name="subject"
 							classes="contact-form__input contact-form__select"
 							placeholder="Pick a subject..."
-						>
-							{#each slice.primary.subject_options as { label }, index (index)}
-								<option value={label}>{label}</option>
-							{/each}
-						</Select>
+							options={slice.primary.subject_options}
+						/>
 					</div>
 					<div class="contact-form__group">
 						<label

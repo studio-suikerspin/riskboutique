@@ -1,13 +1,13 @@
-<script>
-	let { children, placeholder, classes, name } = $props()
+<script lang="ts">
+	let { options, placeholder, classes, name } = $props()
+
+	let input: HTMLInputElement | null
 
 	function buildCustomSelect(node) {
-		const optionsWrap = node
-			.closest('.select')
-			.querySelector('[data-custom-options]')
+		const optionsWrap = node.querySelector('[data-custom-options]')
 
-		Object.values(node.options).forEach((option) => {
-			const button = `<button type="button" class="select-option" data-value="${option.value}"><span class="select-option__text">${option.value}</span></button>`
+		options.forEach(({ label: option }) => {
+			const button = `<button type="button" class="select-option" data-value="${option}"><span class="select-option__text">${option}</span></button>`
 			optionsWrap.innerHTML += button
 		})
 
@@ -35,24 +35,13 @@
 
 		if (!selectWrap) return
 
-		const select = selectWrap.querySelector('select')
-
-		if (!select) return
+		input = selectWrap.querySelector('input')
 
 		const selectedText = selectWrap.querySelector('[data-selected-text]')
-		const selectedValue = e.target.dataset.value
+		const selectedValue = e.target.innerText
 		selectedText.innerText = selectedValue
 
-		Object.values(select.options).forEach((option) =>
-			option.removeAttribute('selected')
-		)
-
-		Object.values(select.options).forEach((option) => {
-			if (option.value !== selectedValue) return
-
-			option.setAttribute('selected', 'selected')
-		})
-
+		input.value = selectedValue
 		selectWrap.setAttribute('data-select-status', 'selected')
 
 		toggleSelect(e)
@@ -63,6 +52,7 @@
 	class="select {classes}"
 	data-select-toggle-status="closed"
 	data-select-status="unselected"
+	{@attach buildCustomSelect}
 >
 	<button
 		class="select__trigger"
@@ -82,12 +72,7 @@
 		data-custom-options
 	></div>
 
-	<select
-		{name}
-		{@attach buildCustomSelect}
-	>
-		{@render children()}
-	</select>
+	<input {name} />
 </div>
 
 <style lang="scss">
@@ -179,7 +164,7 @@
 			}
 		}
 
-		select {
+		input {
 			display: none;
 		}
 	}
