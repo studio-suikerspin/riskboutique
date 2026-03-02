@@ -44,7 +44,7 @@
 			toast.success('Message sent successfully!')
 			form.reset()
 
-			gtag('generate_lead', {
+			gtag('event', 'generate_lead', {
 				currency: 'EUR',
 				value: 0
 			})
