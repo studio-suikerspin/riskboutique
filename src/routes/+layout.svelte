@@ -61,6 +61,20 @@
 		rel="stylesheet"
 		href="/fonts/general-sans/general-sans.css"
 	/>
+
+	<script
+		async
+		src="https://www.googletagmanager.com/gtag/js?id=G-V6BH9B0JYP"
+	></script>
+	<script>
+		window.dataLayer = window.dataLayer || []
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+		gtag('js', new Date())
+
+		gtag('config', 'G-V6BH9B0JYP')
+	</script>
 </svelte:head>
 <main class="relative">
 	<PageLoader />
