@@ -23,7 +23,7 @@ export async function POST({ request, fetch }) {
 
 	try {
 		const { data, error } = await resend.emails.send({
-			from: 'Risk Boutique <riskboutique@suikerspin.studio>',
+			from: 'Risk Boutique <website@mail.riskboutique.nl>',
 			to: mailTo.length ? [...mailTo] : ['info@suikerspin.studio'],
 			template: {
 				id: RESEND_TEMPLATE_ID,
