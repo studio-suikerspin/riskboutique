@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicImage } from '@prismicio/svelte'
 	import { browser } from '$app/environment'
 	import { onMount } from 'svelte'
 	import { gsap, ScrollTrigger } from '$lib/gsap'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.TrustedBySlice>
 
@@ -173,7 +173,9 @@
 							.filter((item) => item !== container)
 							.map((item) =>
 								getLogoKey(
-									item.querySelector('[data-logo-wall-target]')
+									item.querySelector(
+										'[data-logo-wall-target]'
+									)
 								)
 							)
 							.filter(Boolean)
@@ -281,12 +283,11 @@
 										></div>
 										<div
 											data-logo-wall-target=""
-												data-logo-key={item.logo_image?.url || index}
+											data-logo-key={item.logo_image
+												?.url || index}
 											class="logo-wall__logo-target"
 										>
-											<PrismicImage
-												field={item.logo_image}
-											/>
+											<CdnImage field={item.logo_image} />
 										</div>
 									</div>
 								</div>

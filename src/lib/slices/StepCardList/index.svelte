@@ -1,9 +1,9 @@
 <script lang="ts">
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte'
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicImage } from '@prismicio/svelte'
 	import { PrismicLink } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.StepCardListSlice>
@@ -50,7 +50,7 @@
 					>
 						<div class="image-number-wrap">
 							<div class="image">
-								<PrismicImage field={item.image} />
+								<CdnImage field={item.image} />
 							</div>
 							<div class="number">
 								{item.step_number}
@@ -61,25 +61,30 @@
 								{item.title}
 							</div>
 							<div class="cta">
-							{#if item.cta?.data}
-								<div class="btn btn--white">
-									<!-- <PrismicLink field={item.cta} /> -->
-									<PrismicLink field={item.cta}>
-										<i
-											class="btn__icon btn__icon--rotate icon-arrow-right"
-										></i>
-										<span>Request proposal</span>
-									</PrismicLink>
-								</div>
-							{/if}
+								{#if item.cta?.data}
+									<div class="btn btn--white">
+										<!-- <PrismicLink field={item.cta} /> -->
+										<PrismicLink field={item.cta}>
+											<i
+												class="btn__icon btn__icon--rotate icon-arrow-right"
+											></i>
+											<span>Request proposal</span>
+										</PrismicLink>
+									</div>
+								{/if}
 								{#if slice.primary.contact_avatar?.data}
 									<AvatarWithContactInfo
 										isDarkBackground={true}
-										image={slice.primary.contact_avatar.data.image}
-										name={slice.primary.contact_avatar.data.name}
-										role={slice.primary.contact_avatar.data.role}
-										phone={slice.primary.contact_avatar.data.phone}
-										email={slice.primary.contact_avatar.data.email}
+										image={slice.primary.contact_avatar.data
+											.image}
+										name={slice.primary.contact_avatar.data
+											.name}
+										role={slice.primary.contact_avatar.data
+											.role}
+										phone={slice.primary.contact_avatar.data
+											.phone}
+										email={slice.primary.contact_avatar.data
+											.email}
 									/>
 								{/if}
 							</div>

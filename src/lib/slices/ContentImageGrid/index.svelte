@@ -2,11 +2,11 @@
 	import type { Content } from '@prismicio/client'
 	import {
 		PrismicRichText,
-		PrismicImage,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
 	import { gsap } from '$lib/gsap'
 	import { onMount } from 'svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.ContentImageGridSlice>
 
@@ -23,22 +23,27 @@
 			ease: 'power2.out',
 			stagger: 0.2,
 			scrollTrigger: {
-			     trigger: '.content-grid',
-			     start: '-20% top',
-				end: 'bottom bottom',
+				trigger: '.content-grid',
+				start: '-20% top',
+				end: 'bottom bottom'
 			}
 		})
 	})
 
 	const paddingClass = $derived(() => {
 		switch (slice.primary.section_padding) {
-			case 'top': return 'block-padding-top';
-			case 'bottom': return 'block-padding-bottom';
-			case 'both': return 'block-padding';
-			case 'none': return '';
-			default: return '';
+			case 'top':
+				return 'block-padding-top'
+			case 'bottom':
+				return 'block-padding-bottom'
+			case 'both':
+				return 'block-padding'
+			case 'none':
+				return ''
+			default:
+				return ''
 		}
-	});
+	})
 </script>
 
 <section
@@ -57,7 +62,7 @@
 							<PrismicRichText field={item.text} />
 						</div>
 					{:else if item.type === 'image'}
-						<PrismicImage
+						<CdnImage
 							field={item.image}
 							class="grid-item__image border-radius"
 						/>

@@ -1,10 +1,10 @@
 <script lang="ts">
+	import CdnImage from '$lib/components/CdnImage.svelte'
 	import type { Content } from '@prismicio/client'
 	import {
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
-	import { PrismicImage } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.ImageTextColumns2Slice>
 
@@ -40,7 +40,7 @@
 					data-reveal-group
 				>
 					<div class="image-block__image">
-						<PrismicImage field={item.image} />
+						<CdnImage field={item.image} />
 					</div>
 					<div class="image-block__content">
 						<h4>{item.headline}</h4>

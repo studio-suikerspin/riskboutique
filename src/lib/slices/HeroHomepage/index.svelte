@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicImage, PrismicRichText } from '@prismicio/svelte'
+	import { PrismicRichText } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.HeroStatementSlice>
 
@@ -10,6 +10,7 @@
 	import { Gradient } from '$lib/gradients'
 	import { onMount } from 'svelte'
 	import ScrollDirectionSlider from '$lib/components/ScrollDirectionSlider.svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	function setHeightToVisualViewportHeight(node) {
 		if (window.visualViewport) {
@@ -54,7 +55,7 @@
 	{:else if slice.variation === 'withMediaBackground'}
 		<div class="hero-section__background hero-section__background--media">
 			{#if slice.primary.background_media.kind === 'image'}
-				<PrismicImage field={slice.primary.background_media} />
+				<CdnImage field={slice.primary.background_media} />
 			{:else}
 				<video
 					autoplay
