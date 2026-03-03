@@ -4,6 +4,7 @@ import {
 	enableAutoPreviews
 } from '@prismicio/svelte/kit'
 import sm from '../../slicemachine.config.json'
+import { PUBLIC_FILE_CDN_BASE } from '$env/static/public'
 
 /**
  * The project's Prismic repository name.
@@ -44,4 +45,9 @@ export const createClient = ({
 	enableAutoPreviews({ client, cookies })
 
 	return client
+}
+
+export const prismicFileUrl = (url: string) => {
+  if (!url) return url
+  return url.replace('https://riskboutique.cdn.prismic.io', PUBLIC_FILE_CDN_BASE)
 }

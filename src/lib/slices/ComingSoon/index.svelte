@@ -1,20 +1,21 @@
 <script lang="ts">
-	import type { Content } from '@prismicio/client';
-	import type { SliceComponentProps } from '@prismicio/svelte';
-	import { PrismicRichText, PrismicLink, PrismicImage } from '@prismicio/svelte';
+	import type { Content } from '@prismicio/client'
+	import type { SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicRichText, PrismicLink } from '@prismicio/svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
-	type Props = SliceComponentProps<Content.ComingSoonSlice>;
+	type Props = SliceComponentProps<Content.ComingSoonSlice>
 
-	const { slice }: Props = $props();
+	const { slice }: Props = $props()
 
-	import { Gradient } from '$lib/gradients';
-	import { onMount } from 'svelte';
+	import { Gradient } from '$lib/gradients'
+	import { onMount } from 'svelte'
 
 	onMount(() => {
-		const gradient = new Gradient();
+		const gradient = new Gradient()
 
-		gradient.initGradient('#gradient-canvas');
-	});
+		gradient.initGradient('#gradient-canvas')
+	})
 </script>
 
 <section
@@ -22,7 +23,11 @@
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 >
-	<canvas id="gradient-canvas" class="coming-soon__gradient" data-transition-in></canvas>
+	<canvas
+		id="gradient-canvas"
+		class="coming-soon__gradient"
+		data-transition-in
+	></canvas>
 
 	<div class="coming-soon__inner">
 		<div class="coming-soon__centered-content">
@@ -41,7 +46,10 @@
 			{#if slice.primary.social_links && slice.primary.social_links.length > 0}
 				<div class="social-links">
 					{#each slice.primary.social_links as link (link.key)}
-						<PrismicLink field={link} class="social-links__link">
+						<PrismicLink
+							field={link}
+							class="social-links__link"
+						>
 							<i class="icon-{link.text}"></i>
 						</PrismicLink>
 					{/each}
@@ -60,8 +68,11 @@
 
 			<div class="bottom-images">
 				{#each slice.primary.images as item, index (index)}
-					<div class="bottom-images__image" data-index={index}>
-						<PrismicImage field={item.image} />
+					<div
+						class="bottom-images__image"
+						data-index={index}
+					>
+						<CdnImage field={item.image} />
 					</div>
 				{/each}
 			</div>

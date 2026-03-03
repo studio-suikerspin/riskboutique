@@ -7,6 +7,7 @@
 	} from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import { Gradient } from '$lib/gradients'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.ContentHeroSlice>
 
@@ -68,10 +69,9 @@
 					/>
 				{/each}
 			</div>
-			<img
+			<CdnImage
 				class="section-careers-hero__image"
-				src={slice.primary.main_visual.url}
-				alt={slice.primary.main_visual.alt}
+				field={slice.primary.main_visual}
 			/>
 		</div>
 	</div>

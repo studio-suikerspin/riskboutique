@@ -3,7 +3,6 @@
 	import type { Content } from '@prismicio/client'
 	import { onMount } from 'svelte'
 	import {
-		PrismicImage,
 		PrismicLink,
 		PrismicRichText,
 		type SliceComponentProps
@@ -11,6 +10,7 @@
 	import { Swiper } from 'swiper/bundle'
 
 	import { initContentRevealScroll } from '$lib/revealContent.js'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.ContentCardsWithImageSlice>
 
@@ -124,7 +124,7 @@
 							<div class="content-cards__card-wrap">
 								<div class="content-card border-radius">
 									<div class="content-card__media-wrap">
-										<PrismicImage field={item.media} />
+										<CdnImage field={item.media} />
 									</div>
 									<div class="content-card__content">
 										<h3 class="h4">{item.title}</h3>
