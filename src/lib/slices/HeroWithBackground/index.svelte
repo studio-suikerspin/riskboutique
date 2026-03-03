@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
-	import CdnImage from '$lib/components/CdnImage.svelte'
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicImage } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.HeroWithBackgroundSlice>
 
@@ -32,7 +32,7 @@
 	<div class="container">
 		<div class="banner__inner">
 			<div class="banner__image">
-				<CdnImage field={slice.primary.background_image} />
+				<PrismicImage field={slice.primary.background_image} />
 				<div class="banner__overlay"></div>
 			</div>
 			<div
@@ -41,7 +41,7 @@
 			>
 				<div class="h2">{slice.primary.headline}</div>
 				<div class="h3 low">{slice.primary.headline}</div>
-				{#if slice.primary.cta_button?.some((link) => link?.url)}
+				{#if slice.primary.cta_button?.some(link => link?.url)}
 					<div class="banner__buttons">
 						{#each slice.primary.cta_button as link (link.key)}
 							{#if link?.url}

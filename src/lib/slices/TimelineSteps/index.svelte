@@ -2,11 +2,11 @@
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
+	import { PrismicImage } from '@prismicio/svelte'
 	import { tick } from 'svelte'
 	import { gsap } from '$lib/gsap'
 	import { browser } from '$app/environment'
 	import { afterNavigate } from '$app/navigation'
-	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.TimelineStepsSlice>
 
@@ -108,7 +108,7 @@
 						</div>
 						{#if item.image?.url}
 							<div class="image-content">
-								<CdnImage field={item.image} />
+								<PrismicImage field={item.image} />
 							</div>
 						{/if}
 					</div>

@@ -1,7 +1,7 @@
 <script>
-	import { PrismicLink } from '@prismicio/svelte'
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
 	import { page } from '$app/state'
-	import CdnImage from './CdnImage.svelte'
+	import { onMount } from 'svelte'
 	import { gsap } from '$lib/gsap'
 
 	const footer = page.data.footer.data
@@ -9,9 +9,8 @@
 
 	const toggleAccordion = (e) => {
 		const currentAccordion = e.target.closest('[data-accordion-status]')
-		const isCurrentlyActive =
-			currentAccordion.getAttribute('data-accordion-status') === 'active'
-
+		const isCurrentlyActive = currentAccordion.getAttribute('data-accordion-status') === 'active'
+		
 		// Sluit alle accordions
 		const accordions = document.querySelectorAll('[data-accordion-status]')
 		accordions.forEach((accordion) => {
@@ -30,47 +29,40 @@
 		<div class="footer__inner">
 			<div class="footer__top">
 				<div class="logo-wrap">
-					<CdnImage field={footer.logo} />
+					<PrismicImage field={footer.logo} />
 				</div>
-				<div class="company__wrap mobile-only">
-					<div class="kvk">
-						<span class="first">Risk Boutique B.V.</span>
-						<span>KvK: 98321307</span>
-					</div>
-					<div class="kvk">
-						<span class="first"
-							>Risk Boutique Interim Solutions B.V.</span
-						>
-						<span>KvK: 98322265</span>
-					</div>
-					<div class="adress">
-						<span>Keizersgracht 241</span>
-						<span>1016 EA, Amsterdam</span>
-					</div>
-					<ul class="socials">
-						{#each socials as { social_link }, index (index)}
-							<li class="socials__item">
-								<PrismicLink
-									field={social_link}
-									class="socials__item-link"
-									data-sidenav-fade=""
-								>
-									<i class="icon-linkedin"></i>
-								</PrismicLink>
-							</li>
-						{/each}
-						<li class="socials__item">
-							<a
-								href="mailto:info@riskboutique.com"
-								class="socials__item-link"
-								data-sidenav-fade=""
-								aria-label="mail"
-							>
-								<i class="icon-mail"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
+					<div class="company__wrap mobile-only">
+						<div class="kvk">
+							<span class="first">Risk Boutique B.V.</span>
+							<span>KvK: 98321307</span>
+						</div>
+						<div class="kvk">
+							<span class="first">Risk Boutique Interim Solutions B.V.</span>
+							<span>KvK: 98322265</span>
+						</div>
+						<div class="adress">
+							<span>Keizersgracht 241</span>
+							<span>1016 EA, Amsterdam</span>
+						</div>
+						<ul class="socials">
+							{#each socials as { social_link }, index (index)}
+								<li class="socials__item">
+									<PrismicLink
+										field={social_link}
+										class="socials__item-link"
+										data-sidenav-fade=""
+									>
+										<i class="icon-linkedin"></i>
+									</PrismicLink>
+								</li>
+							{/each}
+								<li class="socials__item">
+									<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="" aria-label="mail">
+										<i class="icon-mail"></i>
+									</a>
+								</li>
+							</ul>
+					</div>	
 			</div>
 
 			<div class="footer__columns">
@@ -91,9 +83,7 @@
 									class="accordion-css__item-top"
 									onclick={toggleAccordion}
 								>
-									<div
-										class="accordion-css__item-h3 subtitle"
-									>
+									<div class="accordion-css__item-h3 subtitle">
 										{footerColumn.column_title}
 									</div>
 									<div class="accordion-css__item-icon">
@@ -113,18 +103,12 @@
 									</div>
 								</button>
 								<div class="accordion-css__item-bottom">
-									<div
-										class="accordion-css__item-bottom-wrap"
-									>
-										<div
-											class="accordion-css__item-bottom-content"
-										>
+									<div class="accordion-css__item-bottom-wrap">
+										<div class="accordion-css__item-bottom-content">
 											<ul class="footer-column__list">
 												{#each footerColumn.links as link, index (index)}
 													<li>
-														<PrismicLink
-															field={link}
-														/>
+														<PrismicLink field={link} />
 													</li>
 												{/each}
 											</ul>
@@ -138,15 +122,14 @@
 
 				<div class="footer__grid">
 					<div class="footer__grid__company-socials">
-						<div class="company__wrap">
+						<!-- <PrismicImage field={footer.logo} /> -->
+						<div class=company__wrap>
 							<div class="kvk">
 								<span class="first">Risk Boutique B.V.</span>
 								<span>KvK: 98321307</span>
 							</div>
 							<div class="kvk">
-								<span class="first"
-									>Risk Boutique Interim Solutions B.V.</span
-								>
+								<span class="first">Risk Boutique Interim Solutions B.V.</span>
 								<span>KvK: 98322265</span>
 							</div>
 							<div class="adress">
@@ -154,67 +137,62 @@
 								<span>1016 EA, Amsterdam</span>
 							</div>
 						</div>
-						<ul class="socials">
-							{#each socials as { social_link }, index (index)}
-								<li class="socials__item">
-									<PrismicLink
-										field={social_link}
-										class="socials__item-link"
-										data-sidenav-fade=""
-									>
-										<i class="icon-linkedin"></i>
-									</PrismicLink>
-								</li>
-							{/each}
-							<li class="socials__item">
-								<a
-									href="mailto:info@riskboutique.com"
-									class="socials__item-link"
-									data-sidenav-fade=""
-									aria-label="mail"
-								>
-									<i class="icon-mail"></i>
-								</a>
-							</li>
-						</ul>
+					<ul class="socials">
+					{#each socials as { social_link }, index (index)}
+						<li class="socials__item">
+							<PrismicLink
+								field={social_link}
+								class="socials__item-link"
+								data-sidenav-fade=""
+							>
+								<i class="icon-linkedin"></i>
+							</PrismicLink>
+						</li>
+					{/each}
+						<li class="socials__item">
+							<a href="mailto:info@riskboutique.com" class="socials__item-link" data-sidenav-fade="" aria-label="mail">
+								<i class="icon-mail"></i>
+							</a>
+						</li>
+					</ul>
 					</div>
 					{#each footer.columns as footerColumn, index (index)}
-						{#if index === footer.columns.length - 2}
-							<div class="footer__grid-item combined">
-								{#each footer.columns.slice(-2) as col}
-									<div class="footer__grid-item-combined">
-										<div class="footer__grid-item-title">
-											{col.column_title}
-										</div>
-										<ul class="footer__grid-item-list">
-											{#each col.links as link}
-												<li>
-													<PrismicLink field={link} />
-												</li>
-											{/each}
-										</ul>
+					{#if index === footer.columns.length - 2}
+						<div class="footer__grid-item combined">
+							{#each footer.columns.slice(-2) as col}
+								<div class="footer__grid-item-combined">
+									<div class="footer__grid-item-title">
+										{col.column_title}
 									</div>
-								{/each}
-							</div>
-						{:else if index < footer.columns.length - 2}
-							<div class="footer__grid-item">
-								<div class="footer__grid-item-title">
-									{footerColumn.column_title}
+									<ul class="footer__grid-item-list">
+										{#each col.links as link}
+											<li>
+												<PrismicLink field={link} />
+											</li>
+										{/each}
+									</ul>
 								</div>
-								<ul class="footer__grid-item-list">
-									{#each footerColumn.links as link, index (index)}
-										<li>
-											<PrismicLink field={link} />
-										</li>
-									{/each}
-								</ul>
+							{/each}
+						</div>
+					{:else if index < footer.columns.length - 2}
+						<div class="footer__grid-item">
+							<div class="footer__grid-item-title">
+								{footerColumn.column_title}
 							</div>
-						{/if}
-					{/each}
-				</div>
+							<ul class="footer__grid-item-list">
+								{#each footerColumn.links as link, index (index)}
+									<li>
+										<PrismicLink field={link} />
+									</li>
+								{/each}
+							</ul>
+						</div>
+					{/if}
+				{/each}
 			</div>
+		</div>
 
-			<!-- <div class="footer__cta">
+		<!-- <div class="footer__cta">
 				<PrismicLink
 					field={footer.cta_link}
 					class="footer__cta-link"
@@ -261,29 +239,30 @@
 			flex-direction: column;
 			align-items: start;
 			gap: 1rem;
+
 		}
 
 		.logo-wrap {
 			max-width: 280px;
 		}
 
-		.company__wrap {
+		.company__wrap{
 			// margin-top: 1rem;
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
 
-			.kvk {
+			.kvk{
 				display: flex;
 				flex-direction: column;
 				font-size: 0.875rem;
 				color: var(--color-dark-mode);
 
-				.first {
+				.first{
 					font-weight: 600;
 				}
 			}
-			.adress {
+			.adress{
 				display: flex;
 				flex-direction: column;
 				font-size: 0.875rem;
@@ -291,11 +270,11 @@
 			}
 		}
 
-		.company__wrap.mobile-only {
+		.company__wrap.mobile-only{
 			display: flex;
-			@media (min-width: 992px) {
-				display: none;
-			}
+				@media(min-width: 992px){
+					display: none;
+				}
 		}
 
 		.socials {
@@ -319,18 +298,22 @@
 				font-size: 1.125rem;
 			}
 
-			&__item {
-				:global a {
+			&__item{
+
+				:global a{
 					transition: all 0.3s ease;
 				}
 
-				&:hover {
-					:global a {
-						background: var(--color-dark-mode);
-						color: var(--color-snow-white);
-						transform: scale(1.1);
+
+
+					&:hover {
+
+						:global a{
+							background: var(--color-dark-mode);
+							color: var(--color-snow-white);
+							transform: scale(1.1);
+						}
 					}
-				}
 			}
 		}
 
@@ -349,6 +332,7 @@
 					padding-left: 0;
 					display: flex;
 					position: static;
+
 				}
 
 				.accordion-css__item-top {
@@ -360,8 +344,7 @@
 				}
 
 				.accordion-css__item-bottom {
-					transition: grid-template-rows 0.6s
-						cubic-bezier(0.625, 0.05, 0, 1);
+					transition: grid-template-rows 0.6s cubic-bezier(0.625, 0.05, 0, 1);
 					grid-template-rows: 0fr;
 					display: grid;
 					position: relative;
@@ -462,27 +445,32 @@
 			flex-flow: column;
 			gap: 1rem;
 
-			:global li a {
+			:global li a{
 				font-size: 1rem;
 				transition: all 0.3s ease;
 			}
 
-			:global li a:hover {
+			:global li a:hover 
+			{
 				opacity: 0.65;
 			}
+
+
 		}
 
-		&__grid__company-socials {
+		&__grid__company-socials{
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
 		}
 
-		&__cta {
+		&__cta{
 			display: flex;
 			justify-content: center;
 			border-bottom: 1px solid var(--color-aqua);
 		}
+
+		
 
 		&__cta:hover {
 			.footer__cta-text {
@@ -501,8 +489,7 @@
 			font-size: clamp(1rem, 10vw, 10rem);
 			font-weight: 600;
 			color: var(--color-aqua);
-			background: url('/bg-gradient-donker.svg') lightgray 50% / cover
-				no-repeat;
+			background: url('/bg-gradient-donker.svg') lightgray 50% / cover no-repeat;
 			background-clip: text;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
@@ -516,8 +503,7 @@
 			font-size: clamp(1rem, 10vw, 10rem);
 			color: var(--color-aqua);
 			font-weight: 600;
-			background: url('/bg-gradient-donker.svg') lightgray 50% / cover
-				no-repeat;
+			background: url('/bg-gradient-donker.svg') lightgray 50% / cover no-repeat;
 			background-clip: text;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;

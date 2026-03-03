@@ -1,11 +1,11 @@
 <script lang="ts">
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
 	import Button from '$lib/components/Button.svelte'
-	import CdnImage from '$lib/components/CdnImage.svelte'
 	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
 	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte'
 	import type { Content } from '@prismicio/client'
 	import {
+		PrismicImage,
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
@@ -58,7 +58,7 @@
 						<div
 							class="cta-profile-contact__image-wrap border-radius"
 						>
-							<CdnImage field={item.side_image} />
+							<PrismicImage field={item.side_image} />
 						</div>
 
 						<div class="cta-profile-contact__content-wrap">
@@ -94,7 +94,7 @@
 						? 'default-image-wrap'
 						: ''}"
 				>
-					<CdnImage field={slice.primary.image} />
+					<PrismicImage field={slice.primary.image} />
 				</div>
 
 				<div class="cta-profile-contact__content-wrap">

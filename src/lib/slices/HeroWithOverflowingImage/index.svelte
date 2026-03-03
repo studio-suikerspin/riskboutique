@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import {
+		PrismicImage,
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import { Gradient } from '$lib/gradients'
-	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.HeroWithOverflowingImageSlice>
 
@@ -42,7 +42,7 @@
 						<PrismicRichText field={slice.primary.content} />
 					</div>
 
-					<CdnImage field={slice.primary.overflowing_image} />
+					<PrismicImage field={slice.primary.overflowing_image} />
 				</div>
 			</div>
 		</div>
@@ -110,11 +110,11 @@
 				color: var(--color-clay-green);
 			}
 
-			@media (max-width: 768px) {
-				:global h1 {
+			@media(max-width: 768px){
+				:global h1{
 					font-size: 2.5rem;
 					line-height: 115%;
-				}
+				}	
 			}
 		}
 
