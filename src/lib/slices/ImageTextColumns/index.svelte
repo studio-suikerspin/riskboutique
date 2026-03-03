@@ -1,9 +1,8 @@
 <script lang="ts">
-	import CdnImage from '$lib/components/CdnImage.svelte'
 	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte'
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicRichText } from '@prismicio/svelte'
+	import { PrismicImage, PrismicRichText } from '@prismicio/svelte'
 
 	type Props = SliceComponentProps<Content.ImageTextColumnsSlice>
 
@@ -44,7 +43,7 @@
 				>
 					{#if index === 1 || index === 2}
 						<div class="image-text-columns__image">
-							<CdnImage field={item.image} />
+							<PrismicImage field={item.image} />
 						</div>
 					{/if}
 
@@ -82,10 +81,11 @@
 			flex-direction: column;
 			gap: 2.5rem;
 
-			@media (min-width: 768px) {
+			@media(min-width: 768px){
 				padding-inline: 5rem;
 			}
 		}
+			
 
 		&__column {
 			display: flex;

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicImage } from '@prismicio/svelte'
 	import { PrismicRichText } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import { gsap, ScrollTrigger } from '$lib/gsap'
-	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.HeroWithIntroAndColumnsSlice>
 
@@ -75,7 +75,7 @@
 			class="hero__image"
 			{@attach setImageHeightToVisualViewport}
 		>
-			<CdnImage field={slice.primary.background_image} />
+			<PrismicImage field={slice.primary.background_image} />
 			<div class="overlay"></div>
 		</div>
 		<div class="container">

@@ -1,9 +1,8 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
-	import { type SliceComponentProps } from '@prismicio/svelte'
+	import { PrismicImage, type SliceComponentProps } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import { gsap } from '$lib/gsap'
-	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.HeadlineWithCornerImagesSlice>
 
@@ -162,7 +161,7 @@
 						class="image-trail-slice__pool-item"
 					>
 						<div class="image-trail-slice__card">
-							<CdnImage field={item.image} />
+							<PrismicImage field={item.image} />
 						</div>
 					</div>
 				{/each}

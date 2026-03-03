@@ -3,10 +3,13 @@
 	import { browser } from '$app/environment'
 	import { gsap } from '$lib/gsap'
 	import { ScrollTrigger } from 'gsap/ScrollTrigger'
-	import CdnImage from './CdnImage.svelte'
+	import { PrismicImage } from '@prismicio/svelte'
 
 	// Props
-	let { images = [], classNames = '' } = $props()
+	let {
+	     images = [],
+		classNames = ''
+	} = $props()
 
 	function initMarqueeScrollDirection() {
 		if (!browser) return
@@ -37,11 +40,7 @@
 				const duplicateAmount = parseInt(duplicate || 0)
 				const scrollSpeedAttr = parseFloat(scrollSpeed)
 				const speedMultiplier =
-					window.innerWidth < 479
-						? 0.25
-						: window.innerWidth < 991
-							? 0.5
-							: 1
+					window.innerWidth < 479 ? 0.25 : window.innerWidth < 991 ? 0.5 : 1
 
 				let marqueeSpeed =
 					marqueeSpeedAttr *
@@ -115,9 +114,7 @@
 				})
 
 				const scrollStart =
-					marqueeDirectionAttr === -1
-						? scrollSpeedAttr
-						: -scrollSpeedAttr
+					marqueeDirectionAttr === -1 ? scrollSpeedAttr : -scrollSpeedAttr
 				const scrollEnd = -scrollStart
 
 				tl.fromTo(
@@ -156,10 +153,8 @@
 				class="marquee-advanced__collection"
 			>
 				{#each images as item, index (index)}
-					<div
-						class="marquee-advanced__item-width border-radius {classNames}"
-					>
-						<CdnImage field={item.image} />
+					<div class="marquee-advanced__item-width border-radius {classNames}">
+						<PrismicImage field={item.image} />
 					</div>
 				{/each}
 			</div>

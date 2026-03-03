@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { resolve } from '$app/paths'
 	import { page } from '$app/state'
-	import { PrismicLink } from '@prismicio/svelte'
+	import { PrismicImage, PrismicLink } from '@prismicio/svelte'
 	import SideNav from './SideNav/index.svelte'
 	import Button from './Button.svelte'
-	import CdnImage from './CdnImage.svelte'
 	import type { Attachment } from 'svelte/attachments'
 
 	let { site_settings, header, socials } = page.data
@@ -33,11 +32,11 @@
 					? 'dark'
 					: 'light'}
 			>
-				<CdnImage
+				<PrismicImage
 					field={header.data.logo_light}
 					class={['main-header__logo', 'main-header__logo--light']}
 				/>
-				<CdnImage
+				<PrismicImage
 					field={header.data.logo_dark}
 					class={['main-header__logo', 'main-header__logo--dark']}
 				/>
