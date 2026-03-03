@@ -1,8 +1,8 @@
 <script>
-	import { PUBLIC_CDN_BASE_URL } from '$env/static/public'
+	import { PUBLIC_CDN_BASE } from '$env/static/public'
 	import { PrismicImage } from '@prismicio/svelte'
 
-	const CDN_BASE = PUBLIC_CDN_BASE_URL ?? 'https://images.prismic.io'
+	const CDN_BASE = PUBLIC_CDN_BASE ?? 'https://images.prismic.io'
 
 	let { field, imgixParams = {}, ...restProps } = $props()
 

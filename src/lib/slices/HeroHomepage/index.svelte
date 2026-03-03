@@ -11,6 +11,7 @@
 	import { onMount } from 'svelte'
 	import ScrollDirectionSlider from '$lib/components/ScrollDirectionSlider.svelte'
 	import CdnImage from '$lib/components/CdnImage.svelte'
+	import { prismicFileUrl } from '$lib/prismicio'
 
 	function setHeightToVisualViewportHeight(node) {
 		if (window.visualViewport) {
@@ -64,7 +65,11 @@
 					playsinline
 					poster={slice.primary.poster_image?.url}
 				>
-					<source src={slice.primary.background_media?.url} />
+					<source
+						src={prismicFileUrl(
+							slice.primary.background_media?.url
+						)}
+					/>
 				</video>
 			{/if}
 		</div>
