@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicImage } from '@prismicio/svelte'
 	import { onMount } from 'svelte'
 	import { Gradient } from '$lib/gradients'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.HeroWithSplitVisualSlice>
 
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<div class="hero-advisory__visual">
-				<PrismicImage field={slice.primary.visual} />
+				<CdnImage field={slice.primary.visual} />
 			</div>
 		</div>
 	</div>

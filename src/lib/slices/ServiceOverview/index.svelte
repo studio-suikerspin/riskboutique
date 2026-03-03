@@ -1,11 +1,11 @@
 <script lang="ts">
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
 	import Button from '$lib/components/Button.svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 	import SectionHeading from '$lib/components/SectionHeading.svelte'
 	import type { Content } from '@prismicio/client'
 	import type { SliceComponentProps } from '@prismicio/svelte'
-	import { PrismicImage, PrismicRichText } from '@prismicio/svelte'
-	import { onMount } from 'svelte'
+	import { PrismicRichText } from '@prismicio/svelte'
 	import Swiper from 'swiper/bundle'
 	import 'swiper/css/bundle'
 
@@ -89,7 +89,7 @@
 								</div>
 							</div>
 							<div class="service-overview__item-image">
-								<PrismicImage field={item.service_image} />
+								<CdnImage field={item.service_image} />
 							</div>
 						</div>
 					{/each}

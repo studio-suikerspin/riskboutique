@@ -46,7 +46,6 @@
 						<div class="feature-grid-second__item-inner">
 							<div class="text-icon">
 								<div class="icon">
-									<!-- <PrismicImage field={item.icon} /> -->
 									{#if index == 0}
 										<svg
 											xmlns="http://www.w3.org/2000/svg"

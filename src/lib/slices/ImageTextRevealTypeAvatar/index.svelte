@@ -4,11 +4,10 @@
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
-	import { PrismicImage } from '@prismicio/svelte'
-	import { onMount } from 'svelte'
 	import RevealTypeContent from '$lib/components/RevealTypeContent.svelte'
 	import AvatarWithContactInfo from '$lib/components/AvatarWithContactInfo.svelte'
 	import ConnectWithUs from '$lib/components/ConnectWithUs.svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.ImageTextRevealTypeAvatarSlice>
 
@@ -43,7 +42,7 @@
 				data-reveal-group
 			>
 				<div class="image-block__image">
-					<PrismicImage field={slice.primary.image} />
+					<CdnImage field={slice.primary.image} />
 				</div>
 				<div class="image-block__content">
 					<RevealTypeContent text={slice.primary.reveal_type} />

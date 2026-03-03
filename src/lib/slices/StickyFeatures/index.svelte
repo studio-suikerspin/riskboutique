@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client'
 	import {
-		PrismicImage,
 		PrismicRichText,
 		type SliceComponentProps
 	} from '@prismicio/svelte'
@@ -9,6 +8,7 @@
 
 	import { gsap, ScrollTrigger } from '$lib/gsap'
 	import Button from '$lib/components/Button.svelte'
+	import CdnImage from '$lib/components/CdnImage.svelte'
 
 	type Props = SliceComponentProps<Content.IndependentDesignSlice>
 
@@ -192,7 +192,7 @@
 									data-sticky-feature-visual-wrap=""
 									class="sticky-features__img-item"
 								>
-									<PrismicImage
+									<CdnImage
 										class="sticky-features__img"
 										field={feature.image}
 									/>
