@@ -75,10 +75,9 @@
 
 		gtag('config', 'G-V6BH9B0JYP')
 	</script>
-
 	<script
-		async
-		src="https://scripts.simpleanalyticscdn.com/latest.js"
+		src="https://cdn.visitors.now/v.js"
+		data-token="37c66825-8fdd-456f-891f-58f26168afb6"
 	></script>
 </svelte:head>
 <main class="relative">
