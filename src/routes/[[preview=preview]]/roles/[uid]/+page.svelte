@@ -34,6 +34,8 @@
 					href="mailto:careers@riskboutique.nl"
 					title="Apply now"
 					class="btn btn--dark"
+					data-visitors-event="generate_lead"
+					data-visitors-source="Apply to role"
 				>
 					<i class="icon-mail"></i> Apply now
 				</a>
