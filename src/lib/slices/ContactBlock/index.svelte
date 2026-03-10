@@ -43,11 +43,6 @@
 
 			toast.success('Message sent successfully!')
 			form.reset()
-
-			gtag('event', 'generate_lead', {
-				currency: 'EUR',
-				value: 0
-			})
 		} catch (error) {
 			console.error(error)
 			toast.error('Something went wrong. Please try again.')
@@ -212,6 +207,8 @@
 							icon="icon-arrow-right"
 							type="submit"
 							{loading}
+							data-visitors-event="generate_lead"
+							data-visitors-source="contact-form"
 						/>
 
 						<div class="contact-form__footer-note">

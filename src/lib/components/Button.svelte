@@ -12,7 +12,8 @@
 		type = 'button', // Button type for form buttons
 		onClick = null, // Click handler function
 		className = '', // Additional CSS classes,
-		loading = false
+		loading = false,
+		...others
 	} = $props()
 
 	// Compute button classes
@@ -40,6 +41,7 @@
 		class={buttonClasses}
 		{disabled}
 		on:click={handleClick}
+		{...others}
 	>
 		{#if icon}
 			<i class="btn__icon btn__icon--rotate {icon}"></i>
@@ -53,6 +55,7 @@
 		{href}
 		class={buttonClasses}
 		on:click={handleClick}
+		{...others}
 	>
 		{#if icon}
 			<i class="btn__icon btn__icon--rotate {icon}"></i>
@@ -67,6 +70,7 @@
 		class={buttonClasses}
 		disabled={disabled || loading}
 		on:click={handleClick}
+		{...others}
 	>
 		{#if icon && !loading}
 			<i class="btn__icon btn__icon--rotate {icon}"></i>
