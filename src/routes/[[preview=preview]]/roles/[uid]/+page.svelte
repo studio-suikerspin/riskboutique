@@ -29,6 +29,17 @@
 				<PrismicRichText field={role.data.content} />
 			</div>
 
+			{#if role.data.contact_avatar}
+				<AvatarWithContactInfo
+					image={role.data.contact_avatar.data.image}
+					name={role.data.contact_avatar.data.name}
+					role={role.data.contact_avatar.data.role}
+					phone={role.data.contact_avatar.data.phone}
+					email={role.data.contact_avatar.data.email}
+					second_role={role.data.contact_avatar.data.second_role}
+				/>
+			{/if}
+
 			<div class="role__cta">
 				<a
 					href="mailto:careers@riskboutique.nl"
