@@ -1,0 +1,14 @@
+{
+	"name": "riskboutique",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2026-04-28",
+	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"vars": {
+		"PUBLIC_CDN_BASE": "https://cdn.riskboutique.nl",
+		"PUBLIC_FILE_CDN_BASE": "https://files.riskboutique.nl"
+	}
+}
