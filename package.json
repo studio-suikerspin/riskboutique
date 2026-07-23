@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@prismicio/client": "^7.21.0",
 		"@prismicio/svelte": "^2.0.0",
+		"@sveltejs/adapter-vercel": "^6.3.4",
 		"@tailwindcss/vite": "^4.1.17",
 		"gsap": "^3.14.1",
 		"resend": "^6.9.1",
