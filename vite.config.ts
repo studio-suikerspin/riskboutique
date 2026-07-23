@@ -9,5 +9,8 @@ export default defineConfig({
 			allow: ['./slicemachine.config.json']
 		},
 		allowedHosts: ['devserver-develop--riskboutique.netlify.app']
+	},
+	ssr: {
+		noExternal: ['@sanity/sveltekit', 'gsap']
 	}
 });
